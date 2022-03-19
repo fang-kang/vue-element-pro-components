@@ -1,24 +1,43 @@
 # vue-element-pro-components
 
-## Project setup
-```
-npm install
+## 一.快速开始
+
+### 1.1 完整引入
+
+```js
+import Vue from "vue";
+
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+
+Vue.use(Element);
+
+import vueElementProComponentsfrom from "vue-element-pro-components";
+Vue.use(vueElementProComponentsfrom);
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+### 1.2 按需引入
+
+```js
+import Vue from "vue";
+
+import Element from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+
+Vue.use(Element);
+
+import {
+  CustomDialog,
+  CustomForm,
+  CustomPagination,
+  CustomSearch,
+  CustomTable
+} from "vue-element-pro-components";
+
+Vue.use(CustomDialog);
+Vue.use(CustomForm);
+Vue.use(CustomPagination);
+Vue.use(CustomSearch);
+Vue.use(CustomTable);
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

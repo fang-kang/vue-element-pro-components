@@ -4,6 +4,7 @@ node_modules
 /public
 /packages
 /src
+/docs
 
 vue.config.js
 babel.config.js
