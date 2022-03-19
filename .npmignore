@@ -3,6 +3,7 @@ node_modules
 /examples
 /public
 /packages
+/src
 
 vue.config.js
 babel.config.js
