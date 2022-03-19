@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { getMetaData } from "@/views/test-form/meta-data";
+import { getMetaData } from "../test-form/meta-data";
 export default {
   data() {
     return {

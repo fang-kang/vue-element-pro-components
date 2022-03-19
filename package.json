@@ -1,7 +1,7 @@
 {
   "name": "vue-element-pro-components",
   "description": "This is a vue2、element-ui based component library",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Fangkang",
   "license": "MIT",
   "keywords": [
@@ -17,12 +17,12 @@
     "type": "git",
     "url": "https://github.com/fang-kang/vue-element-pro-components"
   },
-  "main": "dist/VueElementProComponents.common.js",
+  "main": "lib/VueElementProComponents.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build-bundle": "vue-cli-service build --target lib --name VueElementProComponents ./src/index.js"
+    "build-bundle": "vue-cli-service build --target lib --name VueElementProComponents --dest lib ./packages/index.js"
   },
   "dependencies": {
     "clipboard": "^2.0.10",

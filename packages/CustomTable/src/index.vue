@@ -39,9 +39,9 @@
 </template>
 
 <script>
-import { types } from "@/components/CustomForm/type";
-import { filterObject } from "@/utils";
-import clipboard from "@/directive/clipboard/index.js"; // use clipboard by v-directive
+import { types } from "../../CustomForm/src/type";
+import { filterObject } from "/src/utils";
+import clipboard from "/src/directive/clipboard";
 import { debounce } from "lodash-es";
 import TableColumn from "./TableColumn.vue";
 

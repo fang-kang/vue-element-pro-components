@@ -25,14 +25,13 @@
                 v-bind="getFormItemOptions(column)"
               >
                 <slot :name="column.key" :form="form">
-                  <!-- input -->
                   <el-input
                     v-if="column.type === cmpTypes.input"
                     v-model="form[column.key]"
                     clearable
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- number -->
+
                   <el-input-number
                     v-else-if="column.type === cmpTypes.number"
                     v-model.number="form[column.key]"
@@ -40,7 +39,7 @@
                     controls-position="right"
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- select -->
+
                   <el-select
                     v-else-if="column.type === cmpTypes.select"
                     v-model="form[column.key]"
@@ -56,7 +55,7 @@
                       :value="item[column.valueName] || item.value"
                     />
                   </el-select>
-                  <!-- checkbox -->
+
                   <el-checkbox-group
                     v-else-if="column.type === cmpTypes.checkBox"
                     v-model="form[column.key]"
@@ -72,7 +71,7 @@
                       {{ item[column.labelName] || item.name }}
                     </el-checkbox>
                   </el-checkbox-group>
-                  <!-- radio -->
+
                   <el-radio-group
                     v-else-if="column.type === cmpTypes.radio"
                     v-model="form[column.key]"
@@ -87,7 +86,7 @@
                       {{ item[column.labelName] || item.name }}
                     </el-radio>
                   </el-radio-group>
-                  <!-- date-picker -->
+
                   <el-date-picker
                     v-else-if="column.type === cmpTypes.date"
                     v-model="form[column.key]"
@@ -97,7 +96,7 @@
                     format="yyyy-MM-dd"
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- time-picker -->
+
                   <el-time-picker
                     v-else-if="column.type === cmpTypes.time"
                     v-model="form[column.key]"
@@ -105,31 +104,31 @@
                     value-format="HH:mm:ss"
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- switch -->
+
                   <el-switch
                     v-else-if="column.type === cmpTypes.switch"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- slider -->
+
                   <el-slider
                     v-else-if="column.type === cmpTypes.slider"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- rate -->
+
                   <el-rate
                     v-else-if="column.type === cmpTypes.rate"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- color -->
+
                   <el-color-picker
                     v-else-if="column.type === cmpTypes.color"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
                   />
-                  <!-- cascader -->
+
                   <el-cascader
                     v-else-if="column.type === cmpTypes.cascader"
                     clearable
@@ -139,7 +138,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="handleCascaderChange"
                   />
-                  <!-- area -->
+
                   <el-cascader
                     v-else-if="column.type === cmpTypes.area"
                     :options="geoNameOptions"
@@ -166,9 +165,9 @@
 <script>
 import { Fragment } from "vue-fragment";
 import { isEqual, cloneDeep, debounce } from "lodash-es";
-import { filterObject } from "@/utils";
+import { filterObject } from "/src/utils";
 import { types } from "./type";
-import geoNameOptions from "@/assets/json/geo_names.json";
+import geoNameOptions from "/src/assets/json/geo_names.json";
 export default {
   name: "CustomForm",
   components: {

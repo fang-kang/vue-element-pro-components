@@ -1,8 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import "@/plugins/element";
-import VueElementProCompontents from "./";
+
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+
+Vue.use(ElementUI);
+
+import VueElementProCompontents from "../packages";
 
 Vue.use(VueElementProCompontents);
 

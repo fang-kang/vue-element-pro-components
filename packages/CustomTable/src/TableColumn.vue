@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { types } from "@/components/CustomForm/type";
+import { types } from "../../CustomForm/src/type";
 export default {
   name: "TableColumn",
   props: {

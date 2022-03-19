@@ -1,4 +1,4 @@
-import { types } from "@/components/CustomForm/type";
+import { types } from "/packages/CustomForm";
 import dict from "./dict";
 export function getMetaData() {
   return {
