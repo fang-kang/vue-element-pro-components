@@ -23,6 +23,7 @@
                 :prop="column.key"
                 :required="column.required"
                 v-bind="getFormItemOptions(column)"
+                v-show="column.isShow"
               >
                 <slot :name="column.key" :form="form">
                   <el-input
@@ -184,10 +185,24 @@ export default {
     event: "change",
   },
   props: {
+    showAll: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
     isRow: {
       type: Boolean,
       required: false,
       default: true,
+    },
+    isCollapse: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    showNum: {
+      type: [Number, String],
+      default: 2,
     },
     columns: {
       type: Object,
@@ -221,7 +236,6 @@ export default {
       geoNameOptions,
       form: {},
       debounceUpdate: null,
-      watchers: {},
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now();
@@ -230,6 +244,14 @@ export default {
     };
   },
   computed: {
+    isShowAll: {
+      get() {
+        return this.showAll;
+      },
+      set(val) {
+        this.$emit("update:showAll", val);
+      },
+    },
     showLoading: {
       get() {
         return this.loading;
@@ -272,27 +294,20 @@ export default {
       return types;
     },
     metaData() {
-      return Object.keys(this.columns)
-        .filter((key) => this.checkShow(this.columns[key]))
-        .map((key) => {
-          const item = this.columns[key];
-          const {
-            label = key,
-            span = 18,
-            type = types.input,
-            columnOption = {},
-            options = [],
-          } = item;
-          return {
-            ...item,
-            key,
-            label,
-            span,
-            type,
-            columnOption,
-            options,
-          };
-        });
+      const { isCollapse, showNum, isShowAll } = this;
+      // 展开收起模式 并且 显示表单数量大于1
+      if (isCollapse && showNum > 0) {
+        // 展开
+        if (isShowAll) {
+          return this.createMetaData("expand");
+        } else {
+          // 收起
+          return this.createMetaData("fold");
+        }
+      } else {
+        // 非展开收起模式
+        return this.createMetaData("expand");
+      }
     },
     elForm() {
       return this.$refs.ruleForm;
@@ -322,6 +337,35 @@ export default {
   },
   created() {},
   methods: {
+    /**
+     * @param {*} mode
+     */
+    createMetaData(mode) {
+      const { columns, showNum } = this;
+      return Object.keys(columns)
+        .filter((key) => this.checkShow(columns[key]))
+        .map((key, index) => {
+          const item = columns[key];
+          const {
+            label = key,
+            span = 18,
+            type = types.input,
+            columnOption = {},
+            options = [],
+          } = item;
+
+          return {
+            ...item,
+            key,
+            label,
+            span,
+            type,
+            columnOption,
+            options,
+            isShow: mode == "expand" ? true : index > showNum ? false : true,
+          };
+        });
+    },
     changeArea(e) {
       this.$emit("changeArea", e);
     },

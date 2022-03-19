@@ -2,8 +2,9 @@
   <el-card>
     <custom-search
       v-model="queryForm"
-      show-reset
-      :resetBtnProps="{ size: 'small' }"
+      :is-collapse="true"
+      :show-num="2"
+      no-search
       :columns="columns"
       @search="dataReload"
     >

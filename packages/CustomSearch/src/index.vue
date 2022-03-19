@@ -1,9 +1,12 @@
 <template>
-  <div class="custom-search" :style="customStyle">
+  <div class="custom-search" ref="searchBox" :style="customStyle">
     <slot name="col-before" />
     <custom-form
       ref="dataForm"
       :is-row="false"
+      :isCollapse="isCollapse"
+      :showNum="showNum"
+      :show-all="showAll"
       v-model="localQuery"
       :columns="searchColumn"
       :form-options="{
@@ -34,6 +37,10 @@
             >{{ resetBtnText }}</el-button
           >
           <slot name="after" />
+          <el-button type="text" @click="showAll = !showAll" v-if="isCollapse">
+            {{ word }}
+            <i :class="showAll ? 'el-icon-arrow-up ' : 'el-icon-arrow-down'"></i>
+          </el-button>
         </el-form-item>
       </template>
     </custom-form>
@@ -56,9 +63,18 @@ export default {
     event: "change",
   },
   props: {
+    isCollapse: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    showNum: {
+      type: [Number, String],
+      default: 2,
+    },
     showReset: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     searchBtnText: {
       type: String,
@@ -120,9 +136,17 @@ export default {
   data() {
     return {
       localQuery: {},
+      showAll: true, //是否展开全部
     };
   },
   computed: {
+    word() {
+      if (!this.showAll) {
+        return "展开";
+      } else {
+        return "收起";
+      }
+    },
     showLoading: {
       get() {
         return this.loading;
@@ -195,6 +219,7 @@ export default {
       },
     },
   },
+  mounted() {},
   methods: {
     search() {
       this.$emit("search");
@@ -216,6 +241,7 @@ export default {
   display: flex;
   padding: 10px;
   margin: 10px 0px;
+  overflow: hidden;
 
   .el-form-item {
     margin: 0 15px 10px 0;
