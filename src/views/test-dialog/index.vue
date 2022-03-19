@@ -1,10 +1,14 @@
 <template>
   <div>
-    <el-button size="small" @click="visible2 = true">打开</el-button>
+    <el-button size="small" @click="visible = true">打开</el-button>
     <custom-dialog
       title="测试"
-      v-model="visible2"
-      :dialog-options="{}"
+      v-model="visible"
+      :dialog-options="{
+        width: '40%',
+        showFullscreen: true,
+        draggable: true,
+      }"
       :btn-loading="btnLoading"
       @open="open"
       @opened="opened"
@@ -12,22 +16,16 @@
       @closed="closed"
       @ok="ok"
     >
-      <div>哈哈哈</div>
-      <!-- <div slot="footer">
-        <el-button size="small" @click="visible2 = false">取消</el-button>
-        <el-button size="small" type="primary" @click="sure">确认</el-button>
-      </div> -->
+      <div>测试弹窗</div>
     </custom-dialog>
   </div>
 </template>
 
 <script>
-import CustomDialog from "@/components/CustomDialog";
 export default {
-  components: { CustomDialog },
   data() {
     return {
-      visible2: false,
+      visible: false,
       btnLoading: false,
     };
   },

@@ -9,7 +9,10 @@
     v-on="$listeners"
   >
     <template #title>
-      <div class="com-dialog__header">
+      <div
+        class="com-dialog__header"
+        :class="[dialogProcessOptions.center ? 'justify-content-c' : '']"
+      >
         <slot name="nameBefore"></slot>
         <slot name="title">
           <span style="font-size: 18px">{{ title }}</span>
@@ -40,10 +43,20 @@
     </el-scrollbar>
 
     <div slot="footer" v-if="showAction">
-      <el-button size="small" @click="handleCancel">取消</el-button>
-      <el-button size="small" type="primary" :loading="showBtnLoading" @click="handleOk"
-        >确定</el-button
+      <slot name="beforeFooter"></slot>
+      <el-button size="small" v-bind="cancelBtnProps" @click="handleCancel">{{
+        cancelBtnText
+      }}</el-button>
+      <slot name="middleFooter"></slot>
+      <el-button
+        size="small"
+        type="primary"
+        :loading="showBtnLoading"
+        v-bind="confirmBtnProps"
+        @click="handleOk"
+        >{{ confirmBtnText }}</el-button
       >
+      <slot name="afterFooter"></slot>
     </div>
 
     <template v-if="$slots.footer && !showAction" #footer>
@@ -63,6 +76,28 @@ export default {
     title: {
       type: String,
       default: "",
+    },
+    cancelBtnText: {
+      type: String,
+      default: "取消",
+    },
+    confirmBtnText: {
+      type: String,
+      default: "确定",
+    },
+    cancelBtnProps: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
+    confirmBtnProps: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
     },
     dialogOptions: {
       type: Object,
@@ -120,10 +155,11 @@ export default {
     },
     dialogProcessOptions() {
       return {
-        closeOnClickModal: false,
+        closeOnClickModal: true,
         top: "10vh",
         width: "60%",
         destroyOnClose: false,
+        appendToBody: true,
         lockScroll: true,
         showFullscreen: false,
         draggable: false,
@@ -155,8 +191,11 @@ export default {
       if (fullscreen && draggable) {
         dragDom.style.cssText += `;left:0px;top:0px;`;
         dialogHeaderEl.style.cssText += ";cursor:default;user-select:none;";
-      } else {
+      } else if (!fullscreen && draggable) {
         dialogHeaderEl.style.cssText += ";cursor:move;user-select:none;";
+      }
+      if (draggable) {
+        dragDom.style.cssText += `;left:0px;top:0px;`;
       }
     },
     closed() {
@@ -277,6 +316,10 @@ export default {
   &__header {
     display: flex;
     align-items: center;
+  }
+
+  .justify-content-c {
+    justify-content: center;
   }
 
   &__content {
