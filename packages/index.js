@@ -4,6 +4,9 @@ import CustomPagination from "./CustomPagination";
 import CustomSearch from "./CustomSearch";
 import CustomTable from "./CustomTable";
 
+const config = require("../package.json");
+console.log(config);
+
 const components = [
   CustomDialog,
   CustomForm,
@@ -24,8 +27,18 @@ if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
+export {
+  types,
+  install,
+  CustomDialog,
+  CustomForm,
+  CustomPagination,
+  CustomSearch,
+  CustomTable,
+};
+
 export default {
-  version: "0.5.0",
+  version: config.version,
   types,
   install,
   CustomDialog,
