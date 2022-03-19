@@ -1,5 +1,5 @@
 import CustomDialog from "./CustomDialog";
-import CustomForm from "./CustomForm";
+import CustomForm, { types } from "./CustomForm";
 import CustomPagination from "./CustomPagination";
 import CustomSearch from "./CustomSearch";
 import CustomTable from "./CustomTable";
@@ -25,7 +25,8 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 
 export default {
-  version: "0.4.0",
+  version: "0.5.0",
+  types,
   install,
   CustomDialog,
   CustomForm,
