@@ -3,6 +3,7 @@ export const types = {
   select: "select",
   number: "number",
   checkBox: "checkBox",
+  check: "check",
   radio: "radio",
   date: "date",
   switch: "switch",

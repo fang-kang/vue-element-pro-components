@@ -56,6 +56,12 @@
                     />
                   </el-select>
 
+                  <el-checkbox
+                    v-else-if="column.type === cmpTypes.check"
+                    v-model="form[column.key]"
+                    v-bind="getColumnOptions(column)"
+                    >{{ column.checkLabel }}</el-checkbox
+                  >
                   <el-checkbox-group
                     v-else-if="column.type === cmpTypes.checkBox"
                     v-model="form[column.key]"
