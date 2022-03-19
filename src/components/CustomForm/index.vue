@@ -164,12 +164,16 @@
 </template>
 
 <script>
+import { Fragment } from "vue-fragment";
 import { isEqual, cloneDeep, debounce } from "lodash-es";
 import { filterObject } from "@/utils";
 import { types } from "./type";
 import geoNameOptions from "@/assets/json/geo_names.json";
 export default {
   name: "CustomForm",
+  components: {
+    Fragment,
+  },
   model: {
     prop: "formData",
     event: "change",

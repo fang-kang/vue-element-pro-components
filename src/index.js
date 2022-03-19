@@ -3,6 +3,7 @@ import CustomForm from "@/components/CustomForm";
 import CustomPagination from "@/components/CustomPagination";
 import CustomSearch from "@/components/CustomSearch";
 import CustomTable from "@/components/CustomTable";
+import { type } from "@/components/CustomForm/type";
 
 CustomDialog.install = function (Vue) {
   Vue.component(CustomDialog.name, CustomDialog);
@@ -51,6 +52,7 @@ export {
   CustomPagination,
   CustomSearch,
   CustomTable,
+  type,
 };
 
 export default {
@@ -60,4 +62,5 @@ export default {
   CustomPagination,
   CustomSearch,
   CustomTable,
+  type,
 };
