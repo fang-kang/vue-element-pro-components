@@ -12,8 +12,8 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(Element);
 
-import vueElementProComponentsfrom from "vue-element-pro-components";
-Vue.use(vueElementProComponentsfrom);
+import vueElementProComponents from "vue-element-pro-components";
+Vue.use(vueElementProComponents);
 ```
 
 ### 1.2 按需引入
@@ -47,4 +47,3 @@ Vue.use(CustomTable);
 Vue.use(CustomAdvancedSearch);
 Vue.use(CustomDrawer);
 ```
-
