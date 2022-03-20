@@ -1,36 +1,78 @@
 <template>
-  <el-table ref="table" v-bind="tableSetting" v-loading="loading">
-    <table-column v-for="column in metadata" :column="column" :key="column.key" />
+  <el-table ref="table" v-bind="tableSetting" v-loading="loading" v-on="$listeners">
+    <!-- 多选 -->
+    <el-table-column
+      v-if="selection"
+      type="selection"
+      align="center"
+      :reserve-selection="reserveSelection"
+      width="60"
+    />
+    <template v-for="column in metadata">
+      <!-- 树型数据 -->
+      <template v-if="column.children && column.children.length">
+        <table-column :key="column.key" :child="column" />
+      </template>
+
+      <template v-else>
+        <el-table-column
+          :key="column.key"
+          :align="column.align || 'center'"
+          :label="column.tableLabel || column.label"
+          v-bind="column.tableColumnOption"
+        >
+          <!-- 表头插槽 -->
+          <template v-if="$slots[column.key + 'Header']" #header="scope">
+            <slot :name="column.key + 'Header'" :scope="scope" />
+          </template>
+          <template slot-scope="scope">
+            <slot :name="column.key" :scope="scope">
+              <i
+                v-if="column.copy"
+                v-clipboard:copy="scope.row[column.key]"
+                v-clipboard:success="clipboardSuccess"
+                class="el-icon-copy-document"
+                style="cursor: pointer; color: #409eff; margin-right: 5px"
+              ></i>
+              <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
+              <el-tag v-if="column.isTag" v-bind="getTagOptions(column, scope.row)"
+                >{{ formatShow(column, scope.row, scope) }}
+              </el-tag>
+            </slot>
+          </template>
+        </el-table-column>
+      </template>
+    </template>
     <el-table-column
       v-if="hasOperation && showOperation"
       v-bind="processOperationOptions"
     >
       <template slot-scope="scope">
-        <slot :row="scope.row" name="operationColumn">
+        <slot :scope="scope" name="operationColumn">
           <div class="operationContainer">
-            <slot :row="scope.row" name="operationBefore" />
-            <slot :row="scope.row" name="autoOperation">
+            <slot :scope="scope" name="operationBefore" />
+            <slot :scope="scope" name="autoOperation">
               <el-button
                 v-if="updateFunc"
-                v-bind="updateOptions(scope.row)"
+                v-bind="updateOptions(scope.row, scope.$index)"
                 size="small"
                 type="primary"
-                @click="updateFunc(scope.row)"
+                @click="updateFunc(scope.row, scope.$index)"
               >
                 修改
               </el-button>
-              <slot :row="scope.row" name="operationMiddle" />
+              <slot :scope="scope" name="operationMiddle" />
               <el-button
                 v-if="deleteFunc"
-                v-bind="deleteOptions(scope.row)"
+                v-bind="deleteOptions(scope.row, scope.$index)"
                 size="small"
                 type="danger"
-                @click="handleDeleteFunc(scope.row)"
+                @click="handleDeleteFunc(scope.row, scope.$index)"
               >
                 删除
               </el-button>
             </slot>
-            <slot :row="scope.row" name="operationAfter" />
+            <slot :scope="scope" name="operationAfter" />
           </div>
         </slot>
       </template>
@@ -54,6 +96,16 @@ export default {
     clipboard,
   },
   props: {
+    // 是否多选
+    selection: {
+      type: Boolean,
+      default: false,
+    },
+    // 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key）
+    reserveSelection: {
+      type: Boolean,
+      default: false,
+    },
     data: {
       type: Array,
       default() {
@@ -65,7 +117,7 @@ export default {
       default: false,
     },
     columns: {
-      type: Object,
+      type: [Object, Array],
       required: false,
     },
     updateOptions: {
@@ -79,7 +131,7 @@ export default {
       default: () => {},
     },
     tableColumns: {
-      type: Object,
+      type: [Object, Array],
       required: false,
     },
     tableOptions: {
@@ -117,26 +169,41 @@ export default {
   },
   computed: {
     tableColumn() {
-      if (this.tableColumns) {
-        return this.tableColumns;
-      } else if (this.columns) {
-        return filterObject(this.columns, (column) => column.showInTable);
+      const { tableColumns, columns } = this;
+      if (tableColumns) {
+        return tableColumns;
+      } else if (columns) {
+        if (Array.isArray(columns)) {
+          return columns.filter((column) => column.showInTable);
+        } else {
+          return filterObject(columns, (column) => column.showInTable);
+        }
       }
       return {};
     },
     metadata() {
-      return Object.keys(this.tableColumn).map((key) => {
-        const item = this.tableColumn[key];
-        const { label = key, type = types.input, tableColumnOption = {}, options } = item;
-        return {
-          ...item,
-          key,
-          label,
-          type,
-          tableColumnOption,
-          options,
-        };
-      });
+      const { tableColumn } = this;
+      if (Array.isArray(tableColumn)) {
+        return tableColumn;
+      } else {
+        return Object.keys(tableColumn).map((key) => {
+          const item = tableColumn[key];
+          const {
+            label = key,
+            type = types.input,
+            tableColumnOption = {},
+            options,
+          } = item;
+          return {
+            ...item,
+            key,
+            label,
+            type,
+            tableColumnOption,
+            options,
+          };
+        });
+      }
     },
     tableSetting() {
       const setting = {
@@ -166,6 +233,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$slots, "s");
     if (this.autoHeight) {
       this.setTableHeight();
       this.setChangeHeightListener();
@@ -199,14 +267,14 @@ export default {
         duration: 1500,
       });
     },
-    handleDeleteFunc(row) {
+    handleDeleteFunc(row, index) {
       this.$confirm("此操作将永久删除该行, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
       })
         .then(() => {
-          this.deleteFunc && this.deleteFunc(row);
+          this.deleteFunc && this.deleteFunc(row, index);
         })
         .catch((err) => {
           console.log(err);
@@ -220,7 +288,7 @@ export default {
     },
     setTableHeight() {
       const searchDom = document.querySelector(".custom-search");
-      const appMainDom = document.querySelector(".content-wrapper");
+      const appMainDom = document.querySelector("#content-wrapper");
       if (searchDom && appMainDom) {
         const paginationDom = document.querySelector(".custom-pagination");
         const paginationDomHeight = paginationDom ? paginationDom.clientHeight : 0;
@@ -244,8 +312,10 @@ export default {
         } else if (typeof column.options === "function") {
           options = column.options(row);
         }
-        const option = options.find((item) => item.value == row[column.key]);
-        return option ? option.label : "";
+        const option = options.find(
+          (item) => String(item.value) == String(row[column.key])
+        );
+        return option ? option.name : "";
       }
       return row[column.key];
     },

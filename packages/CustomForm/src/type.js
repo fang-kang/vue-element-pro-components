@@ -14,4 +14,6 @@ export const types = {
   color: "color",
   cascader: "cascader",
   area: "area",
+  table: "table",
+  editor: "editor",
 };

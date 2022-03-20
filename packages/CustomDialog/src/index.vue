@@ -330,14 +330,16 @@ export default {
     .el-scrollbar__wrap {
       padding: 10px 0;
       max-height: 500px; // 最大高度
-      // overflow-x: hidden; // 隐藏横向滚动栏
+      min-height: 100px; // 最小高度
+      overflow-x: hidden; // 隐藏横向滚动栏
     }
   }
 
   &__content--fullscreen {
     .el-scrollbar__wrap {
       max-height: calc(100vh - 46px - 120px); // 最大高度
-      // overflow-x: hidden; // 隐藏横向滚动栏
+      min-height: 100px; // 最小高度
+      overflow-x: hidden; // 隐藏横向滚动栏
       padding: 10px 0;
     }
   }
@@ -345,8 +347,9 @@ export default {
   &__content--footer {
     .el-scrollbar__wrap {
       max-height: calc(100vh - 46px - 60px - 80px); // 最大高度
+      min-height: 100px; // 最小高度
       padding: 10px 0;
-      // overflow-x: hidden; // 隐藏横向滚动栏
+      overflow-x: hidden; // 隐藏横向滚动栏
     }
   }
 }

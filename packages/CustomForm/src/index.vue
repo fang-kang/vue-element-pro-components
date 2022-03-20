@@ -6,6 +6,7 @@
       :validate-on-rule-change="false"
       v-bind="formProcessOptions"
       :model="form"
+      v-on="$listeners"
     >
       <slot name="columnBefore" :form="form" />
       <component :gutter="0" :is="isRow ? 'el-row' : 'fragment'">
@@ -17,21 +18,83 @@
             <h3 class="title" v-if="column.type === cmpTypes.title">
               {{ column.label }}
             </h3>
+            <template v-else-if="column.type === cmpTypes.table">
+              <el-button
+                type="default"
+                size="small"
+                style="margin-bottom: 10px"
+                icon="el-icon-plus"
+                @click="handleClickBtn(column)"
+              >
+                <span>新增{{ column.label }}</span>
+              </el-button>
+              <custom-table
+                :data="form[column.key]"
+                :columns="createColumn(column)"
+                :operation-options="{ width: 200 }"
+                :table-options="{ rowStyle: { height: '50px' }, hasOperation: true }"
+              >
+                <template #operationMiddle="{ scope }">
+                  <el-button
+                    size="small"
+                    type="primary"
+                    @click="handleEdit(column, scope.row, scope.$index)"
+                  >
+                    修改
+                  </el-button>
+                  <el-button
+                    size="small"
+                    type="danger"
+                    @click="handleDelete(form[column.key], scope.$index)"
+                  >
+                    删除
+                  </el-button>
+                </template>
+              </custom-table>
+            </template>
             <slot v-else :name="`${column.key}-all`" :form="form">
               <el-form-item
-                :label="column.label"
+                :label="column.serachLabel || column.label"
                 :prop="column.key"
                 :required="column.required"
                 v-bind="getFormItemOptions(column)"
                 v-show="column.isShow"
               >
+                <template slot="label">
+                  <span :title="column.serachLabel || column.label">{{
+                    column.serachLabel || column.label
+                  }}</span>
+                  <el-tooltip
+                    v-if="column.tooltip"
+                    placement="right"
+                    :content="column.tooltip"
+                  >
+                    <i
+                      class="el-icon-question"
+                      style="margin-left: 5px; vertical-align: baseline"
+                    />
+                  </el-tooltip>
+                </template>
                 <slot :name="column.key" :form="form">
                   <el-input
                     v-if="column.type === cmpTypes.input"
                     v-model="form[column.key]"
                     clearable
                     v-bind="getColumnOptions(column)"
-                  />
+                  >
+                    <template #prefix>
+                      <slot :name="`${column.key}Prefix`" :form="form" />
+                    </template>
+                    <template #suffix>
+                      <slot :name="`${column.key}Suffix`" :form="form" />
+                    </template>
+                    <template #prepend>
+                      <slot :name="`${column.key}Prepend`" :form="form" />
+                    </template>
+                    <template #append>
+                      <slot :name="`${column.key}Append`" :form="form" />
+                    </template>
+                  </el-input>
 
                   <el-input-number
                     v-else-if="column.type === cmpTypes.number"
@@ -156,6 +219,12 @@
                     v-bind="getColumnOptions(column)"
                     @change="changeArea"
                   />
+
+                  <quill-editor
+                    v-else-if="column.type === cmpTypes.editor"
+                    v-model="form[column.key]"
+                    v-bind="getColumnOptions(column)"
+                  />
                   <slot name="rowAfter" :form="form"></slot>
                 </slot>
               </el-form-item>
@@ -166,25 +235,59 @@
       <slot name="columnAfter" :form="form" />
     </el-form>
     <slot name="formAfter" :form="form" />
+    <custom-dialog
+      :title="`${modalType == 'add' ? '新增' : '编辑'}${currentColumn.label}`"
+      v-model="visible"
+      :dialog-options="tableDialogOptions"
+      @ok="handleOk"
+      @closed="closedDialog"
+    >
+      <custom-form
+        ref="formData"
+        v-model="subForm"
+        :columns="subFormColumn"
+        :form-options="tableFormOptions"
+      />
+    </custom-dialog>
   </div>
 </template>
 
 <script>
 import { Fragment } from "vue-fragment";
 import { isEqual, cloneDeep, debounce } from "lodash-es";
-import { filterObject } from "/src/utils";
+import { filterObject, removeArrayByIndex } from "/src/utils";
 import { types } from "./type";
 import geoNameOptions from "/src/assets/json/geo_names.json";
+import CustomTable from "../../CustomTable";
+import CustomDialog from "../../CustomDialog";
+import QuillEditor from "./QuillEditor.vue";
 export default {
   name: "CustomForm",
   components: {
     Fragment,
+    QuillEditor,
+    CustomTable,
+    CustomDialog,
   },
   model: {
     prop: "formData",
     event: "change",
   },
   props: {
+    tableDialogOptions: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
+    tableFormOptions: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
     showAll: {
       type: Boolean,
       required: false,
@@ -233,6 +336,12 @@ export default {
   },
   data() {
     return {
+      index: 0,
+      modalType: "add",
+      currentColumn: {}, // 当前操作的column
+      subForm: {}, // 子表单
+      subFormColumn: {}, // 子表单配置项
+      visible: false,
       geoNameOptions,
       form: {},
       debounceUpdate: null,
@@ -285,7 +394,7 @@ export default {
     formProcessOptions() {
       const { rules = {}, ...rest } = this.formOptions || {};
       return {
-        labelWidth: "100px",
+        labelWidth: "70px",
         ...(rest || {}),
         rules: { ...this.formRules, ...rules },
       };
@@ -337,6 +446,55 @@ export default {
   },
   created() {},
   methods: {
+    // 关闭弹窗
+    closedDialog() {
+      const { formData } = this.$refs;
+      formData.resetFields();
+    },
+    // 弹窗确定回调
+    async handleOk() {
+      const { formData } = this.$refs;
+      const { key } = this.currentColumn;
+      try {
+        const checkResult = await formData.checkRule();
+        if (checkResult) {
+          if (this.modalType == "add") {
+            const arr = [...this.form[key]];
+            arr.push({ ...this.subForm, uid: Date.now() });
+            this.form[key] = arr;
+          } else {
+            this.$set(this.form[key], this.index, this.subForm);
+          }
+          this.visible = false;
+          this.subForm = {};
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    createColumn(column) {
+      const { tableDataOptions } = column;
+      return tableDataOptions || {};
+    },
+    handleEdit(column, row, index) {
+      this.currentColumn = column;
+      this.subFormColumn = column.tableDataOptions;
+      this.modalType = "edit";
+      this.index = index;
+      this.visible = true;
+      this.subForm = row;
+    },
+    handleDelete(tableData, index) {
+      removeArrayByIndex(tableData, index);
+    },
+    // 表格类型 点击打开弹窗
+    handleClickBtn(column) {
+      this.modalType = "add";
+      this.currentColumn = column;
+      this.subFormColumn = column.tableDataOptions;
+      this.subForm = {};
+      this.visible = true;
+    },
     /**
      * @param {*} mode
      */
@@ -438,7 +596,7 @@ export default {
       Object.keys(columns).forEach((key) => {
         const item = columns[key];
         if (
-          [types.checkBox, types.area, types.cascader].includes(item.type) &&
+          [types.checkBox, types.area, types.cascader, types.table].includes(item.type) &&
           !Array.isArray(newForm[key])
         ) {
           newForm[key] = [];
@@ -504,9 +662,6 @@ export default {
 .custom-form {
   .el-rate {
     line-height: 48px;
-  }
-  .el-scrollbar__wrap {
-    overflow-x: hidden !important;
   }
 }
 </style>

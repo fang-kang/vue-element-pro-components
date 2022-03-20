@@ -1,50 +1,62 @@
 import { types } from "/packages/CustomForm";
-import dict from "./dict";
+import dict from "../test-form/dict";
 import { getArrayValue } from "/src/utils";
 export function getMetaData() {
-  return {
-    title: {
+  return [
+    {
+      key: "title",
       label: "基本信息",
       type: types.title,
     },
-    input: {
+    {
+      key: "input",
       label: "输入框",
+      defaultValue: "测试",
       type: types.input,
       span: 12,
       showInSearch: true,
       formItemOption: {},
       showInTable: true,
       tooltip: "测试测试是处生成",
+      // children: [
+      //   {
+      //     label: "下拉框",
+      //     key: "select",
+      //     defaultValue: 1,
+      //     type: types.select,
+      //     span: 12,
+      //     options: dict.selectArr,
+      //     showInSearch: true,
+      //     showInTable: true,
+      //     showFormat: (val) => {
+      //       return getArrayValue(dict.selectArr, val);
+      //     },
+      //   },
+      //   {
+      //     label: "开关",
+      //     key: "switch",
+      //     type: types.switch,
+      //     span: 12,
+      //   },
+      //   {
+      //     label: "单选框",
+      //     defaultValue: 1,
+      //     key: "radio",
+      //     type: types.radio,
+      //     span: 12,
+      //     options: dict.selectArr,
+      //     showInSearch: true,
+      //     showInTable: true,
+      //     showFormat: (val) => {
+      //       return getArrayValue(dict.selectArr, val);
+      //     },
+      //   },
+      // ],
     },
-    select: {
-      label: "下拉框",
-      type: types.select,
-      span: 12,
-      options: dict.selectArr,
-      showInSearch: true,
-      showInTable: true,
-      showFormat: (val) => {
-        return getArrayValue(dict.selectArr, val);
-      },
-    },
-    switch: {
-      label: "开关",
-      type: types.switch,
-      span: 12,
-    },
-    radio: {
-      label: "单选框",
-      type: types.radio,
-      span: 12,
-      options: dict.selectArr,
-      showInSearch: true,
-      showInTable: true,
-      showFormat: (val) => {
-        return getArrayValue(dict.selectArr, val);
-      },
-    },
-    checxbox: {
+    {
       label: "多选框",
+      defaultValue: [1],
+      key: "checxbox",
       type: types.checkBox,
       span: 12,
       options: dict.selectArr,
@@ -53,50 +65,61 @@ export function getMetaData() {
       showFormat: (val) => {
         return getArrayValue(dict.selectArr, val);
       },
+      children: [
+        {
+          label: "日期",
+          type: types.date,
+          key: "date",
+          defaultValue: "2021-12-21",
+          span: 10,
+          showInSearch: true,
+          showInTable: true,
+        },
+        {
+          label: "数字",
+          key: "num",
+          type: types.number,
+          defaultValue: 11,
+          span: 10,
+          showInTable: true,
+        },
+        {
+          label: "时间",
+          key: "time",
+          type: types.time,
+          defaultValue: "12:23:00",
+          span: 12,
+          showInSearch: true,
+          showInTable: true,
+        },
+      ],
     },
-    date: {
-      label: "日期",
-      type: types.date,
-      span: 10,
-      showInSearch: true,
-      showInTable: true,
-    },
-    num: {
-      label: "数字",
-      type: types.number,
-      span: 10,
-      showInTable: true,
-    },
-    time: {
-      label: "时间",
-      type: types.time,
-      span: 12,
-      showInSearch: true,
-      showInTable: true,
-    },
-    slider: {
+
+    {
       label: "滑块",
+      key: "slider",
       type: types.slider,
+      defaultValue: 10,
       span: 12,
       showInTable: true,
-      showInSearch: false,
     },
-    rate: {
+    {
       label: "评分",
+      key: "rate",
       type: types.rate,
+      defaultValue: 1,
       span: 12,
       showInTable: true,
-      showInSearch: true,
     },
-    color: {
+    {
       label: "颜色",
+      key: "color",
       type: types.color,
-      showInSearch: true,
       span: 12,
     },
-    cascader: {
+    {
       label: "级联",
-      showInSearch: true,
+      key: "cascader",
       type: types.cascader,
       options: [
         {
@@ -369,76 +392,18 @@ export function getMetaData() {
       ],
       span: 12,
     },
-    area: {
+    {
       label: "区域",
+      key: "area",
       type: types.area,
       showInSearch: true,
       span: 12,
     },
-    table: {
+    {
       label: "测试表格",
+      key: "table",
       span: 24,
       type: types.table,
-      tableDataOptions: {
-        input: {
-          label: "输入框",
-          type: types.input,
-          span: 12,
-          showInTable: true,
-        },
-        select: {
-          label: "下拉框",
-          type: types.select,
-          span: 12,
-          options: dict.selectArr,
-          showInTable: true,
-          showFormat: (val) => {
-            return getArrayValue(dict.selectArr, val);
-          },
-        },
-        switch: {
-          label: "开关",
-          type: types.switch,
-          span: 12,
-        },
-        radio: {
-          label: "单选框",
-          type: types.radio,
-          span: 12,
-          options: dict.selectArr,
-        },
-        checxbox: {
-          label: "多选框",
-          type: types.checkBox,
-          span: 12,
-          options: dict.selectArr,
-        },
-        date: {
-          label: "日期",
-          type: types.date,
-          span: 12,
-        },
-        num: {
-          label: "数字",
-          required: true,
-          type: types.number,
-          span: 12,
-          showInTable: true,
-        },
-        time: {
-          label: "时间",
-          type: types.time,
-          showInTable: true,
-          span: 12,
-        },
-      },
     },
-    editor: {
-      label: "富文本",
-      type: types.editor,
-      span: 24,
-      showInSearch: true,
-      tooltip: "富文本提示",
-    },
-  };
+  ];
 }

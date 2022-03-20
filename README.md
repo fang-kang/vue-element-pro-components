@@ -27,11 +27,16 @@ import "element-ui/lib/theme-chalk/index.css";
 Vue.use(Element);
 
 import {
+  utils,
+  types,
+  install,
   CustomDialog,
   CustomForm,
   CustomPagination,
   CustomSearch,
-  CustomTable
+  CustomTable,
+  CustomAdvancedSearch,
+  CustomDrawer,
 } from "vue-element-pro-components";
 
 Vue.use(CustomDialog);
@@ -39,5 +44,7 @@ Vue.use(CustomForm);
 Vue.use(CustomPagination);
 Vue.use(CustomSearch);
 Vue.use(CustomTable);
+Vue.use(CustomAdvancedSearch);
+Vue.use(CustomDrawer);
 ```
 

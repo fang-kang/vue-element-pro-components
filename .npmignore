@@ -8,7 +8,7 @@ node_modules
 
 vue.config.js
 babel.config.js
-
+.yarnrc.yml
 
 # local env files
 .env.local

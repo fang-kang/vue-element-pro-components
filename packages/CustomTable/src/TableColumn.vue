@@ -1,24 +1,42 @@
 <template>
   <el-table-column
-    :key="column.key"
-    :align="column.align || 'center'"
-    :label="column.tableLabel || column.label"
-    v-bind="column.tableColumnOption"
+    :key="child.key"
+    :align="child.align || 'center'"
+    :label="child.tableLabel || child.label"
+    v-bind="child.tableColumnOption"
   >
-    <template slot-scope="scope">
-      <slot :name="column.key" :scope="scope">
-        <i
-          v-if="column.copy"
-          v-clipboard:copy="scope.row[column.key]"
-          v-clipboard:success="clipboardSuccess"
-          class="el-icon-copy-document"
-          style="cursor: pointer; color: #409eff; margin-right: 5px"
-        ></i>
-        <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
-        <el-tag v-if="column.isTag" v-bind="getTagOptions(column, scope.row)"
-          >{{ formatShow(column, scope.row, scope) }}
-        </el-tag>
-      </slot>
+    <template v-for="item in child.children">
+      <!-- 树型数据 -->
+      <template v-if="item.children && item.children.length">
+        <table-column :key="item[key]" :child="item" />
+      </template>
+      <template v-else>
+        <el-table-column
+          :key="item.key"
+          :align="item.align || 'center'"
+          :label="item.tableLabel || item.label"
+          v-bind="item.tableColumnOption"
+        >
+          <template v-if="$slots[item.key + 'Header']" #header="scope">
+            <slot :name="item.key + 'Header'" :scope="scope" />
+          </template>
+          <template slot-scope="scope">
+            <slot :name="item.key" :scope="scope">
+              <i
+                v-if="item.copy"
+                v-clipboard:copy="scope.row[item.key]"
+                v-clipboard:success="clipboardSuccess"
+                class="el-icon-copy-document"
+                style="cursor: pointer; color: #409eff; margin-right: 5px"
+              ></i>
+              <span v-if="!item.isTag">{{ formatShow(item, scope.row, scope) }}</span>
+              <el-tag v-if="item.isTag" v-bind="getTagOptions(item, scope.row)"
+                >{{ formatShow(item, scope.row, scope) }}
+              </el-tag>
+            </slot>
+          </template>
+        </el-table-column>
+      </template>
     </template>
   </el-table-column>
 </template>
@@ -28,7 +46,7 @@ import { types } from "../../CustomForm/src/type";
 export default {
   name: "TableColumn",
   props: {
-    column: {
+    child: {
       type: Object,
       default: () => {},
     },
@@ -68,8 +86,10 @@ export default {
         } else if (typeof column.options === "function") {
           options = column.options(row);
         }
-        const option = options.find((item) => item.value == row[column.key]);
-        return option ? option.label : "";
+        const option = options.find(
+          (item) => String(item.value) == String(row[column.key])
+        );
+        return option ? option.name : "";
       }
       return row[column.key];
     },

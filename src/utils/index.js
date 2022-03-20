@@ -20,3 +20,54 @@ export function filterObject(obj, filterFunc) {
     }, {});
   return result;
 }
+
+/**
+ * 根据数组获取数组中的值
+ * @param {*} array
+ * @param {*} value
+ * @param {*} valueKey
+ * @param {*} labelKey
+ * @returns
+ */
+export function getArrayValue(
+  array,
+  value,
+  valueKey = "value",
+  labelKey = "name",
+  defaultValue = ""
+) {
+  if (!Array.isArray(array)) {
+    throw new Error("Type requires an array");
+  }
+  const obj = array.find((item) => String(item[valueKey]) === String(value));
+  return obj ? obj[labelKey] : defaultValue;
+}
+
+/**
+ * Remove an item from an array.
+ * @param {*} arr
+ * @param {*} item
+ * @returns
+ */
+export function removeArray(arr, item) {
+  if (arr.length) {
+    const index = arr.indexOf(item);
+    if (index > -1) {
+      return arr.splice(index, 1);
+    }
+  }
+}
+
+/**
+ * Remove array by index
+ * @param {*} arr
+ * @param {*} index
+ * @returns
+ */
+export function removeArrayByIndex(arr, index) {
+  if (index > -1) {
+    return arr.splice(index, 1);
+  } else {
+    return arr;
+  }
+}

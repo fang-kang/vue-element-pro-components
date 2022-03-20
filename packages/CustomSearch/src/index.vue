@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-search" ref="searchBox" :style="customStyle">
+  <div class="custom-search" :style="customStyle">
     <slot name="col-before" />
     <custom-form
       ref="dataForm"
@@ -27,6 +27,35 @@
             @click="search"
             >{{ searchBtnText }}</el-button
           >
+          <more-search
+            :drawer-width="450"
+            title="高级查询"
+            v-model="showMoreBtn"
+            v-if="isShowMoreBtn"
+          >
+            <custom-form
+              ref="dataForm"
+              :is-row="false"
+              v-model="localQuery"
+              :columns="searchColumn"
+              :form-options="{
+                inline: false,
+                labelWidth: '80px',
+              }"
+            />
+            <div class="footer">
+              <el-button size="small" icon="el-icon-refresh-right" @click="handleReset"
+                >重置</el-button
+              >
+              <el-button
+                icon="el-icon-search"
+                type="primary"
+                size="small"
+                @click="handleSearch"
+                >查询</el-button
+              >
+            </div>
+          </more-search>
           <el-button
             v-if="!noSearch && showReset"
             icon="el-icon-refresh-right"
@@ -36,6 +65,7 @@
             @click="handleReset"
             >{{ resetBtnText }}</el-button
           >
+
           <slot name="after" />
           <el-button type="text" @click="showAll = !showAll" v-if="isCollapse">
             {{ word }}
@@ -52,18 +82,24 @@
 <script>
 import { filterObject } from "/src/utils";
 import { types } from "../../CustomForm/src/type";
-import { isEqual, cloneDeep } from "lodash";
+import { isEqual, cloneDeep } from "lodash-es";
 import CustomForm from "../../CustomForm";
+import MoreSearch from "./MoreSearch.vue";
 
 export default {
   name: "CustomSearch",
-  components: { CustomForm },
+  components: { CustomForm, MoreSearch },
   model: {
     prop: "query",
     event: "change",
   },
   props: {
     isCollapse: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    isShowMoreBtn: {
       type: Boolean,
       required: false,
       default: true,
@@ -113,10 +149,6 @@ export default {
       type: Object,
       required: false,
     },
-    buttonsOptions: {
-      type: Object,
-      required: false,
-    },
     noSearch: {
       type: Boolean,
       default: false,
@@ -135,17 +167,15 @@ export default {
   },
   data() {
     return {
+      showMoreBtn: false,
       localQuery: {},
       showAll: true, //是否展开全部
     };
   },
   computed: {
     word() {
-      if (!this.showAll) {
-        return "展开";
-      } else {
-        return "收起";
-      }
+      const { showAll } = this;
+      return showAll ? "收起" : "展开";
     },
     showLoading: {
       get() {
@@ -166,43 +196,6 @@ export default {
       }
       return {};
     },
-    metadata() {
-      return Object.keys(this.searchColumn).map((key) => {
-        const item = this.searchColumn[key];
-        const {
-          label = key,
-          type = this.cmpTypes.input,
-          options,
-          searchColOptions = {},
-        } = item;
-        return {
-          key,
-          label,
-          type,
-          options,
-          ...item,
-          searchColOptions: {
-            xs: 24,
-            sm: 12,
-            md: 6,
-            lg: 6,
-            xl: 4,
-            ...searchColOptions,
-          },
-        };
-      });
-    },
-    buttonsSetting() {
-      return {
-        xs: 24,
-        sm: 24,
-        md: 6,
-        lg: 6,
-        xl: 6,
-        xxl: 4,
-        ...(this.buttonsOptions || {}),
-      };
-    },
   },
   watch: {
     query: {
@@ -221,6 +214,10 @@ export default {
   },
   mounted() {},
   methods: {
+    handleSearch() {
+      this.search();
+      this.showMoreBtn = false;
+    },
     search() {
       this.$emit("search");
     },
@@ -231,6 +228,7 @@ export default {
     },
     handleReset() {
       this.$refs.dataForm.resetFields();
+      this.$emit("reset");
     },
   },
 };
@@ -255,5 +253,11 @@ export default {
   .btn-options {
     margin: 0 0 0 20px;
   }
+}
+</style>
+<style lang="scss" scoped>
+.footer {
+  text-align: center;
+  padding-top: 10px;
 }
 </style>

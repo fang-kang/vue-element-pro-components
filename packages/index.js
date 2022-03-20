@@ -3,9 +3,11 @@ import CustomForm, { types } from "./CustomForm";
 import CustomPagination from "./CustomPagination";
 import CustomSearch from "./CustomSearch";
 import CustomTable from "./CustomTable";
+import CustomAdvancedSearch from "./CustomAdvancedSearch";
+import CustomDrawer from "./CustomDrawer";
+import * as utils from "/src/utils";
 
 const config = require("../package.json");
-console.log(config);
 
 const components = [
   CustomDialog,
@@ -13,6 +15,8 @@ const components = [
   CustomPagination,
   CustomSearch,
   CustomTable,
+  CustomAdvancedSearch,
+  CustomDrawer,
 ];
 
 const install = function (Vue) {
@@ -28,6 +32,7 @@ if (typeof window !== "undefined" && window.Vue) {
 }
 
 export {
+  utils,
   types,
   install,
   CustomDialog,
@@ -35,15 +40,20 @@ export {
   CustomPagination,
   CustomSearch,
   CustomTable,
+  CustomAdvancedSearch,
+  CustomDrawer,
 };
 
 export default {
   version: config.version,
   types,
+  utils,
   install,
   CustomDialog,
   CustomForm,
   CustomPagination,
   CustomSearch,
   CustomTable,
+  CustomAdvancedSearch,
+  CustomDrawer,
 };

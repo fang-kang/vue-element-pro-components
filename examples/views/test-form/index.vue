@@ -6,10 +6,14 @@
         ref="dataForm"
         :is-row="true"
         v-model="form"
+        :table-dialog-options="{ width: '60%' }"
         :columns="columns"
-        :form-options="{}"
+        :form-options="{ labelWidth: '100px' }"
         @changeArea="changeArea"
       >
+        <template #inputAppend="{ form }">
+          <el-button @click="click(form)">测试</el-button>
+        </template>
       </custom-form>
     </custom-dialog>
   </div>
@@ -29,6 +33,9 @@ export default {
     this.columns = getMetaData();
   },
   methods: {
+    click(form) {
+      console.log(form);
+    },
     changeArea(e) {
       console.log(e);
     },
