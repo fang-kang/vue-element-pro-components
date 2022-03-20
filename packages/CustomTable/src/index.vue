@@ -241,7 +241,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$slots, "s");
     if (this.autoHeight) {
       this.setTableHeight();
       this.setChangeHeightListener();
