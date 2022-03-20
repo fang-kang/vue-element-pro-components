@@ -54,22 +54,22 @@
             <slot :scope="scope" name="autoOperation">
               <el-button
                 v-if="updateFunc"
-                v-bind="updateOptions(scope.row, scope.$index)"
                 size="small"
                 type="primary"
+                v-bind="updateOptions(scope.row, scope.$index)"
                 @click="updateFunc(scope.row, scope.$index)"
               >
-                修改
+                {{ updateText }}
               </el-button>
               <slot :scope="scope" name="operationMiddle" />
               <el-button
                 v-if="deleteFunc"
-                v-bind="deleteOptions(scope.row, scope.$index)"
                 size="small"
                 type="danger"
+                v-bind="deleteOptions(scope.row, scope.$index)"
                 @click="handleDeleteFunc(scope.row, scope.$index)"
               >
-                删除
+                {{ deleteText }}
               </el-button>
             </slot>
             <slot :scope="scope" name="operationAfter" />
@@ -96,6 +96,14 @@ export default {
     clipboard,
   },
   props: {
+    updateText: {
+      type: String,
+      default: "修改",
+    },
+    deleteText: {
+      type: String,
+      default: "删除",
+    },
     // 是否多选
     selection: {
       type: Boolean,
