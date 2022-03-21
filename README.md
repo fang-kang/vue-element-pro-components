@@ -8,10 +8,6 @@ npm i vue-element-pro-components -s
 yarn add vue-element-pro-components -s
 ```
 
-
-
-
-
 ## 二.快速开始
 
 ### 2.1 完整引入
@@ -59,7 +55,7 @@ npm install babel-plugin-component -D
 
 #### 2.2.3 使用组件
 
-接下来，如果你只希望引入部分组件，比如 `CustomDialog`和 `CustomForm`，那么需要在` main.js` 中写入以下内容：
+接下来，如果你只希望引入部分组件，比如 `CustomDialog`和 `CustomForm`，那么需要在`main.js` 中写入以下内容：
 
 ```js
 import Vue from "vue";
@@ -177,7 +173,6 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
-
 ```
 
 #### 3.1.2 Attributes
@@ -187,25 +182,25 @@ export default {
 |     v-model     |                      是否显示 Dialog                      | boolean |   —    | false  |
 |      title      |                       Dialog 的标题                       | string  |   —    |   —    |
 |  dialogOptions  | 官方支持的参数集合;{ showFullscreen:true,draggable:true } | object  |   —    |   {}   |
-|     loading     |                        弹窗loading                        | boolean |   —    | false  |
-|   btnLoading    |                      确定按钮loading                      | boolean |   —    | false  |
-|   showAction    |                    是否显示底部footer                     | boolean |   —    |  true  |
-| confirmBtnText  |                  底部footer确定按钮文字                   | string  |   —    |  确定  |
-|  cancelBtnText  |                  底部footer取消按钮文字                   | string  |   —    |  取消  |
-| confirmBtnProps |                  底部footer确定按钮props                  | object  |   —    |   —    |
-| cancelBtnProps  |                  底部footer取消按钮props                  | object  |   —    |   —    |
+|     loading     |                       弹窗 loading                        | boolean |   —    | false  |
+|   btnLoading    |                     确定按钮 loading                      | boolean |   —    | false  |
+|   showAction    |                    是否显示底部 footer                    | boolean |   —    |  true  |
+| confirmBtnText  |                 底部 footer 确定按钮文字                  | string  |   —    |  确定  |
+|  cancelBtnText  |                 底部 footer 取消按钮文字                  | string  |   —    |  取消  |
+| confirmBtnProps |                底部 footer 确定按钮 props                 | object  |   —    |   —    |
+| cancelBtnProps  |                底部 footer 取消按钮 props                 | object  |   —    |   —    |
 
 #### 3.1.3 Slot
 
 |     name     |             说明             |
 | :----------: | :--------------------------: |
 |      —       |        Dialog 的内容         |
-|  nameBefore  |     Dialog标题前面的内容     |
-|  nameAfter   |     Dialog标题后面的内容     |
+|  nameBefore  |    Dialog 标题前面的内容     |
+|  nameAfter   |    Dialog 标题后面的内容     |
 | beforeFooter |      取消按钮前面的内容      |
 | middleFooter | 取消按钮和确定按钮中间的内容 |
 | afterFooter  |      确定按钮后面的内容      |
-|    footer    |          底部footer          |
+|    footer    |         底部 footer          |
 
 #### 3.1.4 Events
 
@@ -265,7 +260,6 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
-
 ```
 
 > dict.js
@@ -285,9 +279,7 @@ export default {
 };
 ```
 
-
-
->  meta-data.js
+> meta-data.js
 
 ```js
 import { types } from "/packages/CustomForm";
@@ -743,14 +735,13 @@ export function getMetaData() {
     },
   };
 }
-
 ```
 
 #### 3.2.2 表单类型
 
 ```js
 export const types = {
-  input: "input",  // 输入框
+  input: "input", // 输入框
   select: "select", // 选择框
   number: "number", // 计数器
   checkBox: "checkBox", // 多选框
@@ -768,12 +759,7 @@ export const types = {
   table: "table", // 表格
   editor: "editor", // 富文本
 };
-
 ```
-
-
-
-
 
 #### 3.2.3 Attributes
 
@@ -782,30 +768,30 @@ export const types = {
 |      v-model       |               表单数据                |      object      |   —    |   {}   |
 |      columns       |              表单配置项               |      object      |   —    |   {}   |
 |    formOptions     |          官方支持的参数集合           |      object      |   —    |   {}   |
-|      loading       |              表单loading              |     boolean      |   —    | false  |
+|      loading       |             表单 loading              |     boolean      |   —    | false  |
 |       isRow        |           是否启用栅格布局            |     boolean      |   —    |  true  |
 |      showNum       | 搜索组件内部使用,显示可见的表单项个数 | [Number, String] |   —    |   2    |
 |     isCollapse     |   搜索组件内部使用,是否开启展开收起   |     boolean      |   —    | false  |
 |      showAll       |     搜索组件内部使用,是否展开收起     |     boolean      |   —    |  true  |
-| tableDialogOptions |      表单类型-table的弹窗options      |      object      |   —    |   {}   |
-|  tableFormOptions  |      表单类型-table的表单options      |      object      |   —    |   {}   |
+| tableDialogOptions |     表单类型-table 的弹窗 options     |      object      |   —    |   {}   |
+|  tableFormOptions  |     表单类型-table 的表单 options     |      object      |   —    |   {}   |
 
 #### 3.2.4 Slot
 
-|     name      |               说明                |
-| :-----------: | :-------------------------------: |
-| columnBefore  |    表单内前面的内容 参数(form)    |
-|  columnAfter  |    表单内后面的内容 参数(form)    |
-|  formBefore   |     表单前面的内容 参数(form)     |
-|   formAfter   |     表单后面的内容 参数(form)     |
-|  ${key}-all   |  替换form-item的插槽 参数(form)   |
-|    ${key}     |     替换组件的插槽 参数(form)     |
-|   rowBefore   | el-form-item之前的内容 参数(form) |
-|   rowAfter    | el-form-item之后的内容 参数(form) |
-| ${key}Prefix  |   同input prefix插槽 参数(form)   |
-| ${key}Suffix  |   同input suffix插槽 参数(form)   |
-| ${key}Prepend |  同input prepend插槽 参数(form)   |
-| ${key}Append  |   同input append插槽 参数(form)   |
+|     name      |                说明                |
+| :-----------: | :--------------------------------: |
+| columnBefore  |    表单内前面的内容 参数(form)     |
+|  columnAfter  |    表单内后面的内容 参数(form)     |
+|  formBefore   |     表单前面的内容 参数(form)      |
+|   formAfter   |     表单后面的内容 参数(form)      |
+|  ${key}-all   |  替换 form-item 的插槽 参数(form)  |
+|    ${key}     |     替换组件的插槽 参数(form)      |
+|   rowBefore   | el-form-item 之前的内容 参数(form) |
+|   rowAfter    | el-form-item 之后的内容 参数(form) |
+| ${key}Prefix  |  同 input prefix 插槽 参数(form)   |
+| ${key}Suffix  |  同 input suffix 插槽 参数(form)   |
+| ${key}Prepend |  同 input prepend 插槽 参数(form)  |
+| ${key}Append  |  同 input append 插槽 参数(form)   |
 
 #### 3.2.5 Refs Events
 
@@ -837,18 +823,18 @@ this.$refs.dataForm.resetFields();
     }
 ```
 
-#### 3.2.6 column配置项
+#### 3.2.6 column 配置项
 
-> 此格式form、search、table、advanceSearch通用
+> 此格式 form、search、table、advanceSearch 通用
 
 总体格式为一个对象。类似
 
 ```js
 export function getMetaData() {
-    return {
-        key1:{},
-        key2:{},
-    }
+  return {
+    key1: {},
+    key2: {},
+  };
 }
 ```
 
@@ -865,32 +851,30 @@ created() {
 },
 ```
 
-
-
-|       name        |                             说明                             |           类型            |
-| :---------------: | :----------------------------------------------------------: | :-----------------------: |
-|       label       |                         表单的label                          |          string           |
-|    tableLabel     |      当label和表格中的显示不一致时，优先匹配tableLabel       |          string           |
-|    searchLabel    |      当label和搜索中的显示不一致时，优先匹配tableLabel       |          string           |
-|      tooltip      |                    form-item后面的小提示                     |          string           |
-|   defaultValue    |                            默认值                            |            any            |
-|       type        |                 表单的type，不填默认为input                  |          string           |
-|     required      |                           是否必填                           |          boolean          |
-|       rules       |                           检验数组                           |           array           |
-|   columnOption    |         组件的内部options,例如maxlength,placeholder          |          object           |
-|      options      |     下拉框/单选框/多选框的options 默认[{name,value}]格式     |   array/function(form)    |
-|   showInSearch    |                      是否显示在搜索框中                      |          boolean          |
-|    showInTable    |                       是否显示在表格中                       |          boolean          |
-|  formItemOption   |            form-item的options,常用比如label-width            |          object           |
-|  formColumnShow   | 是否在表单里显示,接收一个函数或者布尔值，返回boolean false隐藏 |  boolean/function(form)   |
-|       span        |                栅格布局 比例  默认 18 一共24                 |          number           |
-|   colSpanOption   |                        el-col的配置项                        |          object           |
-|    showFormat     | 表格格式化,例如select/radio 传的值为1,2,3,渲染成options的name | function(val, row, scope) |
-| tableColumnOption |     表格el-column的配置项,例如width,showOverflowTooltip      |          object           |
-|     onChange      |                     表单的change回调事件                     |      function(item)       |
-|       copy        |                    表格内是否显示复制图标                    |          boolean          |
-|       isTag       |                    表格内是否用el-tag渲染                    |          boolean          |
-|    tagOptions     |             el-tag的配置项,也可以直接写tag的类型             |  string/object/function   |
+|       name        |                                说明                                |           类型            |
+| :---------------: | :----------------------------------------------------------------: | :-----------------------: |
+|       label       |                            表单的 label                            |          string           |
+|    tableLabel     |        当 label 和表格中的显示不一致时，优先匹配 tableLabel        |          string           |
+|    searchLabel    |        当 label 和搜索中的显示不一致时，优先匹配 tableLabel        |          string           |
+|      tooltip      |                       form-item 后面的小提示                       |          string           |
+|   defaultValue    |                               默认值                               |            any            |
+|       type        |                   表单的 type，不填默认为 input                    |          string           |
+|     required      |                              是否必填                              |          boolean          |
+|       rules       |                              检验数组                              |           array           |
+|   columnOption    |           组件的内部 options,例如 maxlength,placeholder            |          object           |
+|      options      |       下拉框/单选框/多选框的 options 默认[{name,value}]格式        |   array/function(form)    |
+|   showInSearch    |                         是否显示在搜索框中                         |          boolean          |
+|    showInTable    |                          是否显示在表格中                          |          boolean          |
+|  formItemOption   |             form-item 的 options,常用比如 label-width              |          object           |
+|  formColumnShow   |  是否在表单里显示,接收一个函数或者布尔值，返回 boolean false 隐藏  |  boolean/function(form)   |
+|       span        |                   栅格布局 比例 默认 18 一共 24                    |          number           |
+|   colSpanOption   |                          el-col 的配置项                           |          object           |
+|    showFormat     | 表格格式化,例如 select/radio 传的值为 1,2,3,渲染成 options 的 name | function(val, row, scope) |
+| tableColumnOption |       表格 el-column 的配置项,例如 width,showOverflowTooltip       |          object           |
+|     onChange      |                       表单的 change 回调事件                       |      function(item)       |
+|       copy        |                       表格内是否显示复制图标                       |          boolean          |
+|       isTag       |                      表格内是否用 el-tag 渲染                      |          boolean          |
+|    tagOptions     |              el-tag 的配置项,也可以直接写 tag 的类型               |  string/object/function   |
 
 ### 3.3 通用搜索-CustomSearch
 
@@ -935,27 +919,26 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
-
 ```
 
 #### 3.3.2 Attributes
 
-|       参数        |                             说明                             |     类型      | 可选值 | 默认值 |
-| :---------------: | :----------------------------------------------------------: | :-----------: | :----: | :----: |
-|      v-model      |                        绑定的查询参数                        |    object     |   —    |   {}   |
-|      columns      | 表单配置项,只显示showInSearch:true的表单(详情见CustomForm说明) |    object     |   —    |   {}   |
-|   searchColumns   |                     表单配置项,全部显示                      |    object     |   —    |   {}   |
-|     noSearch      |                        不显示查询按钮                        |    boolean    |   —    | false  |
-|    customStyle    |                    查询最外层自定义style                     |    object     |   —    |   {}   |
-|    isCollapse     |                     是否显示展开收起文字                     |    boolean    |   —    |  true  |
-| isShowAdvancedBtn |                       是否显示高级查询                       |    boolean    |   —    |  true  |
-|      showNum      |                     收起后显示的表单数量                     | string,number |   —    |   2    |
-|     showReset     |                       是否显示重置按钮                       |    boolean    |   —    |  true  |
-|   searchBtnText   |                         查询按钮文字                         |    string     |   —    |  查询  |
-|  searchBtnProps   |                       查询按钮options                        |    object     |   —    |   {}   |
-|   resetBtnText    |                         重置按钮文字                         |    string     |   —    |  重置  |
-|   resetBtnProps   |                       重置按钮options                        |    object     |   —    |   {}   |
-|      loading      |                       查询按钮loading                        |    boolean    |   —    | false  |
+|       参数        |                                说明                                |     类型      | 可选值 | 默认值 |
+| :---------------: | :----------------------------------------------------------------: | :-----------: | :----: | :----: |
+|      v-model      |                           绑定的查询参数                           |    object     |   —    |   {}   |
+|      columns      | 表单配置项,只显示 showInSearch:true 的表单(详情见 CustomForm 说明) |    object     |   —    |   {}   |
+|   searchColumns   |                        表单配置项,全部显示                         |    object     |   —    |   {}   |
+|     noSearch      |                           不显示查询按钮                           |    boolean    |   —    | false  |
+|    customStyle    |                       查询最外层自定义 style                       |    object     |   —    |   {}   |
+|    isCollapse     |                        是否显示展开收起文字                        |    boolean    |   —    |  true  |
+| isShowAdvancedBtn |                          是否显示高级查询                          |    boolean    |   —    |  true  |
+|      showNum      |                        收起后显示的表单数量                        | string,number |   —    |   2    |
+|     showReset     |                          是否显示重置按钮                          |    boolean    |   —    |  true  |
+|   searchBtnText   |                            查询按钮文字                            |    string     |   —    |  查询  |
+|  searchBtnProps   |                          查询按钮 options                          |    object     |   —    |   {}   |
+|   resetBtnText    |                            重置按钮文字                            |    string     |   —    |  重置  |
+|   resetBtnProps   |                          重置按钮 options                          |    object     |   —    |   {}   |
+|      loading      |                          查询按钮 loading                          |    boolean    |   —    | false  |
 
 #### 3.3.3 Slot
 
@@ -1067,29 +1050,28 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
-
 ```
 
 #### 3.4.2 Attributes
 
-|       参数       |                             说明                             |        类型         | 可选值 | 默认值 |
-| :--------------: | :----------------------------------------------------------: | :-----------------: | :----: | :----: |
-|     columns      | 表格配置项,只显示showInTable:true的表格(详情见CustomForm说明)  多级表头使用数组类型,children是子项 |    object/array     |   —    | {}/[]  |
-|   tableColumns   |                     表格配置项,全部显示                      |    object/array     |   —    | {}/[]  |
-|     loading      |                         表格loading                          |       boolean       |   —    | false  |
+|       参数       |                                                     说明                                                     |        类型         | 可选值 | 默认值 |
+| :--------------: | :----------------------------------------------------------------------------------------------------------: | :-----------------: | :----: | :----: |
+|     columns      |    表格配置项,只显示 showInTable:true 的表格(详情见 CustomForm 说明) 多级表头使用数组类型,children 是子项    |    object/array     |   —    | {}/[]  |
+|   tableColumns   |                                             表格配置项,全部显示                                              |    object/array     |   —    | {}/[]  |
+|     loading      |                                                 表格 loading                                                 |       boolean       |   —    | false  |
 |    selection     | 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key） |       boolean       |   —    | false  |
-| reserveSelection |                     是否显示展开收起文字                     |       boolean       |   —    | false  |
-|       data       |                           表格数据                           |        array        |   —    |   []   |
-|  showOperation   |                     收起后显示的表单数量                     |    string,number    |   —    |   2    |
-|    autoHeight    |     是否自动计算表格高度（外层容器为 #content-wrapper）      |       boolean       |   —    |  true  |
-|   tableOptions   |         表格配置项,例如hasOperation:ture,显示操作栏          |       object        |   —    |   {}   |
-| operationOptions | 操作栏的配置项，默认{label: "操作",fixed: "right",width: "150",align: "center",} |       object        |   —    |   {}   |
-|    updateFunc    |                           修改事件                           | function(row,index) |   —    |   —    |
-|    deleteFunc    |                           删除事件                           | function(row,index) |   —    |   —    |
-|    updateText    |                         修改按钮文字                         |       string        |   —    |  修改  |
-|    deleteText    |                         删除按钮文字                         |       string        |   —    |  删除  |
-|   updateProps    |                        修改按钮props                         |       object        |   —    |   {}   |
-|   deleteProps    |                        删除按钮props                         |       object        |   —    |   {}   |
+| reserveSelection |                                             是否显示展开收起文字                                             |       boolean       |   —    | false  |
+|       data       |                                                   表格数据                                                   |        array        |   —    |   []   |
+|  showOperation   |                                             收起后显示的表单数量                                             |    string,number    |   —    |   2    |
+|    autoHeight    |                             是否自动计算表格高度（外层容器为 #content-wrapper）                              |       boolean       |   —    |  true  |
+|   tableOptions   |                                 表格配置项,例如 hasOperation:ture,显示操作栏                                 |       object        |   —    |   {}   |
+| operationOptions |               操作栏的配置项，默认{label: "操作",fixed: "right",width: "150",align: "center",}               |       object        |   —    |   {}   |
+|    updateFunc    |                                                   修改事件                                                   | function(row,index) |   —    |   —    |
+|    deleteFunc    |                                                   删除事件                                                   | function(row,index) |   —    |   —    |
+|    updateText    |                                                 修改按钮文字                                                 |       string        |   —    |  修改  |
+|    deleteText    |                                                 删除按钮文字                                                 |       string        |   —    |  删除  |
+|   updateProps    |                                                修改按钮 props                                                |       object        |   —    |   {}   |
+|   deleteProps    |                                                删除按钮 props                                                |       object        |   —    |   {}   |
 
 #### 3.4.3 Slot
 
@@ -1103,19 +1085,19 @@ export default {
 | operationMiddle | 修改删除按钮之间的内容 |
 | operationAfter  | 修改删除按钮之后的内容 |
 
-#### 3.3.4 Events
+#### 3.4.4 Events
 
-|      事件名称      |                             说明                             |          回调参数           |
-| :----------------: | :----------------------------------------------------------: | :-------------------------: |
-|   clearSelection   |                 用于多选表格，清空用户的选择                 |              —              |
-| toggleRowSelection | 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中） |        row, selected        |
-| toggleAllSelection |              用于多选表格，切换所有行的选中状态              |              —              |
+|      事件名称      |                                                          说明                                                           |          回调参数           |
+| :----------------: | :---------------------------------------------------------------------------------------------------------------------: | :-------------------------: |
+|   clearSelection   |                                              用于多选表格，清空用户的选择                                               |              —              |
+| toggleRowSelection |       用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中）       |        row, selected        |
+| toggleAllSelection |                                           用于多选表格，切换所有行的选中状态                                            |              —              |
 | toggleRowExpansion | 用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开） |        row, expanded        |
-|   setCurrentRow    | 用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态。 |             row             |
-|    clearFilter     | 不传入参数时用于清空所有过滤条件，数据会恢复成未过滤的状态，也可传入由columnKey组成的数组以清除指定列的过滤条件 |          columnKey          |
-|     clearSort      |          用于清空排序条件，数据会恢复成未排序的状态          |              —              |
-|      doLayout      | 对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法 |              —              |
-|        sort        | 手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。 | prop: string, order: string |
+|   setCurrentRow    |                  用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态。                   |             row             |
+|    clearFilter     |    不传入参数时用于清空所有过滤条件，数据会恢复成未过滤的状态，也可传入由 columnKey 组成的数组以清除指定列的过滤条件    |          columnKey          |
+|     clearSort      |                                       用于清空排序条件，数据会恢复成未排序的状态                                        |              —              |
+|      doLayout      |                   对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法                    |              —              |
+|        sort        |                         手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。                          | prop: string, order: string |
 
 ### 3.5 通用分页-CustomPagination
 
@@ -1144,7 +1126,7 @@ export default {
       total: 100,
       queryForm: {
         pageNo: 1, //页数
-        limit: 10, //	每页行数
+        limit: 10, // 每页行数
       },
     };
   },
@@ -1157,26 +1139,25 @@ export default {
 </script>
 
 <style scoped></style>
-
 ```
 
 #### 3.5.2 Attributes
 
-|       参数        |              说明              |  类型  | 可选值 |                默认值                |
-| :---------------: | :----------------------------: | :----: | :----: | :----------------------------------: |
-|      v-model      |            分页数据            | object |   —    |                  {}                  |
-|       total       |              总数              | number |   —    |                  0                   |
-|  paginationStyle  |      el-pagination的style      | object |   —    |                  {}                  |
-|    customStyle    |      自定义外层容器style       | object |   —    |                  {}                  |
-|     pageSizes     |         分页显示的条数         | array  |   —    |        [10, 20, 30, 50, 100]         |
-| paginationOptions |   官方支持分页的其他options    | object |   —    |                  {}                  |
-|    customProps    | 自定义分页pageNo和pageSize字段 | object |   —    | { page :'page',pageSize:''pageSize } |
+|       参数        |                说明                |  类型  | 可选值 |                默认值                |
+| :---------------: | :--------------------------------: | :----: | :----: | :----------------------------------: |
+|      v-model      |              分页数据              | object |   —    |                  {}                  |
+|       total       |                总数                | number |   —    |                  0                   |
+|  paginationStyle  |       el-pagination 的 style       | object |   —    |                  {}                  |
+|    customStyle    |        自定义外层容器 style        | object |   —    |                  {}                  |
+|     pageSizes     |           分页显示的条数           | array  |   —    |        [10, 20, 30, 50, 100]         |
+| paginationOptions |     官方支持分页的其他 options     | object |   —    |                  {}                  |
+|    customProps    | 自定义分页 pageNo 和 pageSize 字段 | object |   —    | { page :'page',pageSize:''pageSize } |
 
 #### 3.5.3 Events
 
-| 事件名称 |            说明            | 回调参数 |
-| :------: | :------------------------: | :------: |
-|  onLoad  | pageSize或pageNo变化时触发 |    —     |
+| 事件名称 |             说明              | 回调参数 |
+| :------: | :---------------------------: | :------: |
+|  onLoad  | pageSize 或 pageNo 变化时触发 |    —     |
 
 ### 3.6 通用抽屉-CustomDrawer
 
@@ -1185,14 +1166,14 @@ export default {
 ```vue
 <template>
   <div>
-    <el-button @click="showVisible=true">测试</el-button>
+    <el-button @click="showVisible = true">测试</el-button>
     <custom-drawer
-        title="标题"
-        :drawer-width="400"
-        v-model="showVisible"
-        :drawer-options="{}"
-      >
-       内容
+      title="标题"
+      :drawer-width="400"
+      v-model="showVisible"
+      :drawer-options="{}"
+    >
+      内容
     </custom-drawer>
   </div>
 </template>
@@ -1201,28 +1182,25 @@ export default {
 export default {
   data() {
     return {
-      showVisible:false
+      showVisible: false,
     };
   },
-  methods: {
-   
-  },
+  methods: {},
 };
 </script>
 
 <style scoped></style>
-
 ```
 
 #### 3.6.2 Attributes
 
-|     参数      |          说明           |  类型   | 可选值 | 默认值 |
-| :-----------: | :---------------------: | :-----: | :----: | :----: |
-|    v-model    |      是否显示抽屉       | boolean |   —    | false  |
-|  drawerWidth  |       抽屉的宽度        | number  |   —    |  400   |
-|   placement   |        弹出方向         | string  |   —    | right  |
-| drawerOptions | 官方支持的抽屉的options | object  |   —    |   {}   |
-|     title     |        抽屉标题         | string  |   —    |   —    |
+|     参数      |           说明           |  类型   | 可选值 | 默认值 |
+| :-----------: | :----------------------: | :-----: | :----: | :----: |
+|    v-model    |       是否显示抽屉       | boolean |   —    | false  |
+|  drawerWidth  |        抽屉的宽度        | number  |   —    |  400   |
+|   placement   |         弹出方向         | string  |   —    | right  |
+| drawerOptions | 官方支持的抽屉的 options | object  |   —    |   {}   |
+|     title     |         抽屉标题         | string  |   —    |   —    |
 
 #### 3.6.3 Slot
 
@@ -1282,34 +1260,33 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
-
 ```
 
 #### 3.7.2 Attributes
 
-|      参数      |                             说明                             |  类型   | 可选值 | 默认值 |
-| :------------: | :----------------------------------------------------------: | :-----: | :----: | :----: |
-|    v-model     |                           表单数据                           | object  |   —    |   {}   |
-|  drawerWidth   |                          抽屉的宽度                          | number  |   —    |  400   |
-|  visible.sync  |                         是否显示抽屉                         | boolean |   —    | false  |
-| drawerOptions  |                   官方支持的抽屉的options                    | object  |   —    |   {}   |
-|     title      |                           抽屉标题                           | string  |   —    |   —    |
-|  formOptions   |                        表单的options                         | object  |   —    |   {}   |
-|     isRow      |                         是否栅格布局                         | boolean |   —    | false  |
-|    columns     | 表单配置项,只显示showInSearch:true的表单(详情见CustomForm说明) | object  |   —    |   {}   |
-| searchColumns  |                     表单配置项,全部显示                      | object  |   —    |   {}   |
-|   showFooter   |                   是否显示底部重置查询按钮                   | boolean |   —    |  true  |
-| searchBtnText  |                         查询按钮文字                         | string  |   —    |  查询  |
-| searchBtnProps |                       查询按钮options                        | object  |   —    |   {}   |
-|  resetBtnText  |                         重置按钮文字                         | string  |   —    |  重置  |
-| resetBtnProps  |                       重置按钮options                        | object  |   —    |   {}   |
-|   showReset    |                       是否显示重置按钮                       | boolean |   —    |  true  |
+|      参数      |                                说明                                |  类型   | 可选值 | 默认值 |
+| :------------: | :----------------------------------------------------------------: | :-----: | :----: | :----: |
+|    v-model     |                              表单数据                              | object  |   —    |   {}   |
+|  drawerWidth   |                             抽屉的宽度                             | number  |   —    |  400   |
+|  visible.sync  |                            是否显示抽屉                            | boolean |   —    | false  |
+| drawerOptions  |                      官方支持的抽屉的 options                      | object  |   —    |   {}   |
+|     title      |                              抽屉标题                              | string  |   —    |   —    |
+|  formOptions   |                           表单的 options                           | object  |   —    |   {}   |
+|     isRow      |                            是否栅格布局                            | boolean |   —    | false  |
+|    columns     | 表单配置项,只显示 showInSearch:true 的表单(详情见 CustomForm 说明) | object  |   —    |   {}   |
+| searchColumns  |                        表单配置项,全部显示                         | object  |   —    |   {}   |
+|   showFooter   |                      是否显示底部重置查询按钮                      | boolean |   —    |  true  |
+| searchBtnText  |                            查询按钮文字                            | string  |   —    |  查询  |
+| searchBtnProps |                          查询按钮 options                          | object  |   —    |   {}   |
+|  resetBtnText  |                            重置按钮文字                            | string  |   —    |  重置  |
+| resetBtnProps  |                          重置按钮 options                          | object  |   —    |   {}   |
+|   showReset    |                          是否显示重置按钮                          | boolean |   —    |  true  |
 
 #### 3.7.3 Slot
 
 |  name  |             说明             |
 | :----: | :--------------------------: |
-| footer |         自定义footer         |
+| footer |        自定义 footer         |
 | before |      重置按钮前面的内容      |
 | middle | 重置按钮和查询按钮中间的内容 |
 | after  |      查询按钮后面的内容      |
@@ -1321,4 +1298,6 @@ export default {
 |  search  | 表单查询事件 |    —     |
 |  reset   | 表单重置事件 |    —     |
 
-### 
+## 四.演示
+
+后续会加入`demo`演示功能

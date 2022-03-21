@@ -1,7 +1,7 @@
 {
   "name": "vue-element-pro-components",
   "description": "This is a vue2、element-ui based component library",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "author": "Fangkang",
   "license": "MIT",
   "files": [
