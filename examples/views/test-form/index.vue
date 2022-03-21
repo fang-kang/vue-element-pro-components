@@ -9,7 +9,6 @@
         :table-dialog-options="{ width: '60%' }"
         :columns="columns"
         :form-options="{ labelWidth: '100px' }"
-        @changeArea="changeArea"
       >
         <template #inputAppend="{ form }">
           <el-button @click="click(form)">测试</el-button>
@@ -35,9 +34,6 @@ export default {
   methods: {
     click(form) {
       console.log(form);
-    },
-    changeArea(e) {
-      console.log(e);
     },
   },
 };

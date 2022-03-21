@@ -1,5 +1,6 @@
 <template>
   <div class="custom-form">
+    <slot name="formBefore" :form="form" />
     <el-form
       ref="ruleForm"
       v-loading="showLoading"
@@ -53,6 +54,7 @@
               </custom-table>
             </template>
             <slot v-else :name="`${column.key}-all`" :form="form">
+              <slot name="rowBefore" :form="form"></slot>
               <el-form-item
                 :label="column.serachLabel || column.label"
                 :prop="column.key"
@@ -374,7 +376,7 @@ export default {
     isCollapse: {
       type: Boolean,
       required: false,
-      default: true,
+      default: false,
     },
     showNum: {
       type: [Number, String],
@@ -605,12 +607,6 @@ export default {
             isShow: mode == "expand" ? true : index > showNum ? false : true,
           };
         });
-    },
-    changeArea(e) {
-      this.$emit("changeArea", e);
-    },
-    handleCascaderChange(e) {
-      this.$emit("handleCascaderChange", e);
     },
     getFormItemOptions(column) {
       const { formItemOption } = column;
