@@ -13,14 +13,17 @@
       :columns="searchColumn"
       :form-options="formProcessOptions"
     />
-    <div class="footer" v-if="showFooter">
-      <el-button size="small" icon="el-icon-refresh-right" @click="handleReset"
-        >重置</el-button
-      >
-      <el-button icon="el-icon-search" type="primary" size="small" @click="handleSearch"
-        >查询</el-button
-      >
-    </div>
+    <template v-if="showFooter">
+      <div style="height: 40px; width: 100%"></div>
+      <div class="footer">
+        <el-button size="small" icon="el-icon-refresh-right" @click="handleReset"
+          >重置</el-button
+        >
+        <el-button icon="el-icon-search" type="primary" size="small" @click="handleSearch"
+          >查询</el-button
+        >
+      </div>
+    </template>
     <slot name="footer" v-else></slot>
   </custom-drawer>
 </template>
@@ -153,7 +156,14 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e8e8e8;
+  padding: 15px 15px 0 15px;
   text-align: center;
-  padding-top: 10px;
+  left: 0;
+  background: #fff;
+  border-radius: 0 0 4px 4px;
 }
 </style>

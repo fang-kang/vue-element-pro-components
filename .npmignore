@@ -5,6 +5,7 @@ node_modules
 /packages
 /src
 /docs
+/build
 
 vue.config.js
 babel.config.js

@@ -18,6 +18,7 @@
       :columns="columns"
       v-model="queryForm"
       @search="dataReload"
+      @reset="visible = false"
     />
   </el-card>
 </template>

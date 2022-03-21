@@ -14,7 +14,16 @@ export function getMetaData() {
       showInSearch: true,
       formItemOption: {},
       showInTable: true,
-      tooltip: "测试测试是处生成",
+      tooltip: "测试输入框",
+      onChange: (item) => {
+        console.log(item, "item");
+        if (item.form.input == 1) {
+          this.$message.success("成功");
+          item.form.num = 11;
+          item.form.radio = 2;
+          item.form.select = 1;
+        }
+      },
     },
     select: {
       label: "下拉框",

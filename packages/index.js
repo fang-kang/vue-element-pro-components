@@ -31,19 +31,6 @@ if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
-export {
-  utils,
-  types,
-  install,
-  CustomDialog,
-  CustomForm,
-  CustomPagination,
-  CustomSearch,
-  CustomTable,
-  CustomAdvancedSearch,
-  CustomDrawer,
-};
-
 export default {
   version: config.version,
   types,

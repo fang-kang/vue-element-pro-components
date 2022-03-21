@@ -30,7 +30,7 @@ export default {
     };
   },
   created() {
-    this.columns = getMetaData();
+    this.columns = getMetaData.call(this);
   },
   methods: {
     click(form) {

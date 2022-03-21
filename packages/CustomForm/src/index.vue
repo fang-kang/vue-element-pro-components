@@ -81,6 +81,11 @@
                     v-model="form[column.key]"
                     clearable
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   >
                     <template #prefix>
                       <slot :name="`${column.key}Prefix`" :form="form" />
@@ -102,6 +107,11 @@
                     :min="0"
                     controls-position="right"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-select
@@ -110,6 +120,11 @@
                     filterable
                     clearable
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   >
                     <el-option
                       v-for="(item, index) in getOptions(column) || []"
@@ -124,12 +139,22 @@
                     v-else-if="column.type === cmpTypes.check"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                     >{{ column.checkLabel }}</el-checkbox
                   >
                   <el-checkbox-group
                     v-else-if="column.type === cmpTypes.checkBox"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   >
                     <el-checkbox
                       v-for="(item, index) in getOptions(column) || []"
@@ -146,6 +171,11 @@
                     v-else-if="column.type === cmpTypes.radio"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   >
                     <el-radio
                       v-for="(item, index) in getOptions(column) || []"
@@ -165,6 +195,11 @@
                     value-format="yyyy-MM-dd"
                     format="yyyy-MM-dd"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-time-picker
@@ -173,30 +208,55 @@
                     clearable
                     value-format="HH:mm:ss"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-switch
                     v-else-if="column.type === cmpTypes.switch"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-slider
                     v-else-if="column.type === cmpTypes.slider"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-rate
                     v-else-if="column.type === cmpTypes.rate"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-color-picker
                     v-else-if="column.type === cmpTypes.color"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-cascader
@@ -206,7 +266,11 @@
                     v-model="form[column.key]"
                     :options="getOptions(column) || []"
                     v-bind="getColumnOptions(column)"
-                    @change="handleCascaderChange"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <el-cascader
@@ -217,13 +281,22 @@
                     filterable
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
-                    @change="changeArea"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
 
                   <quill-editor
                     v-else-if="column.type === cmpTypes.editor"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
+                    @change="
+                      () => {
+                        changeVal(column);
+                      }
+                    "
                   />
                   <slot name="rowAfter" :form="form"></slot>
                 </slot>
@@ -446,6 +519,15 @@ export default {
   },
   created() {},
   methods: {
+    changeVal(column) {
+      if (column.onChange) {
+        column.onChange({
+          column: column,
+          value: this.form[column.key],
+          form: this.form,
+        });
+      }
+    },
     // 关闭弹窗
     closedDialog() {
       const { formData } = this.$refs;
