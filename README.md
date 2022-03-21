@@ -26,13 +26,13 @@ Vue.use(vueElementProComponents);
 
 ### 2.2 按需引入
 
-#### 2.2.1 需要安装`babel-plugin-component`
+#### 2.2.1 需要安装`babel-plugin-import`
 
 ```bash
 # yarn 方式安装
-yarn add babel-plugin-component --dev
+yarn add babel-plugin-import -D
 # npm 方式安装
-npm install babel-plugin-component -D
+npm install babel-plugin-import -D
 ```
 
 #### 2.2.2 配置 babel
@@ -42,11 +42,11 @@ npm install babel-plugin-component -D
     ...
      plugins: [
     [
-      "component",
+      "import",
       {
         libraryName: "vue-element-pro-components",
-        libDir: "lib",
-        style: false,
+        camel2DashComponentName: false, //是否需要驼峰转短线
+        camel2UnderlineComponentName: false, //是否需要驼峰转下划线
       },
     ],
   ],
