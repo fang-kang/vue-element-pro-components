@@ -832,9 +832,60 @@ this.$refs.dataForm.resetFields();
           //...do something
         }
       } catch (error) {
-        this.addLoading = false;
         console.log(error);
       }
-    },
+    }
 ```
+
+#### 3.2.6 column配置项
+
+> 此格式form、search、table、advanceSearch通用
+
+总体格式为一个对象。类似
+
+```js
+export function getMetaData() {
+    return {
+        key1:{},
+        key2:{},
+    }
+}
+```
+
+使用一个函数来返回一个对象，优点是可以使用组件内部的`this`。
+
+只需要调用的时候这样:
+
+```js
+import { getMetaData } from "./meta-data";
+
+// 生命周期函数里初始化调用 传入组件this
+created() {
+   this.columns = getMetaData.call(this)
+},
+```
+
+
+
+|       name        |                             说明                             |           类型            |
+| :---------------: | :----------------------------------------------------------: | :-----------------------: |
+|       label       |                         表单的label                          |          string           |
+|    tableLabel     |      当label和表格中的显示不一致时，优先匹配tableLabel       |          string           |
+|    searchLabel    |      当label和搜索中的显示不一致时，优先匹配tableLabel       |          string           |
+|      tooltip      |                    form-item后面的小提示                     |          string           |
+|   defaultValue    |                            默认值                            |            any            |
+|       type        |                 表单的type，不填默认为input                  |          string           |
+|     required      |                           是否必填                           |          boolean          |
+|       rules       |                           检验数组                           |           array           |
+|   columnOption    |         组件的内部options,例如maxlength,placeholder          |          object           |
+|      options      |     下拉框/单选框/多选框的options 默认[{name,value}]格式     |   array/function(form)    |
+|   showInSearch    |                      是否显示在搜索框中                      |          boolean          |
+|    showInTable    |                       是否显示在表格中                       |          boolean          |
+|  formItemOption   |            form-item的options,常用比如label-width            |          object           |
+|  formColumnShow   | 是否在表单里显示,接收一个函数或者布尔值，返回boolean false隐藏 |  boolean/function(form)   |
+|       span        |                栅格布局 比例  默认 18 一共24                 |          number           |
+|   colSpanOption   |                        el-col的配置项                        |          object           |
+|    showFormat     | 表格格式化,例如select/radio 传的值为1,2,3,渲染成options的name | function(val, row, scope) |
+| tableColumnOption |     表格el-column的配置项,例如width,showOverflowTooltip      |          object           |
+|     onChange      |                     表单的change回调事件                     |      function(item)       |
 
