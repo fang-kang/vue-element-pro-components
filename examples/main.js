@@ -7,8 +7,7 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(ElementUI);
 
-import VueElementProCompontents from "../packages";
-
+import VueElementProCompontents from "packages";
 Vue.use(VueElementProCompontents);
 
 Vue.config.productionTip = false;

@@ -1,4 +1,4 @@
-const pub = require("./config.pub");
+const { resolve } = require("./utils");
 
 module.exports = {
   pages: {
@@ -14,7 +14,20 @@ module.exports = {
       chunks: ["chunk-vendors", "chunk-common", "index"],
     },
   },
-  configureWebpack: {
-    resolve: pub.resolve,
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set("@", resolve("examples"))
+      .set("packages", resolve("packages"));
+    config.module
+      .rule("js")
+      .include.add(/packages/)
+      .end()
+      .include.add(/examples/)
+      .end()
+      .use("babel")
+      .loader("babel-loader")
+      .tap((options) => {
+        return options;
+      });
   },
 };

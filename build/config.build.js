@@ -1,5 +1,4 @@
 const { resolve, getComponentEntries } = require("./utils");
-const pub = require("./config.pub");
 
 module.exports = {
   outputDir: resolve("lib"),
@@ -13,7 +12,6 @@ module.exports = {
       libraryExport: "default",
       library: "vue-element-pro-components",
     },
-    resolve: pub.resolve,
   },
   // css: {
   //   sourceMap: false,
@@ -24,6 +22,9 @@ module.exports = {
   css: { extract: false },
   productionSourceMap: false,
   chainWebpack: (config) => {
+    config.resolve.alias
+      .set("@", resolve("examples"))
+      .set("packages", resolve("packages"));
     config.optimization.delete("splitChunks");
     config.plugins.delete("copy");
     config.plugins.delete("preload");
@@ -31,7 +32,18 @@ module.exports = {
     config.plugins.delete("html");
     config.plugins.delete("hmr");
     config.entryPoints.delete("app");
-
+    config.module
+      .rule("js")
+      .include.add(/packages/)
+      .end()
+      .include.add(/examples/)
+      .end()
+      .use("babel")
+      .loader("babel-loader")
+      .tap((options) => {
+        // 修改它的选项...
+        return options;
+      });
     config.module
       .rule("fonts")
       .use("url-loader")
