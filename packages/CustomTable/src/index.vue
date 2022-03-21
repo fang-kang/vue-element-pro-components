@@ -56,7 +56,7 @@
                 v-if="updateFunc"
                 size="small"
                 type="primary"
-                v-bind="updateOptions(scope.row, scope.$index)"
+                v-bind="updateProps(scope.row, scope.$index)"
                 @click="updateFunc(scope.row, scope.$index)"
               >
                 {{ updateText }}
@@ -66,7 +66,7 @@
                 v-if="deleteFunc"
                 size="small"
                 type="danger"
-                v-bind="deleteOptions(scope.row, scope.$index)"
+                v-bind="deleteProps(scope.row, scope.$index)"
                 @click="handleDeleteFunc(scope.row, scope.$index)"
               >
                 {{ deleteText }}
@@ -128,12 +128,12 @@ export default {
       type: [Object, Array],
       required: false,
     },
-    updateOptions: {
+    updateProps: {
       type: Function,
       required: false,
       default: () => {},
     },
-    deleteOptions: {
+    deleteProps: {
       type: Function,
       required: false,
       default: () => {},

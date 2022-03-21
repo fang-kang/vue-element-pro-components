@@ -67,7 +67,7 @@ export function getMetaData() {
       label: "日期",
       type: types.date,
       span: 10,
-      showInSearch: true,
+      showInSearch: false,
       showInTable: true,
     },
     num: {
@@ -80,7 +80,7 @@ export function getMetaData() {
       label: "时间",
       type: types.time,
       span: 12,
-      showInSearch: true,
+      showInSearch: false,
       showInTable: true,
     },
     slider: {
@@ -95,17 +95,17 @@ export function getMetaData() {
       type: types.rate,
       span: 12,
       showInTable: true,
-      showInSearch: true,
+      showInSearch: false,
     },
     color: {
       label: "颜色",
       type: types.color,
-      showInSearch: true,
+      showInSearch: false,
       span: 12,
     },
     cascader: {
       label: "级联",
-      showInSearch: true,
+      showInSearch: false,
       type: types.cascader,
       options: [
         {
@@ -381,7 +381,7 @@ export function getMetaData() {
     area: {
       label: "区域",
       type: types.area,
-      showInSearch: true,
+      showInSearch: false,
       span: 12,
     },
     table: {
@@ -446,7 +446,7 @@ export function getMetaData() {
       label: "富文本",
       type: types.editor,
       span: 24,
-      showInSearch: true,
+      showInSearch: false,
       tooltip: "富文本提示",
     },
   };

@@ -792,20 +792,20 @@ export const types = {
 
 #### 3.2.4 Slot
 
-|         name         |               说明                |
-| :------------------: | :-------------------------------: |
-|     columnBefore     |    表单内前面的内容 参数(form)    |
-|     columnAfter      |    表单内后面的内容 参数(form)    |
-|      formBefore      |     表单前面的内容 参数(form)     |
-|      formAfter       |     表单后面的内容 参数(form)     |
-|      ${key}-all      |  替换form-item的插槽 参数(form)   |
-|    ${column.key}     |     替换组件的插槽 参数(form)     |
-|      rowBefore       | el-form-item之前的内容 参数(form) |
-|       rowAfter       | el-form-item之后的内容 参数(form) |
-| ${column.key}Prefix  |   同input prefix插槽 参数(form)   |
-| ${column.key}Suffix  |   同input suffix插槽 参数(form)   |
-| ${column.key}Prepend |  同input prepend插槽 参数(form)   |
-| ${column.key}Append  |   同input append插槽 参数(form)   |
+|     name      |               说明                |
+| :-----------: | :-------------------------------: |
+| columnBefore  |    表单内前面的内容 参数(form)    |
+|  columnAfter  |    表单内后面的内容 参数(form)    |
+|  formBefore   |     表单前面的内容 参数(form)     |
+|   formAfter   |     表单后面的内容 参数(form)     |
+|  ${key}-all   |  替换form-item的插槽 参数(form)   |
+|    ${key}     |     替换组件的插槽 参数(form)     |
+|   rowBefore   | el-form-item之前的内容 参数(form) |
+|   rowAfter    | el-form-item之后的内容 参数(form) |
+| ${key}Prefix  |   同input prefix插槽 参数(form)   |
+| ${key}Suffix  |   同input suffix插槽 参数(form)   |
+| ${key}Prepend |  同input prepend插槽 参数(form)   |
+| ${key}Append  |   同input append插槽 参数(form)   |
 
 #### 3.2.5 Refs Events
 
@@ -888,4 +888,437 @@ created() {
 |    showFormat     | 表格格式化,例如select/radio 传的值为1,2,3,渲染成options的name | function(val, row, scope) |
 | tableColumnOption |     表格el-column的配置项,例如width,showOverflowTooltip      |          object           |
 |     onChange      |                     表单的change回调事件                     |      function(item)       |
+|       copy        |                    表格内是否显示复制图标                    |          boolean          |
+|       isTag       |                    表格内是否用el-tag渲染                    |          boolean          |
+|    tagOptions     |             el-tag的配置项,也可以直接写tag的类型             |  string/object/function   |
 
+### 3.3 通用搜索-CustomSearch
+
+#### 3.3.1 基本用法
+
+```vue
+<template>
+  <el-card>
+    <custom-search
+      v-model="queryForm"
+      :is-collapse="true"
+      :show-num="2"
+      :columns="columns"
+      @search="dataReload"
+    >
+      <template #after>
+        <el-button type="primary" size="small">新增</el-button>
+      </template>
+    </custom-search>
+  </el-card>
+</template>
+
+<script>
+import { getMetaData } from "../test-form/meta-data";
+export default {
+  data() {
+    return {
+      queryForm: {},
+      columns: {},
+      visible: false,
+    };
+  },
+  created() {
+    this.columns = getMetaData.call(this);
+  },
+  methods: {
+    dataReload() {
+      console.log(this.queryForm);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>
+
+```
+
+#### 3.3.2 Attributes
+
+|       参数        |                             说明                             |     类型      | 可选值 | 默认值 |
+| :---------------: | :----------------------------------------------------------: | :-----------: | :----: | :----: |
+|      v-model      |                        绑定的查询参数                        |    object     |   —    |   {}   |
+|      columns      | 表单配置项,只显示showInSearch:true的表单(详情见CustomForm说明) |    object     |   —    |   {}   |
+|   searchColumns   |                     表单配置项,全部显示                      |    object     |   —    |   {}   |
+|     noSearch      |                        不显示查询按钮                        |    boolean    |   —    | false  |
+|    customStyle    |                    查询最外层自定义style                     |    object     |   —    |   {}   |
+|    isCollapse     |                     是否显示展开收起文字                     |    boolean    |   —    |  true  |
+| isShowAdvancedBtn |                       是否显示高级查询                       |    boolean    |   —    |  true  |
+|      showNum      |                     收起后显示的表单数量                     | string,number |   —    |   2    |
+|     showReset     |                       是否显示重置按钮                       |    boolean    |   —    |  true  |
+|   searchBtnText   |                         查询按钮文字                         |    string     |   —    |  查询  |
+|  searchBtnProps   |                       查询按钮options                        |    object     |   —    |   {}   |
+|   resetBtnText    |                         重置按钮文字                         |    string     |   —    |  重置  |
+|   resetBtnProps   |                       重置按钮options                        |    object     |   —    |   {}   |
+|      loading      |                       查询按钮loading                        |    boolean    |   —    | false  |
+
+#### 3.3.3 Slot
+
+|    name    |             说明             |
+| :--------: | :--------------------------: |
+| col-before |      搜索表单前面的内容      |
+| col-after  |      搜索表单后面的内容      |
+|   before   |      查询按钮前面的内容      |
+|   middle   | 查询按钮和重置按钮中间的内容 |
+|   after    |      查询按钮后面的内容      |
+|   ${key}   |  替换组件的插槽 参数(form)   |
+
+#### 3.3.4 Events
+
+| 事件名称 |     说明     | 回调参数 |
+| :------: | :----------: | :------: |
+|  search  | 表单查询事件 |    —     |
+|  reset   | 表单重置事件 |    —     |
+
+### 3.4 通用表格-CustomTable
+
+#### 3.4.1 基本用法
+
+```vue
+<template>
+  <div>
+    <custom-table
+      :data="tableData"
+      :loading="listLoading"
+      selection
+      :columns="columns"
+      :operation-options="{ width: 200 }"
+      :update-func="handleEdit"
+      :delete-func="handleDelete"
+      :table-options="{ rowStyle: { height: '50px' }, hasOperation: true }"
+      @selection-change="handleSelectionChange"
+    >
+      <div slot="inputHeader">
+        <el-button>测试</el-button>
+      </div>
+    </custom-table>
+  </div>
+</template>
+
+<script>
+import { getMetaData } from "./meta-data";
+export default {
+  data() {
+    return {
+      tableData: [
+        {
+          input: "1",
+          select: 1,
+          radio: 1,
+          checxbox: [1],
+          date: "2021-11-10",
+          num: 1,
+          time: "12:23:00",
+          slider: 1,
+          rate: 1,
+        },
+        {
+          input: "1",
+          select: 1,
+          radio: 1,
+          checxbox: [1],
+          date: "2021-11-10",
+          num: 1,
+          time: "12:23:00",
+          slider: 1,
+          rate: 1,
+        },
+        {
+          input: "1",
+          select: 1,
+          radio: 1,
+          checxbox: [1],
+          date: "2021-11-10",
+          num: 1,
+          time: "12:23:00",
+          slider: 1,
+          rate: 1,
+        },
+      ],
+      listLoading: false,
+      columns: [],
+      multipleSelection: [],
+    };
+  },
+  created() {
+    this.columns = getMetaData.call(this);
+  },
+  methods: {
+    click() {
+      console.log(111);
+    },
+    handleEdit(row) {
+      console.log(row);
+    },
+    handleDelete(row) {
+      console.log(row);
+    },
+    handleSelectionChange(val) {
+      console.log(val);
+      this.multipleSelection = val;
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>
+
+```
+
+#### 3.4.2 Attributes
+
+|       参数       |                             说明                             |        类型         | 可选值 | 默认值 |
+| :--------------: | :----------------------------------------------------------: | :-----------------: | :----: | :----: |
+|     columns      | 表格配置项,只显示showInTable:true的表格(详情见CustomForm说明)  多级表头使用数组类型,children是子项 |    object/array     |   —    | {}/[]  |
+|   tableColumns   |                     表格配置项,全部显示                      |    object/array     |   —    | {}/[]  |
+|     loading      |                         表格loading                          |       boolean       |   —    | false  |
+|    selection     | 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key） |       boolean       |   —    | false  |
+| reserveSelection |                     是否显示展开收起文字                     |       boolean       |   —    | false  |
+|       data       |                           表格数据                           |        array        |   —    |   []   |
+|  showOperation   |                     收起后显示的表单数量                     |    string,number    |   —    |   2    |
+|    autoHeight    |     是否自动计算表格高度（外层容器为 #content-wrapper）      |       boolean       |   —    |  true  |
+|   tableOptions   |         表格配置项,例如hasOperation:ture,显示操作栏          |       object        |   —    |   {}   |
+| operationOptions | 操作栏的配置项，默认{label: "操作",fixed: "right",width: "150",align: "center",} |       object        |   —    |   {}   |
+|    updateFunc    |                           修改事件                           | function(row,index) |   —    |   —    |
+|    deleteFunc    |                           删除事件                           | function(row,index) |   —    |   —    |
+|    updateText    |                         修改按钮文字                         |       string        |   —    |  修改  |
+|    deleteText    |                         删除按钮文字                         |       string        |   —    |  删除  |
+|   updateProps    |                        修改按钮props                         |       object        |   —    |   {}   |
+|   deleteProps    |                        删除按钮props                         |       object        |   —    |   {}   |
+
+#### 3.4.3 Slot
+
+|      name       |          说明          |
+| :-------------: | :--------------------: |
+|  ${key}Header   |      表单头部内容      |
+|     ${key}      |        表单内容        |
+| operationColumn |       操作栏内容       |
+| operationBefore | 修改删除按钮之前的内容 |
+|  autoOperation  |   修改删除按钮的内容   |
+| operationMiddle | 修改删除按钮之间的内容 |
+| operationAfter  | 修改删除按钮之后的内容 |
+
+#### 3.3.4 Events
+
+|      事件名称      |                             说明                             |          回调参数           |
+| :----------------: | :----------------------------------------------------------: | :-------------------------: |
+|   clearSelection   |                 用于多选表格，清空用户的选择                 |              —              |
+| toggleRowSelection | 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中） |        row, selected        |
+| toggleAllSelection |              用于多选表格，切换所有行的选中状态              |              —              |
+| toggleRowExpansion | 用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开） |        row, expanded        |
+|   setCurrentRow    | 用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态。 |             row             |
+|    clearFilter     | 不传入参数时用于清空所有过滤条件，数据会恢复成未过滤的状态，也可传入由columnKey组成的数组以清除指定列的过滤条件 |          columnKey          |
+|     clearSort      |          用于清空排序条件，数据会恢复成未排序的状态          |              —              |
+|      doLayout      | 对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法 |              —              |
+|        sort        | 手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。 | prop: string, order: string |
+
+### 3.5 通用分页-CustomPagination
+
+#### 3.5.1 基本用法
+
+```vue
+<template>
+  <div>
+    <custom-pagination
+      :custom-props="customProps"
+      v-model="queryForm"
+      :total="total"
+      @onLoad="findPage"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      customProps: {
+        page: "pageNo",
+        pageSize: "limit",
+      },
+      total: 100,
+      queryForm: {
+        pageNo: 1, //页数
+        limit: 10, //	每页行数
+      },
+    };
+  },
+  methods: {
+    findPage() {
+      console.log(this.queryForm);
+    },
+  },
+};
+</script>
+
+<style scoped></style>
+
+```
+
+#### 3.5.2 Attributes
+
+|       参数        |              说明              |  类型  | 可选值 |                默认值                |
+| :---------------: | :----------------------------: | :----: | :----: | :----------------------------------: |
+|      v-model      |            分页数据            | object |   —    |                  {}                  |
+|       total       |              总数              | number |   —    |                  0                   |
+|  paginationStyle  |      el-pagination的style      | object |   —    |                  {}                  |
+|    customStyle    |      自定义外层容器style       | object |   —    |                  {}                  |
+|     pageSizes     |         分页显示的条数         | array  |   —    |        [10, 20, 30, 50, 100]         |
+| paginationOptions |   官方支持分页的其他options    | object |   —    |                  {}                  |
+|    customProps    | 自定义分页pageNo和pageSize字段 | object |   —    | { page :'page',pageSize:''pageSize } |
+
+#### 3.5.3 Events
+
+| 事件名称 |            说明            | 回调参数 |
+| :------: | :------------------------: | :------: |
+|  onLoad  | pageSize或pageNo变化时触发 |    —     |
+
+### 3.6 通用抽屉-CustomDrawer
+
+#### 3.6.1 基本用法
+
+```vue
+<template>
+  <div>
+    <el-button @click="showVisible=true">测试</el-button>
+    <custom-drawer
+        title="标题"
+        :drawer-width="400"
+        v-model="showVisible"
+        :drawer-options="{}"
+      >
+       内容
+    </custom-drawer>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      showVisible:false
+    };
+  },
+  methods: {
+   
+  },
+};
+</script>
+
+<style scoped></style>
+
+```
+
+#### 3.6.2 Attributes
+
+|     参数      |          说明           |  类型   | 可选值 | 默认值 |
+| :-----------: | :---------------------: | :-----: | :----: | :----: |
+|    v-model    |      是否显示抽屉       | boolean |   —    | false  |
+|  drawerWidth  |       抽屉的宽度        | number  |   —    |  400   |
+|   placement   |        弹出方向         | string  |   —    | right  |
+| drawerOptions | 官方支持的抽屉的options | object  |   —    |   {}   |
+|     title     |        抽屉标题         | string  |   —    |   —    |
+
+#### 3.6.3 Slot
+
+|  name   |      说明      |
+| :-----: | :------------: |
+| default | 抽屉内部的内容 |
+
+### 3.7 通用高级查询-CustomAdvancedSearch
+
+#### 3.7.1 基本用法
+
+```vue
+<template>
+  <el-card>
+    <custom-search
+      v-model="queryForm"
+      :is-collapse="true"
+      :show-num="2"
+      :columns="columns"
+      @search="dataReload"
+    >
+      <template #after>
+        <el-button type="primary" size="small">新增</el-button>
+      </template>
+    </custom-search>
+    <el-button @click="visible = true">测试高级查询</el-button>
+    <custom-advanced-search
+      title="高级查询"
+      :visible.sync="visible"
+      :columns="columns"
+      v-model="queryForm"
+      @search="dataReload"
+      @reset="visible = false"
+    />
+  </el-card>
+</template>
+
+<script>
+import { getMetaData } from "../test-form/meta-data";
+export default {
+  data() {
+    return {
+      queryForm: {},
+      columns: {},
+      visible: false,
+    };
+  },
+  created() {
+    this.columns = getMetaData.call(this);
+  },
+  methods: {
+    dataReload() {
+      console.log(this.queryForm);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>
+
+```
+
+#### 3.7.2 Attributes
+
+|      参数      |                             说明                             |  类型   | 可选值 | 默认值 |
+| :------------: | :----------------------------------------------------------: | :-----: | :----: | :----: |
+|    v-model     |                           表单数据                           | object  |   —    |   {}   |
+|  drawerWidth   |                          抽屉的宽度                          | number  |   —    |  400   |
+|  visible.sync  |                         是否显示抽屉                         | boolean |   —    | false  |
+| drawerOptions  |                   官方支持的抽屉的options                    | object  |   —    |   {}   |
+|     title      |                           抽屉标题                           | string  |   —    |   —    |
+|  formOptions   |                        表单的options                         | object  |   —    |   {}   |
+|     isRow      |                         是否栅格布局                         | boolean |   —    | false  |
+|    columns     | 表单配置项,只显示showInSearch:true的表单(详情见CustomForm说明) | object  |   —    |   {}   |
+| searchColumns  |                     表单配置项,全部显示                      | object  |   —    |   {}   |
+|   showFooter   |                   是否显示底部重置查询按钮                   | boolean |   —    |  true  |
+| searchBtnText  |                         查询按钮文字                         | string  |   —    |  查询  |
+| searchBtnProps |                       查询按钮options                        | object  |   —    |   {}   |
+|  resetBtnText  |                         重置按钮文字                         | string  |   —    |  重置  |
+| resetBtnProps  |                       重置按钮options                        | object  |   —    |   {}   |
+|   showReset    |                       是否显示重置按钮                       | boolean |   —    |  true  |
+
+#### 3.7.3 Slot
+
+|  name  |             说明             |
+| :----: | :--------------------------: |
+| footer |         自定义footer         |
+| before |      重置按钮前面的内容      |
+| middle | 重置按钮和查询按钮中间的内容 |
+| after  |      查询按钮后面的内容      |
+
+#### 3.7.4 Events
+
+| 事件名称 |     说明     | 回调参数 |
+| :------: | :----------: | :------: |
+|  search  | 表单查询事件 |    —     |
+|  reset   | 表单重置事件 |    —     |
+
+### 

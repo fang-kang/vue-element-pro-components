@@ -15,10 +15,11 @@
       }"
     >
       <template #columnAfter>
-        <el-form-item>
+        <el-form-item v-if="$slots.before">
           <slot name="before" />
+        </el-form-item>
+        <el-form-item v-if="!noSearch">
           <el-button
-            v-if="!noSearch"
             icon="el-icon-search"
             type="primary"
             size="small"
@@ -27,11 +28,15 @@
             @click="search"
             >{{ searchBtnText }}</el-button
           >
-          <more-search
+        </el-form-item>
+        <el-form-item v-if="$slots.middle">
+          <slot name="middle" />
+        </el-form-item>
+        <el-form-item v-if="isShowAdvancedBtn">
+          <advanced-search-btn
             :drawer-width="450"
             title="高级查询"
-            v-model="showMoreBtn"
-            v-if="isShowMoreBtn"
+            v-model="showAdvancedBtn"
           >
             <custom-form
               ref="dataForm"
@@ -58,9 +63,10 @@
                 >
               </div>
             </template>
-          </more-search>
+          </advanced-search-btn>
+        </el-form-item>
+        <el-form-item v-if="!noSearch && showReset">
           <el-button
-            v-if="!noSearch && showReset"
             icon="el-icon-refresh-right"
             type="default"
             size="small"
@@ -68,9 +74,12 @@
             @click="handleReset"
             >{{ resetBtnText }}</el-button
           >
-
+        </el-form-item>
+        <el-form-item v-if="$slots.after">
           <slot name="after" />
-          <el-button type="text" @click="showAll = !showAll" v-if="isCollapse">
+        </el-form-item>
+        <el-form-item v-if="isCollapse">
+          <el-button type="text" @click="showAll = !showAll">
             {{ word }}
             <i :class="showAll ? 'el-icon-arrow-up ' : 'el-icon-arrow-down'"></i>
           </el-button>
@@ -87,11 +96,11 @@ import { filterObject } from "/src/utils";
 import { types } from "../../CustomForm/src/type";
 import { isEqual, cloneDeep } from "lodash-es";
 import CustomForm from "../../CustomForm";
-import MoreSearch from "./MoreSearch.vue";
+import AdvancedSearchBtn from "./AdvancedSearchBtn.vue";
 
 export default {
   name: "CustomSearch",
-  components: { CustomForm, MoreSearch },
+  components: { CustomForm, AdvancedSearchBtn },
   model: {
     prop: "query",
     event: "change",
@@ -102,7 +111,7 @@ export default {
       required: false,
       default: true,
     },
-    isShowMoreBtn: {
+    isShowAdvancedBtn: {
       type: Boolean,
       required: false,
       default: true,
@@ -170,7 +179,7 @@ export default {
   },
   data() {
     return {
-      showMoreBtn: false,
+      showAdvancedBtn: false,
       localQuery: {},
       showAll: true, //是否展开全部
     };
@@ -219,7 +228,7 @@ export default {
   methods: {
     handleSearch() {
       this.search();
-      this.showMoreBtn = false;
+      this.showAdvancedBtn = false;
     },
     search() {
       this.$emit("search");

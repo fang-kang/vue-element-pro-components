@@ -4,10 +4,9 @@
       :current-page="pagination[page]"
       :page-sizes="pageSizes"
       :page-size="pagination[pageSize]"
-      layout="total, sizes, prev, pager, next, jumper"
       :total="total"
-      background
       :style="paginationStyle"
+      v-bind="paginationProcessOptions"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
@@ -22,6 +21,12 @@ export default {
     event: "change",
   },
   props: {
+    paginationOptions: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
     customProps: {
       type: Object,
       default() {
@@ -55,7 +60,7 @@ export default {
       default: () => [10, 20, 30, 50, 100],
     },
     total: {
-      type: [Number, null],
+      type: Number,
       default: 0,
     },
   },
@@ -65,6 +70,13 @@ export default {
     },
     pageSize() {
       return this.customProps.pageSize;
+    },
+    paginationProcessOptions() {
+      return {
+        layout: "total, sizes, prev, pager, next, jumper",
+        background: true,
+        ...(this.paginationOptions || {}),
+      };
     },
   },
   methods: {

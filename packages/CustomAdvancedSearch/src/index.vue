@@ -16,12 +16,25 @@
     <template v-if="showFooter">
       <div style="height: 40px; width: 100%"></div>
       <div class="footer">
-        <el-button size="small" icon="el-icon-refresh-right" @click="handleReset"
-          >重置</el-button
+        <slot name="before"></slot>
+        <el-button
+          v-if="showReset"
+          size="small"
+          icon="el-icon-refresh-right"
+          v-bind="resetBtnProps"
+          @click="handleReset"
+          >{{ resetBtnText }}</el-button
         >
-        <el-button icon="el-icon-search" type="primary" size="small" @click="handleSearch"
-          >查询</el-button
+        <slot name="middle"></slot>
+        <el-button
+          icon="el-icon-search"
+          type="primary"
+          size="small"
+          v-bind="searchBtnProps"
+          @click="handleSearch"
+          >{{ searchBtnText }}</el-button
         >
+        <slot name="after"></slot>
       </div>
     </template>
     <slot name="footer" v-else></slot>
@@ -41,6 +54,32 @@ export default {
     event: "change",
   },
   props: {
+    showReset: {
+      type: Boolean,
+      default: true,
+    },
+    searchBtnText: {
+      type: String,
+      default: "查询",
+    },
+    searchBtnProps: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
+    resetBtnText: {
+      type: String,
+      default: "重置",
+    },
+    resetBtnProps: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
     isRow: {
       type: Boolean,
       default: false,
