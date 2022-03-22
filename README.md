@@ -40,13 +40,20 @@ npm install babel-plugin-import -D
 ```js
 {
     ...
-     plugins: [
+plugins: [
     [
       "import",
       {
         libraryName: "vue-element-pro-components",
-        camel2DashComponentName: false, //是否需要驼峰转短线
-        camel2UnderlineComponentName: false, //是否需要驼峰转下划线
+        // 默认打包是lib,不用更改
+        libraryDirectory: "lib",
+        // 如果有样式文件,因为打包后样式统一放在/lib/theme下,所以需要稍微转换下
+        style: (name, file) => {
+          const libDirIndex = name.lastIndexOf("/");
+          const libDir = name.substring(0, libDirIndex);
+          const fileName = name.substr(libDirIndex + 1);
+          return `${libDir}/theme/${fileName}.css`;
+        },
       },
     ],
   ],
@@ -55,7 +62,7 @@ npm install babel-plugin-import -D
 
 #### 2.2.3 使用组件
 
-接下来，如果你只希望引入部分组件，比如 `CustomDialog`和 `CustomForm`，那么需要在`main.js` 中写入以下内容：
+接下来，如果你只希望引入部分组件，比如 `ElProDialog`和 `ElProForm`，那么需要在`main.js` 中写入以下内容：
 
 ```js
 import Vue from 'vue'
@@ -89,9 +96,7 @@ import {
   ElProTable,
   ElProAdvancedSearch,
   ElProDrawer,
-  types,
-  utils,
-  version
+  types
 } from 'vue-element-pro-components'
 
 Vue.use(ElProDialog)
