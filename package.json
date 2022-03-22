@@ -1,6 +1,6 @@
 {
   "name": "vue-element-pro-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This is a vue2、element-ui based component library",
   "private": false,
   "author": "fangkang<https://github.com/fang-kang>",
@@ -17,7 +17,9 @@
   ],
   "files": [
     "lib",
-    "types"
+    "types",
+    "src",
+    "packages"
   ],
   "style": "lib/theme/index.css",
   "repository": {

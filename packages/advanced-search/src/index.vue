@@ -47,10 +47,10 @@
 </template>
 
 <script>
-import ElProDrawer from 'packages/drawer'
-import ElProForm from 'packages/form'
+import ElProDrawer from 'vue-element-pro-components/packages/drawer'
+import ElProForm from 'vue-element-pro-components/packages/form'
 import { isEqual, cloneDeep } from 'lodash-es'
-import { filterObject } from 'src/utils'
+import { filterObject } from 'vue-element-pro-components/src/utils'
 export default {
   name: 'ElProAdvancedSearch',
   components: { ElProDrawer, ElProForm },

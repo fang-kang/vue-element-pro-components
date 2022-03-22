@@ -22,7 +22,7 @@
 
 <script>
 import { Fragment } from 'vue-fragment'
-import ElProDrawer from 'packages/drawer'
+import ElProDrawer from 'vue-element-pro-components/packages/drawer'
 export default {
   name: 'AdvancedSearchBtn',
   components: { Fragment, ElProDrawer },

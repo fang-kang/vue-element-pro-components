@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { types } from 'packages/form/src/type'
+import { types } from 'vue-element-pro-components/packages/form/src/type'
 export default {
   name: 'TableColumn',
   props: {

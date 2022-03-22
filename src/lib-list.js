@@ -30,9 +30,5 @@ module.exports = {
   'el-pro-table': {
     input: 'packages/table/index.js',
     output: 'el-pro-table'
-  },
-  types: {
-    input: 'packages/form/src/type.js',
-    output: 'types'
   }
 }

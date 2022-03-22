@@ -5,6 +5,7 @@ module.exports = {
     '@': utils.resolve('../src'),
     packages: utils.resolve('../packages'),
     examples: utils.resolve('../examples'),
-    src: utils.resolve('../src')
+    src: utils.resolve('../src'),
+    'vue-element-pro-components': utils.resolve('../')
   }
 }

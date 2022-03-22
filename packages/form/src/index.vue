@@ -362,10 +362,10 @@
 <script>
 import { Fragment } from 'vue-fragment'
 import { isEqual, cloneDeep, debounce } from 'lodash-es'
-import { filterObject, removeArrayByIndex } from 'src/utils'
+import { filterObject, removeArrayByIndex } from 'vue-element-pro-components/src/utils'
 import { types } from './type'
-import ElProTable from 'packages/table'
-import ElProDialog from 'packages/dialog'
+import ElProTable from 'vue-element-pro-components/packages/table'
+import ElProDialog from 'vue-element-pro-components/packages/dialog'
 import QuillEditor from './QuillEditor.vue'
 export default {
   name: 'ElProForm',

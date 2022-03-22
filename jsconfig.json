@@ -5,7 +5,8 @@
       "@/*": ["src/*"],
       "src/*": ["src/*"],
       "packages/*": ["packages/*"],
-      "examples/*": ["examples/*"]
+      "examples/*": ["examples/*"],
+      "vue-element-pro-components/*":["./"]
     }
   },
   "exclude": ["node_modules", "dist"]

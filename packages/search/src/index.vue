@@ -105,10 +105,10 @@
 </template>
 
 <script>
-import { filterObject } from 'src/utils'
-import { types } from 'packages/form/src/type'
+import { filterObject } from 'vue-element-pro-components/src/utils'
+import { types } from 'vue-element-pro-components/packages/form/src/type'
 import { isEqual, cloneDeep } from 'lodash-es'
-import ElProForm from 'packages/form'
+import ElProForm from 'vue-element-pro-components/packages/form'
 import AdvancedSearchBtn from './AdvancedSearchBtn.vue'
 
 export default {

@@ -116,9 +116,9 @@
 </template>
 
 <script>
-import { types } from 'packages/form/src/type'
-import { filterObject } from 'src/utils'
-import clipboard from 'src/directive/clipboard/index.js'
+import { types } from 'vue-element-pro-components/packages/form/src/type'
+import { filterObject } from 'vue-element-pro-components/src/utils'
+import clipboard from 'vue-element-pro-components/src/directive/clipboard/index.js'
 import { debounce } from 'lodash-es'
 import TableColumn from './TableColumn.vue'
 
