@@ -5,7 +5,7 @@ import ElProSearch from './search'
 import ElProTable from './table'
 import ElProAdvancedSearch from './advanced-search'
 import ElProDrawer from './drawer'
-import * as utils from 'src/utils'
+import * as utils from 'vue-element-pro-components/src/utils'
 
 import { version } from '../package.json'
 

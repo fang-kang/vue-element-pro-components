@@ -1,6 +1,6 @@
 {
   "name": "vue-element-pro-components",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "This is a vue2、element-ui based component library",
   "private": false,
   "author": "fangkang<https://github.com/fang-kang>",
@@ -45,7 +45,12 @@
     "pub:cli": "npm run uv && npm run lib:cli && npm publish",
     "uv": "cross-env node ./script/update.version.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "clipboard": "^2.0.10",
+    "lodash-es": "^4.17.21",
+    "vue-fragment": "^1.5.2",
+    "quill": "^1.3.7"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
@@ -64,7 +69,6 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-polyfill": "^6.26.0",
     "chalk": "^2.4.2",
-    "clipboard": "^2.0.10",
     "conventional-changelog-cli": "^2.0.23",
     "core-js": "^2.6.5",
     "cross-env": "^5.2.1",
@@ -78,13 +82,11 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.2.5",
-    "lodash-es": "^4.17.21",
     "mini-css-extract-plugin": "^0.8.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-nested": "^4.1.2",
     "postcss-simple-vars": "^5.0.2",
     "prettier": "^1.18.2",
-    "quill": "^1.3.7",
     "rimraf": "^3.0.0",
     "rollup": "^1.21.0",
     "rollup-plugin-alias": "^2.0.0",
@@ -106,7 +108,6 @@
     "stylelint-order": "^3.1.0",
     "stylelint-webpack-plugin": "^0.10.5",
     "vue": "^2.6.10",
-    "vue-fragment": "^1.5.2",
     "vue-highlight.js": "^2.2.0",
     "vue-router": "^3.1.3",
     "vue-template-compiler": "^2.6.10",
