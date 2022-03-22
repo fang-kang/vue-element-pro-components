@@ -2,6 +2,7 @@
 node_modules
 /dist
 /docs
+/lib
 
 
 # local env files

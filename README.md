@@ -65,10 +65,10 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(Element);
 
-import { CustomDialog, CustomForm } from "vue-element-pro-components";
+import { ElProDialog, ElProForm } from "vue-element-pro-components";
 
-Vue.use(CustomDialog);
-Vue.use(CustomForm);
+Vue.use(ElProDialog);
+Vue.use(ElProForm);
 ```
 
 或者全部引入
@@ -82,30 +82,30 @@ import "element-ui/lib/theme-chalk/index.css";
 Vue.use(Element);
 
 import {
-  CustomDialog,
-  CustomForm,
-  CustomPagination,
-  CustomSearch,
-  CustomTable,
-  CustomAdvancedSearch,
-  CustomDrawer,
+  ElProDialog,
+  ElProForm,
+  ElProPagination,
+  ElProSearch,
+  ElProTable,
+  ElProAdvancedSearch,
+  ElProDrawer,
   types,
   utils,
   version,
 } from "vue-element-pro-components";
 
-Vue.use(CustomDialog);
-Vue.use(CustomForm);
-Vue.use(CustomPagination);
-Vue.use(CustomSearch);
-Vue.use(CustomTable);
-Vue.use(CustomAdvancedSearch);
-Vue.use(CustomDrawer);
+Vue.use(ElProDialog);
+Vue.use(ElProForm);
+Vue.use(ElProPagination);
+Vue.use(ElProSearch);
+Vue.use(ElProTable);
+Vue.use(ElProAdvancedSearch);
+Vue.use(ElProDrawer);
 ```
 
 ## 三.基本使用
 
-### 3.1 通用对话框-CustomDialog
+### 3.1 通用对话框-ElProDialog
 
 #### 3.1.1 基本用法
 
@@ -113,7 +113,7 @@ Vue.use(CustomDrawer);
 <template>
   <div>
     <el-button size="small" @click="visible = true">打开</el-button>
-    <custom-dialog
+    <el-pro-dialog
       title="测试"
       v-model="visible"
       :dialog-options="{
@@ -129,7 +129,7 @@ Vue.use(CustomDrawer);
       @ok="ok"
     >
       <div>测试弹窗</div>
-    </custom-dialog>
+    </el-pro-dialog>
   </div>
 </template>
 
@@ -201,6 +201,7 @@ export default {
 | middleFooter | 取消按钮和确定按钮中间的内容 |
 | afterFooter  |      确定按钮后面的内容      |
 |    footer    |         底部 footer          |
+|    title     |     Dialog 的自定义标题      |
 
 #### 3.1.4 Events
 
@@ -213,7 +214,7 @@ export default {
 |  cancel  |      点击取消按钮回调       |    —     |
 |    ok    |      点击确定按钮回调       |    —     |
 
-### 3.2 通用表单-CustomForm
+### 3.2 通用表单-ElProForm
 
 #### 3.2.1 基本用法
 
@@ -221,8 +222,8 @@ export default {
 <template>
   <div>
     <el-button @click="visible = true">测试 </el-button>
-    <custom-dialog title="测试" v-model="visible">
-      <custom-form
+    <el-pro-dialog title="测试" v-model="visible">
+      <el-pro-form
         ref="dataForm"
         :is-row="true"
         v-model="form"
@@ -233,8 +234,8 @@ export default {
         <template #inputAppend="{ form }">
           <el-button @click="click(form)">测试</el-button>
         </template>
-      </custom-form>
-    </custom-dialog>
+      </el-pro-form>
+    </el-pro-dialog>
   </div>
 </template>
 
@@ -282,7 +283,7 @@ export default {
 > meta-data.js
 
 ```js
-import { types } from "/packages/CustomForm";
+import { types } from "/packages/form";
 import dict from "./dict";
 import { getArrayValue } from "/src/utils";
 export function getMetaData() {
@@ -662,12 +663,6 @@ export function getMetaData() {
       ],
       span: 12,
     },
-    area: {
-      label: "区域",
-      type: types.area,
-      showInSearch: true,
-      span: 12,
-    },
     table: {
       label: "测试表格",
       span: 24,
@@ -755,7 +750,6 @@ export const types = {
   rate: "rate", // 评分
   color: "color", // 颜色
   cascader: "cascader", // 级联
-  area: "area", // 省市区
   table: "table", // 表格
   editor: "editor", // 富文本
 };
@@ -876,14 +870,14 @@ created() {
 |       isTag       |                      表格内是否用 el-tag 渲染                      |          boolean          |
 |    tagOptions     |              el-tag 的配置项,也可以直接写 tag 的类型               |  string/object/function   |
 
-### 3.3 通用搜索-CustomSearch
+### 3.3 通用搜索-ElProSearch
 
 #### 3.3.1 基本用法
 
 ```vue
 <template>
   <el-card>
-    <custom-search
+    <el-pro-search
       v-model="queryForm"
       :is-collapse="true"
       :show-num="2"
@@ -893,7 +887,7 @@ created() {
       <template #after>
         <el-button type="primary" size="small">新增</el-button>
       </template>
-    </custom-search>
+    </el-pro-search>
   </el-card>
 </template>
 
@@ -958,14 +952,14 @@ export default {
 |  search  | 表单查询事件 |    —     |
 |  reset   | 表单重置事件 |    —     |
 
-### 3.4 通用表格-CustomTable
+### 3.4 通用表格-ElProTable
 
 #### 3.4.1 基本用法
 
 ```vue
 <template>
   <div>
-    <custom-table
+    <el-pro-table
       :data="tableData"
       :loading="listLoading"
       selection
@@ -979,7 +973,7 @@ export default {
       <div slot="inputHeader">
         <el-button>测试</el-button>
       </div>
-    </custom-table>
+    </el-pro-table>
   </div>
 </template>
 
@@ -1099,14 +1093,14 @@ export default {
 |      doLayout      |                   对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法                    |              —              |
 |        sort        |                         手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。                          | prop: string, order: string |
 
-### 3.5 通用分页-CustomPagination
+### 3.5 通用分页-ElProPagination
 
 #### 3.5.1 基本用法
 
 ```vue
 <template>
   <div>
-    <custom-pagination
+    <el-pro-pagination
       :custom-props="customProps"
       v-model="queryForm"
       :total="total"
@@ -1159,7 +1153,7 @@ export default {
 | :------: | :---------------------------: | :------: |
 |  onLoad  | pageSize 或 pageNo 变化时触发 |    —     |
 
-### 3.6 通用抽屉-CustomDrawer
+### 3.6 通用抽屉-ElProDrawer
 
 #### 3.6.1 基本用法
 
@@ -1167,14 +1161,14 @@ export default {
 <template>
   <div>
     <el-button @click="showVisible = true">测试</el-button>
-    <custom-drawer
+    <el-pro-drawer
       title="标题"
       :drawer-width="400"
       v-model="showVisible"
       :drawer-options="{}"
     >
       内容
-    </custom-drawer>
+    </el-pro-drawer>
   </div>
 </template>
 
@@ -1208,14 +1202,14 @@ export default {
 | :-----: | :------------: |
 | default | 抽屉内部的内容 |
 
-### 3.7 通用高级查询-CustomAdvancedSearch
+### 3.7 通用高级查询-ElProAdvancedSearch
 
 #### 3.7.1 基本用法
 
 ```vue
 <template>
   <el-card>
-    <custom-search
+    <el-pro-search
       v-model="queryForm"
       :is-collapse="true"
       :show-num="2"
@@ -1225,9 +1219,9 @@ export default {
       <template #after>
         <el-button type="primary" size="small">新增</el-button>
       </template>
-    </custom-search>
+    </el-pro-search>
     <el-button @click="visible = true">测试高级查询</el-button>
-    <custom-advanced-search
+    <el-pro-advanced-search
       title="高级查询"
       :visible.sync="visible"
       :columns="columns"

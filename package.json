@@ -1,8 +1,8 @@
 {
   "name": "vue-element-pro-components",
   "description": "This is a vue2、element-ui based component library",
-  "version": "1.0.1",
-  "author": "Fangkang",
+  "version": "1.0.2",
+  "author": "fangkang<https://github.com/fang-kang>",
   "license": "MIT",
   "files": [
     "lib"
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "https://github.com/fang-kang/vue-element-pro-components"
   },
-  "main": "lib/index/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button size="small" @click="visible = true">打开</el-button>
-    <custom-dialog
+    <el-pro-dialog
       title="测试"
       v-model="visible"
       :dialog-options="{
@@ -17,7 +17,7 @@
       @ok="ok"
     >
       <div>测试弹窗</div>
-    </custom-dialog>
+    </el-pro-dialog>
   </div>
 </template>
 

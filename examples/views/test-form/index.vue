@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-button @click="visible = true">测试 </el-button>
-    <custom-dialog title="测试" v-model="visible">
-      <custom-form
+    <el-pro-dialog title="测试" v-model="visible">
+      <el-pro-form
         ref="dataForm"
         :is-row="true"
         v-model="form"
@@ -13,8 +13,8 @@
         <template #inputAppend="{ form }">
           <el-button @click="click(form)">测试</el-button>
         </template>
-      </custom-form>
-    </custom-dialog>
+      </el-pro-form>
+    </el-pro-dialog>
   </div>
 </template>
 

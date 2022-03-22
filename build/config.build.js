@@ -7,7 +7,7 @@ module.exports = {
       ...getComponentEntries("packages"),
     },
     output: {
-      filename: "[name]/index.js",
+      filename: "[name].js",
       libraryTarget: "commonjs2",
       libraryExport: "default",
       library: "vue-element-pro-components",
@@ -16,7 +16,7 @@ module.exports = {
   // css: {
   //   sourceMap: false,
   //   extract: {
-  //     filename: "[name]/style.css",
+  //     filename: "style/[name].css",
   //   },
   // },
   css: { extract: false },

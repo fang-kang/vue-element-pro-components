@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-table
+    <el-pro-table
       :data="tableData"
       :loading="listLoading"
       selection
@@ -14,7 +14,7 @@
       <div slot="inputHeader">
         <el-button>测试</el-button>
       </div>
-    </custom-table>
+    </el-pro-table>
   </div>
 </template>
 

@@ -1,4 +1,4 @@
-import { types } from "/packages/CustomForm";
+import { types } from "/packages/form";
 import dict from "../test-form/dict";
 import { getArrayValue } from "/src/utils";
 export function getMetaData() {

@@ -1,4 +1,4 @@
-import { types } from "/packages/CustomForm";
+import { types } from "/packages/form";
 import dict from "./dict";
 import { getArrayValue } from "/src/utils";
 export function getMetaData() {
@@ -376,12 +376,6 @@ export function getMetaData() {
           ],
         },
       ],
-      span: 12,
-    },
-    area: {
-      label: "区域",
-      type: types.area,
-      showInSearch: false,
       span: 12,
     },
     table: {

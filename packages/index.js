@@ -1,22 +1,22 @@
-import CustomDialog from "./CustomDialog";
-import CustomForm, { types } from "./CustomForm";
-import CustomPagination from "./CustomPagination";
-import CustomSearch from "./CustomSearch";
-import CustomTable from "./CustomTable";
-import CustomAdvancedSearch from "./CustomAdvancedSearch";
-import CustomDrawer from "./CustomDrawer";
+import ElProDialog from "./dialog";
+import ElProForm, { types } from "./form";
+import ElProPagination from "./pagination";
+import ElProSearch from "./search";
+import ElProTable from "./table";
+import ElProAdvancedSearch from "./advanced-search";
+import ElProDrawer from "./drawer";
 import * as utils from "/src/utils";
 
 const config = require("../package.json");
 
 const components = [
-  CustomDialog,
-  CustomForm,
-  CustomPagination,
-  CustomSearch,
-  CustomTable,
-  CustomAdvancedSearch,
-  CustomDrawer,
+  ElProDialog,
+  ElProForm,
+  ElProPagination,
+  ElProSearch,
+  ElProTable,
+  ElProAdvancedSearch,
+  ElProDrawer,
 ];
 
 const install = function (Vue) {
@@ -36,11 +36,11 @@ export default {
   types,
   utils,
   install,
-  CustomDialog,
-  CustomForm,
-  CustomPagination,
-  CustomSearch,
-  CustomTable,
-  CustomAdvancedSearch,
-  CustomDrawer,
+  ElProDialog,
+  ElProForm,
+  ElProPagination,
+  ElProSearch,
+  ElProTable,
+  ElProAdvancedSearch,
+  ElProDrawer,
 };

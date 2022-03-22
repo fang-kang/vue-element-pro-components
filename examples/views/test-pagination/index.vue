@@ -1,6 +1,6 @@
 <template>
   <div>
-    <custom-pagination
+    <el-pro-pagination
       :custom-props="customProps"
       v-model="queryForm"
       :total="total"

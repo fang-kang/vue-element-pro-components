@@ -1,6 +1,6 @@
 <template>
   <el-card>
-    <custom-search
+    <el-pro-search
       v-model="queryForm"
       :is-collapse="true"
       :show-num="2"
@@ -10,9 +10,9 @@
       <template #after>
         <el-button type="primary" size="small">新增</el-button>
       </template>
-    </custom-search>
+    </el-pro-search>
     <el-button @click="visible = true">测试高级查询</el-button>
-    <custom-advanced-search
+    <el-pro-advanced-search
       title="高级查询"
       :visible.sync="visible"
       :columns="columns"
