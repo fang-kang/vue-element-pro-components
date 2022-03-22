@@ -1,8 +1,8 @@
-import ElProDialog from "./src/index";
+import ElProDialog from './src'
 
 /* istanbul ignore next */
-ElProDialog.install = function (Vue) {
-  Vue.component(ElProDialog.name, ElProDialog);
-};
+ElProDialog.install = function(Vue) {
+  Vue.component(ElProDialog.name, ElProDialog)
+}
 
-export default ElProDialog;
+export default ElProDialog

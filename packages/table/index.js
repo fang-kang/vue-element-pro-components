@@ -1,8 +1,8 @@
-import ElProTable from "./src/index";
+import ElProTable from './src'
 
 /* istanbul ignore next */
-ElProTable.install = function (Vue) {
-  Vue.component(ElProTable.name, ElProTable);
-};
+ElProTable.install = function(Vue) {
+  Vue.component(ElProTable.name, ElProTable)
+}
 
-export default ElProTable;
+export default ElProTable

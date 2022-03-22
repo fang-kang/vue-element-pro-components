@@ -1,447 +1,447 @@
-import { types } from "/packages/form";
-import dict from "./dict";
-import { getArrayValue } from "/src/utils";
+import { types } from 'packages/form'
+import dict from './dict'
+import { getArrayValue } from 'src/utils'
 export function getMetaData() {
   return {
     title: {
-      label: "基本信息",
-      type: types.title,
+      label: '基本信息',
+      type: types.title
     },
     input: {
-      label: "输入框",
+      label: '输入框',
       type: types.input,
       span: 12,
       showInSearch: true,
       formItemOption: {},
       showInTable: true,
-      tooltip: "测试输入框",
+      tooltip: '测试输入框',
       onChange: (item) => {
-        console.log(item, "item");
-        if (item.form.input == 1) {
-          this.$message.success("成功");
-          item.form.num = 11;
-          item.form.radio = 2;
-          item.form.select = 1;
+        console.log(item, 'item')
+        if (item.form.input === 1) {
+          this.$message.success('成功')
+          item.form.num = 11
+          item.form.radio = 2
+          item.form.select = 1
         }
-      },
+      }
     },
     select: {
-      label: "下拉框",
+      label: '下拉框',
       type: types.select,
       span: 12,
       options: dict.selectArr,
       showInSearch: true,
       showInTable: true,
       showFormat: (val) => {
-        return getArrayValue(dict.selectArr, val);
-      },
+        return getArrayValue(dict.selectArr, val)
+      }
     },
     switch: {
-      label: "开关",
+      label: '开关',
       type: types.switch,
-      span: 12,
+      span: 12
     },
     radio: {
-      label: "单选框",
+      label: '单选框',
       type: types.radio,
       span: 12,
       options: dict.selectArr,
       showInSearch: true,
       showInTable: true,
       showFormat: (val) => {
-        return getArrayValue(dict.selectArr, val);
-      },
+        return getArrayValue(dict.selectArr, val)
+      }
     },
     checxbox: {
-      label: "多选框",
+      label: '多选框',
       type: types.checkBox,
       span: 12,
       options: dict.selectArr,
       showInSearch: true,
       showInTable: true,
       showFormat: (val) => {
-        return getArrayValue(dict.selectArr, val);
-      },
+        return getArrayValue(dict.selectArr, val)
+      }
     },
     date: {
-      label: "日期",
+      label: '日期',
       type: types.date,
       span: 10,
       showInSearch: false,
-      showInTable: true,
+      showInTable: true
     },
     num: {
-      label: "数字",
+      label: '数字',
       type: types.number,
       span: 10,
-      showInTable: true,
+      showInTable: true
     },
     time: {
-      label: "时间",
+      label: '时间',
       type: types.time,
       span: 12,
       showInSearch: false,
-      showInTable: true,
+      showInTable: true
     },
     slider: {
-      label: "滑块",
+      label: '滑块',
       type: types.slider,
       span: 12,
       showInTable: true,
-      showInSearch: false,
+      showInSearch: false
     },
     rate: {
-      label: "评分",
+      label: '评分',
       type: types.rate,
       span: 12,
       showInTable: true,
-      showInSearch: false,
+      showInSearch: false
     },
     color: {
-      label: "颜色",
+      label: '颜色',
       type: types.color,
       showInSearch: false,
-      span: 12,
+      span: 12
     },
     cascader: {
-      label: "级联",
+      label: '级联',
       showInSearch: false,
       type: types.cascader,
       options: [
         {
-          value: "zhinan",
-          label: "指南",
+          value: 'zhinan',
+          label: '指南',
           disabled: true,
           children: [
             {
-              value: "shejiyuanze",
-              label: "设计原则",
+              value: 'shejiyuanze',
+              label: '设计原则',
               children: [
                 {
-                  value: "yizhi",
-                  label: "一致",
+                  value: 'yizhi',
+                  label: '一致'
                 },
                 {
-                  value: "fankui",
-                  label: "反馈",
+                  value: 'fankui',
+                  label: '反馈'
                 },
                 {
-                  value: "xiaolv",
-                  label: "效率",
+                  value: 'xiaolv',
+                  label: '效率'
                 },
                 {
-                  value: "kekong",
-                  label: "可控",
-                },
-              ],
+                  value: 'kekong',
+                  label: '可控'
+                }
+              ]
             },
             {
-              value: "daohang",
-              label: "导航",
+              value: 'daohang',
+              label: '导航',
               children: [
                 {
-                  value: "cexiangdaohang",
-                  label: "侧向导航",
+                  value: 'cexiangdaohang',
+                  label: '侧向导航'
                 },
                 {
-                  value: "dingbudaohang",
-                  label: "顶部导航",
-                },
-              ],
-            },
-          ],
+                  value: 'dingbudaohang',
+                  label: '顶部导航'
+                }
+              ]
+            }
+          ]
         },
         {
-          value: "zujian",
-          label: "组件",
+          value: 'zujian',
+          label: '组件',
           children: [
             {
-              value: "basic",
-              label: "Basic",
+              value: 'basic',
+              label: 'Basic',
               children: [
                 {
-                  value: "layout",
-                  label: "Layout 布局",
+                  value: 'layout',
+                  label: 'Layout 布局'
                 },
                 {
-                  value: "color",
-                  label: "Color 色彩",
+                  value: 'color',
+                  label: 'Color 色彩'
                 },
                 {
-                  value: "typography",
-                  label: "Typography 字体",
+                  value: 'typography',
+                  label: 'Typography 字体'
                 },
                 {
-                  value: "icon",
-                  label: "Icon 图标",
+                  value: 'icon',
+                  label: 'Icon 图标'
                 },
                 {
-                  value: "button",
-                  label: "Button 按钮",
-                },
-              ],
+                  value: 'button',
+                  label: 'Button 按钮'
+                }
+              ]
             },
             {
-              value: "form",
-              label: "Form",
+              value: 'form',
+              label: 'Form',
               children: [
                 {
-                  value: "radio",
-                  label: "Radio 单选框",
+                  value: 'radio',
+                  label: 'Radio 单选框'
                 },
                 {
-                  value: "checkbox",
-                  label: "Checkbox 多选框",
+                  value: 'checkbox',
+                  label: 'Checkbox 多选框'
                 },
                 {
-                  value: "input",
-                  label: "Input 输入框",
+                  value: 'input',
+                  label: 'Input 输入框'
                 },
                 {
-                  value: "input-number",
-                  label: "InputNumber 计数器",
+                  value: 'input-number',
+                  label: 'InputNumber 计数器'
                 },
                 {
-                  value: "select",
-                  label: "Select 选择器",
+                  value: 'select',
+                  label: 'Select 选择器'
                 },
                 {
-                  value: "cascader",
-                  label: "Cascader 级联选择器",
+                  value: 'cascader',
+                  label: 'Cascader 级联选择器'
                 },
                 {
-                  value: "switch",
-                  label: "Switch 开关",
+                  value: 'switch',
+                  label: 'Switch 开关'
                 },
                 {
-                  value: "slider",
-                  label: "Slider 滑块",
+                  value: 'slider',
+                  label: 'Slider 滑块'
                 },
                 {
-                  value: "time-picker",
-                  label: "TimePicker 时间选择器",
+                  value: 'time-picker',
+                  label: 'TimePicker 时间选择器'
                 },
                 {
-                  value: "date-picker",
-                  label: "DatePicker 日期选择器",
+                  value: 'date-picker',
+                  label: 'DatePicker 日期选择器'
                 },
                 {
-                  value: "datetime-picker",
-                  label: "DateTimePicker 日期时间选择器",
+                  value: 'datetime-picker',
+                  label: 'DateTimePicker 日期时间选择器'
                 },
                 {
-                  value: "upload",
-                  label: "Upload 上传",
+                  value: 'upload',
+                  label: 'Upload 上传'
                 },
                 {
-                  value: "rate",
-                  label: "Rate 评分",
+                  value: 'rate',
+                  label: 'Rate 评分'
                 },
                 {
-                  value: "form",
-                  label: "Form 表单",
-                },
-              ],
+                  value: 'form',
+                  label: 'Form 表单'
+                }
+              ]
             },
             {
-              value: "data",
-              label: "Data",
+              value: 'data',
+              label: 'Data',
               children: [
                 {
-                  value: "table",
-                  label: "Table 表格",
+                  value: 'table',
+                  label: 'Table 表格'
                 },
                 {
-                  value: "tag",
-                  label: "Tag 标签",
+                  value: 'tag',
+                  label: 'Tag 标签'
                 },
                 {
-                  value: "progress",
-                  label: "Progress 进度条",
+                  value: 'progress',
+                  label: 'Progress 进度条'
                 },
                 {
-                  value: "tree",
-                  label: "Tree 树形控件",
+                  value: 'tree',
+                  label: 'Tree 树形控件'
                 },
                 {
-                  value: "pagination",
-                  label: "Pagination 分页",
+                  value: 'pagination',
+                  label: 'Pagination 分页'
                 },
                 {
-                  value: "badge",
-                  label: "Badge 标记",
-                },
-              ],
+                  value: 'badge',
+                  label: 'Badge 标记'
+                }
+              ]
             },
             {
-              value: "notice",
-              label: "Notice",
+              value: 'notice',
+              label: 'Notice',
               children: [
                 {
-                  value: "alert",
-                  label: "Alert 警告",
+                  value: 'alert',
+                  label: 'Alert 警告'
                 },
                 {
-                  value: "loading",
-                  label: "Loading 加载",
+                  value: 'loading',
+                  label: 'Loading 加载'
                 },
                 {
-                  value: "message",
-                  label: "Message 消息提示",
+                  value: 'message',
+                  label: 'Message 消息提示'
                 },
                 {
-                  value: "message-box",
-                  label: "MessageBox 弹框",
+                  value: 'message-box',
+                  label: 'MessageBox 弹框'
                 },
                 {
-                  value: "notification",
-                  label: "Notification 通知",
-                },
-              ],
+                  value: 'notification',
+                  label: 'Notification 通知'
+                }
+              ]
             },
             {
-              value: "navigation",
-              label: "Navigation",
+              value: 'navigation',
+              label: 'Navigation',
               children: [
                 {
-                  value: "menu",
-                  label: "NavMenu 导航菜单",
+                  value: 'menu',
+                  label: 'NavMenu 导航菜单'
                 },
                 {
-                  value: "tabs",
-                  label: "Tabs 标签页",
+                  value: 'tabs',
+                  label: 'Tabs 标签页'
                 },
                 {
-                  value: "breadcrumb",
-                  label: "Breadcrumb 面包屑",
+                  value: 'breadcrumb',
+                  label: 'Breadcrumb 面包屑'
                 },
                 {
-                  value: "dropdown",
-                  label: "Dropdown 下拉菜单",
+                  value: 'dropdown',
+                  label: 'Dropdown 下拉菜单'
                 },
                 {
-                  value: "steps",
-                  label: "Steps 步骤条",
-                },
-              ],
+                  value: 'steps',
+                  label: 'Steps 步骤条'
+                }
+              ]
             },
             {
-              value: "others",
-              label: "Others",
+              value: 'others',
+              label: 'Others',
               children: [
                 {
-                  value: "dialog",
-                  label: "Dialog 对话框",
+                  value: 'dialog',
+                  label: 'Dialog 对话框'
                 },
                 {
-                  value: "tooltip",
-                  label: "Tooltip 文字提示",
+                  value: 'tooltip',
+                  label: 'Tooltip 文字提示'
                 },
                 {
-                  value: "popover",
-                  label: "Popover 弹出框",
+                  value: 'popover',
+                  label: 'Popover 弹出框'
                 },
                 {
-                  value: "card",
-                  label: "Card 卡片",
+                  value: 'card',
+                  label: 'Card 卡片'
                 },
                 {
-                  value: "carousel",
-                  label: "Carousel 走马灯",
+                  value: 'carousel',
+                  label: 'Carousel 走马灯'
                 },
                 {
-                  value: "collapse",
-                  label: "Collapse 折叠面板",
-                },
-              ],
-            },
-          ],
+                  value: 'collapse',
+                  label: 'Collapse 折叠面板'
+                }
+              ]
+            }
+          ]
         },
         {
-          value: "ziyuan",
-          label: "资源",
+          value: 'ziyuan',
+          label: '资源',
           children: [
             {
-              value: "axure",
-              label: "Axure Components",
+              value: 'axure',
+              label: 'Axure Components'
             },
             {
-              value: "sketch",
-              label: "Sketch Templates",
+              value: 'sketch',
+              label: 'Sketch Templates'
             },
             {
-              value: "jiaohu",
-              label: "组件交互文档",
-            },
-          ],
-        },
+              value: 'jiaohu',
+              label: '组件交互文档'
+            }
+          ]
+        }
       ],
-      span: 12,
+      span: 12
     },
     table: {
-      label: "测试表格",
+      label: '测试表格',
       span: 24,
       type: types.table,
       tableDataOptions: {
         input: {
-          label: "输入框",
+          label: '输入框',
           type: types.input,
           span: 12,
-          showInTable: true,
+          showInTable: true
         },
         select: {
-          label: "下拉框",
+          label: '下拉框',
           type: types.select,
           span: 12,
           options: dict.selectArr,
           showInTable: true,
           showFormat: (val) => {
-            return getArrayValue(dict.selectArr, val);
-          },
+            return getArrayValue(dict.selectArr, val)
+          }
         },
         switch: {
-          label: "开关",
+          label: '开关',
           type: types.switch,
-          span: 12,
+          span: 12
         },
         radio: {
-          label: "单选框",
+          label: '单选框',
           type: types.radio,
           span: 12,
-          options: dict.selectArr,
+          options: dict.selectArr
         },
         checxbox: {
-          label: "多选框",
+          label: '多选框',
           type: types.checkBox,
           span: 12,
-          options: dict.selectArr,
+          options: dict.selectArr
         },
         date: {
-          label: "日期",
+          label: '日期',
           type: types.date,
-          span: 12,
+          span: 12
         },
         num: {
-          label: "数字",
+          label: '数字',
           required: true,
           type: types.number,
           span: 12,
-          showInTable: true,
+          showInTable: true
         },
         time: {
-          label: "时间",
+          label: '时间',
           type: types.time,
           showInTable: true,
-          span: 12,
-        },
-      },
+          span: 12
+        }
+      }
     },
     editor: {
-      label: "富文本",
+      label: '富文本',
       type: types.editor,
       span: 24,
       showInSearch: false,
-      tooltip: "富文本提示",
-    },
-  };
+      tooltip: '富文本提示'
+    }
+  }
 }

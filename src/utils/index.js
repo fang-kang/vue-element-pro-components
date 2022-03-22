@@ -8,17 +8,17 @@ export function filterObject(obj, filterFunc) {
   const result = Object.keys(obj)
     .filter((key) => {
       if (filterFunc) {
-        return filterFunc(obj[key], key);
+        return filterFunc(obj[key], key)
       }
-      return true;
+      return true
     })
     .reduce((before, key) => {
       return {
         ...before,
-        [key]: obj[key],
-      };
-    }, {});
-  return result;
+        [key]: obj[key]
+      }
+    }, {})
+  return result
 }
 
 /**
@@ -32,15 +32,15 @@ export function filterObject(obj, filterFunc) {
 export function getArrayValue(
   array,
   value,
-  valueKey = "value",
-  labelKey = "name",
-  defaultValue = ""
+  valueKey = 'value',
+  labelKey = 'name',
+  defaultValue = ''
 ) {
   if (!Array.isArray(array)) {
-    throw new Error("Type requires an array");
+    throw new Error('Type requires an array')
   }
-  const obj = array.find((item) => String(item[valueKey]) === String(value));
-  return obj ? obj[labelKey] : defaultValue;
+  const obj = array.find((item) => String(item[valueKey]) === String(value))
+  return obj ? obj[labelKey] : defaultValue
 }
 
 /**
@@ -51,9 +51,9 @@ export function getArrayValue(
  */
 export function removeArray(arr, item) {
   if (arr.length) {
-    const index = arr.indexOf(item);
+    const index = arr.indexOf(item)
     if (index > -1) {
-      return arr.splice(index, 1);
+      return arr.splice(index, 1)
     }
   }
 }
@@ -66,8 +66,8 @@ export function removeArray(arr, item) {
  */
 export function removeArrayByIndex(arr, index) {
   if (index > -1) {
-    return arr.splice(index, 1);
+    return arr.splice(index, 1)
   } else {
-    return arr;
+    return arr
   }
 }

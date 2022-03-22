@@ -1,17 +1,24 @@
 <template>
   <div>
-    <el-button @click="visible = true">测试 </el-button>
-    <el-pro-dialog title="测试" v-model="visible">
+    <el-button @click="visible = true">
+      测试
+    </el-button>
+    <el-pro-dialog
+      v-model="visible"
+      title="测试"
+    >
       <el-pro-form
         ref="dataForm"
-        :is-row="true"
         v-model="form"
+        :is-row="true"
         :table-dialog-options="{ width: '60%' }"
         :columns="columns"
         :form-options="{ labelWidth: '100px' }"
       >
         <template #inputAppend="{ form }">
-          <el-button @click="click(form)">测试</el-button>
+          <el-button @click="click(form)">
+            测试
+          </el-button>
         </template>
       </el-pro-form>
     </el-pro-dialog>
@@ -19,24 +26,22 @@
 </template>
 
 <script>
-import { getMetaData } from "./meta-data";
+import { getMetaData } from './meta-data'
 export default {
   data() {
     return {
       form: {},
       visible: false,
-      columns: {},
-    };
+      columns: {}
+    }
   },
   created() {
-    this.columns = getMetaData.call(this);
+    this.columns = getMetaData.call(this)
   },
   methods: {
     click(form) {
-      console.log(form);
-    },
-  },
-};
+      console.log(form)
+    }
+  }
+}
 </script>
-
-<style lang="scss" scoped></style>

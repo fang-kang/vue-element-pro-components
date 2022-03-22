@@ -8,15 +8,22 @@
       @search="dataReload"
     >
       <template #after>
-        <el-button type="primary" size="small">新增</el-button>
+        <el-button
+          type="primary"
+          size="small"
+        >
+          新增
+        </el-button>
       </template>
     </el-pro-search>
-    <el-button @click="visible = true">测试高级查询</el-button>
+    <el-button @click="visible = true">
+      测试高级查询
+    </el-button>
     <el-pro-advanced-search
+      v-model="queryForm"
       title="高级查询"
       :visible.sync="visible"
       :columns="columns"
-      v-model="queryForm"
       @search="dataReload"
       @reset="visible = false"
     />
@@ -24,24 +31,22 @@
 </template>
 
 <script>
-import { getMetaData } from "../test-form/meta-data";
+import { getMetaData } from '../test-form/meta-data'
 export default {
   data() {
     return {
       queryForm: {},
       columns: {},
-      visible: false,
-    };
+      visible: false
+    }
   },
   created() {
-    this.columns = getMetaData.call(this);
+    this.columns = getMetaData.call(this)
   },
   methods: {
     dataReload() {
-      console.log(this.queryForm);
-    },
-  },
-};
+      console.log(this.queryForm)
+    }
+  }
+}
 </script>
-
-<style lang="scss" scoped></style>

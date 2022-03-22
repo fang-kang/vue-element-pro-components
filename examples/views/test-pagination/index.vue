@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-pro-pagination
-      :custom-props="customProps"
       v-model="queryForm"
+      :custom-props="customProps"
       :total="total"
       @onLoad="findPage"
     />
@@ -14,22 +14,20 @@ export default {
   data() {
     return {
       customProps: {
-        page: "pageNo",
-        pageSize: "limit",
+        page: 'pageNo',
+        pageSize: 'limit'
       },
       total: 100,
       queryForm: {
-        pageNo: 1, //页数
-        limit: 10, //	每页行数
-      },
-    };
+        pageNo: 1, // 页数
+        limit: 10 // 每页行数
+      }
+    }
   },
   methods: {
     findPage() {
-      console.log(this.queryForm);
-    },
-  },
-};
+      console.log(this.queryForm)
+    }
+  }
+}
 </script>
-
-<style scoped></style>

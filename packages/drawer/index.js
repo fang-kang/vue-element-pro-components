@@ -1,8 +1,8 @@
-import ElProDrawer from "./src/index";
+import ElProDrawer from './src'
 
 /* istanbul ignore next */
-ElProDrawer.install = function (Vue) {
-  Vue.component(ElProDrawer.name, ElProDrawer);
-};
+ElProDrawer.install = function(Vue) {
+  Vue.component(ElProDrawer.name, ElProDrawer)
+}
 
-export default ElProDrawer;
+export default ElProDrawer

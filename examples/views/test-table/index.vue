@@ -19,69 +19,67 @@
 </template>
 
 <script>
-import { getMetaData } from "./meta-data";
+import { getMetaData } from './meta-data'
 export default {
   data() {
     return {
       tableData: [
         {
-          input: "1",
+          input: '1',
           select: 1,
           radio: 1,
           checxbox: [1],
-          date: "2021-11-10",
+          date: '2021-11-10',
           num: 1,
-          time: "12:23:00",
+          time: '12:23:00',
           slider: 1,
-          rate: 1,
+          rate: 1
         },
         {
-          input: "1",
+          input: '1',
           select: 1,
           radio: 1,
           checxbox: [1],
-          date: "2021-11-10",
+          date: '2021-11-10',
           num: 1,
-          time: "12:23:00",
+          time: '12:23:00',
           slider: 1,
-          rate: 1,
+          rate: 1
         },
         {
-          input: "1",
+          input: '1',
           select: 1,
           radio: 1,
           checxbox: [1],
-          date: "2021-11-10",
+          date: '2021-11-10',
           num: 1,
-          time: "12:23:00",
+          time: '12:23:00',
           slider: 1,
-          rate: 1,
-        },
+          rate: 1
+        }
       ],
       listLoading: false,
       columns: [],
-      multipleSelection: [],
-    };
+      multipleSelection: []
+    }
   },
   created() {
-    this.columns = getMetaData.call(this);
+    this.columns = getMetaData.call(this)
   },
   methods: {
     click() {
-      console.log(111);
+      console.log(111)
     },
     handleEdit(row) {
-      console.log(row);
+      console.log(row)
     },
     handleDelete(row) {
-      console.log(row);
+      console.log(row)
     },
     handleSelectionChange(val) {
-      console.log(val);
-      this.multipleSelection = val;
-    },
-  },
-};
+      console.log(val)
+      this.multipleSelection = val
+    }
+  }
+}
 </script>
-
-<style lang="scss" scoped></style>

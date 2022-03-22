@@ -10,62 +10,68 @@
     @close="showVisible = false"
     v-on="$listeners"
   >
-    <div class="drawerHeader" slot="title">
+    <div
+      slot="title"
+      class="drawerHeader"
+    >
       <span>{{ title }}</span>
-      <i class="el-icon-close drawerClose" @click="showVisible = false" />
+      <i
+        class="el-icon-close drawerClose"
+        @click="showVisible = false"
+      />
     </div>
 
     <el-scrollbar style="height: 100%">
-      <slot></slot>
+      <slot />
     </el-scrollbar>
   </el-drawer>
 </template>
 
 <script>
 export default {
-  name: "ElProDrawer",
+  name: 'ElProDrawer',
   model: {
-    prop: "visible",
-    event: "update:visible",
+    prop: 'visible',
+    event: 'update:visible'
   },
   props: {
     drawerWidth: {
       type: Number,
-      default: 400,
+      default: 400
     },
     visible: {
       type: Boolean,
-      default: false,
+      default: false
     },
     placement: {
       type: String,
-      default: "right",
+      default: 'right'
     },
     drawerOptions: {
       type: Object,
       default: () => {
-        return {};
-      },
+        return {}
+      }
     },
     title: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
+  },
+  data() {
+    return {}
   },
   computed: {
     showVisible: {
       get() {
-        return this.visible;
+        return this.visible
       },
       set(val) {
-        this.$emit("update:visible", val);
-      },
-    },
-  },
-  data() {
-    return {};
-  },
-};
+        this.$emit('update:visible', val)
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -94,7 +100,7 @@ export default {
         float: right;
       }
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         border-bottom: 1px solid #e8e8e8;
         width: calc(100% + 40px);

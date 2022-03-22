@@ -1,8 +1,8 @@
-import ElProPagination from "./src/index";
+import ElProPagination from './src'
 
 /* istanbul ignore next */
-ElProPagination.install = function (Vue) {
-  Vue.component(ElProPagination.name, ElProPagination);
-};
+ElProPagination.install = function(Vue) {
+  Vue.component(ElProPagination.name, ElProPagination)
+}
 
-export default ElProPagination;
+export default ElProPagination

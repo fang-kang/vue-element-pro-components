@@ -1,8 +1,8 @@
-import ElProAdvancedSearch from "./src/index";
+import ElProAdvancedSearch from './src'
 
 /* istanbul ignore next */
-ElProAdvancedSearch.install = function (Vue) {
-  Vue.component(ElProAdvancedSearch.name, ElProAdvancedSearch);
-};
+ElProAdvancedSearch.install = function(Vue) {
+  Vue.component(ElProAdvancedSearch.name, ElProAdvancedSearch)
+}
 
-export default ElProAdvancedSearch;
+export default ElProAdvancedSearch

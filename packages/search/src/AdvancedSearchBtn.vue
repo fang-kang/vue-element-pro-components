@@ -9,87 +9,87 @@
     >
       {{ btnText }}
       <el-pro-drawer
+        v-model="showVisible"
         :title="title"
         :drawer-width="drawerWidth"
-        v-model="showVisible"
         :drawer-options="drawerOptions"
       >
-        <slot></slot>
+        <slot />
       </el-pro-drawer>
     </el-button>
   </fragment>
 </template>
 
 <script>
-import { Fragment } from "vue-fragment";
-import ElProDrawer from "/packages/drawer";
+import { Fragment } from 'vue-fragment'
+import ElProDrawer from 'packages/drawer'
 export default {
+  name: 'AdvancedSearchBtn',
   components: { Fragment, ElProDrawer },
-  name: "AdvancedSearchBtn",
   model: {
-    prop: "visible",
-    event: "update:visible",
+    prop: 'visible',
+    event: 'update:visible'
   },
   props: {
     drawerWidth: {
       type: Number,
-      default: 400,
+      default: 400
     },
     visible: {
       type: Boolean,
-      default: false,
+      default: false
     },
     drawerOptions: {
       type: Object,
       default: () => {
         return {
-          placement: "right",
-        };
-      },
+          placement: 'right'
+        }
+      }
     },
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     btnStyle: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     btnOptions: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     btnText: {
       type: String,
-      default: "高级查询",
-    },
+      default: '高级查询'
+    }
+  },
+  data() {
+    return {}
   },
   computed: {
     showVisible: {
       get() {
-        return this.visible;
+        return this.visible
       },
       set(val) {
-        this.$emit("update:visible", val);
-      },
+        this.$emit('update:visible', val)
+      }
     },
     processBtnStyle() {
       return {
-        backgroundColor: "#f28b3c",
-        color: "white",
-        borderColor: "#f28b3c",
-        ...(this.btnStyle || {}),
-      };
-    },
-  },
-  data() {
-    return {};
+        backgroundColor: '#f28b3c',
+        color: 'white',
+        borderColor: '#f28b3c',
+        ...(this.btnStyle || {})
+      }
+    }
   },
   methods: {
     btnClick() {
-      this.$emit("click");
-      this.showVisible = true;
-    },
-  },
-};
+      this.$emit('click')
+      this.showVisible = true
+    }
+  }
+}
 </script>

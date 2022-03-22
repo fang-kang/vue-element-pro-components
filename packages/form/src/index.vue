@@ -1,6 +1,9 @@
 <template>
   <div class="el-pro-form">
-    <slot name="formBefore" :form="form" />
+    <slot
+      name="formBefore"
+      :form="form"
+    />
     <el-form
       ref="ruleForm"
       v-loading="showLoading"
@@ -9,14 +12,26 @@
       :model="form"
       v-on="$listeners"
     >
-      <slot name="columnBefore" :form="form" />
-      <component :gutter="0" :is="isRow ? 'el-row' : 'fragment'">
-        <fragment v-for="column in metaData" :key="column.key">
+      <slot
+        name="columnBefore"
+        :form="form"
+      />
+      <component
+        :is="isRow ? 'el-row' : 'fragment'"
+        :gutter="0"
+      >
+        <fragment
+          v-for="column in metaData"
+          :key="column.key"
+        >
           <component
-            v-bind="getColSpanOptions(column)"
             :is="isRow ? 'el-col' : 'fragment'"
+            v-bind="getColSpanOptions(column)"
           >
-            <h3 class="title" v-if="column.type === cmpTypes.title">
+            <h3
+              v-if="column.type === cmpTypes.title"
+              class="title"
+            >
               {{ column.label }}
             </h3>
             <template v-else-if="column.type === cmpTypes.table">
@@ -53,14 +68,21 @@
                 </template>
               </el-pro-table>
             </template>
-            <slot v-else :name="`${column.key}-all`" :form="form">
-              <slot name="rowBefore" :form="form"></slot>
+            <slot
+              v-else
+              :name="`${column.key}-all`"
+              :form="form"
+            >
+              <slot
+                name="rowBefore"
+                :form="form"
+              />
               <el-form-item
+                v-show="column.isShow"
                 :label="column.serachLabel || column.label"
                 :prop="column.key"
                 :required="column.required"
                 v-bind="getFormItemOptions(column)"
-                v-show="column.isShow"
               >
                 <template slot="label">
                   <span :title="column.serachLabel || column.label">{{
@@ -77,7 +99,10 @@
                     />
                   </el-tooltip>
                 </template>
-                <slot :name="column.key" :form="form">
+                <slot
+                  :name="column.key"
+                  :form="form"
+                >
                   <el-input
                     v-if="column.type === cmpTypes.input"
                     v-model="form[column.key]"
@@ -85,21 +110,33 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   >
                     <template #prefix>
-                      <slot :name="`${column.key}Prefix`" :form="form" />
+                      <slot
+                        :name="`${column.key}Prefix`"
+                        :form="form"
+                      />
                     </template>
                     <template #suffix>
-                      <slot :name="`${column.key}Suffix`" :form="form" />
+                      <slot
+                        :name="`${column.key}Suffix`"
+                        :form="form"
+                      />
                     </template>
                     <template #prepend>
-                      <slot :name="`${column.key}Prepend`" :form="form" />
+                      <slot
+                        :name="`${column.key}Prepend`"
+                        :form="form"
+                      />
                     </template>
                     <template #append>
-                      <slot :name="`${column.key}Append`" :form="form" />
+                      <slot
+                        :name="`${column.key}Append`"
+                        :form="form"
+                      />
                     </template>
                   </el-input>
 
@@ -111,7 +148,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
@@ -124,13 +161,13 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   >
                     <el-option
-                      v-for="(item, index) in getOptions(column) || []"
-                      :key="item.value + index"
+                      v-for="(item, optionIndex) in getOptions(column) || []"
+                      :key="item.value + optionIndex"
                       :disabled="item.disabled"
                       :label="item[column.labelName] || item.name"
                       :value="item[column.valueName] || item.value"
@@ -143,24 +180,25 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
-                    >{{ column.checkLabel }}</el-checkbox
                   >
+                    {{ column.checkLabel }}
+                  </el-checkbox>
                   <el-checkbox-group
                     v-else-if="column.type === cmpTypes.checkBox"
                     v-model="form[column.key]"
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   >
                     <el-checkbox
-                      v-for="(item, index) in getOptions(column) || []"
-                      :key="item.value + index"
+                      v-for="(item, checkboxIndex) in getOptions(column) || []"
+                      :key="item.value + checkboxIndex"
                       :name="column.key"
                       :disabled="item.disabled"
                       :label="item[column.valueName] || item.value"
@@ -175,13 +213,13 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   >
                     <el-radio
-                      v-for="(item, index) in getOptions(column) || []"
-                      :key="item.value + index"
+                      v-for="(item, radioIndex) in getOptions(column) || []"
+                      :key="item.value + radioIndex"
                       :disabled="item.disabled"
                       :label="item[column.valueName] || item.value"
                     >
@@ -199,7 +237,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
@@ -212,7 +250,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
@@ -223,7 +261,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
@@ -234,7 +272,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
@@ -245,7 +283,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
@@ -256,21 +294,21 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
 
                   <el-cascader
                     v-else-if="column.type === cmpTypes.cascader"
+                    v-model="form[column.key]"
                     clearable
                     filterable
-                    v-model="form[column.key]"
                     :options="getOptions(column) || []"
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
@@ -281,23 +319,32 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column);
+                        changeVal(column)
                       }
                     "
                   />
-                  <slot name="rowAfter" :form="form"></slot>
+                  <slot
+                    name="rowAfter"
+                    :form="form"
+                  />
                 </slot>
               </el-form-item>
             </slot>
           </component>
         </fragment>
       </component>
-      <slot name="columnAfter" :form="form" />
+      <slot
+        name="columnAfter"
+        :form="form"
+      />
     </el-form>
-    <slot name="formAfter" :form="form" />
+    <slot
+      name="formAfter"
+      :form="form"
+    />
     <el-pro-dialog
-      :title="`${modalType == 'add' ? '新增' : '编辑'}${currentColumn.label}`"
       v-model="visible"
+      :title="`${modalType == 'add' ? '新增' : '编辑'}${currentColumn.label}`"
       :dialog-options="tableDialogOptions"
       @ok="handleOk"
       @closed="closedDialog"
@@ -313,90 +360,90 @@
 </template>
 
 <script>
-import { Fragment } from "vue-fragment";
-import { isEqual, cloneDeep, debounce } from "lodash-es";
-import { filterObject, removeArrayByIndex } from "/src/utils";
-import { types } from "./type";
-import ElProTable from "/packages/table";
-import ElProDialog from "/packages/dialog";
-import QuillEditor from "./QuillEditor.vue";
+import { Fragment } from 'vue-fragment'
+import { isEqual, cloneDeep, debounce } from 'lodash-es'
+import { filterObject, removeArrayByIndex } from 'src/utils'
+import { types } from './type'
+import ElProTable from 'packages/table'
+import ElProDialog from 'packages/dialog'
+import QuillEditor from './QuillEditor.vue'
 export default {
-  name: "ElProForm",
+  name: 'ElProForm',
   components: {
     Fragment,
     QuillEditor,
     ElProTable,
-    ElProDialog,
+    ElProDialog
   },
   model: {
-    prop: "formData",
-    event: "change",
+    prop: 'formData',
+    event: 'change'
   },
   props: {
     tableDialogOptions: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     tableFormOptions: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     showAll: {
       type: Boolean,
       required: false,
-      default: true,
+      default: true
     },
     isRow: {
       type: Boolean,
       required: false,
-      default: true,
+      default: true
     },
     isCollapse: {
       type: Boolean,
       required: false,
-      default: false,
+      default: false
     },
     showNum: {
       type: [Number, String],
-      default: 2,
+      default: 2
     },
     columns: {
       type: Object,
       required: true,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     formData: {
       type: Object,
       required: true,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     formOptions: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     loading: {
       type: Boolean,
       required: false,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
       index: 0,
-      modalType: "add",
+      modalType: 'add',
       currentColumn: {}, // 当前操作的column
       subForm: {}, // 子表单
       subFormColumn: {}, // 子表单配置项
@@ -405,102 +452,102 @@ export default {
       debounceUpdate: null,
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() > Date.now();
-        },
-      },
-    };
+          return time.getTime() > Date.now()
+        }
+      }
+    }
   },
   computed: {
     isShowAll: {
       get() {
-        return this.showAll;
+        return this.showAll
       },
       set(val) {
-        this.$emit("update:showAll", val);
-      },
+        this.$emit('update:showAll', val)
+      }
     },
     showLoading: {
       get() {
-        return this.loading;
+        return this.loading
       },
       set(val) {
-        this.$emit("update:loading", val);
-      },
+        this.$emit('update:loading', val)
+      }
     },
     formRules() {
       const rules = this.metaData.reduce((pre, now) => {
-        const { required, rules: originRules, type, label } = now || {};
+        const { required, rules: originRules, type, label } = now || {}
         if (required || Array.isArray(originRules)) {
-          const rules = originRules ? [...originRules] : [];
+          const rules = originRules ? [...originRules] : []
           if (required && !rules.some((item) => item && item.required)) {
-            const preStr = [types.input].includes(type) ? "请输入" : "请选择";
+            const preStr = [types.input].includes(type) ? '请输入' : '请选择'
             rules.push({
               required: true,
               message: `${preStr}${label}`,
-              trigger: now.type === types.number ? "change" : ["blur", "change"],
-            });
+              trigger: now.type === types.number ? 'change' : ['blur', 'change']
+            })
           }
           return {
             ...pre,
-            [now.key]: rules,
-          };
+            [now.key]: rules
+          }
         }
-        return pre;
-      }, {});
-      return rules;
+        return pre
+      }, {})
+      return rules
     },
     formProcessOptions() {
-      const { rules = {}, ...rest } = this.formOptions || {};
+      const { rules = {}, ...rest } = this.formOptions || {}
       return {
-        labelWidth: "70px",
+        labelWidth: '70px',
         ...(rest || {}),
-        rules: { ...this.formRules, ...rules },
-      };
+        rules: { ...this.formRules, ...rules }
+      }
     },
     cmpTypes() {
-      return types;
+      return types
     },
     metaData() {
-      const { isCollapse, showNum, isShowAll } = this;
+      const { isCollapse, showNum, isShowAll } = this
       // 展开收起模式 并且 显示表单数量大于1
       if (isCollapse && showNum > 0) {
         // 展开
         if (isShowAll) {
-          return this.createMetaData("expand");
+          return this.createMetaData('expand')
         } else {
           // 收起
-          return this.createMetaData("fold");
+          return this.createMetaData('fold')
         }
       } else {
         // 非展开收起模式
-        return this.createMetaData("expand");
+        return this.createMetaData('expand')
       }
     },
     elForm() {
-      return this.$refs.ruleForm;
-    },
+      return this.$refs.ruleForm
+    }
   },
   watch: {
     columns: {
       deep: true,
       immediate: true,
-      handler: function () {
-        this.checkDefaultValue();
-      },
+      handler: function() {
+        this.checkDefaultValue()
+      }
     },
     formData: {
       deep: true,
       immediate: true,
-      handler: function () {
-        this.updateFormData();
-      },
+      handler: function() {
+        this.updateFormData()
+      }
     },
     form: {
       deep: true,
-      handler: function () {
-        this.$emit("change", this.form);
-      },
-    },
+      handler: function() {
+        this.$emit('change', this.form)
+      }
+    }
   },
   created() {},
   methods: {
@@ -509,75 +556,75 @@ export default {
         column.onChange({
           column: column,
           value: this.form[column.key],
-          form: this.form,
-        });
+          form: this.form
+        })
       }
     },
     // 关闭弹窗
     closedDialog() {
-      const { formData } = this.$refs;
-      formData.resetFields();
+      const { formData } = this.$refs
+      formData.resetFields()
     },
     // 弹窗确定回调
     async handleOk() {
-      const { formData } = this.$refs;
-      const { key } = this.currentColumn;
+      const { formData } = this.$refs
+      const { key } = this.currentColumn
       try {
-        const checkResult = await formData.checkRule();
+        const checkResult = await formData.checkRule()
         if (checkResult) {
-          if (this.modalType == "add") {
-            const arr = [...this.form[key]];
-            arr.push({ ...this.subForm, uid: Date.now() });
-            this.form[key] = arr;
+          if (this.modalType === 'add') {
+            const arr = [...this.form[key]]
+            arr.push({ ...this.subForm, uid: Date.now() })
+            this.form[key] = arr
           } else {
-            this.$set(this.form[key], this.index, this.subForm);
+            this.$set(this.form[key], this.index, this.subForm)
           }
-          this.visible = false;
-          this.subForm = {};
+          this.visible = false
+          this.subForm = {}
         }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     },
     createColumn(column) {
-      const { tableDataOptions } = column;
-      return tableDataOptions || {};
+      const { tableDataOptions } = column
+      return tableDataOptions || {}
     },
     handleEdit(column, row, index) {
-      this.currentColumn = column;
-      this.subFormColumn = column.tableDataOptions;
-      this.modalType = "edit";
-      this.index = index;
-      this.visible = true;
-      this.subForm = row;
+      this.currentColumn = column
+      this.subFormColumn = column.tableDataOptions
+      this.modalType = 'edit'
+      this.index = index
+      this.visible = true
+      this.subForm = row
     },
     handleDelete(tableData, index) {
-      removeArrayByIndex(tableData, index);
+      removeArrayByIndex(tableData, index)
     },
     // 表格类型 点击打开弹窗
     handleClickBtn(column) {
-      this.modalType = "add";
-      this.currentColumn = column;
-      this.subFormColumn = column.tableDataOptions;
-      this.subForm = {};
-      this.visible = true;
+      this.modalType = 'add'
+      this.currentColumn = column
+      this.subFormColumn = column.tableDataOptions
+      this.subForm = {}
+      this.visible = true
     },
     /**
      * @param {*} mode
      */
     createMetaData(mode) {
-      const { columns, showNum } = this;
+      const { columns, showNum } = this
       return Object.keys(columns)
         .filter((key) => this.checkShow(columns[key]))
         .map((key, index) => {
-          const item = columns[key];
+          const item = columns[key]
           const {
             label = key,
             span = 18,
             type = types.input,
             columnOption = {},
-            options = [],
-          } = item;
+            options = []
+          } = item
 
           return {
             ...item,
@@ -587,134 +634,134 @@ export default {
             type,
             columnOption,
             options,
-            isShow: mode == "expand" ? true : index > showNum ? false : true,
-          };
-        });
+            isShow: mode === 'expand' ? true : !(index > showNum)
+          }
+        })
     },
     getFormItemOptions(column) {
-      const { formItemOption } = column;
+      const { formItemOption } = column
       return {
-        ...formItemOption,
-      };
+        ...formItemOption
+      }
     },
     getColSpanOptions(column) {
-      const { colSpanOption, span } = column;
+      const { colSpanOption, span } = column
       return {
         span: span || 24,
-        ...(colSpanOption || {}),
-      };
+        ...(colSpanOption || {})
+      }
     },
     // 获取
     getColumnOptions(column) {
-      const { columnOption, type, label } = column;
-      let processColumnOption = {};
-      if (type == types.input) {
+      const { columnOption, type, label } = column
+      let processColumnOption = {}
+      if (type === types.input) {
         processColumnOption = {
-          placeholder: `请输入${label}`,
-        };
+          placeholder: `请输入${label}`
+        }
       } else {
         processColumnOption = {
-          placeholder: `请选择${label}`,
-        };
+          placeholder: `请选择${label}`
+        }
       }
-      let options = {};
-      if (typeof columnOption === "object") {
-        options = columnOption;
-      } else if (typeof columnOption === "function") {
-        options = columnOption() || {};
+      let options = {}
+      if (typeof columnOption === 'object') {
+        options = columnOption
+      } else if (typeof columnOption === 'function') {
+        options = columnOption() || {}
       }
       return {
         ...processColumnOption,
-        ...options,
-      };
+        ...options
+      }
     },
     checkShow(column) {
-      if (typeof column.formColumnShow === "boolean") {
-        return column.formColumnShow;
+      if (typeof column.formColumnShow === 'boolean') {
+        return column.formColumnShow
       }
-      if (typeof column.formColumnShow === "function") {
-        return column.formColumnShow(this.form);
+      if (typeof column.formColumnShow === 'function') {
+        return column.formColumnShow(this.form)
       }
-      return true;
+      return true
     },
     checkEmpty(data) {
       if (Array.isArray(data)) {
-        return data.length === 0;
+        return data.length === 0
       } else {
-        return [undefined, null].includes(data);
+        return [undefined, null].includes(data)
       }
     },
     getOptions(column) {
-      let options = column.options;
-      if (typeof column.options === "function") {
-        options = column.options({ ...this.formData });
+      let options = column.options
+      if (typeof column.options === 'function') {
+        options = column.options({ ...this.formData })
       }
-      return options || [];
+      return options || []
     },
     checkDefaultValue() {
-      const { columns } = this;
-      const newForm = cloneDeep(this.form);
+      const { columns } = this
+      const newForm = cloneDeep(this.form)
       Object.keys(columns).forEach((key) => {
-        const item = columns[key];
+        const item = columns[key]
         if (
           [types.checkBox, types.area, types.cascader, types.table].includes(item.type) &&
           !Array.isArray(newForm[key])
         ) {
-          newForm[key] = [];
+          newForm[key] = []
         }
         if (!this.checkEmpty(item.defaultValue) && this.checkEmpty(newForm[key])) {
-          newForm[key] = item.defaultValue;
+          newForm[key] = item.defaultValue
         }
-      });
-      this.form = newForm;
+      })
+      this.form = newForm
     },
     updateFormData() {
       if (!this.debounceUpdate) {
         this.debounceUpdate = debounce(
           () => {
             if (!isEqual(this.formData, this.form)) {
-              const data = cloneDeep(this.formData);
+              const data = cloneDeep(this.formData)
               this.form = filterObject(data, (_, key) => {
-                return this.columns[key] || !["createTime", "updateTime"].includes(key);
-              });
-              this.checkDefaultValue();
+                return this.columns[key] || !['createTime', 'updateTime'].includes(key)
+              })
+              this.checkDefaultValue()
             }
           },
           100,
           {
-            leading: true,
+            leading: true
           }
-        );
+        )
       }
-      this.debounceUpdate();
+      this.debounceUpdate()
     },
     checkRule() {
       return new Promise((resolve, reject) => {
-        const { ruleForm } = this.$refs;
+        const { ruleForm } = this.$refs
         if (ruleForm) {
           ruleForm.validate((valid, error) => {
             if (valid) {
-              resolve(true);
+              resolve(true)
             } else {
               this.$nextTick(() => {
-                const isError = document.getElementsByClassName("is-error");
+                const isError = document.getElementsByClassName('is-error')
                 isError[0].scrollIntoView({
-                  block: "center",
-                  behavior: "smooth",
-                });
-              });
-              reject(error);
+                  block: 'center',
+                  behavior: 'smooth'
+                })
+              })
+              reject(error)
             }
-          });
+          })
         }
-      });
+      })
     },
     resetFields() {
-      const { ruleForm } = this.$refs;
-      ruleForm.resetFields();
-    },
-  },
-};
+      const { ruleForm } = this.$refs
+      ruleForm.resetFields()
+    }
+  }
+}
 </script>
 <style lang="scss">
 .el-cascader-panel {
@@ -736,7 +783,7 @@ export default {
     left: -6px;
     top: 50%;
     transform: translateY(-50%);
-    content: "";
+    content: '';
     display: block;
     width: 3.5px;
     border-radius: 2px;

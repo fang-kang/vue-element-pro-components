@@ -9,23 +9,26 @@
     v-on="$listeners"
   >
     <template #title>
-      <slot name="title" v-if="$slots.title"></slot>
+      <slot
+        v-if="$slots.title"
+        name="title"
+      />
       <div
+        v-else
         class="el-pro-dialog__header"
         :class="[dialogProcessOptions.center ? 'justify-content-c' : '']"
-        v-else
       >
-        <slot name="nameBefore"></slot>
+        <slot name="nameBefore" />
         <slot name="title">
           <span style="font-size: 18px">{{ title }}</span>
         </slot>
-        <slot name="nameAfter"></slot>
+        <slot name="nameAfter" />
         <i
           v-if="dialogProcessOptions.showFullscreen"
           :class="fullscreen ? 'el-icon-minus' : 'el-icon-full-screen'"
           class="dialog__icon"
           @click="toggleFull"
-        ></i>
+        />
       </div>
     </template>
     <el-scrollbar
@@ -34,253 +37,262 @@
         fullscreen && $slots.footer
           ? 'el-pro-dialog__content--footer'
           : fullscreen && !$slots.footer
-          ? 'el-pro-dialog__content--fullscreen'
-          : 'el-pro-dialog__content'
+            ? 'el-pro-dialog__content--fullscreen'
+            : 'el-pro-dialog__content'
       "
     >
       <div class="content__wrap">
-        <slot></slot>
+        <slot />
       </div>
     </el-scrollbar>
 
-    <div slot="footer" v-if="showAction">
-      <slot name="beforeFooter"></slot>
-      <el-button size="small" v-bind="cancelBtnProps" @click="handleCancel">{{
-        cancelBtnText
-      }}</el-button>
-      <slot name="middleFooter"></slot>
+    <div
+      v-if="showAction"
+      slot="footer"
+    >
+      <slot name="beforeFooter" />
+      <el-button
+        size="small"
+        v-bind="cancelBtnProps"
+        @click="handleCancel"
+      >
+        {{ cancelBtnText }}
+      </el-button>
+      <slot name="middleFooter" />
       <el-button
         type="primary"
         size="small"
         :loading="showBtnLoading"
         v-bind="confirmBtnProps"
         @click="handleOk"
-        >{{ confirmBtnText }}</el-button
       >
-      <slot name="afterFooter"></slot>
+        {{ confirmBtnText }}
+      </el-button>
+      <slot name="afterFooter" />
     </div>
 
-    <template v-if="$slots.footer && !showAction" #footer>
-      <slot name="footer"></slot>
+    <template
+      v-if="$slots.footer && !showAction"
+      #footer
+    >
+      <slot name="footer" />
     </template>
   </el-dialog>
 </template>
 
 <script>
 export default {
-  name: "ElProDialog",
+  name: 'ElProDialog',
   model: {
-    prop: "visible",
-    event: "update:visible",
+    prop: 'visible',
+    event: 'update:visible'
   },
   props: {
     title: {
       type: String,
-      default: "",
+      default: ''
     },
     cancelBtnText: {
       type: String,
-      default: "取消",
+      default: '取消'
     },
     confirmBtnText: {
       type: String,
-      default: "确定",
+      default: '确定'
     },
     cancelBtnProps: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     confirmBtnProps: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     dialogOptions: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     visible: {
       type: Boolean,
-      default: false,
+      default: false
     },
     loading: {
       type: Boolean,
-      default: false,
+      default: false
     },
     btnLoading: {
       type: Boolean,
-      default: false,
+      default: false
     },
     showAction: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   data() {
     return {
-      fullscreen: false,
-    };
+      fullscreen: false
+    }
   },
   computed: {
     showBtnLoading: {
       get() {
-        return this.btnLoading;
+        return this.btnLoading
       },
       set(val) {
-        this.$emit("update:btnLoading", val);
-      },
+        this.$emit('update:btnLoading', val)
+      }
     },
     showVisible: {
       get() {
-        return this.visible;
+        return this.visible
       },
       set(val) {
-        this.$emit("update:visible", val);
-      },
+        this.$emit('update:visible', val)
+      }
     },
     showLoading: {
       get() {
-        return this.loading;
+        return this.loading
       },
       set(val) {
-        this.$emit("update:loading", val);
-      },
+        this.$emit('update:loading', val)
+      }
     },
     dialogProcessOptions() {
       return {
         closeOnClickModal: true,
-        top: "10vh",
-        width: "60%",
+        top: '10vh',
+        width: '60%',
         destroyOnClose: false,
         appendToBody: true,
         lockScroll: true,
         showFullscreen: false,
         draggable: false,
         center: false,
-        ...(this.dialogOptions || {}),
-      };
-    },
+        ...(this.dialogOptions || {})
+      }
+    }
   },
   mounted() {
-    const { draggable } = this.dialogProcessOptions;
+    const { draggable } = this.dialogProcessOptions
     if (draggable) {
-      this.initDraggable();
+      this.initDraggable()
     }
   },
   methods: {
     handleOk() {
-      this.$emit("ok");
+      this.$emit('ok')
     },
     handleCancel() {
-      this.showVisible = false;
-      this.$emit("cancel");
+      this.showVisible = false
+      this.$emit('cancel')
     },
     processDrag() {
-      const dragDom = document.querySelector(".el-pro-dialog");
-      const dialogHeaderEl = document.querySelector(".el-pro-dialog .el-dialog__header");
-      const { fullscreen } = this;
-      const { draggable } = this.dialogProcessOptions;
+      const dragDom = document.querySelector('.el-pro-dialog')
+      const dialogHeaderEl = document.querySelector('.el-pro-dialog .el-dialog__header')
+      const { fullscreen } = this
+      const { draggable } = this.dialogProcessOptions
       // 全屏的时候需要重新定义left top
       if (fullscreen && draggable) {
-        dragDom.style.cssText += `;left:0px;top:0px;`;
-        dialogHeaderEl.style.cssText += ";cursor:default;user-select:none;";
+        dragDom.style.cssText += `;left:0px;top:0px;`
+        dialogHeaderEl.style.cssText += ';cursor:default;user-select:none;'
       } else if (!fullscreen && draggable) {
-        dialogHeaderEl.style.cssText += ";cursor:move;user-select:none;";
+        dialogHeaderEl.style.cssText += ';cursor:move;user-select:none;'
       }
       if (draggable) {
-        dragDom.style.cssText += `;left:0px;top:0px;`;
+        dragDom.style.cssText += `;left:0px;top:0px;`
       }
     },
     closed() {
-      const { draggable } = this.dialogProcessOptions;
-      this.fullscreen = false;
+      const { draggable } = this.dialogProcessOptions
+      this.fullscreen = false
       if (draggable) {
-        this.processDrag();
+        this.processDrag()
       }
-      this.$emit("closed");
+      this.$emit('closed')
     },
     toggleFull() {
-      this.fullscreen = !this.fullscreen;
-      this.processDrag();
+      this.fullscreen = !this.fullscreen
+      this.processDrag()
     },
     initDraggable() {
       this.$nextTick(() => {
-        const dragDom = document.querySelector(".el-pro-dialog");
-        const dialogHeaderEl = document.querySelector(
-          ".el-pro-dialog .el-dialog__header"
-        );
-        dialogHeaderEl.style.cssText += ";cursor:move;user-select:none;";
-        const sty = dragDom.currentStyle || window.getComputedStyle(dragDom, null);
+        const dragDom = document.querySelector('.el-pro-dialog')
+        const dialogHeaderEl = document.querySelector('.el-pro-dialog .el-dialog__header')
+        dialogHeaderEl.style.cssText += ';cursor:move;user-select:none;'
+        const sty = dragDom.currentStyle || window.getComputedStyle(dragDom, null)
         dialogHeaderEl.onmousedown = (e) => {
-          const disX = e.clientX - dialogHeaderEl.offsetLeft;
-          const disY = e.clientY - dialogHeaderEl.offsetTop;
+          const disX = e.clientX - dialogHeaderEl.offsetLeft
+          const disY = e.clientY - dialogHeaderEl.offsetTop
 
-          const dragDomWidth = dragDom.offsetWidth;
-          const dragDomHeight = dragDom.offsetHeight;
+          const dragDomWidth = dragDom.offsetWidth
+          const dragDomHeight = dragDom.offsetHeight
 
-          const screenWidth = document.documentElement.clientWidth;
-          const screenHeight = document.documentElement.clientHeight;
+          const screenWidth = document.documentElement.clientWidth
+          const screenHeight = document.documentElement.clientHeight
 
-          const minDragDomLeft = dragDom.offsetLeft;
-          const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth;
+          const minDragDomLeft = dragDom.offsetLeft
+          const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth
 
-          const minDragDomTop = dragDom.offsetTop;
-          const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomHeight;
+          const minDragDomTop = dragDom.offsetTop
+          const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomHeight
 
-          const styleLeftStr = sty.left;
-          const styleTopStr = sty.top;
+          const styleLeftStr = sty.left
+          const styleTopStr = sty.top
 
-          if (!styleLeftStr || !styleTopStr) return;
-          let styleLeft;
-          let styleTop;
+          if (!styleLeftStr || !styleTopStr) return
+          let styleLeft
+          let styleTop
 
           // Format may be "##%" or "##px"
-          if (styleLeftStr.includes("%")) {
-            styleLeft = +screenWidth * (+styleLeftStr.replace(/%/g, "") / 100);
-            styleTop = +screenHeight * (+styleTopStr.replace(/%/g, "") / 100);
+          if (styleLeftStr.includes('%')) {
+            styleLeft = +screenWidth * (+styleLeftStr.replace(/%/g, '') / 100)
+            styleTop = +screenHeight * (+styleTopStr.replace(/%/g, '') / 100)
           } else {
-            styleLeft = +styleLeftStr.replace(/px/g, "");
-            styleTop = +styleTopStr.replace(/px/g, "");
+            styleLeft = +styleLeftStr.replace(/px/g, '')
+            styleTop = +styleTopStr.replace(/px/g, '')
           }
 
           document.onmousemove = (e) => {
-            let left = e.clientX - disX;
-            let top = e.clientY - disY;
+            let left = e.clientX - disX
+            let top = e.clientY - disY
 
             // Handle edge cases
             if (-left > minDragDomLeft) {
-              left = -minDragDomLeft;
+              left = -minDragDomLeft
             } else if (left > maxDragDomLeft) {
-              left = maxDragDomLeft;
+              left = maxDragDomLeft
             }
             if (-top > minDragDomTop) {
-              top = -minDragDomTop;
+              top = -minDragDomTop
             } else if (top > maxDragDomTop) {
-              top = maxDragDomTop;
+              top = maxDragDomTop
             }
 
             // 移动当前元素
-            dragDom.style.left = `${left + styleLeft}px`;
-            dragDom.style.top = `${top + styleTop}px`;
-          };
+            dragDom.style.left = `${left + styleLeft}px`
+            dragDom.style.top = `${top + styleTop}px`
+          }
 
           document.onmouseup = () => {
-            document.onmousemove = null;
-            document.onmouseup = null;
-          };
-        };
-      });
-    },
-  },
-};
+            document.onmousemove = null
+            document.onmouseup = null
+          }
+        }
+      })
+    }
+  }
+}
 </script>
 <style lang="scss">
 .el-pro-dialog {

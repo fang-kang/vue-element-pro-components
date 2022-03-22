@@ -1,13 +1,18 @@
 <template>
   <div>
-    <el-button size="small" @click="visible = true">打开</el-button>
+    <el-button
+      size="small"
+      @click="visible = true"
+    >
+      打开
+    </el-button>
     <el-pro-dialog
-      title="测试"
       v-model="visible"
+      title="测试"
       :dialog-options="{
         width: '40%',
         showFullscreen: true,
-        draggable: true,
+        draggable: true
       }"
       :btn-loading="btnLoading"
       @open="open"
@@ -20,44 +25,41 @@
     </el-pro-dialog>
   </div>
 </template>
-
 <script>
 export default {
   data() {
     return {
       visible: false,
-      btnLoading: false,
-    };
+      btnLoading: false
+    }
   },
   methods: {
     ok() {
-      this.btnLoading = true;
+      this.btnLoading = true
       setTimeout(() => {
-        this.btnLoading = false;
-        this.visible2 = false;
-      }, 3000);
+        this.btnLoading = false
+        this.visible2 = false
+      }, 3000)
     },
     close() {
-      console.log("close");
+      console.log('close')
     },
     closed() {
-      console.log("closed");
+      console.log('closed')
     },
     opened() {
-      console.log("opened");
+      console.log('opened')
     },
     open() {
-      console.log("open");
+      console.log('open')
     },
     beforeClose(done) {
-      console.log("beforeClose");
-      done();
+      console.log('beforeClose')
+      done()
     },
     sure() {
-      console.log("sure");
-    },
-  },
-};
+      console.log('sure')
+    }
+  }
+}
 </script>
-
-<style lang="scss" scoped></style>
