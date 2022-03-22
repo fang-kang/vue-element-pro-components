@@ -2,7 +2,7 @@
 node_modules
 /dist
 /docs
-/lib
+lib
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
