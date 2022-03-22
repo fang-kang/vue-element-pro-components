@@ -5,7 +5,7 @@ const { styleOutputPath } = require('../config/index')
 const { build } = require('./rollup.createConfig')
 const { resolve, getAssetsPath } = require('./utils')
 fs.mkdirSync(resolve())
-fs.mkdirSync(getAssetsPath(styleOutputPath))
+// fs.mkdirSync(getAssetsPath(styleOutputPath))
 if ([...formatTypeList, ...addons].some((item) => item.format === esDir)) {
   fs.mkdirSync(getAssetsPath(esDir))
 }

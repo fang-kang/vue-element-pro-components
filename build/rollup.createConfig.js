@@ -60,7 +60,7 @@ function createPlugins({ min } = {}) {
       inject: false,
       // sourceMap: true,
       extensions: ['.css', '.less'],
-      extract: true // 输出路径
+      extract: false // 输出路径
     }),
     replace({
       exclude,
