@@ -441,7 +441,8 @@ export function getMetaData() {
       type: types.editor,
       span: 24,
       showInSearch: false,
-      tooltip: '富文本提示'
+      tooltip: '富文本提示',
+      defaultValue: '富文本'
     }
   }
 }

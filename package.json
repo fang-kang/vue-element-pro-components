@@ -1,6 +1,6 @@
 {
   "name": "vue-element-pro-components",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "This is a vue2、element-ui based component library",
   "private": false,
   "author": "fangkang<https://github.com/fang-kang>",
@@ -21,6 +21,7 @@
     "src",
     "packages"
   ],
+  "style": "lib/theme/index.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/fang-kang/vue-element-pro-components"
@@ -47,8 +48,7 @@
   "dependencies": {
     "clipboard": "^2.0.10",
     "lodash-es": "^4.17.21",
-    "vue-fragment": "^1.5.2",
-    "vue-quill-editor": "^3.0.6"
+    "vue-fragment": "^1.5.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",

@@ -10,7 +10,7 @@ const setAlias = (config) => {
   })
 }
 module.exports = {
-  lintOnSave: !utils.isProduct,
+  lintOnSave: utils.isProduct,
   runtimeCompiler: true,
   productionSourceMap: false,
   pages: {

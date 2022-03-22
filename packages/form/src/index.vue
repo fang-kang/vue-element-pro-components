@@ -313,9 +313,10 @@
                     "
                   />
 
-                  <quill-editor
+                  <tinymce
                     v-else-if="column.type === cmpTypes.editor"
                     v-model="form[column.key]"
+                    :height="300"
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
@@ -366,12 +367,12 @@ import { filterObject, removeArrayByIndex } from 'vue-element-pro-components/src
 import { types } from './type'
 import ElProTable from 'vue-element-pro-components/packages/table'
 import ElProDialog from 'vue-element-pro-components/packages/dialog'
-import QuillEditor from './QuillEditor.vue'
+import Tinymce from './Tinymce/index'
 export default {
   name: 'ElProForm',
   components: {
     Fragment,
-    QuillEditor,
+    Tinymce,
     ElProTable,
     ElProDialog
   },
