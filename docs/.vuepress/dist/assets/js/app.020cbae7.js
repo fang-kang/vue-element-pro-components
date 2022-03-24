@@ -51,19 +51,19 @@
                 3: '81c068b1',
                 4: '766e41cd',
                 5: '230adf4f',
-                6: '0d05a9b2',
+                6: '08dfdbc6',
                 7: '8619822d',
-                8: 'c48be33d',
-                9: '74f8da6b',
-                10: 'd2e6efbb',
-                11: 'b8cfd093',
-                12: '5f0a10e0',
-                13: '1f79330e',
-                14: 'bf460d15',
-                15: 'cd32a93e',
-                16: '176237c2',
+                8: '47959029',
+                9: 'c8511abc',
+                10: '71ad07b4',
+                11: 'e67b1958',
+                12: '6bf15297',
+                13: 'aa48d9aa',
+                14: 'b68ab6a4',
+                15: 'd5887bc4',
+                16: 'c9334bca',
                 17: '25399b5c',
-                18: '6f3ae0db'
+                18: '1d26873d'
               }[e] +
               '.js'
             )
@@ -56716,41 +56716,41 @@
           }
         }),
       Je = {
-        'v-4190e9ca': function() {
-          return n.e(8).then(n.bind(null, 580))
-        },
         'v-d043db26': function() {
-          return n.e(9).then(n.bind(null, 581))
+          return n.e(9).then(n.bind(null, 580))
         },
-        'v-49dd29c4': function() {
-          return n.e(11).then(n.bind(null, 571))
-        },
-        'v-7b099b7e': function() {
-          return n.e(12).then(n.bind(null, 572))
+        'v-4190e9ca': function() {
+          return n.e(8).then(n.bind(null, 581))
         },
         'v-3122ab44': function() {
-          return n.e(13).then(n.bind(null, 573))
+          return n.e(13).then(n.bind(null, 571))
         },
         'v-9148ea94': function() {
-          return n.e(10).then(n.bind(null, 574))
+          return n.e(10).then(n.bind(null, 572))
         },
         'v-4817ef1e': function() {
-          return n.e(14).then(n.bind(null, 575))
+          return n.e(14).then(n.bind(null, 573))
+        },
+        'v-7b099b7e': function() {
+          return n.e(12).then(n.bind(null, 574))
+        },
+        'v-b5533e44': function() {
+          return n.e(6).then(n.bind(null, 575))
+        },
+        'v-49dd29c4': function() {
+          return n.e(11).then(n.bind(null, 576))
         },
         'v-2748afd6': function() {
           return n.e(17).then(n.bind(null, 582))
         },
+        'v-dfe01540': function() {
+          return n.e(18).then(n.bind(null, 583))
+        },
         'v-3ff2a396': function() {
-          return n.e(16).then(n.bind(null, 583))
+          return n.e(16).then(n.bind(null, 584))
         },
         'v-f5f6ce80': function() {
-          return n.e(15).then(n.bind(null, 576))
-        },
-        'v-b5533e44': function() {
-          return n.e(6).then(n.bind(null, 577))
-        },
-        'v-dfe01540': function() {
-          return n.e(18).then(n.bind(null, 584))
+          return n.e(15).then(n.bind(null, 577))
         }
       }
     function et(e) {
@@ -57549,15 +57549,6 @@
     })(Yt, 'mixins', Wt)
     var Kt = [
         {
-          name: 'v-4190e9ca',
-          path: '/',
-          component: Yt,
-          beforeEnter: function(e, t, n) {
-            vt('Layout', 'v-4190e9ca').then(n)
-          }
-        },
-        { path: '/index.html', redirect: '/' },
-        {
           name: 'v-d043db26',
           path: '/components/',
           component: Yt,
@@ -57567,21 +57558,14 @@
         },
         { path: '/components/index.html', redirect: '/components/' },
         {
-          name: 'v-49dd29c4',
-          path: '/components/dialog.html',
+          name: 'v-4190e9ca',
+          path: '/',
           component: Yt,
           beforeEnter: function(e, t, n) {
-            vt('Layout', 'v-49dd29c4').then(n)
+            vt('Layout', 'v-4190e9ca').then(n)
           }
         },
-        {
-          name: 'v-7b099b7e',
-          path: '/components/drawer.html',
-          component: Yt,
-          beforeEnter: function(e, t, n) {
-            vt('Layout', 'v-7b099b7e').then(n)
-          }
-        },
+        { path: '/index.html', redirect: '/' },
         {
           name: 'v-3122ab44',
           path: '/components/pagination.html',
@@ -57607,11 +57591,43 @@
           }
         },
         {
+          name: 'v-7b099b7e',
+          path: '/components/drawer.html',
+          component: Yt,
+          beforeEnter: function(e, t, n) {
+            vt('Layout', 'v-7b099b7e').then(n)
+          }
+        },
+        {
+          name: 'v-b5533e44',
+          path: '/components/form.html',
+          component: Yt,
+          beforeEnter: function(e, t, n) {
+            vt('Layout', 'v-b5533e44').then(n)
+          }
+        },
+        {
+          name: 'v-49dd29c4',
+          path: '/components/dialog.html',
+          component: Yt,
+          beforeEnter: function(e, t, n) {
+            vt('Layout', 'v-49dd29c4').then(n)
+          }
+        },
+        {
           name: 'v-2748afd6',
           path: '/guide/introduction.html',
           component: Yt,
           beforeEnter: function(e, t, n) {
             vt('Layout', 'v-2748afd6').then(n)
+          }
+        },
+        {
+          name: 'v-dfe01540',
+          path: '/guide/quickstart.html',
+          component: Yt,
+          beforeEnter: function(e, t, n) {
+            vt('Layout', 'v-dfe01540').then(n)
           }
         },
         {
@@ -57628,22 +57644,6 @@
           component: Yt,
           beforeEnter: function(e, t, n) {
             vt('Layout', 'v-f5f6ce80').then(n)
-          }
-        },
-        {
-          name: 'v-b5533e44',
-          path: '/components/form.html',
-          component: Yt,
-          beforeEnter: function(e, t, n) {
-            vt('Layout', 'v-b5533e44').then(n)
-          }
-        },
-        {
-          name: 'v-dfe01540',
-          path: '/guide/quickstart.html',
-          component: Yt,
-          beforeEnter: function(e, t, n) {
-            vt('Layout', 'v-dfe01540').then(n)
           }
         },
         { path: '*', component: Yt }
@@ -57671,6 +57671,14 @@
         ],
         pages: [
           {
+            title: '组件',
+            frontmatter: {},
+            regularPath: '/components/',
+            relativePath: 'components/README.md',
+            key: 'v-d043db26',
+            path: '/components/'
+          },
+          {
             title: 'Home',
             frontmatter: {
               home: !0,
@@ -57694,51 +57702,6 @@
             relativePath: 'README.md',
             key: 'v-4190e9ca',
             path: '/'
-          },
-          {
-            title: '组件',
-            frontmatter: {},
-            regularPath: '/components/',
-            relativePath: 'components/README.md',
-            key: 'v-d043db26',
-            path: '/components/'
-          },
-          {
-            title: '通用对话框-ElProDialog',
-            frontmatter: {},
-            regularPath: '/components/dialog.html',
-            relativePath: 'components/dialog.md',
-            key: 'v-49dd29c4',
-            path: '/components/dialog.html',
-            headers: [
-              { level: 2, title: '示例', slug: '示例' },
-              { level: 3, title: '基本用法&拖拽&全屏', slug: '基本用法-拖拽-全屏' },
-              {
-                level: 3,
-                title: '超出高度自适应和头部和底部采用居中布局',
-                slug: '超出高度自适应和头部和底部采用居中布局'
-              },
-              { level: 3, title: '弹窗的加载中状态', slug: '弹窗的加载中状态' },
-              { level: 3, title: '标题的插槽和按钮的 props', slug: '标题的插槽和按钮的-props' },
-              { level: 3, title: '自定义底部footer内容', slug: '自定义底部footer内容' },
-              { level: 3, title: '自定义内容', slug: '自定义内容' },
-              { level: 2, title: 'Attributes', slug: 'attributes' },
-              { level: 2, title: 'Slot', slug: 'slot' },
-              { level: 2, title: 'Events', slug: 'events' }
-            ]
-          },
-          {
-            title: '通用抽屉-ElProDrawer',
-            frontmatter: {},
-            regularPath: '/components/drawer.html',
-            relativePath: 'components/drawer.md',
-            key: 'v-7b099b7e',
-            path: '/components/drawer.html',
-            headers: [
-              { level: 2, title: '基本用法', slug: '基本用法' },
-              { level: 2, title: 'Attributes', slug: 'attributes' },
-              { level: 2, title: 'Slot', slug: 'slot' }
-            ]
           },
           {
             title: '通用分页-ElProPagination',
@@ -57783,37 +57746,16 @@
             ]
           },
           {
-            title: '项目背景',
+            title: '通用抽屉-ElProDrawer',
             frontmatter: {},
-            regularPath: '/guide/introduction.html',
-            relativePath: 'guide/introduction.md',
-            key: 'v-2748afd6',
-            path: '/guide/introduction.html'
-          },
-          {
-            title: '安装',
-            frontmatter: {},
-            regularPath: '/guide/installation.html',
-            relativePath: 'guide/installation.md',
-            key: 'v-3ff2a396',
-            path: '/guide/installation.html',
-            headers: [
-              { level: 2, title: '安装', slug: '安装-2' },
-              { level: 2, title: 'CDN', slug: 'cdn' }
-            ]
-          },
-          {
-            title: '通用表格-ElProTable',
-            frontmatter: {},
-            regularPath: '/components/table.html',
-            relativePath: 'components/table.md',
-            key: 'v-f5f6ce80',
-            path: '/components/table.html',
+            regularPath: '/components/drawer.html',
+            relativePath: 'components/drawer.md',
+            key: 'v-7b099b7e',
+            path: '/components/drawer.html',
             headers: [
               { level: 2, title: '基本用法', slug: '基本用法' },
               { level: 2, title: 'Attributes', slug: 'attributes' },
-              { level: 2, title: 'Slot', slug: 'slot' },
-              { level: 2, title: 'Events', slug: 'events' }
+              { level: 2, title: 'Slot', slug: 'slot' }
             ]
           },
           {
@@ -57840,6 +57782,38 @@
             ]
           },
           {
+            title: '通用对话框-ElProDialog',
+            frontmatter: {},
+            regularPath: '/components/dialog.html',
+            relativePath: 'components/dialog.md',
+            key: 'v-49dd29c4',
+            path: '/components/dialog.html',
+            headers: [
+              { level: 2, title: '示例', slug: '示例' },
+              { level: 3, title: '基本用法&拖拽&全屏', slug: '基本用法-拖拽-全屏' },
+              {
+                level: 3,
+                title: '超出高度自适应和头部和底部采用居中布局',
+                slug: '超出高度自适应和头部和底部采用居中布局'
+              },
+              { level: 3, title: '弹窗的加载中状态', slug: '弹窗的加载中状态' },
+              { level: 3, title: '标题的插槽和按钮的 props', slug: '标题的插槽和按钮的-props' },
+              { level: 3, title: '自定义底部footer内容', slug: '自定义底部footer内容' },
+              { level: 3, title: '自定义内容', slug: '自定义内容' },
+              { level: 2, title: 'Attributes', slug: 'attributes' },
+              { level: 2, title: 'Slot', slug: 'slot' },
+              { level: 2, title: 'Events', slug: 'events' }
+            ]
+          },
+          {
+            title: '项目背景',
+            frontmatter: {},
+            regularPath: '/guide/introduction.html',
+            relativePath: 'guide/introduction.md',
+            key: 'v-2748afd6',
+            path: '/guide/introduction.html'
+          },
+          {
             title: '快速上手',
             frontmatter: {},
             regularPath: '/guide/quickstart.html',
@@ -57850,6 +57824,32 @@
               { level: 2, title: '完整引入', slug: '完整引入' },
               { level: 2, title: '按需引入', slug: '按需引入' },
               { level: 2, title: '开始使用', slug: '开始使用' }
+            ]
+          },
+          {
+            title: '安装',
+            frontmatter: {},
+            regularPath: '/guide/installation.html',
+            relativePath: 'guide/installation.md',
+            key: 'v-3ff2a396',
+            path: '/guide/installation.html',
+            headers: [
+              { level: 2, title: '安装', slug: '安装-2' },
+              { level: 2, title: 'CDN', slug: 'cdn' }
+            ]
+          },
+          {
+            title: '通用表格-ElProTable',
+            frontmatter: {},
+            regularPath: '/components/table.html',
+            relativePath: 'components/table.md',
+            key: 'v-f5f6ce80',
+            path: '/components/table.html',
+            headers: [
+              { level: 2, title: '基本用法', slug: '基本用法' },
+              { level: 2, title: 'Attributes', slug: 'attributes' },
+              { level: 2, title: 'Slot', slug: 'slot' },
+              { level: 2, title: 'Events', slug: 'events' }
             ]
           }
         ],
@@ -58740,7 +58740,7 @@
         var t = this.$site.base
         return '/' === e.charAt(0) ? t + e.slice(1) : e
       }),
-      (window.__VUEPRESS__ = { version: '1.9.7', hash: '3e325d5' }),
+      (window.__VUEPRESS__ = { version: '1.9.7', hash: '1b5cc1b' }),
       (function(e) {
         return wn.apply(this, arguments)
       })(!1).then(function(e) {

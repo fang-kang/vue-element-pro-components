@@ -1,128 +1,176 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
-  [10],
+  [15],
   {
-    574: function(t, a, s) {
+    577: function(t, a, s) {
       'use strict'
       s.r(a)
-      var r,
-        e,
+      var e,
         n,
-        p,
-        o,
-        l,
-        v,
-        c,
-        _,
-        i,
-        k,
-        u,
-        y,
-        g,
-        b,
-        d,
-        h = s(2),
-        m = {
+        r = s(2),
+        p = {
           name: 'component-doc',
           components: {
             'render-demo-0':
-              ((r = 'input'),
-              (e = 'select'),
-              (n = 'number'),
-              (p = 'checkBox'),
-              (o = 'radio'),
-              (l = 'date'),
-              (v = 'switch'),
-              (c = 'title'),
-              (_ = 'time'),
-              (i = 'slider'),
-              (k = 'rate'),
-              (u = 'color'),
-              (y = 'cascader'),
-              (g = 'table'),
-              (b = 'editor'),
-              (d = {
+              ((e = {
+                input: 'input',
+                select: 'select',
+                number: 'number',
+                checkBox: 'checkBox',
+                check: 'check',
+                radio: 'radio',
+                date: 'date',
+                switch: 'switch',
+                title: 'title',
+                time: 'time',
+                slider: 'slider',
+                rate: 'rate',
+                color: 'color',
+                cascader: 'cascader',
+                table: 'table',
+                editor: 'editor'
+              }),
+              (n = {
                 data: function() {
                   return {
-                    queryForm: {},
-                    columns: {},
-                    visible: !1,
                     dict: {
                       selectArr: [
                         { name: 'select-1', value: 1 },
                         { name: 'select-2', value: 2 }
                       ]
-                    }
+                    },
+                    tableData: [
+                      {
+                        input: '1',
+                        select: 1,
+                        radio: 1,
+                        checxbox: [1],
+                        date: '2021-11-10',
+                        num: 1,
+                        time: '12:23:00',
+                        slider: 1,
+                        rate: 1
+                      },
+                      {
+                        input: '1',
+                        select: 1,
+                        radio: 1,
+                        checxbox: [1],
+                        date: '2021-11-10',
+                        num: 1,
+                        time: '12:23:00',
+                        slider: 1,
+                        rate: 1
+                      },
+                      {
+                        input: '1',
+                        select: 1,
+                        radio: 1,
+                        checxbox: [1],
+                        date: '2021-11-10',
+                        num: 1,
+                        time: '12:23:00',
+                        slider: 1,
+                        rate: 1
+                      }
+                    ],
+                    listLoading: !1,
+                    columns: [],
+                    multipleSelection: []
                   }
                 },
                 created: function() {
                   this.columns = this.getMetaData()
                 },
                 methods: {
-                  dataReload: function() {
-                    console.log(this.queryForm)
+                  click: function() {
+                    console.log(111)
+                  },
+                  handleEdit: function(t) {
+                    console.log(t)
+                  },
+                  handleDelete: function(t) {
+                    console.log(t)
+                  },
+                  handleSelectionChange: function(t) {
+                    console.log(t), (this.multipleSelection = t)
                   },
                   getMetaData: function() {
                     var t = this
-                    return {
-                      title: { label: '基本信息', type: c },
-                      input: {
+                    return [
+                      { key: 'title', label: '基本信息', type: e.title },
+                      {
+                        key: 'input',
                         label: '输入框',
-                        type: r,
+                        defaultValue: '测试',
+                        type: e.input,
                         span: 12,
                         showInSearch: !0,
                         formItemOption: {},
                         showInTable: !0,
-                        tooltip: '测试输入框',
-                        onChange: function(a) {
-                          console.log(a, 'item'),
-                            1 == a.form.input &&
-                              (t.$message.success('成功'),
-                              (a.form.num = 11),
-                              (a.form.radio = 2),
-                              (a.form.select = 1))
-                        }
+                        tooltip: '测试测试是处生成'
                       },
-                      select: {
-                        label: '下拉框',
-                        type: e,
-                        span: 12,
-                        options: this.dict.selectArr,
-                        showInSearch: !0,
-                        showInTable: !0
-                      },
-                      switch: { label: '开关', type: v, span: 12 },
-                      radio: {
-                        label: '单选框',
-                        type: o,
-                        span: 12,
-                        options: this.dict.selectArr,
-                        showInSearch: !0,
-                        showInTable: !0
-                      },
-                      checxbox: {
+                      {
                         label: '多选框',
-                        type: p,
+                        defaultValue: [1],
+                        key: 'checxbox',
+                        type: e.checkBox,
                         span: 12,
                         options: this.dict.selectArr,
                         showInSearch: !0,
+                        showInTable: !0,
+                        showFormat: function(a) {
+                          return t.getArrayValue(t.dict.selectArr, a)
+                        },
+                        children: [
+                          {
+                            label: '日期',
+                            type: e.date,
+                            key: 'date',
+                            defaultValue: '2021-12-21',
+                            span: 10,
+                            showInSearch: !0,
+                            showInTable: !0
+                          },
+                          {
+                            label: '数字',
+                            key: 'num',
+                            type: e.number,
+                            defaultValue: 11,
+                            span: 10,
+                            showInTable: !0
+                          },
+                          {
+                            label: '时间',
+                            key: 'time',
+                            type: e.time,
+                            defaultValue: '12:23:00',
+                            span: 12,
+                            showInSearch: !0,
+                            showInTable: !0
+                          }
+                        ]
+                      },
+                      {
+                        label: '滑块',
+                        key: 'slider',
+                        type: e.slider,
+                        defaultValue: 10,
+                        span: 12,
                         showInTable: !0
                       },
-                      date: { label: '日期', type: l, span: 10, showInSearch: !0, showInTable: !0 },
-                      num: { label: '数字', type: n, span: 10, showInTable: !0 },
-                      time: { label: '时间', type: _, span: 12, showInSearch: !0, showInTable: !0 },
-                      slider: {
-                        label: '滑块',
-                        type: i,
+                      {
+                        label: '评分',
+                        key: 'rate',
+                        type: e.rate,
+                        defaultValue: 1,
                         span: 12,
-                        showInTable: !0,
-                        showInSearch: !1
+                        showInTable: !0
                       },
-                      rate: { label: '评分', type: k, span: 12, showInTable: !0, showInSearch: !0 },
-                      color: { label: '颜色', type: u, showInSearch: !0, span: 12 },
-                      cascader: {
+                      { label: '颜色', key: 'color', type: e.color, span: 12 },
+                      {
                         label: '级联',
-                        showInSearch: !0,
-                        type: y,
+                        key: 'cascader',
+                        type: e.cascader,
                         options: [
                           {
                             value: 'zhinan',
@@ -247,89 +295,54 @@
                         ],
                         span: 12
                       },
-                      table: {
-                        label: '测试表格',
-                        span: 24,
-                        type: g,
-                        tableDataOptions: {
-                          input: { label: '输入框', type: r, span: 12, showInTable: !0 },
-                          select: {
-                            label: '下拉框',
-                            type: e,
-                            span: 12,
-                            options: this.dict.selectArr,
-                            showInTable: !0
-                          },
-                          switch: { label: '开关', type: v, span: 12 },
-                          radio: {
-                            label: '单选框',
-                            type: o,
-                            span: 12,
-                            options: this.dict.selectArr
-                          },
-                          checxbox: {
-                            label: '多选框',
-                            type: p,
-                            span: 12,
-                            options: this.dict.selectArr
-                          },
-                          date: { label: '日期', type: l, span: 12 },
-                          num: { label: '数字', required: !0, type: n, span: 12, showInTable: !0 },
-                          time: { label: '时间', type: _, showInTable: !0, span: 12 }
-                        }
-                      },
-                      editor: {
-                        label: '富文本',
-                        type: b,
-                        span: 24,
-                        showInSearch: !0,
-                        tooltip: '富文本提示'
-                      }
-                    }
+                      { label: '区域', key: 'area', type: e.area, showInSearch: !0, span: 12 },
+                      { label: '测试表格', key: 'table', span: 24, type: e.table }
+                    ]
                   }
                 }
               }),
-              Object(h.a)(
+              Object(r.a)(
                 {
                   render: function() {
-                    var t = this,
-                      a = t.$createElement,
-                      s = t._self._c || a
-                    return s(
+                    var t = this.$createElement,
+                      a = this._self._c || t
+                    return a(
                       'div',
                       [
                         [
-                          s(
-                            'el-button',
-                            {
-                              on: {
-                                click: function(a) {
-                                  t.visible = !0
-                                }
-                              }
-                            },
-                            [t._v('测试高级查询')]
-                          ),
-                          t._v(' '),
-                          s('el-pro-advanced-search', {
-                            attrs: { title: '高级查询', visible: t.visible, columns: t.columns },
-                            on: {
-                              'update:visible': function(a) {
-                                t.visible = a
-                              },
-                              search: t.dataReload,
-                              reset: function(a) {
-                                t.visible = !1
-                              }
-                            },
-                            model: {
-                              value: t.queryForm,
-                              callback: function(a) {
-                                t.queryForm = a
-                              },
-                              expression: 'queryForm'
-                            }
-                          })
+                          a(
+                            'div',
+                            [
+                              a(
+                                'el-pro-table',
+                                {
+                                  attrs: {
+                                    data: this.tableData,
+                                    loading: this.listLoading,
+                                    selection: '',
+                                    columns: this.columns,
+                                    'operation-options': { width: 200 },
+                                    'update-func': this.handleEdit,
+                                    'delete-func': this.handleDelete,
+                                    'table-options': {
+                                      rowStyle: { height: '50px' },
+                                      hasOperation: !0
+                                    }
+                                  },
+                                  on: { 'selection-change': this.handleSelectionChange }
+                                },
+                                [
+                                  a(
+                                    'div',
+                                    { attrs: { slot: 'inputHeader' }, slot: 'inputHeader' },
+                                    [a('el-button', [this._v('测试')])],
+                                    1
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
                         ]
                       ],
                       2
@@ -337,13 +350,13 @@
                   },
                   staticRenderFns: []
                 },
-                d
+                n
               ))
           }
         },
-        S = s(6),
-        x = Object(S.a)(
-          m,
+        o = s(6),
+        l = Object(o.a)(
+          p,
           function() {
             var t = this,
               a = t.$createElement,
@@ -352,16 +365,13 @@
               'ContentSlotsDistributor',
               { attrs: { 'slot-key': t.$parent.slotKey } },
               [
-                s('h1', { attrs: { id: '通用高级查询-elproadvancedsearch' } }, [
+                s('h1', { attrs: { id: '通用表格-elprotable' } }, [
                   s(
                     'a',
-                    {
-                      staticClass: 'header-anchor',
-                      attrs: { href: '#通用高级查询-elproadvancedsearch' }
-                    },
+                    { staticClass: 'header-anchor', attrs: { href: '#通用表格-elprotable' } },
                     [t._v('#')]
                   ),
-                  t._v(' 通用高级查询-ElProAdvancedSearch')
+                  t._v(' 通用表格-ElProTable')
                 ]),
                 t._v(' '),
                 s('h2', { attrs: { id: '基本用法' } }, [
@@ -398,53 +408,23 @@
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('<')
                                 ]),
-                                t._v('el-button')
-                              ]),
-                              t._v(' '),
-                              s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
-                                t._v('@click')
-                              ]),
-                              s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
-                                s(
-                                  'span',
-                                  { pre: !0, attrs: { class: 'token punctuation attr-equals' } },
-                                  [t._v('=')]
-                                ),
-                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                  t._v('"')
-                                ]),
-                                t._v('visible = true'),
-                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                  t._v('"')
-                                ])
+                                t._v('div')
                               ]),
                               s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                 t._v('>')
                               ])
                             ]),
-                            t._v('测试高级查询'),
-                            s('span', { pre: !0, attrs: { class: 'token tag' } }, [
-                              s('span', { pre: !0, attrs: { class: 'token tag' } }, [
-                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                  t._v('</')
-                                ]),
-                                t._v('el-button')
-                              ]),
-                              s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                t._v('>')
-                              ])
-                            ]),
-                            t._v('\n  '),
+                            t._v('\n    '),
                             s('span', { pre: !0, attrs: { class: 'token tag' } }, [
                               s('span', { pre: !0, attrs: { class: 'token tag' } }, [
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('<')
                                 ]),
-                                t._v('el-pro-advanced-search')
+                                t._v('el-pro-table')
                               ]),
-                              t._v('\n    '),
+                              t._v('\n      '),
                               s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
-                                t._v('title')
+                                t._v(':data')
                               ]),
                               s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
                                 s(
@@ -455,14 +435,14 @@
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ]),
-                                t._v('高级查询'),
+                                t._v('tableData'),
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ])
                               ]),
-                              t._v('\n    '),
+                              t._v('\n      '),
                               s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
-                                t._v(':visible.sync')
+                                t._v(':loading')
                               ]),
                               s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
                                 s(
@@ -473,12 +453,16 @@
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ]),
-                                t._v('visible'),
+                                t._v('listLoading'),
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ])
                               ]),
-                              t._v('\n    '),
+                              t._v('\n      '),
+                              s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
+                                t._v('selection')
+                              ]),
+                              t._v('\n      '),
                               s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
                                 t._v(':columns')
                               ]),
@@ -496,9 +480,9 @@
                                   t._v('"')
                                 ])
                               ]),
-                              t._v('\n    '),
+                              t._v('\n      '),
                               s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
-                                t._v('v-model')
+                                t._v(':operation-options')
                               ]),
                               s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
                                 s(
@@ -509,14 +493,14 @@
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ]),
-                                t._v('queryForm'),
+                                t._v('{ width: 200 }'),
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ])
                               ]),
-                              t._v('\n    '),
+                              t._v('\n      '),
                               s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
-                                t._v('@search')
+                                t._v(':update-func')
                               ]),
                               s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
                                 s(
@@ -527,14 +511,14 @@
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ]),
-                                t._v('dataReload'),
+                                t._v('handleEdit'),
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ])
                               ]),
-                              t._v('\n    '),
+                              t._v('\n      '),
                               s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
-                                t._v('@reset')
+                                t._v(':delete-func')
                               ]),
                               s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
                                 s(
@@ -545,14 +529,148 @@
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ]),
-                                t._v('visible = false'),
+                                t._v('handleDelete'),
                                 s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                   t._v('"')
                                 ])
                               ]),
-                              t._v('\n  '),
+                              t._v('\n      '),
+                              s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
+                                t._v(':table-options')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
+                                s(
+                                  'span',
+                                  { pre: !0, attrs: { class: 'token punctuation attr-equals' } },
+                                  [t._v('=')]
+                                ),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('"')
+                                ]),
+                                t._v('{ rowStyle: { height: '),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v("'")
+                                ]),
+                                t._v('50px'),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v("'")
+                                ]),
+                                t._v(' }, hasOperation: true }'),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('"')
+                                ])
+                              ]),
+                              t._v('\n      '),
+                              s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
+                                t._v('@selection-change')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
+                                s(
+                                  'span',
+                                  { pre: !0, attrs: { class: 'token punctuation attr-equals' } },
+                                  [t._v('=')]
+                                ),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('"')
+                                ]),
+                                t._v('handleSelectionChange'),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('"')
+                                ])
+                              ]),
+                              t._v('\n    '),
                               s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                t._v('/>')
+                                t._v('>')
+                              ])
+                            ]),
+                            t._v('\n      '),
+                            s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                              s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('<')
+                                ]),
+                                t._v('div')
+                              ]),
+                              t._v(' '),
+                              s('span', { pre: !0, attrs: { class: 'token attr-name' } }, [
+                                t._v('slot')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token attr-value' } }, [
+                                s(
+                                  'span',
+                                  { pre: !0, attrs: { class: 'token punctuation attr-equals' } },
+                                  [t._v('=')]
+                                ),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('"')
+                                ]),
+                                t._v('inputHeader'),
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('"')
+                                ])
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                t._v('>')
+                              ])
+                            ]),
+                            t._v('\n        '),
+                            s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                              s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('<')
+                                ]),
+                                t._v('el-button')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                t._v('>')
+                              ])
+                            ]),
+                            t._v('测试'),
+                            s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                              s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('</')
+                                ]),
+                                t._v('el-button')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                t._v('>')
+                              ])
+                            ]),
+                            t._v('\n      '),
+                            s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                              s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('</')
+                                ]),
+                                t._v('div')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                t._v('>')
+                              ])
+                            ]),
+                            t._v('\n    '),
+                            s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                              s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('</')
+                                ]),
+                                t._v('el-pro-table')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                t._v('>')
+                              ])
+                            ]),
+                            t._v('\n  '),
+                            s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                              s('span', { pre: !0, attrs: { class: 'token tag' } }, [
+                                s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                  t._v('</')
+                                ]),
+                                t._v('div')
+                              ]),
+                              s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                t._v('>')
                               ])
                             ]),
                             t._v('\n'),
@@ -1001,69 +1119,6 @@
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
-                                    [t._v('queryForm')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n        '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('columns')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n        '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('visible')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('false')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n        '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
                                     [t._v('dict')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
@@ -1186,6 +1241,644 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
                                   ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n        '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('tableData')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('input')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'1'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('select')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('radio')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('checxbox')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('date')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'2021-11-10'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('num')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('time')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'12:23:00'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('slider')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('rate')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('input')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'1'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('select')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('radio')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('checxbox')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('date')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'2021-11-10'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('num')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('time')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'12:23:00'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('slider')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('rate')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('input')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'1'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('select')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('radio')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('checxbox')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('date')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'2021-11-10'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('num')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('time')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'12:23:00'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('slider')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('rate')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  t._v('\n        '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n        '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('listLoading')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
+                                    t._v('false')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n        '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('columns')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n        '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('multipleSelection')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
                                   t._v('\n      '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
@@ -1263,7 +1956,7 @@
                                   ]),
                                   t._v('\n      '),
                                   s('span', { pre: !0, attrs: { class: 'token function' } }, [
-                                    t._v('dataReload')
+                                    t._v('click')
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('(')
@@ -1285,17 +1978,138 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('(')
                                   ]),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('111')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v('\n      '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n      '),
+                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
+                                    t._v('handleEdit')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token parameter' } }, [
+                                    t._v('row')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n        console'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('.')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
+                                    t._v('log')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  t._v('row'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v('\n      '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n      '),
+                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
+                                    t._v('handleDelete')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token parameter' } }, [
+                                    t._v('row')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n        console'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('.')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
+                                    t._v('log')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  t._v('row'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v('\n      '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n      '),
+                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
+                                    t._v('handleSelectionChange')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token parameter' } }, [
+                                    t._v('val')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n        console'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('.')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
+                                    t._v('log')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  t._v('val'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v('\n        '),
                                   s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
                                     t._v('this')
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('.')
                                   ]),
-                                  t._v('queryForm'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(')')
+                                  t._v('multipleSelection '),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v('=')
                                   ]),
-                                  t._v('\n      '),
+                                  t._v(' val\n      '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
                                   ]),
@@ -1322,23 +2136,30 @@
                                   ]),
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
+                                    t._v('[')
                                   ]),
                                   t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n            '),
                                   s(
                                     'span',
                                     {
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
-                                    [t._v('title')]
+                                    [t._v('key')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
                                     t._v(':')
                                   ]),
                                   t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'title'")
+                                  ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
+                                    t._v(',')
                                   ]),
                                   t._v('\n            '),
                                   s(
@@ -1383,20 +2204,27 @@
                                     t._v(',')
                                   ]),
                                   t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n            '),
                                   s(
                                     'span',
                                     {
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
-                                    [t._v('input')]
+                                    [t._v('key')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
                                     t._v(':')
                                   ]),
                                   t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'input'")
+                                  ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
+                                    t._v(',')
                                   ]),
                                   t._v('\n            '),
                                   s(
@@ -1413,6 +2241,25 @@
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
                                     t._v("'输入框'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('defaultValue')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'测试'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -1530,171 +2377,147 @@
                                   ]),
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'测试输入框'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
+                                    t._v("'测试测试是处生成'")
                                   ]),
                                   t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token function-variable function' }
-                                    },
-                                    [t._v('onChange')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('(')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token parameter' } }, [
-                                    t._v('item')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(')')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v('=>')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n              console'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
-                                    t._v('log')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('(')
-                                  ]),
-                                  t._v('item'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'item'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(')')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('if')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('(')
-                                  ]),
-                                  t._v('item'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('form'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('input '),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v('==')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('1')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(')')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('this')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('$message'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
-                                    t._v('success')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('(')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'成功'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(')')
-                                  ]),
-                                  t._v('\n                item'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('form'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('num '),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v('=')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('11')
-                                  ]),
-                                  t._v('\n                item'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('form'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('radio '),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v('=')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('2')
-                                  ]),
-                                  t._v('\n                item'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('form'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('select '),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v('=')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('1')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('// children: [')
                                   ]),
                                   t._v('\n            '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//   {')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     label: "下拉框",')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     key: "select",')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     defaultValue: 1,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     type: types.select,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     span: 12,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     options: this.dict.selectArr,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     showInSearch: true,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     showInTable: true,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     showFormat: (val) => {')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v(
+                                      '//       return this.getArrayValue(this.dict.selectArr, val);'
+                                    )
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     },')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//   },')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//   {')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     label: "开关",')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     key: "switch",')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     type: types.switch,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     span: 12,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//   },')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//   {')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     label: "单选框",')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     defaultValue: 1,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     key: "radio",')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     type: types.radio,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     span: 12,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     options: this.dict.selectArr,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     showInSearch: true,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     showInTable: true,')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     showFormat: (val) => {')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v(
+                                      '//       return this.getArrayValue(this.dict.selectArr, val);'
+                                    )
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//     },')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('//   },')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token comment' } }, [
+                                    t._v('// ],')
                                   ]),
                                   t._v('\n          '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
@@ -1704,383 +2527,6 @@
                                     t._v(',')
                                   ]),
                                   t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('select')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'下拉框'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('select'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('options')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('this')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('dict'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('selectArr'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInSearch')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInTable')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n          '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n          '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('switch')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'开关'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('switch'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  t._v('\n          '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('radio')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'单选框'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('radio'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('options')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('this')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('dict'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('selectArr'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInSearch')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInTable')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n          '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('checxbox')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
@@ -2099,6 +2545,50 @@
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
                                     t._v("'多选框'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('defaultValue')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'checxbox'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -2207,30 +2697,99 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n          '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n          '),
+                                  t._v('\n            '),
                                   s(
                                     'span',
                                     {
                                       pre: !0,
-                                      attrs: { class: 'token literal-property property' }
+                                      attrs: { class: 'token function-variable function' }
                                     },
-                                    [t._v('date')]
+                                    [t._v('showFormat')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
                                     t._v(':')
                                   ]),
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token parameter' } }, [
+                                    t._v('val')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v('=>')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
+                                  t._v('\n              '),
+                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
+                                    t._v('return')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
+                                    t._v('this')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('.')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token function' } }, [
+                                    t._v('getArrayValue')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('(')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
+                                    t._v('this')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('.')
+                                  ]),
+                                  t._v('dict'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('.')
+                                  ]),
+                                  t._v('selectArr'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v(' val'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(')')
+                                  ]),
                                   t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('children')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('[')
+                                  ]),
+                                  t._v('\n              '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2249,7 +2808,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2269,7 +2828,45 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'date'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n                '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('defaultValue')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'2021-12-21'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2288,7 +2885,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2307,7 +2904,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2323,30 +2920,18 @@
                                   s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
                                     t._v('true')
                                   ]),
-                                  t._v('\n          '),
+                                  t._v('\n              '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('num')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
+                                  t._v('\n              '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2365,7 +2950,26 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'num'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2385,7 +2989,26 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('defaultValue')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('11')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2404,7 +3027,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2420,30 +3043,18 @@
                                   s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
                                     t._v('true')
                                   ]),
-                                  t._v('\n          '),
+                                  t._v('\n              '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('time')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
+                                  t._v('\n              '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2462,7 +3073,26 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'time'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2482,7 +3112,26 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('defaultValue')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'12:23:00'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2501,7 +3150,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2520,7 +3169,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n            '),
+                                  t._v('\n                '),
                                   s(
                                     'span',
                                     {
@@ -2536,6 +3185,14 @@
                                   s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
                                     t._v('true')
                                   ]),
+                                  t._v('\n              '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  t._v('\n            '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(']')
+                                  ]),
                                   t._v('\n          '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
@@ -2543,19 +3200,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
-                                  t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('slider')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
+                                  t._v('\n\n          '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
@@ -2574,6 +3219,25 @@
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
                                     t._v("'滑块'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'slider'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -2605,6 +3269,25 @@
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
+                                    [t._v('defaultValue')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('10')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
                                     [t._v('span')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
@@ -2633,25 +3316,6 @@
                                   s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
                                     t._v('true')
                                   ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInSearch')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('false')
-                                  ]),
                                   t._v('\n          '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
@@ -2660,18 +3324,6 @@
                                     t._v(',')
                                   ]),
                                   t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('rate')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
@@ -2690,6 +3342,25 @@
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
                                     t._v("'评分'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'rate'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -2721,6 +3392,25 @@
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
+                                    [t._v('defaultValue')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('1')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
                                     [t._v('span')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
@@ -2749,25 +3439,6 @@
                                   s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
                                     t._v('true')
                                   ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInSearch')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
                                   t._v('\n          '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
@@ -2776,18 +3447,6 @@
                                     t._v(',')
                                   ]),
                                   t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('color')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
@@ -2806,6 +3465,25 @@
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
                                     t._v("'颜色'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'color'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -2837,25 +3515,6 @@
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
-                                    [t._v('showInSearch')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
                                     [t._v('span')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
@@ -2873,18 +3532,6 @@
                                     t._v(',')
                                   ]),
                                   t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('cascader')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
@@ -2914,14 +3561,14 @@
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
-                                    [t._v('showInSearch')]
+                                    [t._v('key')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
                                     t._v(':')
                                   ]),
                                   t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'cascader'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -6035,18 +6682,6 @@
                                     t._v(',')
                                   ]),
                                   t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('table')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('{')
                                   ]),
@@ -6064,7 +6699,7 @@
                                   ]),
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'测试表格'")
+                                    t._v("'区域'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -6076,14 +6711,14 @@
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
-                                    [t._v('span')]
+                                    [t._v('key')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
                                     t._v(':')
                                   ]),
                                   t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('24')
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'area'")
                                   ]),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
@@ -6104,901 +6739,7 @@
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('.')
                                   ]),
-                                  t._v('table'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('tableDataOptions')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n              '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('input')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'输入框'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('input'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInTable')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('select')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'下拉框'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('select'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('options')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('this')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('dict'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('selectArr'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInTable')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('switch')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'开关'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('switch'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('radio')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'单选框'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('radio'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('options')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('this')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('dict'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('selectArr\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('checxbox')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'多选框'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('checkBox'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('options')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token keyword' } }, [
-                                    t._v('this')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('dict'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('selectArr\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('date')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'日期'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('date'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('num')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'数字'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('required')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('number'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInTable')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n              '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('time')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'时间'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('time'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('showInTable')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token boolean' } }, [
-                                    t._v('true')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n                '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('12')
-                                  ]),
-                                  t._v('\n              '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  t._v('\n            '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  t._v('\n          '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n          '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('editor')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('{')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('label')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'富文本'")
-                                  ]),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('type')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' types'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('.')
-                                  ]),
-                                  t._v('editor'),
-                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v(',')
-                                  ]),
-                                  t._v('\n            '),
-                                  s(
-                                    'span',
-                                    {
-                                      pre: !0,
-                                      attrs: { class: 'token literal-property property' }
-                                    },
-                                    [t._v('span')]
-                                  ),
-                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
-                                    t._v(':')
-                                  ]),
-                                  t._v(' '),
-                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
-                                    t._v('24')
-                                  ]),
+                                  t._v('area'),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v(',')
                                   ]),
@@ -7028,22 +6769,106 @@
                                       pre: !0,
                                       attrs: { class: 'token literal-property property' }
                                     },
-                                    [t._v('tooltip')]
+                                    [t._v('span')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('12')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('}')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('{')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('label')]
                                   ),
                                   s('span', { pre: !0, attrs: { class: 'token operator' } }, [
                                     t._v(':')
                                   ]),
                                   t._v(' '),
                                   s('span', { pre: !0, attrs: { class: 'token string' } }, [
-                                    t._v("'富文本提示'")
+                                    t._v("'测试表格'")
                                   ]),
-                                  t._v('\n          '),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('key')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token string' } }, [
+                                    t._v("'table'")
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('span')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' '),
+                                  s('span', { pre: !0, attrs: { class: 'token number' } }, [
+                                    t._v('24')
+                                  ]),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v(',')
+                                  ]),
+                                  t._v('\n            '),
+                                  s(
+                                    'span',
+                                    {
+                                      pre: !0,
+                                      attrs: { class: 'token literal-property property' }
+                                    },
+                                    [t._v('type')]
+                                  ),
+                                  s('span', { pre: !0, attrs: { class: 'token operator' } }, [
+                                    t._v(':')
+                                  ]),
+                                  t._v(' types'),
+                                  s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
+                                    t._v('.')
+                                  ]),
+                                  t._v('table\n          '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
                                     t._v('}')
                                   ]),
                                   t._v('\n        '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
-                                    t._v('}')
+                                    t._v(']')
                                   ]),
                                   t._v('\n      '),
                                   s('span', { pre: !0, attrs: { class: 'token punctuation' } }, [
@@ -7150,33 +6975,39 @@
                   t._v(' '),
                   s('tbody', [
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('v-model')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('columns')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('表单数据')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v(
+                          '表格配置项,只显示 showInTable:true 的表格(详情见 CustomForm 说明) 多级表头使用数组类型,children 是子项'
+                        )
+                      ]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}')])
-                    ]),
-                    t._v(' '),
-                    s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('drawerWidth')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('抽屉的宽度')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('number')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object/array')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('400')])
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}/[]')])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('visible.sync')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('tableColumns')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('是否显示抽屉')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('表格配置项,全部显示')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object/array')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}/[]')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('loading')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('表格 loading')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('boolean')]),
                       t._v(' '),
@@ -7186,10 +7017,82 @@
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('drawerOptions')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('selection')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('官方支持的抽屉的 options')
+                        t._v(
+                          '仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key）'
+                        )
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('boolean')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('false')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('reserveSelection')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('是否显示展开收起文字')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('boolean')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('false')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('data')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('表格数据')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('array')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('[]')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('showOperation')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('收起后显示的表单数量')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('string,number')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('2')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('autoHeight')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('是否自动计算表格高度（外层容器为 #content-wrapper）')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('boolean')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('true')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('tableOptions')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('表格配置项,例如 hasOperation:ture,显示操作栏')
                       ]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
@@ -7200,11 +7103,31 @@
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('title')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('operationOptions')
+                      ]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('抽屉标题')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v(
+                          '操作栏的配置项，默认{label: "操作",fixed: "right",width: "150",align: "center",}'
+                        )
+                      ]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('string')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('updateFunc')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('修改事件')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('function(row,index)')
+                      ]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
                       t._v(' '),
@@ -7212,118 +7135,48 @@
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('formOptions')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('deleteFunc')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('删除事件')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('表单的 options')
+                        t._v('function(row,index)')
                       ]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
-                      t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}')])
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('isRow')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('updateText')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('是否栅格布局')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('boolean')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('false')])
-                    ]),
-                    t._v(' '),
-                    s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('columns')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('表单配置项,只显示 showInSearch:true 的表单(详情见 CustomForm 说明)')
-                      ]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}')])
-                    ]),
-                    t._v(' '),
-                    s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('searchColumns')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('表单配置项,全部显示')
-                      ]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}')])
-                    ]),
-                    t._v(' '),
-                    s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('showFooter')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('是否显示底部重置查询按钮')
-                      ]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('boolean')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('true')])
-                    ]),
-                    t._v(' '),
-                    s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('searchBtnText')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('查询按钮文字')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('修改按钮文字')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('string')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('查询')])
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('修改')])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('searchBtnProps')
-                      ]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('deleteText')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('查询按钮 options')
-                      ]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}')])
-                    ]),
-                    t._v(' '),
-                    s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('resetBtnText')]),
-                      t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('重置按钮文字')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('删除按钮文字')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('string')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('重置')])
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('删除')])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('resetBtnProps')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('updateProps')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('重置按钮 options')
+                        t._v('修改按钮 props')
                       ]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
@@ -7334,17 +7187,17 @@
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('showReset')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('deleteProps')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('是否显示重置按钮')
+                        t._v('删除按钮 props')
                       ]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('boolean')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('object')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('true')])
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('{}')])
                     ])
                   ])
                 ]),
@@ -7365,32 +7218,60 @@
                   t._v(' '),
                   s('tbody', [
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('footer')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('${key}Header')]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('自定义 footer')])
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('表单头部内容')])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('before')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('${key}')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('表单内容')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('operationColumn')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('操作栏内容')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('operationBefore')
+                      ]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('重置按钮前面的内容')
+                        t._v('修改删除按钮之前的内容')
                       ])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('middle')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('autoOperation')]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('重置按钮和查询按钮中间的内容')
+                        t._v('修改删除按钮的内容')
                       ])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('after')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('operationMiddle')
+                      ]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [
-                        t._v('查询按钮后面的内容')
+                        t._v('修改删除按钮之间的内容')
+                      ])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('operationAfter')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('修改删除按钮之后的内容')
                       ])
                     ])
                   ])
@@ -7414,19 +7295,117 @@
                   t._v(' '),
                   s('tbody', [
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('search')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('clearSelection')
+                      ]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('表单查询事件')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('用于多选表格，清空用户的选择')
+                      ]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')])
                     ]),
                     t._v(' '),
                     s('tr', [
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('reset')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('toggleRowSelection')
+                      ]),
                       t._v(' '),
-                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('表单重置事件')]),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v(
+                          '用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中）'
+                        )
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('row, selected')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('toggleAllSelection')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('用于多选表格，切换所有行的选中状态')
+                      ]),
                       t._v(' '),
                       s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('toggleRowExpansion')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v(
+                          '用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开）'
+                        )
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('row, expanded')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('setCurrentRow')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v(
+                          '用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态。'
+                        )
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('row')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('clearFilter')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v(
+                          '不传入参数时用于清空所有过滤条件，数据会恢复成未过滤的状态，也可传入由 columnKey 组成的数组以清除指定列的过滤条件'
+                        )
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('columnKey')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('clearSort')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('用于清空排序条件，数据会恢复成未排序的状态')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('doLayout')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v(
+                          '对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法'
+                        )
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('—')])
+                    ]),
+                    t._v(' '),
+                    s('tr', [
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [t._v('sort')]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('手动对 Table 进行排序。参数'),
+                        s('code', [t._v('prop')]),
+                        t._v('属性指定排序列，'),
+                        s('code', [t._v('order')]),
+                        t._v('指定排序顺序。')
+                      ]),
+                      t._v(' '),
+                      s('td', { staticStyle: { 'text-align': 'center' } }, [
+                        t._v('prop: string, order: string')
+                      ])
                     ])
                   ])
                 ])
@@ -7440,7 +7419,7 @@
           null,
           null
         )
-      a.default = x.exports
+      a.default = l.exports
     }
   }
 ])
