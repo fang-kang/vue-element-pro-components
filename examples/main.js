@@ -7,10 +7,10 @@ import 'babel-polyfill'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-import VueElementProCompontents from 'packages'
+import pro from 'packages'
 
 Vue.use(ElementUI)
-Vue.use(VueElementProCompontents)
+Vue.use(pro)
 
 Vue.config.productionTip = false
 
