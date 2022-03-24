@@ -1,7 +1,7 @@
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import pro from 'vue-element-pro-components'
-import 'vue-element-pro-components/lib/theme/index.css'
+import pro from 'packages'
+import 'lib/theme/index.css'
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
   options, // 附加到根实例的一些选项
@@ -13,7 +13,7 @@ export default ({
     Vue.use(ElementUI)
     Vue.use(pro)
   } else {
-    import('vue-element-pro-components').then(function(m) {
+    import('packages').then(function(m) {
       Vue.use(m.default)
     })
     Vue.use(ElementUI)

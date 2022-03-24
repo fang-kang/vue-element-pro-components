@@ -6,6 +6,7 @@
       "src/*": ["src/*"],
       "packages/*": ["packages/*"],
       "examples/*": ["examples/*"],
+      "lib/*": ["lib/*"],
       "vue-element-pro-components/*":["./"]
     }
   },
