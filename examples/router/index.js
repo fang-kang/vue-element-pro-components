@@ -20,6 +20,11 @@ const routes = [
     component: () => import('../views/test-pagination/index.vue')
   },
   {
+    path: '/test-advance-search',
+    name: 'TestAdvanceSearch',
+    component: () => import('../views/test-advance-search/index.vue')
+  },
+  {
     path: '/test-search',
     name: 'TestSearch',
     component: () => import('../views/test-search/index.vue')

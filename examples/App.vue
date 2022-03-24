@@ -14,6 +14,9 @@
       <router-link to="/test-search">
         TestSearch
       </router-link>|
+      <router-link to="/test-advance-search">
+        TestAdvanceSearch
+      </router-link>|
       <router-link to="/test-table">
         TestTable
       </router-link>
