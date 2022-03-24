@@ -45,9 +45,8 @@
         <slot />
       </div>
     </el-scrollbar>
-
     <div
-      v-if="showAction"
+      v-if="!$slots.footer"
       slot="footer"
     >
       <slot name="beforeFooter" />
@@ -70,9 +69,8 @@
       </el-button>
       <slot name="afterFooter" />
     </div>
-
     <template
-      v-if="$slots.footer && !showAction"
+      v-if="$slots.footer"
       #footer
     >
       <slot name="footer" />
@@ -132,10 +130,6 @@ export default {
     btnLoading: {
       type: Boolean,
       default: false
-    },
-    showAction: {
-      type: Boolean,
-      default: true
     }
   },
   data() {

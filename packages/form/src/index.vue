@@ -47,6 +47,7 @@
               <el-pro-table
                 :data="form[column.key]"
                 :columns="createColumn(column)"
+                style="margin-bottom: 10px"
                 :operation-options="{ width: 200 }"
                 :table-options="{ rowStyle: { height: '50px' }, hasOperation: true }"
               >
@@ -324,12 +325,12 @@
                       }
                     "
                   />
-                  <slot
-                    name="rowAfter"
-                    :form="form"
-                  />
                 </slot>
               </el-form-item>
+              <slot
+                name="rowAfter"
+                :form="form"
+              />
             </slot>
           </component>
         </fragment>
@@ -363,7 +364,7 @@
 <script>
 import { Fragment } from 'vue-fragment'
 import { isEqual, cloneDeep, debounce } from 'lodash-es'
-import { filterObject, removeArrayByIndex } from 'vue-element-pro-components/src/utils'
+import { removeArrayByIndex } from 'vue-element-pro-components/src/utils'
 import { types } from './type'
 import ElProTable from 'vue-element-pro-components/packages/table'
 import ElProDialog from 'vue-element-pro-components/packages/dialog'
@@ -415,7 +416,7 @@ export default {
       default: 2
     },
     columns: {
-      type: Object,
+      type: [Object, Array],
       required: true,
       default() {
         return {}
@@ -610,34 +611,38 @@ export default {
       this.subForm = {}
       this.visible = true
     },
+    mapMetaData(key, item, index, mode, showNum) {
+      const { label = key, span = 18, type = types.input, columnOption = {}, options = [] } = item
+      return {
+        ...item,
+        key,
+        label,
+        span,
+        type,
+        columnOption,
+        options,
+        isShow: mode === 'expand' ? true : !(index >= showNum)
+      }
+    },
     /**
      * @param {*} mode
      */
     createMetaData(mode) {
       const { columns, showNum } = this
-      return Object.keys(columns)
-        .filter((key) => this.checkShow(columns[key]))
-        .map((key, index) => {
-          const item = columns[key]
-          const {
-            label = key,
-            span = 18,
-            type = types.input,
-            columnOption = {},
-            options = []
-          } = item
-
-          return {
-            ...item,
-            key,
-            label,
-            span,
-            type,
-            columnOption,
-            options,
-            isShow: mode === 'expand' ? true : !(index > showNum)
-          }
-        })
+      if (Array.isArray(columns)) {
+        return columns
+          .filter((item) => this.checkShow(item))
+          .map((item, index) => {
+            return this.mapMetaData(item.key, item, index, mode, showNum)
+          })
+      } else {
+        return Object.keys(columns)
+          .filter((key) => this.checkShow(columns[key]))
+          .map((key, index) => {
+            const item = columns[key]
+            return this.mapMetaData(key, item, index, mode, showNum)
+          })
+      }
     },
     getFormItemOptions(column) {
       const { formItemOption } = column
@@ -659,6 +664,14 @@ export default {
       if (type === types.input) {
         processColumnOption = {
           placeholder: `请输入${label}`
+        }
+      } else if (
+        type === types.date &&
+        ['datetimerange', 'daterange'].includes(columnOption.type)
+      ) {
+        processColumnOption = {
+          startPlaceholder: '请输入开始日期',
+          endPlaceholder: '请输入结束日期'
         }
       } else {
         processColumnOption = {
@@ -699,21 +712,38 @@ export default {
       }
       return options || []
     },
+    handleDefaultValue(key, item, newForm) {
+      const { type, columnOption = {}, defaultValue } = item
+      if (
+        [types.checkBox, types.cascader, types.table].includes(type) &&
+        !Array.isArray(newForm[key])
+      ) {
+        newForm[key] = []
+      }
+      if (
+        type === types.date &&
+        !Array.isArray(newForm[key]) &&
+        ['datetimerange', 'daterange'].includes(columnOption.type)
+      ) {
+        newForm[key] = []
+      }
+      if (!this.checkEmpty(defaultValue) && this.checkEmpty(newForm[key])) {
+        newForm[key] = defaultValue
+      }
+    },
     checkDefaultValue() {
       const { columns } = this
       const newForm = cloneDeep(this.form)
-      Object.keys(columns).forEach((key) => {
-        const item = columns[key]
-        if (
-          [types.checkBox, types.area, types.cascader, types.table].includes(item.type) &&
-          !Array.isArray(newForm[key])
-        ) {
-          newForm[key] = []
-        }
-        if (!this.checkEmpty(item.defaultValue) && this.checkEmpty(newForm[key])) {
-          newForm[key] = item.defaultValue
-        }
-      })
+      if (Array.isArray(columns)) {
+        columns.forEach((item) => {
+          return this.handleDefaultValue(item.key, item, newForm)
+        })
+      } else {
+        Object.keys(columns).forEach((key) => {
+          const item = columns[key]
+          return this.handleDefaultValue(key, item, newForm)
+        })
+      }
       this.form = newForm
     },
     updateFormData() {
@@ -722,9 +752,7 @@ export default {
           () => {
             if (!isEqual(this.formData, this.form)) {
               const data = cloneDeep(this.formData)
-              this.form = filterObject(data, (_, key) => {
-                return this.columns[key] || !['createTime', 'updateTime'].includes(key)
-              })
+              this.form = data
               this.checkDefaultValue()
             }
           },
@@ -760,6 +788,18 @@ export default {
     resetFields() {
       const { ruleForm } = this.$refs
       ruleForm.resetFields()
+    },
+    clearValidate(a) {
+      const { ruleForm } = this.$refs
+      ruleForm.clearValidate(a)
+    },
+    validateField(a, b) {
+      const { ruleForm } = this.$refs
+      return ruleForm.validateField(a, b)
+    },
+    validate(a, b) {
+      const { ruleForm } = this.$refs
+      return ruleForm.validate(a, b)
     }
   }
 }

@@ -44,3 +44,5 @@ export default {
   ElProAdvancedSearch,
   ElProDrawer
 }
+
+export { types, utils }

@@ -28,7 +28,7 @@ export default {
           input: '1',
           select: 1,
           radio: 1,
-          checxbox: [1],
+          checxbox: [1, 2, 3],
           date: '2021-11-10',
           num: 1,
           time: '12:23:00',

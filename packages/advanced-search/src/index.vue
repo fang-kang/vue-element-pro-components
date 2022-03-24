@@ -108,11 +108,9 @@ export default {
       }
     },
     searchColumns: {
-      type: Object,
+      type: [Object, Array, null],
       required: false,
-      default() {
-        return {}
-      }
+      default: null
     },
     showFooter: {
       type: Boolean,
@@ -144,10 +142,15 @@ export default {
   },
   computed: {
     searchColumn() {
-      if (Object.keys(this.searchColumns).length) {
-        return this.searchColumns
-      } else if (this.columns) {
-        return filterObject(this.columns, (column) => column.showInSearch)
+      const { searchColumns, columns } = this
+      if (searchColumns) {
+        return searchColumns
+      } else if (columns) {
+        if (Array.isArray(columns)) {
+          return columns.filter((column) => column.showInSearch)
+        } else {
+          return filterObject(columns, (column) => column.showInSearch)
+        }
       }
       return {}
     },

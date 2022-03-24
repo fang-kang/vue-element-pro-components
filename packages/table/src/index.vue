@@ -121,6 +121,7 @@ import { filterObject } from 'vue-element-pro-components/src/utils'
 import clipboard from 'vue-element-pro-components/src/directive/clipboard/index.js'
 import { debounce } from 'lodash-es'
 import TableColumn from './TableColumn.vue'
+import { getTagOptions, formatShow, clipboardSuccess } from './utils'
 
 export default {
   name: 'ElProTable',
@@ -180,19 +181,19 @@ export default {
       default: null
     },
     tableOptions: {
-      type: Object,
+      type: [Object, null],
       required: false,
-      default: () => {}
+      default: null
     },
     deleteFunc: {
       type: Function,
       required: false,
-      default: function() {}
+      default: null
     },
     updateFunc: {
       type: Function,
       required: false,
-      default: function() {}
+      default: null
     },
     operationOptions: {
       type: Object,
@@ -233,19 +234,13 @@ export default {
     metadata() {
       const { tableColumn } = this
       if (Array.isArray(tableColumn)) {
-        return tableColumn
+        return tableColumn.map((item) => {
+          return this.mapTableColumn(item.key, item)
+        })
       } else {
         return Object.keys(tableColumn).map((key) => {
           const item = tableColumn[key]
-          const { label = key, type = types.input, tableColumnOption = {}, options } = item
-          return {
-            ...item,
-            key,
-            label,
-            type,
-            tableColumnOption,
-            options
-          }
+          return this.mapTableColumn(key, item)
         })
       }
     },
@@ -288,27 +283,19 @@ export default {
     }
   },
   methods: {
-    getTagOptions(column, row) {
-      let options = {}
-      const { tagOptions } = column
-      if (typeof tagOptions === 'string') {
-        options.type = tagOptions
-      }
-      if (typeof tagOptions === 'object') {
-        options = tagOptions
-      } else if (typeof tagOptions === 'function') {
-        options = tagOptions(row) || {}
-      }
+    getTagOptions,
+    formatShow,
+    clipboardSuccess,
+    mapTableColumn(key, item) {
+      const { label = key, type = types.input, tableColumnOption = {}, options } = item
       return {
-        ...options
+        ...item,
+        key,
+        label,
+        type,
+        tableColumnOption,
+        options
       }
-    },
-    clipboardSuccess() {
-      this.$message({
-        message: '复制成功',
-        type: 'success',
-        duration: 1500
-      })
     },
     handleDeleteFunc(row, index) {
       this.$confirm('此操作将永久删除该行, 是否继续?', '提示', {
@@ -338,23 +325,6 @@ export default {
         this.tableHeight =
           appMainDom.offsetHeight - searchDom.clientHeight - paginationDomHeight - 50 + 'px'
       }
-    },
-    formatShow(column, row, scope) {
-      const { showFormat } = column
-      if (showFormat && typeof showFormat === 'function') {
-        return showFormat(row[column.key], row, scope)
-      }
-      if ([types.select, types.checkBox, types.radio].includes(column.type)) {
-        let options = []
-        if (Array.isArray(column.options)) {
-          options = column.options
-        } else if (typeof column.options === 'function') {
-          options = column.options(row)
-        }
-        const option = options.find((item) => String(item.value) === String(row[column.key]))
-        return option ? option.name : ''
-      }
-      return row[column.key]
     }
   }
 }

@@ -1,6 +1,5 @@
 import { types } from 'packages/form'
 import dict from '../test-form/dict'
-import { getArrayValue } from 'src/utils'
 export function getMetaData() {
   return [
     {
@@ -17,41 +16,35 @@ export function getMetaData() {
       showInSearch: true,
       formItemOption: {},
       showInTable: true,
-      tooltip: '测试测试是处生成'
-      // children: [
-      //   {
-      //     label: "下拉框",
-      //     key: "select",
-      //     defaultValue: 1,
-      //     type: types.select,
-      //     span: 12,
-      //     options: dict.selectArr,
-      //     showInSearch: true,
-      //     showInTable: true,
-      //     showFormat: (val) => {
-      //       return getArrayValue(dict.selectArr, val);
-      //     },
-      //   },
-      //   {
-      //     label: "开关",
-      //     key: "switch",
-      //     type: types.switch,
-      //     span: 12,
-      //   },
-      //   {
-      //     label: "单选框",
-      //     defaultValue: 1,
-      //     key: "radio",
-      //     type: types.radio,
-      //     span: 12,
-      //     options: dict.selectArr,
-      //     showInSearch: true,
-      //     showInTable: true,
-      //     showFormat: (val) => {
-      //       return getArrayValue(dict.selectArr, val);
-      //     },
-      //   },
-      // ],
+      tooltip: '测试测试是处生成',
+      children: [
+        {
+          label: '下拉框',
+          key: 'select',
+          defaultValue: 1,
+          type: types.select,
+          span: 12,
+          options: dict.selectArr,
+          showInSearch: true,
+          showInTable: true
+        },
+        {
+          label: '开关',
+          key: 'switch',
+          type: types.switch,
+          span: 12
+        },
+        {
+          label: '单选框',
+          defaultValue: 1,
+          key: 'radio',
+          type: types.radio,
+          span: 12,
+          options: dict.selectArr,
+          showInSearch: true,
+          showInTable: true
+        }
+      ]
     },
     {
       label: '多选框',
@@ -61,38 +54,33 @@ export function getMetaData() {
       span: 12,
       options: dict.selectArr,
       showInSearch: true,
-      showInTable: true,
-      showFormat: (val) => {
-        return getArrayValue(dict.selectArr, val)
-      },
-      children: [
-        {
-          label: '日期',
-          type: types.date,
-          key: 'date',
-          defaultValue: '2021-12-21',
-          span: 10,
-          showInSearch: true,
-          showInTable: true
-        },
-        {
-          label: '数字',
-          key: 'num',
-          type: types.number,
-          defaultValue: 11,
-          span: 10,
-          showInTable: true
-        },
-        {
-          label: '时间',
-          key: 'time',
-          type: types.time,
-          defaultValue: '12:23:00',
-          span: 12,
-          showInSearch: true,
-          showInTable: true
-        }
-      ]
+      showInTable: true
+    },
+    {
+      label: '日期',
+      type: types.date,
+      key: 'date',
+      defaultValue: '2021-12-21',
+      span: 10,
+      showInSearch: true,
+      showInTable: true
+    },
+    {
+      label: '数字',
+      key: 'num',
+      type: types.number,
+      defaultValue: 11,
+      span: 10,
+      showInTable: true
+    },
+    {
+      label: '时间',
+      key: 'time',
+      type: types.time,
+      defaultValue: '12:23:00',
+      span: 12,
+      showInSearch: true,
+      showInTable: true
     },
 
     {

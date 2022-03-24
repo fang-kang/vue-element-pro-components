@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { types } from 'vue-element-pro-components/packages/form/src/type'
+import { getTagOptions, formatShow, clipboardSuccess } from './utils'
 export default {
   name: 'TableColumn',
   props: {
@@ -67,45 +67,9 @@ export default {
     }
   },
   methods: {
-    clipboardSuccess() {
-      this.$message({
-        message: '复制成功',
-        type: 'success',
-        duration: 1500
-      })
-    },
-    getTagOptions(column, row) {
-      let options = {}
-      const { tagOptions } = column
-      if (typeof tagOptions === 'string') {
-        options.type = tagOptions
-      }
-      if (typeof tagOptions === 'object') {
-        options = tagOptions
-      } else if (typeof tagOptions === 'function') {
-        options = tagOptions(row) || {}
-      }
-      return {
-        ...options
-      }
-    },
-    formatShow(column, row, scope) {
-      const { showFormat } = column
-      if (showFormat && typeof showFormat === 'function') {
-        return showFormat(row[column.key], row, scope)
-      }
-      if ([types.select, types.checkBox, types.radio].includes(column.type)) {
-        let options = []
-        if (Array.isArray(column.options)) {
-          options = column.options
-        } else if (typeof column.options === 'function') {
-          options = column.options(row)
-        }
-        const option = options.find((item) => String(item.value) === String(row[column.key]))
-        return option ? option.name : ''
-      }
-      return row[column.key]
-    }
+    clipboardSuccess,
+    getTagOptions,
+    formatShow
   }
 }
 </script>

@@ -12,7 +12,7 @@
       :dialog-options="{
         width: '40%',
         showFullscreen: true,
-        draggable: true
+        draggable: false
       }"
       :btn-loading="btnLoading"
       @open="open"
@@ -22,6 +22,9 @@
       @ok="ok"
     >
       <div>测试弹窗</div>
+      <div slot="footer">
+        底部
+      </div>
     </el-pro-dialog>
   </div>
 </template>
