@@ -102,7 +102,7 @@ drawerWidth 设置宽度
 <!-- Table -->
 <el-button type="text" @click="tableVisible = true">打开嵌套表格的 Drawer</el-button>
 
-<el-pro-drawer :drawer-width="800" title="收货地址" v-model="tableVisible">
+<el-pro-drawer :size="800" title="收货地址" v-model="tableVisible">
   <el-pro-table :data="gridData" :columns="columns" />
 </el-pro-drawer>
 
@@ -255,3 +255,13 @@ drawerWidth 设置宽度
 |  name   |      说明      |
 | :-----: | :------------: |
 | default | 抽屉内部的内容 |
+|  title  |     title      |
+
+## Events
+
+| 事件名称 |            说明             |
+| :------: | :-------------------------: |
+|   open   |      Drawer 打开的回调      |
+|  opened  | Drawer 打开动画结束时的回调 |
+|  close   |      Drawer 关闭的回调      |
+|  closed  | Drawer 关闭动画结束时的回调 |

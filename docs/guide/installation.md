@@ -31,4 +31,4 @@ npm i vue-element-pro-components -s
 我们建议使用 CDN 引入 vue-element-pro-components的用户在链接地址上锁定版本，以免将来 vue-element-pro-components升级时受到非兼容性更新的影响。锁定版本的方法请查看 [unpkg.com](https://unpkg.com)。
 :::
 
-如果是通过 npm 或 yarn 安装，并希望配合 webpack 使用，请阅读下一节：[快速上手](./guide/quickstart)。
+如果是通过 npm 或 yarn 安装，并希望配合 webpack 使用，请阅读下一节：[快速上手](./quickstart)。

@@ -33,6 +33,16 @@
               class="title"
             >
               {{ column.label }}
+              <el-tooltip
+                v-if="column.tooltip"
+                placement="right"
+                :content="column.tooltip"
+              >
+                <i
+                  class="el-icon-question"
+                  style="vertical-align: baseline;font-size:16px;"
+                />
+              </el-tooltip>
             </h3>
             <template v-else-if="column.type === cmpTypes.table">
               <el-button
@@ -818,7 +828,7 @@ export default {
 .title {
   position: relative;
   font-weight: bold;
-  margin: 10px 0 10px 30px;
+  margin: 10px;
   font-size: 18px;
   &::before {
     position: absolute;

@@ -266,6 +266,152 @@
 
 :::
 
+### 弹窗中的表单
+
+很多情况下结合弹窗使用
+
+:::demo
+
+```html
+<template>
+  <div>
+    <el-button type="text" @click="visible = true">点击打开 Form</el-button>
+    <el-pro-dialog title="新增" v-model="visible" :dialog-options="{}" @ok="visible = false">
+      <el-pro-form ref="dataForm" v-model="form" :columns="columns" :form-options="{}" />
+    </el-pro-dialog>
+  </div>
+</template>
+
+<script>
+  const types = {
+    input: 'input', // 输入框
+    select: 'select', // 选择框
+    number: 'number', // 计数器
+    checkBox: 'checkBox', // 多选框
+    check: 'check', // 单个复选框
+    radio: 'radio', // 单选框
+    date: 'date', // 日期
+    switch: 'switch', // 开关
+    title: 'title', // 标题
+    time: 'time', // 时间
+    slider: 'slider', // 滑块
+    rate: 'rate', // 评分
+    color: 'color', // 颜色
+    cascader: 'cascader', // 级联
+    table: 'table', // 表格
+    editor: 'editor' // 富文本
+  }
+  export default {
+    data() {
+      return {
+        form: {},
+        visible: false,
+        columns: {
+          base: {
+            type: types.title,
+            label: '基本信息',
+            tooltip:'个人信息请填写准确',
+            columnOption: {
+              style: {
+                margin: '10px 0 10px 10px'
+              }
+            }
+          },
+          name: {
+            label: '姓名',
+            span: 12
+          },
+          age: {
+            label: '年龄',
+            type: types.number,
+            span: 12
+          },
+          sex: {
+            label: '性别',
+            type: types.radio,
+            span: 12,
+            options: [
+              {
+                name: '男',
+                value: '1'
+              },
+              {
+                name: '女',
+                value: '2'
+              }
+            ]
+          },
+          date: {
+            label: '出生日期',
+            type: types.date,
+            span: 12,
+            columnOption: {}
+          },
+          isMarried: {
+            label: '是否婚配',
+            span: 12,
+            type: types.radio,
+            options: [
+              {
+                name: '是',
+                value: '1'
+              },
+              {
+                name: '否',
+                value: '2'
+              }
+            ]
+          },
+          hobby: {
+            label: '爱好',
+            type: types.checkBox,
+            span: 12,
+            options: [
+              {
+                name: '打篮球',
+                value: 1
+              },
+              {
+                name: '踢足球',
+                value: 2
+              },
+              {
+                name: '看书',
+                value: 3
+              }
+            ]
+          },
+          education: {
+            label: '学历',
+            span: 12,
+            type: types.select,
+            options: [
+              {
+                name: '专科',
+                value: 1
+              },
+              {
+                name: '本科',
+                value: 2
+              },
+              {
+                name: '硕士及以上',
+                value: 3
+              }
+            ]
+          }
+        }
+      }
+    },
+    methods: {}
+  }
+</script>
+
+<style lang="scss" scoped></style>
+```
+
+:::
+
 ### 行内表单
 
 当垂直方向空间受限且表单较简单时，可以在一行内放置表单。
@@ -384,9 +530,7 @@
 
 在防止用户犯错的前提下，尽可能让用户更早地发现并纠正错误。
 
-:::tip
-如果只需要验证是否必填,只需要`required`为`true`就可以
-:::
+:::tip 如果只需要验证是否必填,只需要`required`为`true`就可以 :::
 
 :::demo ElProForm 组件提供了表单验证的功能，只需要通过 `rules` 属性传入约定的验证规则
 
@@ -657,6 +801,12 @@
 :::
 
 ## 表单类型
+
+引入表单类型
+
+```js
+import { types } from 'vue-element-pro-components'
+```
 
 ```js
 export const types = {
