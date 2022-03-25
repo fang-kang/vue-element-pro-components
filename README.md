@@ -111,6 +111,6 @@ Vue.use(ElProDrawer)
 
 ## 三.文档
 
-https://fang-kang.github.io/vue-element-pro-components/
+[https://fang-kang.github.io/vue-element-pro-components](https://fang-kang.github.io/vue-element-pro-components/)
 
 喜欢的或者觉得有用的可以点一点`star`,有`bug`欢迎提交`pr`
