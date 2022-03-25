@@ -1,16 +1,51 @@
-// .custom-block
-//   &-title
-//     margin-bottom -0.4rem !important
-
-// p
-//   display block
-//   margin-block-start 1em
-//   margin-block-end 1em
-//   margin-inline-start 0px
-//   margin-inline-end 0px
-
 .el-table
   table{
       margin: 0 !important
       padding: 0!important
   }
+
+.getting-started .outbound,
+.nav-links .outbound {
+  display: none !important;
+}
+
+.getting-started a img {
+  margin-right: 8px !important;
+}
+
+.getting-started a img.no-margin {
+  margin-right: 0px !important;
+}
+
+//global
+p code {
+  color: #e96900!important;
+  background-color: #f8f8f8!important;
+  margin: 0 2px!important;
+  padding: 0.25rem 0.4rem!important;
+}
+
+blockquote {
+  font-size: 15px !important;
+  color: #858585 !important;
+  border-left: 0.25rem solid #42b983 !important;
+  font-weight: 1000 !important;
+}
+
+div[class*="language-"]:after {
+    position: absolute!important;
+    top: .5em!important;
+    left: .7rem!important;
+    width: 12px!important;
+    height: 12px!important;
+    border-radius: 50%!important;
+    background: #fc625d!important;
+    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b!important;
+    content: " "!important;
+}
+
+pre[class*="language-"] {
+    padding: 2em!important;
+    margin: .8em 0!important;
+    overflow: auto;
+}

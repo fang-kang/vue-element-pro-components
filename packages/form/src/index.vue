@@ -819,6 +819,7 @@ export default {
   position: relative;
   font-weight: bold;
   margin: 10px 0 10px 30px;
+  font-size: 18px;
   &::before {
     position: absolute;
     left: -6px;

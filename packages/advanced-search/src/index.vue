@@ -2,8 +2,7 @@
   <el-pro-drawer
     v-model="showVisible"
     :title="title"
-    placement="right"
-    :drawer-width="drawerWidth"
+    :size="size"
     :drawer-options="drawerOptions"
   >
     <el-pro-form
@@ -116,7 +115,7 @@ export default {
       type: Boolean,
       default: true
     },
-    drawerWidth: {
+    size: {
       type: Number,
       default: 400
     },

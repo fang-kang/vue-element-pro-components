@@ -39,8 +39,8 @@
         <el-form-item v-if="isShowAdvancedBtn">
           <advanced-search-btn
             v-model="showAdvancedBtn"
-            :drawer-width="450"
-            title="高级查询"
+            :size="size"
+            :title="advancedTitle"
           >
             <el-pro-form
               ref="dataForm"
@@ -119,6 +119,14 @@ export default {
     event: 'change'
   },
   props: {
+    size: {
+      type: [Number, String],
+      default: 450
+    },
+    advancedTitle: {
+      type: String,
+      default: '高级查询'
+    },
     isCollapse: {
       type: Boolean,
       required: false,

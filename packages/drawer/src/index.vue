@@ -2,15 +2,16 @@
   <el-drawer
     append-to-body
     :visible="showVisible"
-    :placement="placement"
+    :direction="direction"
     custom-class="el-pro-drawer"
-    :size="`${drawerWidth}px`"
+    :size="size"
     :show-close="false"
     v-bind="drawerOptions"
     @close="showVisible = false"
     v-on="$listeners"
   >
     <div
+      v-if="!$slots.title"
       slot="title"
       class="drawerHeader"
     >
@@ -20,7 +21,11 @@
         @click="showVisible = false"
       />
     </div>
-
+    <slot
+      v-if="$slots.title"
+      name="title"
+      class="drawerHeader"
+    />
     <el-scrollbar style="height: 100%">
       <slot />
     </el-scrollbar>
@@ -35,17 +40,17 @@ export default {
     event: 'update:visible'
   },
   props: {
-    drawerWidth: {
-      type: Number,
+    size: {
+      type: [Number, String],
       default: 400
     },
     visible: {
       type: Boolean,
       default: false
     },
-    placement: {
+    direction: {
       type: String,
-      default: 'right'
+      default: 'rtl'
     },
     drawerOptions: {
       type: Object,

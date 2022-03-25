@@ -11,7 +11,7 @@
       <el-pro-drawer
         v-model="showVisible"
         :title="title"
-        :drawer-width="drawerWidth"
+        :size="size"
         :drawer-options="drawerOptions"
       >
         <slot />
@@ -31,7 +31,7 @@ export default {
     event: 'update:visible'
   },
   props: {
-    drawerWidth: {
+    size: {
       type: Number,
       default: 400
     },
@@ -42,9 +42,7 @@ export default {
     drawerOptions: {
       type: Object,
       default: () => {
-        return {
-          placement: 'right'
-        }
+        return {}
       }
     },
     title: {

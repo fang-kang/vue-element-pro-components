@@ -56,12 +56,14 @@ module.exports = {
     ]
   ],
   base: '/vue-element-pro-components/',
+  smoothScroll: true,
   themeConfig: {
     repo: 'fang-kang/vue-element-pro-components',
+    logo: '/logo.png',
     nav: [
       { text: '主页', link: '/' },
       { text: '指南', link: '/guide/introduction' },
-      { text: '组件', link: '/components/' }
+      { text: '组件', link: '/components/dialog' }
     ],
     sidebar: {
       '/guide/': [
@@ -79,9 +81,17 @@ module.exports = {
         }
       ]
     },
-    sidebarDepth: 2
+    sidebarDepth: 3,
+    lastUpdated: '最后更新',
+    // 假如文档不是放在仓库的根目录下：
+    docsDir: 'docs',
+    // 假如文档放在一个特定的分支下：
+    docsBranch: 'master',
+    // 默认是 false, 设置为 true 来启用
+    editLinks: true,
+    // 默认为 "Edit this page"
+    editLinkText: '帮助我们改善此页面！'
   },
-  smoothScroll: true,
   plugins: [
     // 回到顶部
     '@vuepress/back-to-top',
@@ -108,9 +118,9 @@ function genComponentSidebar(type = '') {
     '/components/form.md',
     '/components/search.md',
     '/components/table.md',
-    '/components/drawer.md',
     '/components/advanced-search.md',
-    '/components/pagination.md'
+    '/components/pagination.md',
+    '/components/drawer.md'
   ]
   return mapArr.map((i) => {
     return type + i

@@ -176,6 +176,8 @@
 | resetBtnText | 重置按钮文字 | string | — | 重置 |
 | resetBtnProps | 重置按钮 options | object | — | {} |
 | loading | 查询按钮 loading | boolean | — | false |
+| advancedTitle | 高级查询抽屉title | string | — | 高级查询 |
+| size | 高级查询抽屉宽度 | string,number | — | 450 |
 
 ## Slot
 
