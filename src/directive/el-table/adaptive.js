@@ -26,6 +26,7 @@ const doResize = (el, binding, vnode) => {
 
 export default {
   bind(el, binding, vnode) {
+    console.log(1);
     el.resizeListener = () => {
       doResize(el, binding, vnode)
     }
@@ -33,9 +34,11 @@ export default {
     addResizeListener(window.document.body, el.resizeListener)
   },
   inserted(el, binding, vnode) {
+       console.log(2)
     doResize(el, binding, vnode)
   },
   unbind(el) {
+      console.log(3)
     removeResizeListener(window.document.body, el.resizeListener)
   }
 }

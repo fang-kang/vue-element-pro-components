@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="el-pro-table"
-    :class="[isFullScreen ? 'is--maximize' : '']"
-  >
+  <div class="el-pro-table" :class="[isFullScreen ? 'is--maximize' : '']">
     <!-- <toolbar
       v-if="showToolbar"
       :row-option="rowOption"
@@ -20,16 +17,8 @@
       </template>
     </toolbar> -->
 
-    <div
-      v-if="showToolbar"
-      class="el-pro-toolbar"
-    >
-      <el-row
-        type="flex"
-        justify="space-between"
-        :gutter="20"
-        v-bind="rowOption"
-      >
+    <div v-if="showToolbar" class="el-pro-toolbar">
+      <el-row type="flex" justify="space-between" :gutter="20" v-bind="rowOption">
         <div class="el-pro-toolbar__left">
           <slot name="toolbarLeft" />
         </div>
@@ -63,12 +52,7 @@
                 @click="isFullScreen = !isFullScreen"
               />
             </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="刷新"
-              placement="top"
-            >
+            <el-tooltip class="item" effect="dark" content="刷新" placement="top">
               <el-button
                 size="mini"
                 circle
@@ -77,32 +61,17 @@
               />
             </el-tooltip>
             <slot name="toolbarRightMiddle" />
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="密度"
-              placement="top"
-            >
+            <el-tooltip class="item" effect="dark" content="密度" placement="top">
               <el-dropdown
                 trigger="click"
                 style="margin: 0 10px"
                 @command="handleCommand"
               >
-                <el-button
-                  size="mini"
-                  circle
-                  icon="el-icon-s-operation"
-                />
+                <el-button size="mini" circle icon="el-icon-s-operation" />
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="medium">
-                    默认
-                  </el-dropdown-item>
-                  <el-dropdown-item command="small">
-                    中等
-                  </el-dropdown-item>
-                  <el-dropdown-item command="mini">
-                    紧凑
-                  </el-dropdown-item>
+                  <el-dropdown-item command="medium"> 默认 </el-dropdown-item>
+                  <el-dropdown-item command="small"> 中等 </el-dropdown-item>
+                  <el-dropdown-item command="mini"> 紧凑 </el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </el-tooltip>
@@ -119,9 +88,7 @@
                 placement="bottom"
                 width="200"
               >
-                <div class="el-pro-popover__title">
-                  列展示
-                </div>
+                <div class="el-pro-popover__title">列展示</div>
                 <el-tree
                   ref="tree"
                   :data="treeList"
@@ -151,12 +118,7 @@
                     重置
                   </el-button>
                 </div>
-                <el-button
-                  slot="reference"
-                  size="mini"
-                  circle
-                  icon="el-icon-setting"
-                />
+                <el-button slot="reference" size="mini" circle icon="el-icon-setting" />
               </el-popover>
             </el-tooltip>
             <slot name="toolbarRightAfter" />
@@ -184,10 +146,7 @@
       <template v-for="column in metadata">
         <!-- 树型数据 -->
         <template v-if="column.children && column.children.length">
-          <table-column
-            :key="column.key"
-            :child="column"
-          />
+          <table-column :key="column.key" :child="column" />
         </template>
 
         <template v-else>
@@ -200,10 +159,7 @@
           >
             <!-- 表头插槽 -->
             <template #header="scope">
-              <slot
-                :name="column.key + 'Header'"
-                :scope="scope"
-              >
+              <slot :name="column.key + 'Header'" :scope="scope">
                 {{ column.label }}
                 <el-tooltip
                   v-if="column.tableHeadTooltip"
@@ -218,10 +174,7 @@
               </slot>
             </template>
             <template slot-scope="scope">
-              <slot
-                :name="column.key"
-                :scope="scope"
-              >
+              <slot :name="column.key" :scope="scope">
                 <i
                   v-if="column.copy"
                   v-clipboard:copy="scope.row[column.key]"
@@ -229,11 +182,10 @@
                   class="el-icon-copy-document"
                   style="cursor: pointer; color: #409eff; margin-right: 5px"
                 />
-                <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
-                <el-tag
-                  v-if="column.isTag"
-                  v-bind="getTagOptions(column, scope.row)"
-                >
+                <span v-if="!column.isTag">{{
+                  formatShow(column, scope.row, scope)
+                }}</span>
+                <el-tag v-if="column.isTag" v-bind="getTagOptions(column, scope.row)">
                   {{ formatShow(column, scope.row, scope) }}
                 </el-tag>
               </slot>
@@ -246,19 +198,10 @@
         v-bind="processOperationOptions"
       >
         <template slot-scope="scope">
-          <slot
-            :scope="scope"
-            name="operationColumn"
-          >
+          <slot :scope="scope" name="operationColumn">
             <div class="operationContainer">
-              <slot
-                :scope="scope"
-                name="operationBefore"
-              />
-              <slot
-                :scope="scope"
-                name="autoOperation"
-              >
+              <slot :scope="scope" name="operationBefore" />
+              <slot :scope="scope" name="autoOperation">
                 <el-button
                   v-if="updateFunc"
                   icon="el-icon-edit"
@@ -268,10 +211,7 @@
                 >
                   {{ updateText }}
                 </el-button>
-                <slot
-                  :scope="scope"
-                  name="operationMiddle"
-                />
+                <slot :scope="scope" name="operationMiddle" />
                 <el-button
                   v-if="deleteFunc"
                   icon="el-icon-delete"
@@ -283,10 +223,7 @@
                   {{ deleteText }}
                 </el-button>
               </slot>
-              <slot
-                :scope="scope"
-                name="operationAfter"
-              />
+              <slot :scope="scope" name="operationAfter" />
             </div>
           </slot>
         </template>
@@ -296,228 +233,228 @@
 </template>
 
 <script>
-import { types } from 'vue-element-pro-components/packages/form/src/type'
-import { filterObject } from 'vue-element-pro-components/src/utils'
-import clipboard from 'vue-element-pro-components/src/directive/clipboard/index.js'
-import adaptive from 'vue-element-pro-components/src/directive/el-table/index.js'
-import TableColumn from './TableColumn.vue'
-import { getTagOptions, formatShow, clipboardSuccess } from './utils'
-import { cloneDeep } from 'lodash-es'
+import { types } from "vue-element-pro-components/packages/form/src/type";
+import { filterObject } from "vue-element-pro-components/src/utils";
+import clipboard from "vue-element-pro-components/src/directive/clipboard/index.js";
+import adaptive from "vue-element-pro-components/src/directive/el-table/index.js";
+import TableColumn from "./TableColumn.vue";
+import { getTagOptions, formatShow, clipboardSuccess } from "./utils";
+import { cloneDeep } from "lodash-es";
 // import Toolbar from "./toolbar/index";
 
 export default {
-  name: 'ElProTable',
+  name: "ElProTable",
   components: {
-    TableColumn
+    TableColumn,
     // Toolbar,
   },
   directives: {
     clipboard,
-    adaptive
+    adaptive,
   },
   props: {
     updateText: {
       type: String,
-      default: '编辑'
+      default: "编辑",
     },
     deleteText: {
       type: String,
-      default: '删除'
+      default: "删除",
     },
     // 是否多选
     selection: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key）
     reserveSelection: {
       type: Boolean,
-      default: false
+      default: false,
     },
     data: {
       type: Array,
       default() {
-        return []
-      }
+        return [];
+      },
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     columns: {
       type: [Object, Array],
       required: false,
-      default: () => {}
+      default: () => {},
     },
     updateProps: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => {},
     },
     deleteProps: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => {},
     },
     tableColumns: {
       type: [Object, Array, null],
       required: false,
-      default: null
+      default: null,
     },
     tableOptions: {
       type: [Object, null],
       required: false,
-      default: null
+      default: null,
     },
     deleteFunc: {
       type: Function,
       required: false,
-      default: null
+      default: null,
     },
     updateFunc: {
       type: Function,
       required: false,
-      default: null
+      default: null,
     },
     operationOptions: {
       type: Object,
       required: false,
-      default: () => {}
+      default: () => {},
     },
     showOperation: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     autoHeight: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     rowOption: {
       type: Object,
       default() {
         return {
-          gutter: 10
-        }
-      }
+          gutter: 10,
+        };
+      },
     },
     showSearch: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showToolbar: {
       type: Boolean,
-      default: true
+      default: true,
     },
     isSearchIcon: {
       type: Boolean,
-      default: false
+      default: false,
     },
     bottomOffset: {
       type: [Number, String],
-      default: 85
+      default: 85,
     },
     deleteTip: {
       type: String,
-      default: '此操作将永久删除该行, 是否继续?'
-    }
+      default: "此操作将永久删除该行, 是否继续?",
+    },
   },
   data() {
     return {
-      tableHeight: '',
+      tableHeight: "400px",
       showPopover: false,
-      size: '',
+      size: "",
       localColumns: {},
       defaultCheckedKeys: [],
       treeList: [],
-      isFullScreen: false
-    }
+      isFullScreen: false,
+    };
   },
   computed: {
     tableColumn: {
       get() {
-        const { tableColumns, columns } = this
+        const { tableColumns, columns } = this;
         if (tableColumns) {
-          return tableColumns
+          return tableColumns;
         } else if (columns) {
           if (Array.isArray(columns)) {
-            return columns.filter((column) => column.showInTable)
+            return columns.filter((column) => column.showInTable);
           } else {
-            return filterObject(columns, (column) => column.showInTable)
+            return filterObject(columns, (column) => column.showInTable);
           }
         }
-        return {}
+        return {};
       },
       set(val) {
-        return val
-      }
+        return val;
+      },
     },
     metadata() {
-      const { localColumns } = this
+      const { localColumns } = this;
       if (Array.isArray(localColumns)) {
         return localColumns.map((item) => {
-          return this.mapTableColumn(item.key, item)
-        })
+          return this.mapTableColumn(item.key, item);
+        });
       } else {
         return Object.keys(localColumns).map((key) => {
-          const item = localColumns[key]
-          return this.mapTableColumn(key, item)
-        })
+          const item = localColumns[key];
+          return this.mapTableColumn(key, item);
+        });
       }
     },
     tableSetting() {
       const setting = {
         data: this.data,
-        size: 'medium',
+        size: "medium",
         highlightCurrentRow: true,
-        style: 'width: 100%',
-        ...(this.tableOptions || {})
-      }
+        style: "width: 100%",
+        ...(this.tableOptions || {}),
+      };
       if (this.tableHeight) {
-        setting.height = this.tableHeight
+        setting.height = this.tableHeight;
       }
-      return setting
+      return setting;
     },
     processOperationOptions() {
       return {
-        label: '操作',
-        width: '150',
-        align: 'center',
-        ...(this.operationOptions || {})
-      }
+        label: "操作",
+        width: "150",
+        align: "center",
+        ...(this.operationOptions || {}),
+      };
     },
     hasOperation() {
       return this.tableOptions
         ? this.tableOptions.hasOperation
-        : false || this.deleteFunc || this.updateFunc
-    }
+        : false || this.deleteFunc || this.updateFunc;
+    },
   },
   watch: {
     isFullScreen(val) {
       if (val) {
-        const height = window.innerHeight - 20 - this.bottomOffset
-        this.$refs.table.layout.setHeight(height)
-        this.$refs.table.doLayout()
+        const height = window.innerHeight - 20 - this.bottomOffset;
+        this.$refs.table.layout.setHeight(height);
+        this.$refs.table.doLayout();
       }
     },
     showSearch() {
-      const { top } = this.$refs.table.$el.getBoundingClientRect()
-      const height = window.innerHeight - top - this.bottomOffset
-      this.$refs.table.layout.setHeight(height)
-      this.$refs.table.doLayout()
-    }
+      const { top } = this.$refs.table.$el.getBoundingClientRect();
+      const height = window.innerHeight - top - this.bottomOffset;
+      this.$refs.table.layout.setHeight(height);
+      this.$refs.table.doLayout();
+    },
   },
   created() {
-    this.size = this.tableSetting.size
-    if (this.autoHeight) {
-      this.tableHeight = '100px'
+    this.size = this.tableSetting.size;
+    if (!this.autoHeight) {
+      this.tableHeight = "";
     }
   },
   mounted() {
-    this.localColumns = cloneDeep(this.tableColumn)
-    this.treeList = cloneDeep(this.metadata)
-    this.defaultCheckedKeys = this.mapKeys(this.metadata)
+    this.localColumns = cloneDeep(this.tableColumn);
+    this.treeList = cloneDeep(this.metadata);
+    this.defaultCheckedKeys = this.mapKeys(this.metadata);
   },
   methods: {
     getTagOptions,
@@ -525,78 +462,78 @@ export default {
     clipboardSuccess,
     mapKeys(data, array = []) {
       data.forEach((item) => {
-        array.push(item.key)
+        array.push(item.key);
         if (item.children) {
-          this.mapKeys(item.children, array)
+          this.mapKeys(item.children, array);
         }
-      })
-      return array
+      });
+      return array;
     },
     handleCheck(e) {
       if (!e) {
-        this.$refs.tree.setCheckedKeys([])
+        this.$refs.tree.setCheckedKeys([]);
       } else {
-        const keys = this.mapKeys(this.metadata)
-        this.$refs.tree.setCheckedKeys(keys)
+        const keys = this.mapKeys(this.metadata);
+        this.$refs.tree.setCheckedKeys(keys);
       }
     },
     handleSure() {
-      const data = this.$refs.tree.getCheckedNodes()
-      let keys = []
+      const data = this.$refs.tree.getCheckedNodes();
+      let keys = [];
       if (Array.isArray(this.tableColumn)) {
         keys = this.tableColumn.map((item) => {
-          return item.key
-        })
+          return item.key;
+        });
       } else {
-        keys = Object.keys(this.tableColumn)
+        keys = Object.keys(this.tableColumn);
       }
-      this.localColumns = data.filter((item) => keys.includes(item.key))
-      this.$refs.table.doLayout()
-      this.showPopover = false
+      this.localColumns = data.filter((item) => keys.includes(item.key));
+      this.$refs.table.doLayout();
+      this.showPopover = false;
     },
     handleReset() {
-      this.localColumns = this.tableColumn
-      const keys = this.mapKeys(this.metadata)
-      this.$refs.tree.setCheckedKeys(keys)
-      this.$refs.table.doLayout()
-      this.showPopover = false
+      this.localColumns = this.tableColumn;
+      const keys = this.mapKeys(this.metadata);
+      this.$refs.tree.setCheckedKeys(keys);
+      this.$refs.table.doLayout();
+      this.showPopover = false;
     },
     // 密度
     handleCommand(e) {
-      this.size = e
+      this.size = e;
     },
     toggleSearch() {
-      this.$emit('update:showSearch', !this.showSearch)
+      this.$emit("update:showSearch", !this.showSearch);
     },
     changeSize(e) {
-      this.size = e
+      this.size = e;
     },
     mapTableColumn(key, item) {
-      const { label = key, type = types.input, tableColumnOption = {}, options } = item
+      const { label = key, type = types.input, tableColumnOption = {}, options } = item;
       return {
         ...item,
         key,
         label,
         type,
         tableColumnOption,
-        options
-      }
+        options,
+      };
     },
     handleDeleteFunc(row, index) {
-      this.$confirm(this.deleteTip, '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
+      this.$confirm(this.deleteTip, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
       })
         .then(() => {
-          this.deleteFunc && this.deleteFunc(row, index)
+          this.deleteFunc && this.deleteFunc(row, index);
         })
         .catch((err) => {
-          console.log(err)
-        })
-    }
-  }
-}
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
