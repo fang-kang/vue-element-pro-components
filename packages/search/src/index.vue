@@ -7,15 +7,14 @@
     <el-pro-form
       ref="dataForm"
       v-model="localQuery"
+      style="margin: 10px 0"
       :is-row="false"
+      is-search
       :isCollapse="isCollapse"
       :showNum="showNum"
       :show-all="showAll"
       :columns="searchColumn"
-      :form-options="{
-        inline: true,
-        labelWidth: ''
-      }"
+      :form-options="formProcessOptions"
     >
       <template #columnAfter>
         <el-form-item v-if="$slots.before">
@@ -25,7 +24,6 @@
           <el-button
             icon="el-icon-search"
             type="primary"
-            size="small"
             :loading="showLoading"
             v-bind="searchBtnProps"
             @click="search"
@@ -46,17 +44,14 @@
               ref="dataForm"
               v-model="localQuery"
               :is-row="false"
-              :columns="searchColumn"
-              :form-options="{
-                inline: false,
-                labelWidth: '80px'
-              }"
+              is-search
+              :columns="searchAdvanceColumn"
+              :form-options="formAdvanceProcessOptions"
             />
             <template>
               <div style="height: 40px; width: 100%" />
               <div class="footer">
                 <el-button
-                  size="small"
                   icon="el-icon-refresh-right"
                   @click="handleReset"
                 >
@@ -65,7 +60,6 @@
                 <el-button
                   icon="el-icon-search"
                   type="primary"
-                  size="small"
                   @click="handleSearch"
                 >
                   查询
@@ -78,7 +72,6 @@
           <el-button
             icon="el-icon-refresh-right"
             type="default"
-            size="small"
             v-bind="resetBtnProps"
             @click="handleReset"
           >
@@ -88,7 +81,7 @@
         <el-form-item v-if="$slots.after">
           <slot name="after" />
         </el-form-item>
-        <el-form-item v-if="isCollapse">
+        <el-form-item v-if="isCollapse && isShowExpandeBtn">
           <el-button
             type="text"
             @click="showAll = !showAll"
@@ -175,7 +168,7 @@ export default {
       }
     },
     columns: {
-      type: Object,
+      type: [Object, Array],
       required: false,
       default() {
         return {}
@@ -200,6 +193,20 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    formOptions: {
+      type: Object,
+      required: false,
+      default() {
+        return {}
+      }
+    },
+    formAdvanceOptions: {
+      type: Object,
+      required: false,
+      default() {
+        return {}
+      }
     }
   },
   data() {
@@ -210,6 +217,32 @@ export default {
     }
   },
   computed: {
+    isShowExpandeBtn() {
+      const { searchColumn, showNum } = this
+      if (Array.isArray(searchColumn)) {
+        return searchColumn.length > showNum
+      } else {
+        return Object.keys(searchColumn) > showNum
+      }
+    },
+    formProcessOptions() {
+      const { ...rest } = this.formOptions || {}
+      return {
+        labelWidth: '',
+        inline: true,
+        ...(rest || {}),
+        rules: {}
+      }
+    },
+    formAdvanceProcessOptions() {
+      const { ...rest } = this.formOptions || {}
+      return {
+        labelWidth: '80px',
+        inline: false,
+        ...(rest || {}),
+        rules: {}
+      }
+    },
     word() {
       const { showAll } = this
       return showAll ? '收起' : '展开'
@@ -234,6 +267,19 @@ export default {
           return columns.filter((column) => column.showInSearch)
         } else {
           return filterObject(columns, (column) => column.showInSearch)
+        }
+      }
+      return {}
+    },
+    searchAdvanceColumn() {
+      const { searchColumns, columns } = this
+      if (searchColumns) {
+        return searchColumns
+      } else if (columns) {
+        if (Array.isArray(columns)) {
+          return columns.filter((column) => column.showInSearch || column.showInAdvance)
+        } else {
+          return filterObject(columns, (column) => column.showInSearch || column.showInAdvance)
         }
       }
       return {}
@@ -269,6 +315,7 @@ export default {
       }
     },
     handleReset() {
+      this.showAdvancedBtn = false
       this.$refs.dataForm.resetFields()
       this.$emit('reset')
     }
@@ -280,7 +327,6 @@ export default {
 .el-pro-search {
   display: flex;
   padding: 10px;
-  margin: 10px 0px;
   overflow: hidden;
 
   .el-form-item {

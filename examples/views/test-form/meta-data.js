@@ -11,6 +11,7 @@ export function getMetaData() {
       label: '输入框',
       type: types.input,
       span: 12,
+      required: true,
       showInSearch: true,
       formItemOption: {},
       showInTable: true,

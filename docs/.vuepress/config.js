@@ -63,7 +63,7 @@ module.exports = {
     nav: [
       { text: '主页', link: '/' },
       { text: '指南', link: '/guide/introduction' },
-      { text: '组件', link: '/components/dialog' }
+      { text: '组件', link: '/components/' }
     ],
     sidebar: {
       '/guide/': [

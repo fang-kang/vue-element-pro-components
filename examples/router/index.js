@@ -7,32 +7,32 @@ const routes = [
   {
     path: '/',
     name: 'TestDialog',
-    component: () => import('../views/test-dialog/index.vue')
+    component: () => import('../views/test-dialog')
   },
   {
     path: '/test-form',
     name: 'TestForm',
-    component: () => import('../views/test-form/index.vue')
+    component: () => import('../views/test-form')
   },
   {
     path: '/test-pagination',
     name: 'TestPagination',
-    component: () => import('../views/test-pagination/index.vue')
+    component: () => import('../views/test-pagination')
   },
   {
     path: '/test-advance-search',
     name: 'TestAdvanceSearch',
-    component: () => import('../views/test-advance-search/index.vue')
+    component: () => import('../views/test-advance-search')
   },
   {
     path: '/test-search',
     name: 'TestSearch',
-    component: () => import('../views/test-search/index.vue')
+    component: () => import('../views/test-search')
   },
   {
     path: '/test-table',
     name: 'TestTable',
-    component: () => import('../views/test-table/index.vue')
+    component: () => import('../views/test-table')
   }
 ]
 

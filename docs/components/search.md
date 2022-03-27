@@ -76,6 +76,7 @@
           input: {
             label: '输入框',
             type: types.input,
+            required: true,
             span: 12,
             showInSearch: true,
             formItemOption: {},
@@ -176,8 +177,10 @@
 | resetBtnText | 重置按钮文字 | string | — | 重置 |
 | resetBtnProps | 重置按钮 options | object | — | {} |
 | loading | 查询按钮 loading | boolean | — | false |
-| advancedTitle | 高级查询抽屉title | string | — | 高级查询 |
+| advancedTitle | 高级查询抽屉 title | string | — | 高级查询 |
 | size | 高级查询抽屉宽度 | string,number | — | 450 |
+| formAdvanceOptions | 高级查询表单配置项 | object | — | {} |
+| formOptions | 查询表单配置项 | object | — | {} |
 
 ## Slot
 

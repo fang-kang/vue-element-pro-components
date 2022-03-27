@@ -530,7 +530,9 @@
 
 在防止用户犯错的前提下，尽可能让用户更早地发现并纠正错误。
 
-:::tip 如果只需要验证是否必填,只需要`required`为`true`就可以 :::
+:::tip
+如果只需要验证是否必填,只需要`required`为`true`就可以 
+:::
 
 :::demo ElProForm 组件提供了表单验证的功能，只需要通过 `rules` 属性传入约定的验证规则
 
@@ -831,18 +833,20 @@ export const types = {
 
 ## Attributes
 
-|        参数        |                 说明                  |       类型       | 可选值 | 默认值 |
-| :----------------: | :-----------------------------------: | :--------------: | :----: | :----: |
-|      v-model       |               表单数据                |      object      |   —    |   {}   |
-|      columns       |              表单配置项               | [object, array]  |   —    |   {}   |
-|    formOptions     |          官方支持的参数集合           |      object      |   —    |   {}   |
-|      loading       |             表单 loading              |     boolean      |   —    | false  |
-|       isRow        |           是否启用栅格布局            |     boolean      |   —    |  true  |
-|      showNum       | 搜索组件内部使用,显示可见的表单项个数 | [number, string] |   —    |   2    |
-|     isCollapse     |   搜索组件内部使用,是否开启展开收起   |     boolean      |   —    | false  |
-|      showAll       |     搜索组件内部使用,是否展开收起     |     boolean      |   —    |  true  |
-| tableDialogOptions |     表单类型-table 的弹窗 options     |      object      |   —    |   {}   |
-|  tableFormOptions  |     表单类型-table 的表单 options     |      object      |   —    |   {}   |
+|        参数        |                 说明                  |       类型       | 可选值 |     默认值     |
+| :----------------: | :-----------------------------------: | :--------------: | :----: | :------------: |
+|      v-model       |               表单数据                |      object      |   —    |       {}       |
+|      columns       |              表单配置项               | [object, array]  |   —    |       {}       |
+|    formOptions     |          官方支持的参数集合           |      object      |   —    |       {}       |
+|      loading       |             表单 loading              |     boolean      |   —    |     false      |
+|       isRow        |           是否启用栅格布局            |     boolean      |   —    |      true      |
+|      showNum       | 搜索组件内部使用,显示可见的表单项个数 | [number, string] |   —    |       2        |
+|     isCollapse     |   搜索组件内部使用,是否开启展开收起   |     boolean      |   —    |     false      |
+|      showAll       |     搜索组件内部使用,是否展开收起     |     boolean      |   —    |      true      |
+| tableDialogOptions |     表单类型-table 的弹窗 options     |      object      |   —    |       {}       |
+|  tableFormOptions  |     表单类型-table 的表单 options     |      object      |   —    |       {}       |
+|     rowOptions     |              el-row配置               |      object      |   —    | { gutter: 10 } |
+|      isSearch      |              是否是搜索               |     boolean      |   —    |     false      |
 
 ## Slot
 

@@ -9,6 +9,7 @@
       ref="dataForm"
       v-model="localQuery"
       :is-row="isRow"
+      is-search
       :columns="searchColumn"
       :form-options="formProcessOptions"
     />
@@ -18,7 +19,6 @@
         <slot name="before" />
         <el-button
           v-if="showReset"
-          size="small"
           icon="el-icon-refresh-right"
           v-bind="resetBtnProps"
           @click="handleReset"
@@ -29,7 +29,6 @@
         <el-button
           icon="el-icon-search"
           type="primary"
-          size="small"
           v-bind="searchBtnProps"
           @click="handleSearch"
         >
@@ -146,9 +145,9 @@ export default {
         return searchColumns
       } else if (columns) {
         if (Array.isArray(columns)) {
-          return columns.filter((column) => column.showInSearch)
+          return columns.filter((column) => column.showInSearch || column.showInAdvance)
         } else {
-          return filterObject(columns, (column) => column.showInSearch)
+          return filterObject(columns, (column) => column.showInSearch || column.showInAdvance)
         }
       }
       return {}
@@ -199,6 +198,7 @@ export default {
       }
     },
     handleReset() {
+      this.showVisible = false
       this.$refs.dataForm.resetFields()
       this.$emit('reset')
     }

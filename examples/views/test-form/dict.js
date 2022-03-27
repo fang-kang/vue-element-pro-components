@@ -1,11 +1,11 @@
 export default {
   selectArr: [
     {
-      name: 'select-1',
+      name: '男',
       value: 1
     },
     {
-      name: 'select-2',
+      name: '女',
       value: 2
     }
   ]

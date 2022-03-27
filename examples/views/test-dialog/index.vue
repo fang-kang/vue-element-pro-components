@@ -1,18 +1,13 @@
 <template>
   <div>
-    <el-button
-      size="small"
-      @click="visible = true"
-    >
+    <el-button @click="visible = true">
       打开
     </el-button>
     <el-pro-dialog
       v-model="visible"
       title="测试"
       :dialog-options="{
-        width: '40%',
-        showFullscreen: true,
-        draggable: false
+        width: '40%'
       }"
       :btn-loading="btnLoading"
       @open="open"
@@ -21,9 +16,8 @@
       @closed="closed"
       @ok="ok"
     >
-      <div>测试弹窗</div>
-      <div slot="footer">
-        底部
+      <div style="height: 1000px;">
+        测试弹窗
       </div>
     </el-pro-dialog>
   </div>

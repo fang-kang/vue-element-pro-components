@@ -1,5 +1,6 @@
 <template>
   <el-table-column
+    v-if="child.showInTable"
     :key="child.key"
     :align="child.align || 'center'"
     :label="child.tableLabel || child.label"
@@ -15,19 +16,28 @@
       </template>
       <template v-else>
         <el-table-column
+          v-if="item.showInTable"
           :key="item.key"
           :align="item.align || 'center'"
           :label="item.tableLabel || item.label"
           v-bind="item.tableColumnOption"
         >
-          <template
-            v-if="$slots[item.key + 'Header']"
-            #header="scope"
-          >
+          <template #header="scope">
             <slot
               :name="item.key + 'Header'"
               :scope="scope"
             />
+            {{ item.label }}
+            <el-tooltip
+              v-if="item.tableHeadTooltip"
+              placement="right"
+              :content="item.tableHeadTooltip"
+            >
+              <i
+                class="el-icon-question"
+                style="vertical-align: baseline; font-size: 16px"
+              />
+            </el-tooltip>
           </template>
           <template slot-scope="scope">
             <slot

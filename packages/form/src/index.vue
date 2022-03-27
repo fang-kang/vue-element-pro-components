@@ -18,7 +18,7 @@
       />
       <component
         :is="isRow ? 'el-row' : 'fragment'"
-        :gutter="0"
+        v-bind="rowOptions"
       >
         <fragment
           v-for="column in metaData"
@@ -40,14 +40,13 @@
               >
                 <i
                   class="el-icon-question"
-                  style="vertical-align: baseline;font-size:16px;"
+                  style="vertical-align: baseline; font-size: 16px"
                 />
               </el-tooltip>
             </h3>
             <template v-else-if="column.type === cmpTypes.table">
               <el-button
                 type="default"
-                size="small"
                 style="margin-bottom: 10px"
                 icon="el-icon-plus"
                 @click="handleClickBtn(column)"
@@ -57,21 +56,23 @@
               <el-pro-table
                 :data="form[column.key]"
                 :columns="createColumn(column)"
+                :isSearchIcon="false"
                 style="margin-bottom: 10px"
                 :operation-options="{ width: 200 }"
                 :table-options="{ rowStyle: { height: '50px' }, hasOperation: true }"
               >
                 <template #operationMiddle="{ scope }">
                   <el-button
-                    size="small"
-                    type="primary"
+                    icon="el-icon-edit"
+                    type="text"
                     @click="handleEdit(column, scope.row, scope.$index)"
                   >
-                    修改
+                    编辑
                   </el-button>
                   <el-button
-                    size="small"
-                    type="danger"
+                    icon="el-icon-delete"
+                    type="text"
+                    style="color: red"
                     @click="handleDelete(form[column.key], scope.$index)"
                   >
                     删除
@@ -92,7 +93,7 @@
                 v-show="column.isShow"
                 :label="column.serachLabel || column.label"
                 :prop="column.key"
-                :required="column.required"
+                :required="isSearch ? false : column.required"
                 v-bind="getFormItemOptions(column)"
               >
                 <template slot="label">
@@ -446,7 +447,21 @@ export default {
         return {}
       }
     },
+    rowOptions: {
+      type: Object,
+      required: false,
+      default() {
+        return {
+          gutter: 10
+        }
+      }
+    },
     loading: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isSearch: {
       type: Boolean,
       required: false,
       default: false
@@ -509,11 +524,12 @@ export default {
       return rules
     },
     formProcessOptions() {
+      const { isSearch } = this
       const { rules = {}, ...rest } = this.formOptions || {}
       return {
         labelWidth: '70px',
         ...(rest || {}),
-        rules: { ...this.formRules, ...rules }
+        rules: isSearch ? {} : { ...this.formRules, ...rules }
       }
     },
     cmpTypes() {
@@ -680,8 +696,13 @@ export default {
         ['datetimerange', 'daterange'].includes(columnOption.type)
       ) {
         processColumnOption = {
-          startPlaceholder: '请输入开始日期',
-          endPlaceholder: '请输入结束日期'
+          startPlaceholder: '请选择开始日期',
+          endPlaceholder: '请选择结束日期'
+        }
+      } else if (type === types.time && columnOption.isRange) {
+        processColumnOption = {
+          startPlaceholder: '请选择开始时间',
+          endPlaceholder: '请选择结束时间'
         }
       } else {
         processColumnOption = {
@@ -735,6 +756,9 @@ export default {
         !Array.isArray(newForm[key]) &&
         ['datetimerange', 'daterange'].includes(columnOption.type)
       ) {
+        newForm[key] = []
+      }
+      if (type === types.time && !Array.isArray(newForm[key]) && columnOption.isRange) {
         newForm[key] = []
       }
       if (!this.checkEmpty(defaultValue) && this.checkEmpty(newForm[key])) {

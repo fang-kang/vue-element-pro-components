@@ -17,8 +17,6 @@
       v-model="dialogVisible"
       :dialog-options="{
         width: '30%',
-        showFullscreen:true,
-        draggable:true,
         beforeClose:handleClose
       }"
       @ok="dialogVisible = false"

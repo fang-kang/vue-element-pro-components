@@ -1,6 +1,7 @@
 <template>
   <el-dialog
     ref="dialogRef"
+    v-el-drag-dialog="dialogProcessOptions.draggable"
     custom-class="el-pro-dialog"
     :fullscreen="dialogProcessOptions.fullscreen || fullscreen"
     :visible.sync="showVisible"
@@ -20,7 +21,7 @@
       >
         <slot name="nameBefore" />
         <slot name="title">
-          <span style="font-size: 18px">{{ title }}</span>
+          <span>{{ title }}</span>
         </slot>
         <slot name="nameAfter" />
         <i
@@ -51,7 +52,6 @@
     >
       <slot name="beforeFooter" />
       <el-button
-        size="small"
         v-bind="cancelBtnProps"
         @click="handleCancel"
       >
@@ -60,7 +60,6 @@
       <slot name="middleFooter" />
       <el-button
         type="primary"
-        size="small"
         :loading="showBtnLoading"
         v-bind="confirmBtnProps"
         @click="handleOk"
@@ -79,8 +78,10 @@
 </template>
 
 <script>
+import elDragDialog from 'vue-element-pro-components/src/directive/dialog'
 export default {
   name: 'ElProDialog',
+  directives: { elDragDialog },
   model: {
     prop: 'visible',
     event: 'update:visible'
@@ -170,17 +171,11 @@ export default {
         destroyOnClose: false,
         appendToBody: true,
         lockScroll: true,
-        showFullscreen: false,
-        draggable: false,
+        showFullscreen: true,
+        draggable: true,
         center: false,
         ...(this.dialogOptions || {})
       }
-    }
-  },
-  mounted() {
-    const { draggable } = this.dialogProcessOptions
-    if (draggable) {
-      this.initDraggable()
     }
   },
   methods: {
@@ -192,20 +187,18 @@ export default {
       this.$emit('cancel')
     },
     processDrag() {
-      const dragDom = document.querySelector('.el-pro-dialog')
+      const dragDom = this.$refs.dialogRef.$refs.dialog
       const dialogHeaderEl = document.querySelector('.el-pro-dialog .el-dialog__header')
       const { fullscreen } = this
       const { draggable } = this.dialogProcessOptions
       // 全屏的时候需要重新定义left top
       if (fullscreen && draggable) {
         dragDom.style.cssText += `;left:0px;top:0px;`
-        dialogHeaderEl.style.cssText += ';cursor:default;user-select:none;'
+        dialogHeaderEl.style.cssText += ';cursor:default;'
       } else if (!fullscreen && draggable) {
         dialogHeaderEl.style.cssText += ';cursor:move;user-select:none;'
       }
-      if (draggable) {
-        dragDom.style.cssText += `;left:0px;top:0px;`
-      }
+      dragDom.style.cssText += `;left:0px;top:0px;`
     },
     closed() {
       const { draggable } = this.dialogProcessOptions
@@ -218,91 +211,38 @@ export default {
     toggleFull() {
       this.fullscreen = !this.fullscreen
       this.processDrag()
-    },
-    initDraggable() {
-      this.$nextTick(() => {
-        const dragDom = document.querySelector('.el-pro-dialog')
-        const dialogHeaderEl = document.querySelector('.el-pro-dialog .el-dialog__header')
-        dialogHeaderEl.style.cssText += ';cursor:move;user-select:none;'
-        const sty = dragDom.currentStyle || window.getComputedStyle(dragDom, null)
-        dialogHeaderEl.onmousedown = (e) => {
-          const disX = e.clientX - dialogHeaderEl.offsetLeft
-          const disY = e.clientY - dialogHeaderEl.offsetTop
-
-          const dragDomWidth = dragDom.offsetWidth
-          const dragDomHeight = dragDom.offsetHeight
-
-          const screenWidth = document.documentElement.clientWidth
-          const screenHeight = document.documentElement.clientHeight
-
-          const minDragDomLeft = dragDom.offsetLeft
-          const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth
-
-          const minDragDomTop = dragDom.offsetTop
-          const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomHeight
-
-          const styleLeftStr = sty.left
-          const styleTopStr = sty.top
-
-          if (!styleLeftStr || !styleTopStr) return
-          let styleLeft
-          let styleTop
-
-          // Format may be "##%" or "##px"
-          if (styleLeftStr.includes('%')) {
-            styleLeft = +screenWidth * (+styleLeftStr.replace(/%/g, '') / 100)
-            styleTop = +screenHeight * (+styleTopStr.replace(/%/g, '') / 100)
-          } else {
-            styleLeft = +styleLeftStr.replace(/px/g, '')
-            styleTop = +styleTopStr.replace(/px/g, '')
-          }
-
-          document.onmousemove = (e) => {
-            let left = e.clientX - disX
-            let top = e.clientY - disY
-
-            // Handle edge cases
-            if (-left > minDragDomLeft) {
-              left = -minDragDomLeft
-            } else if (left > maxDragDomLeft) {
-              left = maxDragDomLeft
-            }
-            if (-top > minDragDomTop) {
-              top = -minDragDomTop
-            } else if (top > maxDragDomTop) {
-              top = maxDragDomTop
-            }
-
-            // 移动当前元素
-            dragDom.style.left = `${left + styleLeft}px`
-            dragDom.style.top = `${top + styleTop}px`
-          }
-
-          document.onmouseup = () => {
-            document.onmousemove = null
-            document.onmouseup = null
-          }
-        }
-      })
     }
   }
 }
 </script>
 <style lang="scss">
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
 .el-pro-dialog {
   .el-dialog__header {
-    padding: 16px 24px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 15px 15px 0 0;
     border-bottom: 1px solid #e8e8e8;
   }
+  .el-dialog__headerbtn .el-dialog__close {
+    position: relative;
+    top: -2px;
+  }
   .el-dialog__body {
-    padding: 24px;
+    padding: 15px;
     .el-table__empty-block {
       width: auto;
     }
   }
   .el-dialog__footer {
     border-top: 1px solid #e8e8e8;
-    padding: 10px 16px;
+    background-color: #f8f8f8;
+    padding: 10px;
     height: auto;
     .el-button {
       padding: 8px 20px;
@@ -310,7 +250,6 @@ export default {
   }
   .dialog__icon {
     position: absolute;
-    top: 22px;
     right: 45px;
     font-size: 12px;
     color: #909399;
@@ -331,11 +270,12 @@ export default {
     justify-content: center;
   }
 
-  &__content {
-    .content__wrap {
-      padding-right: 10px;
-    }
+  .content__wrap {
+    overflow-x: hidden;
+    min-height: 100px;
+  }
 
+  &__content {
     .el-scrollbar__wrap {
       padding: 10px 0;
       max-height: 60vh; // 最大高度
@@ -360,6 +300,14 @@ export default {
       padding: 10px 0;
       overflow-x: hidden; // 隐藏横向滚动栏
     }
+  }
+}
+
+.is-fullscreen.el-pro-dialog {
+  display: flex;
+  flex-direction: column;
+  .el-dialog__body {
+    flex: 1;
   }
 }
 </style>

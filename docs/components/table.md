@@ -551,18 +551,28 @@
 | deleteText | 删除按钮文字 | string | — | 删除 |
 | updateProps | 修改按钮 props | object | — | {} |
 | deleteProps | 删除按钮 props | object | — | {} |
+| rowOption | 工具栏el-row配置项 | object | — | { gutter:10 } |
+| showSearch | 是否显示搜索 | boolean | — | true |
+| showToolbar | 是否显示工具栏 | boolean | — | true |
+| isSearchIcon | 是否显示工具栏的隐藏查询栏按钮 | boolean | — | true |
+| bottomOffset | 表格自动高度距离底部多少 | nmber/string | — | 85 |
+| deleteTip | 删除时提示语 | string | — | 此操作将永久删除该行, 是否继续? |
 
 ## Slot
 
-|      name       |          说明          |
-| :-------------: | :--------------------: |
-|  \${key}Header  |      表单头部内容      |
-|     \${key}     |        表单内容        |
-| operationColumn |       操作栏内容       |
-| operationBefore | 修改删除按钮之前的内容 |
-|  autoOperation  |   修改删除按钮的内容   |
-| operationMiddle | 修改删除按钮之间的内容 |
-| operationAfter  | 修改删除按钮之后的内容 |
+|        name        |          说明          |
+| :----------------: | :--------------------: |
+|   \${key}Header    |      表单头部内容      |
+|      \${key}       |        表单内容        |
+|  operationColumn   |       操作栏内容       |
+|  operationBefore   | 修改删除按钮之前的内容 |
+|   autoOperation    |   修改删除按钮的内容   |
+|  operationMiddle   | 修改删除按钮之间的内容 |
+|   operationAfter   | 修改删除按钮之后的内容 |
+|    toolbarLeft     |       工具栏左侧       |
+| toolbarRightBefore |     工具栏右侧前面     |
+| toolbarRightMiddle |     工具栏右侧中间     |
+| toolbarRightAfter  |     工具栏右侧后面     |
 
 ## Events
 

@@ -2,7 +2,6 @@
   <fragment>
     <el-button
       icon="el-icon-s-operation"
-      size="small"
       :style="processBtnStyle"
       v-bind="btnOptions"
       @click="btnClick"

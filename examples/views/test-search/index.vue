@@ -8,10 +8,7 @@
       @search="dataReload"
     >
       <template #after>
-        <el-button
-          type="primary"
-          size="small"
-        >
+        <el-button type="primary">
           新增
         </el-button>
       </template>

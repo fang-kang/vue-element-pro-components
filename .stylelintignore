@@ -6,5 +6,6 @@
 
 /dist/
 /lib/
+/examples/
 /public/
 .output.js

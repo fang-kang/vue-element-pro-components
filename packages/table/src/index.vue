@@ -1,140 +1,324 @@
 <template>
-  <el-table
-    ref="table"
-    v-loading="loading"
-    v-bind="tableSetting"
-    v-on="$listeners"
+  <div
+    class="el-pro-table"
+    :class="[isFullScreen ? 'is--maximize' : '']"
   >
-    <!-- 多选 -->
-    <el-table-column
-      v-if="selection"
-      type="selection"
-      align="center"
-      :reserve-selection="reserveSelection"
-      width="60"
-    />
-    <template v-for="column in metadata">
-      <!-- 树型数据 -->
-      <template v-if="column.children && column.children.length">
-        <table-column
-          :key="column.key"
-          :child="column"
-        />
-      </template>
-
-      <template v-else>
-        <el-table-column
-          :key="column.key"
-          :align="column.align || 'center'"
-          :label="column.tableLabel || column.label"
-          v-bind="column.tableColumnOption"
-        >
-          <!-- 表头插槽 -->
-          <template
-            v-if="$slots[column.key + 'Header']"
-            #header="scope"
-          >
-            <slot
-              :name="column.key + 'Header'"
-              :scope="scope"
-            />
-          </template>
-          <template slot-scope="scope">
-            <slot
-              :name="column.key"
-              :scope="scope"
-            >
-              <i
-                v-if="column.copy"
-                v-clipboard:copy="scope.row[column.key]"
-                v-clipboard:success="clipboardSuccess"
-                class="el-icon-copy-document"
-                style="cursor: pointer; color: #409eff; margin-right: 5px"
-              />
-              <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
-              <el-tag
-                v-if="column.isTag"
-                v-bind="getTagOptions(column, scope.row)"
-              >
-                {{ formatShow(column, scope.row, scope) }}
-              </el-tag>
-            </slot>
-          </template>
-        </el-table-column>
-      </template>
-    </template>
-    <el-table-column
-      v-if="hasOperation && showOperation"
-      v-bind="processOperationOptions"
+    <!-- <toolbar
+      v-if="showToolbar"
+      :row-option="rowOption"
+      :show-search="showSearch"
+      :is-search-icon="isSearchIcon"
+      :columns="tableColumn"
+      :metadata="metadata"
+      @toggleSearch="toggleSearch"
+      @changeSize="changeSize"
+      @refresh="$emit('refresh')"
+      @change="handleChange"
     >
-      <template slot-scope="scope">
-        <slot
-          :scope="scope"
-          name="operationColumn"
-        >
-          <div class="operationContainer">
-            <slot
-              :scope="scope"
-              name="operationBefore"
-            />
-            <slot
-              :scope="scope"
-              name="autoOperation"
+      <template #left>
+        <slot name="left"></slot>
+      </template>
+    </toolbar> -->
+
+    <div
+      v-if="showToolbar"
+      class="el-pro-toolbar"
+    >
+      <el-row
+        type="flex"
+        justify="space-between"
+        :gutter="20"
+        v-bind="rowOption"
+      >
+        <div class="el-pro-toolbar__left">
+          <slot name="toolbarLeft" />
+        </div>
+        <div class="el-pro-toolbar__right">
+          <el-row>
+            <slot name="toolbarRightBefore" />
+            <el-tooltip
+              v-if="isSearchIcon"
+              class="item"
+              effect="dark"
+              :content="showSearch ? '隐藏搜索' : '显示搜索'"
+              placement="top"
             >
               <el-button
-                v-if="updateFunc"
-                size="small"
-                type="primary"
-                v-bind="updateProps(scope.row, scope.$index)"
-                @click="updateFunc(scope.row, scope.$index)"
+                size="mini"
+                circle
+                icon="el-icon-search"
+                @click="toggleSearch()"
+              />
+            </el-tooltip>
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="isFullScreen ? '还原' : '全屏'"
+              placement="top"
+            >
+              <el-button
+                size="mini"
+                circle
+                :icon="isFullScreen ? 'el-icon-minus' : 'el-icon-full-screen'"
+                @click="isFullScreen = !isFullScreen"
+              />
+            </el-tooltip>
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="刷新"
+              placement="top"
+            >
+              <el-button
+                size="mini"
+                circle
+                icon="el-icon-refresh"
+                @click="$emit('refresh')"
+              />
+            </el-tooltip>
+            <slot name="toolbarRightMiddle" />
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="密度"
+              placement="top"
+            >
+              <el-dropdown
+                trigger="click"
+                style="margin: 0 10px"
+                @command="handleCommand"
               >
-                {{ updateText }}
-              </el-button>
+                <el-button
+                  size="mini"
+                  circle
+                  icon="el-icon-s-operation"
+                />
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="medium">
+                    默认
+                  </el-dropdown-item>
+                  <el-dropdown-item command="small">
+                    中等
+                  </el-dropdown-item>
+                  <el-dropdown-item command="mini">
+                    紧凑
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-tooltip>
+            <el-tooltip
+              v-if="columns"
+              class="item"
+              effect="dark"
+              content="列设置"
+              placement="top"
+            >
+              <el-popover
+                v-model="showPopover"
+                popper-class="el-pro-popover"
+                placement="bottom"
+                width="200"
+              >
+                <div class="el-pro-popover__title">
+                  列展示
+                </div>
+                <el-tree
+                  ref="tree"
+                  :data="treeList"
+                  show-checkbox
+                  default-expand-all
+                  node-key="key"
+                  :default-checked-keys="defaultCheckedKeys"
+                  highlight-current
+                />
+                <div class="el-pro-popover__footer">
+                  <el-button
+                    type="primary"
+                    plain
+                    icon="el-icon-check"
+                    size="mini"
+                    @click="handleSure"
+                  >
+                    确认
+                  </el-button>
+                  <el-button
+                    type="default"
+                    plain
+                    size="mini"
+                    icon="el-icon-refresh-right"
+                    @click="handleReset"
+                  >
+                    重置
+                  </el-button>
+                </div>
+                <el-button
+                  slot="reference"
+                  size="mini"
+                  circle
+                  icon="el-icon-setting"
+                />
+              </el-popover>
+            </el-tooltip>
+            <slot name="toolbarRightAfter" />
+          </el-row>
+        </div>
+      </el-row>
+    </div>
+
+    <el-table
+      ref="table"
+      v-loading="loading"
+      v-adaptive="{ bottomOffset: bottomOffset }"
+      :size="size"
+      v-bind="tableSetting"
+      v-on="$listeners"
+    >
+      <!-- 多选 -->
+      <el-table-column
+        v-if="selection"
+        type="selection"
+        align="center"
+        :reserve-selection="reserveSelection"
+        width="60"
+      />
+      <template v-for="column in metadata">
+        <!-- 树型数据 -->
+        <template v-if="column.children && column.children.length">
+          <table-column
+            :key="column.key"
+            :child="column"
+          />
+        </template>
+
+        <template v-else>
+          <el-table-column
+            v-if="column.showInTable"
+            :key="column.key"
+            :align="column.align || 'center'"
+            :label="column.tableLabel || column.label"
+            v-bind="column.tableColumnOption"
+          >
+            <!-- 表头插槽 -->
+            <template #header="scope">
+              <slot
+                :name="column.key + 'Header'"
+                :scope="scope"
+              >
+                {{ column.label }}
+                <el-tooltip
+                  v-if="column.tableHeadTooltip"
+                  placement="right"
+                  :content="column.tableHeadTooltip"
+                >
+                  <i
+                    class="el-icon-question"
+                    style="vertical-align: baseline; font-size: 16px"
+                  />
+                </el-tooltip>
+              </slot>
+            </template>
+            <template slot-scope="scope">
+              <slot
+                :name="column.key"
+                :scope="scope"
+              >
+                <i
+                  v-if="column.copy"
+                  v-clipboard:copy="scope.row[column.key]"
+                  v-clipboard:success="clipboardSuccess"
+                  class="el-icon-copy-document"
+                  style="cursor: pointer; color: #409eff; margin-right: 5px"
+                />
+                <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
+                <el-tag
+                  v-if="column.isTag"
+                  v-bind="getTagOptions(column, scope.row)"
+                >
+                  {{ formatShow(column, scope.row, scope) }}
+                </el-tag>
+              </slot>
+            </template>
+          </el-table-column>
+        </template>
+      </template>
+      <el-table-column
+        v-if="hasOperation && showOperation"
+        v-bind="processOperationOptions"
+      >
+        <template slot-scope="scope">
+          <slot
+            :scope="scope"
+            name="operationColumn"
+          >
+            <div class="operationContainer">
               <slot
                 :scope="scope"
-                name="operationMiddle"
+                name="operationBefore"
               />
-              <el-button
-                v-if="deleteFunc"
-                size="small"
-                type="danger"
-                v-bind="deleteProps(scope.row, scope.$index)"
-                @click="handleDeleteFunc(scope.row, scope.$index)"
+              <slot
+                :scope="scope"
+                name="autoOperation"
               >
-                {{ deleteText }}
-              </el-button>
-            </slot>
-            <slot
-              :scope="scope"
-              name="operationAfter"
-            />
-          </div>
-        </slot>
-      </template>
-    </el-table-column>
-  </el-table>
+                <el-button
+                  v-if="updateFunc"
+                  icon="el-icon-edit"
+                  type="text"
+                  v-bind="updateProps(scope.row, scope.$index)"
+                  @click="updateFunc(scope.row, scope.$index)"
+                >
+                  {{ updateText }}
+                </el-button>
+                <slot
+                  :scope="scope"
+                  name="operationMiddle"
+                />
+                <el-button
+                  v-if="deleteFunc"
+                  icon="el-icon-delete"
+                  type="text"
+                  style="color: red"
+                  v-bind="deleteProps(scope.row, scope.$index)"
+                  @click="handleDeleteFunc(scope.row, scope.$index)"
+                >
+                  {{ deleteText }}
+                </el-button>
+              </slot>
+              <slot
+                :scope="scope"
+                name="operationAfter"
+              />
+            </div>
+          </slot>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
 import { types } from 'vue-element-pro-components/packages/form/src/type'
 import { filterObject } from 'vue-element-pro-components/src/utils'
 import clipboard from 'vue-element-pro-components/src/directive/clipboard/index.js'
-import { debounce } from 'lodash-es'
+import adaptive from 'vue-element-pro-components/src/directive/el-table/index.js'
 import TableColumn from './TableColumn.vue'
 import { getTagOptions, formatShow, clipboardSuccess } from './utils'
+import { cloneDeep } from 'lodash-es'
+// import Toolbar from "./toolbar/index";
 
 export default {
   name: 'ElProTable',
   components: {
     TableColumn
+    // Toolbar,
   },
   directives: {
-    clipboard
+    clipboard,
+    adaptive
   },
   props: {
     updateText: {
       type: String,
-      default: '修改'
+      default: '编辑'
     },
     deleteText: {
       type: String,
@@ -209,37 +393,75 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    rowOption: {
+      type: Object,
+      default() {
+        return {
+          gutter: 10
+        }
+      }
+    },
+    showSearch: {
+      type: Boolean,
+      default: true
+    },
+    showToolbar: {
+      type: Boolean,
+      default: true
+    },
+    isSearchIcon: {
+      type: Boolean,
+      default: false
+    },
+    bottomOffset: {
+      type: [Number, String],
+      default: 85
+    },
+    deleteTip: {
+      type: String,
+      default: '此操作将永久删除该行, 是否继续?'
     }
   },
   data() {
     return {
       tableHeight: '',
-      debounceHeightListener: null
+      showPopover: false,
+      size: '',
+      localColumns: {},
+      defaultCheckedKeys: [],
+      treeList: [],
+      isFullScreen: false
     }
   },
   computed: {
-    tableColumn() {
-      const { tableColumns, columns } = this
-      if (tableColumns) {
-        return tableColumns
-      } else if (columns) {
-        if (Array.isArray(columns)) {
-          return columns.filter((column) => column.showInTable)
-        } else {
-          return filterObject(columns, (column) => column.showInTable)
+    tableColumn: {
+      get() {
+        const { tableColumns, columns } = this
+        if (tableColumns) {
+          return tableColumns
+        } else if (columns) {
+          if (Array.isArray(columns)) {
+            return columns.filter((column) => column.showInTable)
+          } else {
+            return filterObject(columns, (column) => column.showInTable)
+          }
         }
+        return {}
+      },
+      set(val) {
+        return val
       }
-      return {}
     },
     metadata() {
-      const { tableColumn } = this
-      if (Array.isArray(tableColumn)) {
-        return tableColumn.map((item) => {
+      const { localColumns } = this
+      if (Array.isArray(localColumns)) {
+        return localColumns.map((item) => {
           return this.mapTableColumn(item.key, item)
         })
       } else {
-        return Object.keys(tableColumn).map((key) => {
-          const item = tableColumn[key]
+        return Object.keys(localColumns).map((key) => {
+          const item = localColumns[key]
           return this.mapTableColumn(key, item)
         })
       }
@@ -247,6 +469,7 @@ export default {
     tableSetting() {
       const setting = {
         data: this.data,
+        size: 'medium',
         highlightCurrentRow: true,
         style: 'width: 100%',
         ...(this.tableOptions || {})
@@ -258,7 +481,6 @@ export default {
     },
     processOperationOptions() {
       return {
-        fixed: 'right',
         label: '操作',
         width: '150',
         align: 'center',
@@ -271,21 +493,84 @@ export default {
         : false || this.deleteFunc || this.updateFunc
     }
   },
-  mounted() {
-    if (this.autoHeight) {
-      this.setTableHeight()
-      this.setChangeHeightListener()
+  watch: {
+    isFullScreen(val) {
+      if (val) {
+        const height = window.innerHeight - 20 - this.bottomOffset
+        this.$refs.table.layout.setHeight(height)
+        this.$refs.table.doLayout()
+      }
+    },
+    showSearch() {
+      const { top } = this.$refs.table.$el.getBoundingClientRect()
+      const height = window.innerHeight - top - this.bottomOffset
+      this.$refs.table.layout.setHeight(height)
+      this.$refs.table.doLayout()
     }
   },
-  beforeDestroy() {
-    if (this.debounceHeightListener) {
-      window.removeEventListener('resize', this.debounceHeightListener)
+  created() {
+    this.size = this.tableSetting.size
+    if (this.autoHeight) {
+      this.tableHeight = '100px'
     }
+  },
+  mounted() {
+    this.localColumns = cloneDeep(this.tableColumn)
+    this.treeList = cloneDeep(this.metadata)
+    this.defaultCheckedKeys = this.mapKeys(this.metadata)
   },
   methods: {
     getTagOptions,
     formatShow,
     clipboardSuccess,
+    mapKeys(data, array = []) {
+      data.forEach((item) => {
+        array.push(item.key)
+        if (item.children) {
+          this.mapKeys(item.children, array)
+        }
+      })
+      return array
+    },
+    handleCheck(e) {
+      if (!e) {
+        this.$refs.tree.setCheckedKeys([])
+      } else {
+        const keys = this.mapKeys(this.metadata)
+        this.$refs.tree.setCheckedKeys(keys)
+      }
+    },
+    handleSure() {
+      const data = this.$refs.tree.getCheckedNodes()
+      let keys = []
+      if (Array.isArray(this.tableColumn)) {
+        keys = this.tableColumn.map((item) => {
+          return item.key
+        })
+      } else {
+        keys = Object.keys(this.tableColumn)
+      }
+      this.localColumns = data.filter((item) => keys.includes(item.key))
+      this.$refs.table.doLayout()
+      this.showPopover = false
+    },
+    handleReset() {
+      this.localColumns = this.tableColumn
+      const keys = this.mapKeys(this.metadata)
+      this.$refs.tree.setCheckedKeys(keys)
+      this.$refs.table.doLayout()
+      this.showPopover = false
+    },
+    // 密度
+    handleCommand(e) {
+      this.size = e
+    },
+    toggleSearch() {
+      this.$emit('update:showSearch', !this.showSearch)
+    },
+    changeSize(e) {
+      this.size = e
+    },
     mapTableColumn(key, item) {
       const { label = key, type = types.input, tableColumnOption = {}, options } = item
       return {
@@ -298,7 +583,7 @@ export default {
       }
     },
     handleDeleteFunc(row, index) {
-      this.$confirm('此操作将永久删除该行, 是否继续?', '提示', {
+      this.$confirm(this.deleteTip, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -309,25 +594,62 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-    },
-    setChangeHeightListener() {
-      if (!this.debounceHeightListener) {
-        this.debounceHeightListener = debounce(this.setTableHeight, 100)
-      }
-      window.addEventListener('resize', this.debounceHeightListener)
-    },
-    setTableHeight() {
-      const searchDom = document.querySelector('.el-pro-search')
-      const appMainDom = document.querySelector('#el-pro-wrapper')
-      if (searchDom && appMainDom) {
-        const paginationDom = document.querySelector('.el-pro-pagination')
-        const paginationDomHeight = paginationDom ? paginationDom.clientHeight : 0
-        this.tableHeight =
-          appMainDom.offsetHeight - searchDom.clientHeight - paginationDomHeight - 50 + 'px'
-      }
     }
   }
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.el-table__fixed-right::before {
+  display: none !important;
+}
+.el-table th > .cell {
+  color: #000;
+  padding: 5px 0;
+  font-weight: bold;
+}
+
+.el-table table th.el-table__cell,
+.el-table thead.is-group th.el-table__cell {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 14px;
+}
+
+.el-pro-toolbar {
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.el-pro-popover {
+  padding: 0;
+  &__title {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  &__footer {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.el-pro-table.is--maximize {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: #fff;
+  z-index: 2000;
+}
+</style>

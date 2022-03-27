@@ -9,12 +9,12 @@ export default ({
   isServer // 当前应用配置是处于 服务端渲染 或 客户端
 }) => {
   if (!isServer) {
-    Vue.use(ElementUI)
+    Vue.use(ElementUI, { size: 'small' })
     Vue.use(pro)
   } else {
     import('packages').then(function(m) {
       Vue.use(m.default)
     })
-    Vue.use(ElementUI)
+    Vue.use(ElementUI, { size: 'small' })
   }
 }
