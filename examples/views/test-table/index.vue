@@ -234,7 +234,7 @@ export default {
       }
     },
     createTableData() {
-      for (let index = 1; index <= 10; index++) {
+      for (let index = 1; index <= 100; index++) {
         this.tableData.push({
           id: index + 1,
           description: '这是一段描述',

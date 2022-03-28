@@ -172,7 +172,7 @@
       ref="table"
       v-loading="loading"
       v-adaptive="{
-        bottomOffset: pagination ? bottomOffset + 60 : bottomOffset,
+        bottomOffset: calcBottomOffset,
         autoHeight: autoHeight
       }"
       :size="size"
@@ -558,19 +558,25 @@ export default {
       return this.tableOptions
         ? this.tableOptions.hasOperation
         : false || this.deleteFunc || this.updateFunc
+    },
+    calcBottomOffset() {
+      const { pagination, bottomOffset } = this
+      return pagination ? bottomOffset + 60 : bottomOffset
     }
   },
   watch: {
     isFullScreen(val) {
       if (val) {
-        const height = window.innerHeight - 20 - this.bottomOffset
+        const { calcBottomOffset } = this
+        const height = window.innerHeight - 20 - calcBottomOffset
         this.$refs.table.layout.setHeight(height)
         this.$refs.table.doLayout()
       }
     },
     showSearch() {
+      const { calcBottomOffset } = this
       const { top } = this.$refs.table.$el.getBoundingClientRect()
-      const height = window.innerHeight - top - this.bottomOffset
+      const height = window.innerHeight - top - calcBottomOffset
       this.$refs.table.layout.setHeight(height)
       this.$refs.table.doLayout()
     }
@@ -719,5 +725,6 @@ export default {
   padding: 20px;
   background-color: #fff;
   z-index: 2000;
+  box-sizing: border-box;
 }
 </style>
