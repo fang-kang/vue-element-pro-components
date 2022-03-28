@@ -552,11 +552,19 @@
 | updateProps | 修改按钮 props | object | — | {} |
 | deleteProps | 删除按钮 props | object | — | {} |
 | rowOption | 工具栏el-row配置项 | object | — | { gutter:10 } |
-| showSearch | 是否显示搜索 | boolean | — | true |
+| showSearch.sync | 是否显示搜索 | boolean | — | true |
 | showToolbar | 是否显示工具栏 | boolean | — | true |
 | isSearchIcon | 是否显示工具栏的隐藏查询栏按钮 | boolean | — | true |
-| bottomOffset | 表格自动高度距离底部多少 | nmber/string | — | 85 |
+| bottomOffset | 表格自动高度距离底部多少 | nmber/string | — | 30,有分页自动+60 |
 | deleteTip | 删除时提示语 | string | — | 此操作将永久删除该行, 是否继续? |
+| showToolbarRight | 是否显示右侧工具栏 | boolean | — | true |
+| total | 总数 | number | — | 0 |
+| pagination.sync | 分页和查询条件 | object | — | {} |
+| paginationStyle | el-pagination 的 style | object | — | {} |
+| customStyle | 自定义外层容器 style | object | — | {} |
+| pageSizes | 分页显示的条数 | array | — | [10, 20, 30, 50, 100] |
+| paginationOptions | [官方支持分页的其他 options](https://element.eleme.cn/#/zh-CN/component/pagination) | object | — | {} |
+| customProps | 自定义分页 page 和 pageSize 字段 | object | — | { page :'page',pageSize:''pageSize } |
 
 ## Slot
 
@@ -587,3 +595,4 @@
 | clearSort | 用于清空排序条件，数据会恢复成未排序的状态 | — |
 | doLayout | 对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法 | — |
 | sort | 手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。 | prop: string, order: string |
+| onLoad | pageSize 或 pageNo 变化时触发 | — |

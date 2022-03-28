@@ -326,18 +326,17 @@ export default {
 <style lang="scss">
 .el-pro-search {
   display: flex;
-  padding: 10px;
   overflow: hidden;
 
-  .el-form-item {
-    margin: 0 15px 10px 0;
+  // .el-form-item {
+  //   margin: 0 15px 10px 0;
 
-    .el-input__inner,
-    .el-date-editor.el-input,
-    .el-date-editor.el-input__inner {
-      width: 190px;
-    }
-  }
+  //   .el-input__inner,
+  //   .el-date-editor.el-input,
+  //   .el-date-editor.el-input__inner {
+  //     width: 190px;
+  //   }
+  // }
   .btn-options {
     margin: 0 0 0 20px;
   }

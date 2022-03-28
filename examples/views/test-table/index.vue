@@ -1,5 +1,5 @@
 <template>
-  <div style="padding: 10px;">
+  <div style="padding: 10px">
     <div id="el-pro-wrapper">
       <el-pro-search
         v-show="isShowSearch"
@@ -14,6 +14,8 @@
         :data="tableData"
         :loading="listLoading"
         selection
+        :pagination.sync="queryForm"
+        :total="tableData.length"
         is-search-icon
         :show-search.sync="isShowSearch"
         :columns="columns"
@@ -23,6 +25,7 @@
         :table-options="{ hasOperation: true }"
         @selection-change="handleSelectionChange"
         @refresh="dataReload"
+        @onLoad="dataReload"
       >
         <template #toolbarLeft>
           <el-button
@@ -63,11 +66,6 @@
           </el-button>
         </template>
       </el-pro-table>
-      <el-pro-pagination
-        v-model="queryForm"
-        :total="tableData.length"
-        @onLoad="dataReload"
-      />
       <el-pro-dialog
         v-model="visible"
         :dialog-options="{ width: '50%' }"
@@ -87,7 +85,7 @@
 </template>
 
 <script>
-export const types = {
+const types = {
   input: 'input',
   select: 'select',
   number: 'number',
@@ -236,7 +234,7 @@ export default {
       }
     },
     createTableData() {
-      for (let index = 1; index <= 100; index++) {
+      for (let index = 1; index <= 10; index++) {
         this.tableData.push({
           id: index + 1,
           description: '这是一段描述',
@@ -249,6 +247,7 @@ export default {
       }
     },
     dataReload() {
+      console.log(this.queryForm, 'query')
       this.listLoading = true
       setTimeout(() => {
         this.listLoading = false

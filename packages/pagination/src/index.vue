@@ -99,7 +99,7 @@ export default {
     },
     refresh() {
       this.$nextTick(() => {
-        this.$emit('onLoad')
+        this.$emit('onLoad', this.pagination)
       })
     }
   }

@@ -927,7 +927,7 @@ created() {
 | :-: | :-: | :-: |
 | label | 表单的 label | string |
 | tableLabel | 当 label 和表格中的显示不一致时，优先匹配 tableLabel | string |
-| searchLabel | 当 label 和搜索中的显示不一致时，优先匹配 tableLabel | string |
+| searchLabel | 当 label 和搜索中的显示不一致时，优先匹配 searchLabel | string |
 | tooltip | form-item 后面的小提示 | string |
 | defaultValue | 默认值 | any |
 | type | 表单的 type，不填默认为 input | string |

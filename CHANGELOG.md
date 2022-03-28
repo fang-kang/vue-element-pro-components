@@ -1,4 +1,10 @@
+
 # 更新日志
+
+## 1.0.14 (2022-03-28)
+
+- `ElProTable`集成`ElProPagination`
+- 修改 `ElProSearch`默认样式
 
 ## 1.0.13 (2022-03-27)
 

@@ -231,7 +231,7 @@ export default {
   }
   .el-dialog__headerbtn .el-dialog__close {
     position: relative;
-    top: -2px;
+    top: -5px;
   }
   .el-dialog__body {
     padding: 15px;
