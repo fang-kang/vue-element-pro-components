@@ -108,8 +108,7 @@ export default {
 
 <style scoped>
 .el-pro-pagination {
-  padding: 10px;
-  margin: 10px 0px;
+  margin: 10px;
   text-align: right;
 }
 </style>
