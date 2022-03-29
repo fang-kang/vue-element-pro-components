@@ -82,7 +82,7 @@
             </template>
             <slot
               v-else
-              :name="`${column.key}-all`"
+              :name="`${column.key}All`"
               :form="form"
             >
               <slot

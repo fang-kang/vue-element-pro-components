@@ -1,8 +1,8 @@
-import ElProSearch from './src'
+import Search from './src'
 
 /* istanbul ignore next */
-ElProSearch.install = function(Vue) {
-  Vue.component(ElProSearch.name, ElProSearch)
+Search.install = function(Vue) {
+  Vue.component(Search.name, Search)
 }
 
-export default ElProSearch
+export default Search

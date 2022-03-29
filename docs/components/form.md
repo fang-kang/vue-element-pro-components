@@ -856,7 +856,7 @@ export const types = {
 |  columnAfter   |    表单内后面的内容 参数(form)     |
 |   formBefore   |     表单前面的内容 参数(form)      |
 |   formAfter    |     表单后面的内容 参数(form)      |
-|  \${key}-all   |  替换 form-item 的插槽 参数(form)  |
+|  \${key}All   |  替换 form-item 的插槽 参数(form)  |
 |    \${key}     |     替换组件的插槽 参数(form)      |
 |   rowBefore    | el-form-item 之前的内容 参数(form) |
 |    rowAfter    | el-form-item 之后的内容 参数(form) |

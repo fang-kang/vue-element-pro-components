@@ -538,11 +538,10 @@
 | columns | 表格配置项,只显示 showInTable:true 的表格(详情见 CustomForm 说明) 多级表头使用数组类型,children 是子项 | object/array | — | {}/[] |
 | tableColumns | 表格配置项,全部显示 | object/array | — | {}/[] |
 | loading | 表格 loading | boolean | — | false |
-| selection | 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key） | boolean | — | false |
-| reserveSelection | 是否显示展开收起文字 | boolean | — | false |
+| selection | 是否多选 | boolean | — | false |
+| reserveSelection | 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key） | boolean | — | false |
 | data | 表格数据 | array | — | [] |
-| showOperation | 收起后显示的表单数量 | string,number | — | 2 |
-| autoHeight | 是否自动计算表格高度（外层容器为 #content-wrapper） | boolean | — | true |
+| autoHeight | 是否自动计算表格高度 | boolean | — | true |
 | tableOptions | 表格配置项,例如 hasOperation:ture,显示操作栏 | object | — | {} |
 | operationOptions | 操作栏的配置项，默认{label: "操作",fixed: "right",width: "150",align: "center",} | object | — | {} |
 | updateFunc | 修改事件 | function(row,index) | — | — |

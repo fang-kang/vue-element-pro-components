@@ -3,7 +3,7 @@
     ref="dialogRef"
     v-el-drag-dialog="dialogProcessOptions.draggable"
     custom-class="el-pro-dialog"
-    :fullscreen="dialogProcessOptions.fullscreen || fullscreen"
+    :fullscreen="fullscreen"
     :visible.sync="showVisible"
     v-bind="dialogProcessOptions"
     @closed="closed"
@@ -34,13 +34,7 @@
     </template>
     <el-scrollbar
       v-loading="showLoading"
-      :class="
-        fullscreen && $slots.footer
-          ? 'el-pro-dialog__content--footer'
-          : fullscreen && !$slots.footer
-            ? 'el-pro-dialog__content--fullscreen'
-            : 'el-pro-dialog__content'
-      "
+      :class="scrollbarClass"
     >
       <div class="content__wrap">
         <slot />
@@ -139,6 +133,15 @@ export default {
     }
   },
   computed: {
+    scrollbarClass() {
+      const { fullscreen } = this
+      const { footer } = this.$slots
+      return fullscreen && footer
+        ? 'el-pro-dialog__content--footer'
+        : fullscreen && !footer
+          ? 'el-pro-dialog__content--fullscreen'
+          : 'el-pro-dialog__content'
+    },
     showBtnLoading: {
       get() {
         return this.btnLoading
@@ -176,6 +179,13 @@ export default {
         center: false,
         ...(this.dialogOptions || {})
       }
+    }
+  },
+  created() {
+    console.log(this.confirmBtnProps, 'confirmBtnProps')
+    const { fullscreen } = this.dialogProcessOptions
+    if (fullscreen) {
+      this.fullscreen = fullscreen
     }
   },
   methods: {

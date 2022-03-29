@@ -9,14 +9,14 @@
       :dialog-options="{
         width: '40%'
       }"
-      :btn-loading="btnLoading"
+      :btnLoading="btnLoading"
       @open="open"
       @opened="opened"
       @close="close"
       @closed="closed"
       @ok="ok"
     >
-      <div style="height: 1000px;">
+      <div style="height: 1000px">
         测试弹窗
       </div>
     </el-pro-dialog>

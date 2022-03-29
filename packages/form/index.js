@@ -1,9 +1,9 @@
-import ElProForm from './src'
+import Form from './src'
 import { types } from './src/type'
 
 /* istanbul ignore next */
-ElProForm.install = function(Vue) {
-  Vue.component(ElProForm.name, ElProForm)
+Form.install = function(Vue) {
+  Vue.component(Form.name, Form)
 }
 export { types }
-export default ElProForm
+export default Form

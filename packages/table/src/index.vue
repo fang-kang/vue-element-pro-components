@@ -248,7 +248,7 @@
         </template>
       </template>
       <el-table-column
-        v-if="hasOperation && showOperation"
+        v-if="hasOperation"
         v-bind="processOperationOptions"
       >
         <template slot-scope="scope">
@@ -402,11 +402,6 @@ export default {
       type: Object,
       required: false,
       default: () => {}
-    },
-    showOperation: {
-      type: Boolean,
-      required: false,
-      default: true
     },
     autoHeight: {
       type: Boolean,

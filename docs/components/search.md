@@ -173,9 +173,9 @@
 | showNum | 收起后显示的表单数量 | string,number | — | 2 |
 | showReset | 是否显示重置按钮 | boolean | — | true |
 | searchBtnText | 查询按钮文字 | string | — | 查询 |
-| searchBtnProps | 查询按钮 options | object | — | {} |
+| searchBtnProps | 查询按钮 props | object | — | {} |
 | resetBtnText | 重置按钮文字 | string | — | 重置 |
-| resetBtnProps | 重置按钮 options | object | — | {} |
+| resetBtnProps | 重置按钮 props | object | — | {} |
 | loading | 查询按钮 loading | boolean | — | false |
 | advancedTitle | 高级查询抽屉 title | string | — | 高级查询 |
 | size | 高级查询抽屉宽度 | string,number | — | 450 |
@@ -186,8 +186,8 @@
 
 |    name    |             说明             |
 | :--------: | :--------------------------: |
-| col-before |      搜索表单前面的内容      |
-| col-after  |      搜索表单后面的内容      |
+| colBefore |      搜索表单前面的内容      |
+| colAfter  |      搜索表单后面的内容      |
 |   before   |      查询按钮前面的内容      |
 |   middle   | 查询按钮和重置按钮中间的内容 |
 |   after    |      查询按钮后面的内容      |

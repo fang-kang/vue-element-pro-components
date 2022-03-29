@@ -1,23 +1,15 @@
-import ElProDialog from './dialog'
-import ElProForm, { types } from './form'
-import ElProPagination from './pagination'
-import ElProSearch from './search'
-import ElProTable from './table'
-import ElProAdvancedSearch from './advanced-search'
-import ElProDrawer from './drawer'
+import Dialog from './dialog'
+import Form, { types } from './form'
+import Pagination from './pagination'
+import Search from './search'
+import Table from './table'
+import AdvancedSearch from './advanced-search'
+import Drawer from './drawer'
 import * as utils from 'vue-element-pro-components/src/utils'
 
 import { version } from '../package.json'
 
-const components = [
-  ElProDialog,
-  ElProForm,
-  ElProPagination,
-  ElProSearch,
-  ElProTable,
-  ElProAdvancedSearch,
-  ElProDrawer
-]
+const components = [Dialog, Form, Pagination, Search, Table, AdvancedSearch, Drawer]
 
 const install = function(Vue) {
   if (install.installed) return
@@ -36,13 +28,13 @@ export default {
   types,
   utils,
   install,
-  ElProDialog,
-  ElProForm,
-  ElProPagination,
-  ElProSearch,
-  ElProTable,
-  ElProAdvancedSearch,
-  ElProDrawer
+  Dialog,
+  Form,
+  Pagination,
+  Search,
+  Table,
+  AdvancedSearch,
+  Drawer
 }
 
 export { types, utils }

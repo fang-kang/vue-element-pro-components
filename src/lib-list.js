@@ -3,32 +3,32 @@ module.exports = {
     input: 'packages/index.js',
     output: 'index'
   },
-  'el-pro-advanced-search': {
+  'advanced-search': {
     input: 'packages/advanced-search/index.js',
-    output: 'el-pro-advanced-search'
+    output: 'advanced-search'
   },
-  'el-pro-dialog': {
+  dialog: {
     input: 'packages/dialog/index.js',
-    output: 'el-pro-dialog'
+    output: 'dialog'
   },
-  'el-pro-drawer': {
+  drawer: {
     input: 'packages/drawer/index.js',
-    output: 'el-pro-drawer'
+    output: 'drawer'
   },
-  'el-pro-form': {
+  form: {
     input: 'packages/form/index.js',
-    output: 'el-pro-form'
+    output: 'form'
   },
-  'el-pro-pagination': {
+  pagination: {
     input: 'packages/pagination/index.js',
-    output: 'el-pro-pagination'
+    output: 'pagination'
   },
-  'el-pro-search': {
+  search: {
     input: 'packages/search/index.js',
-    output: 'el-pro-search'
+    output: 'search'
   },
-  'el-pro-table': {
+  table: {
     input: 'packages/table/index.js',
-    output: 'el-pro-table'
+    output: 'table'
   }
 }

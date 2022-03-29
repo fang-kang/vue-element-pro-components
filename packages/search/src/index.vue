@@ -3,7 +3,7 @@
     class="el-pro-search"
     :style="customStyle"
   >
-    <slot name="col-before" />
+    <slot name="colBefore" />
     <el-pro-form
       ref="dataForm"
       v-model="localQuery"
@@ -93,7 +93,7 @@
       </template>
     </el-pro-form>
 
-    <slot name="col-after" />
+    <slot name="colAfter" />
   </div>
 </template>
 
