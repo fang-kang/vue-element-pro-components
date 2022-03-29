@@ -10,10 +10,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Element)
 
-import pro from 'vue-element-pro-components'
+import vueElementProComponents from 'vue-element-pro-components'
 import 'vue-element-pro-components/lib/theme/index.css'
 
-Vue.use(pro)
+Vue.use(vueElementProComponents)
 
 new Vue({
   el: '#app',
@@ -59,7 +59,7 @@ plugins: [
 }
 ```
 
-接下来，如果你只希望引入部分组件，比如 `ElProDialog`和 `ElProForm`，那么需要在`main.js` 中写入以下内容：
+接下来，如果你只希望引入部分组件，比如 `Dialog`和 `Form`，那么需要在`main.js` 中写入以下内容：
 
 ```js
 import Vue from 'vue'
@@ -69,13 +69,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Element)
 
-import { ElProDialog, ElProForm } from 'vue-element-pro-components'
+import { Dialog, Form } from 'vue-element-pro-components'
 
-Vue.use(ElProDialog)
-Vue.use(ElProForm)
+Vue.use(Dialog)
+Vue.use(Form)
 /* 或写为
- * Vue.component(ElProDialog.name,ElProDialog)
- * Vue.component(ElProForm.name,ElProForm)
+ * Vue.component(Dialog.name,Dialog)
+ * Vue.component(Form.name,Form)
  */
 
 new Vue({
@@ -95,27 +95,22 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(Element)
 
 import {
-  ElProDialog,
-  ElProForm,
-  ElProPagination,
-  ElProSearch,
-  ElProTable,
-  ElProAdvancedSearch,
-  ElProDrawer
+  Dialog,
+  Form,
+  Pagination,
+  Search,
+  Table,
+  AdvancedSearch,
+  Drawer
 } from 'vue-element-pro-components'
 
-Vue.use(ElProDialog)
-Vue.use(ElProForm)
-Vue.use(ElProPagination)
-Vue.use(ElProSearch)
-Vue.use(ElProTable)
-Vue.use(ElProAdvancedSearch)
-Vue.use(ElProDrawer)
-
-new Vue({
-  el: '#app',
-  render: h => h(App)
-});
+Vue.use(Dialog)
+Vue.use(Form)
+Vue.use(Pagination)
+Vue.use(Search)
+Vue.use(Table)
+Vue.use(AdvancedSearch)
+Vue.use(Drawer)
 ```
 
 ## 开始使用
