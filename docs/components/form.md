@@ -807,7 +807,7 @@
 引入表单类型
 
 ```js
-import { types } from 'vue-element-pro-components'
+import { types } from "vue-element-pro-components/packages";
 ```
 
 ```js

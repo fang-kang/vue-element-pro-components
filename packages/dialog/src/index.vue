@@ -182,7 +182,6 @@ export default {
     }
   },
   created() {
-    console.log(this.confirmBtnProps, 'confirmBtnProps')
     const { fullscreen } = this.dialogProcessOptions
     if (fullscreen) {
       this.fullscreen = fullscreen
