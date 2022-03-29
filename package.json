@@ -23,6 +23,7 @@
   ],
   "typings": "types/index.d.ts",
   "style": "lib/theme/index.css",
+  "unpkg": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/fang-kang/vue-element-pro-components"
