@@ -26,7 +26,7 @@
           <el-row>
             <slot name="toolbarRightBefore" />
             <el-tooltip
-              v-if="isSearchIcon"
+              v-if="showSearch != null"
               class="item"
               effect="dark"
               :content="showSearch ? '隐藏搜索' : '显示搜索'"
@@ -52,7 +52,13 @@
                 @click="isFullScreen = !isFullScreen"
               />
             </el-tooltip>
-            <el-tooltip class="item" effect="dark" content="刷新" placement="top">
+            <el-tooltip
+              v-if="$listeners.refresh"
+              class="item"
+              effect="dark"
+              content="刷新"
+              placement="top"
+            >
               <el-button
                 size="mini"
                 circle
@@ -75,13 +81,7 @@
                 </el-dropdown-menu>
               </el-dropdown>
             </el-tooltip>
-            <el-tooltip
-              v-if="columns"
-              class="item"
-              effect="dark"
-              content="列设置"
-              placement="top"
-            >
+            <el-tooltip class="item" effect="dark" content="列设置" placement="top">
               <el-popover
                 v-model="showPopover"
                 popper-class="el-pro-popover"
@@ -146,16 +146,25 @@
         :reserve-selection="reserveSelection"
         width="60"
       />
+
+      <!-- 展开 -->
+      <el-table-column v-if="expand" type="expand" align="center">
+        <template slot-scope="scope">
+          <slot name="expandColumn" :scope="scope" />
+        </template>
+      </el-table-column>
+
       <template v-for="column in metadata">
         <!-- 树型数据 -->
         <template v-if="column.children && column.children.length">
-          <table-column :key="column.key" :child="column" />
+          <table-column :child="column" />
         </template>
 
         <template v-else>
           <el-table-column
-            v-if="column.showInTable"
+            v-if="!column.isHide"
             :key="column.key"
+            :prop="column.key"
             :align="column.align || 'center'"
             :label="column.tableLabel || column.label"
             v-bind="column.tableColumnOption"
@@ -348,20 +357,20 @@ export default {
       },
     },
     showSearch: {
-      type: Boolean,
-      default: true,
+      type: [Boolean, null],
+      default: null,
     },
     showToolbar: {
       type: Boolean,
       default: true,
     },
+    expand: {
+      type: Boolean,
+      default: false,
+    },
     showToolbarRight: {
       type: Boolean,
       default: true,
-    },
-    isSearchIcon: {
-      type: Boolean,
-      default: false,
     },
     bottomOffset: {
       type: [Number, String],
@@ -410,7 +419,6 @@ export default {
   },
   data() {
     return {
-      tableHeight: "400px",
       showPopover: false,
       size: "",
       localColumns: {},
@@ -465,15 +473,14 @@ export default {
         size: "medium",
         highlightCurrentRow: true,
         style: "width: 100%",
+        height: "200px",
         ...(this.tableOptions || {}),
       };
-      if (this.tableHeight) {
-        setting.height = this.tableHeight;
-      }
       return setting;
     },
     processOperationOptions() {
       return {
+        fixed: "right",
         label: "操作",
         width: "150",
         align: "center",
@@ -487,7 +494,7 @@ export default {
     },
     calcBottomOffset() {
       const { pagination, bottomOffset } = this;
-      return pagination ? bottomOffset + 60 : bottomOffset;
+      return pagination ? bottomOffset + 50 : bottomOffset;
     },
   },
   watch: {
@@ -579,6 +586,7 @@ export default {
         type,
         tableColumnOption,
         options,
+        isHide: false,
       };
     },
     handleDeleteFunc(row, index) {

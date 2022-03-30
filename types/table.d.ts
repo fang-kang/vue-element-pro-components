@@ -11,6 +11,9 @@ import { ElProPaginationOptions, ElProPaginationCustomProps } from './pagination
 
 interface ElProTableSlots {
 
+  /** 展开行内容 */
+  expandColumn: VNode[];
+
   /** 操作栏内容 */
   operationColumn: VNode[];
 
@@ -101,8 +104,8 @@ export declare class ElProTable extends VueElementProComponents {
   /** 是否显示工具栏 */
   showToolbar: boolean
 
-  /** 是否显示工具栏的隐藏查询栏按钮 */
-  isSearchIcon: boolean
+  /** 是否展开行 */
+  expand: boolean
 
   /** 表格自动高度距离底部多少 */
   bottomOffset: number | string

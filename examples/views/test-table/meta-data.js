@@ -8,7 +8,8 @@ export function getMetaData() {
       formColumnShow: false,
       tableColumnOption: {
         type: 'index',
-        width: 80
+        width: 80,
+        sortable: true
       },
       showFormat: (val, row, scope) => {
         return scope.$index + 1
@@ -19,6 +20,9 @@ export function getMetaData() {
       showInTable: true,
       showInSearch: true,
       required: true,
+      tableColumnOption: {
+        sortable: true
+      },
       span: 12,
       children: [
         {
@@ -36,7 +40,10 @@ export function getMetaData() {
       showInSearch: true,
       required: true,
       defaultValue: 1,
-      span: 12
+      span: 12,
+      tableColumnOption: {
+        sortable: true
+      }
     },
     age: {
       label: '年龄',

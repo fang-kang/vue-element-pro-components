@@ -14,6 +14,7 @@
         :table-dialog-options="{ width: '60%' }"
         :columns="columns"
         :form-options="{ labelWidth: '100px' }"
+        @check-change="handleCheckChange"
       >
         <template #inputAppend="{ form }">
           <el-button @click="click(form)">
@@ -41,6 +42,9 @@ export default {
   methods: {
     click(form) {
       console.log(form)
+    },
+    handleCheckChange(data, checked, indeterminate) {
+      console.log(data, checked, indeterminate)
     }
   }
 }

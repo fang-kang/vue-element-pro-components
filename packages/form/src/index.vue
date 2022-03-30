@@ -46,6 +46,7 @@
             </h3>
             <template v-else-if="column.type === cmpTypes.table">
               <el-button
+                v-if="!isPreview"
                 type="default"
                 style="margin-bottom: 10px"
                 icon="el-icon-plus"
@@ -56,10 +57,10 @@
               <el-pro-table
                 :data="form[column.key]"
                 :columns="createColumn(column)"
-                :isSearchIcon="false"
+                :auto-height="false"
                 style="margin-bottom: 10px"
                 :operation-options="{ width: 200 }"
-                :table-options="{ rowStyle: { height: '50px' }, hasOperation: true }"
+                :table-options="tableOptions"
               >
                 <template #operationMiddle="{ scope }">
                   <el-button
@@ -111,7 +112,15 @@
                     />
                   </el-tooltip>
                 </template>
+                <component
+                  :is="column.isTag ? 'el-tag' : 'fragment'"
+                  v-if="isPreview"
+                  v-bind="getTagOptions(column, form)"
+                >
+                  {{ formatShow(column, form, 'scope') }}
+                </component>
                 <slot
+                  v-else
                   :name="column.key"
                   :form="form"
                 >
@@ -380,6 +389,7 @@ import { types } from './type'
 import ElProTable from 'vue-element-pro-components/packages/table'
 import ElProDialog from 'vue-element-pro-components/packages/dialog'
 import Tinymce from './Tinymce/index'
+import { formatShow, getTagOptions } from 'vue-element-pro-components/packages/table/src/utils'
 export default {
   name: 'ElProForm',
   components: {
@@ -465,6 +475,20 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    isPreview: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    tableOptions: {
+      type: Object,
+      required: false,
+      default() {
+        return {
+          hasOperation: !this.isPreview
+        }
+      }
     }
   },
   data() {
@@ -507,7 +531,7 @@ export default {
         if (required || Array.isArray(originRules)) {
           const rules = originRules ? [...originRules] : []
           if (required && !rules.some((item) => item && item.required)) {
-            const preStr = [types.input].includes(type) ? '请输入' : '请选择'
+            const preStr = [types.input, types.number].includes(type) ? '请输入' : '请选择'
             rules.push({
               required: true,
               message: `${preStr}${label}`,
@@ -579,6 +603,8 @@ export default {
   },
   created() {},
   methods: {
+    formatShow,
+    getTagOptions,
     changeVal(column) {
       if (column.onChange) {
         column.onChange({

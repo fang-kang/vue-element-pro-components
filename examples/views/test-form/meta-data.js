@@ -7,9 +7,148 @@ export function getMetaData() {
       label: '基本信息',
       type: types.title
     },
+    tree: {
+      label: '树结构',
+      type: types.tree,
+      onChange: (i) => {
+        console.log(i, 'i')
+      },
+      columnOption: {
+        showCheckbox: true,
+        draggable: true
+      },
+      options: [
+        {
+          label: '一级 1',
+          children: [
+            {
+              label: '二级 1-1',
+              children: [
+                {
+                  label: '三级 1-1-1'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: '一级 2',
+          children: [
+            {
+              label: '二级 2-1',
+              children: [
+                {
+                  label: '三级 2-1-1'
+                }
+              ]
+            },
+            {
+              label: '二级 2-2',
+              children: [
+                {
+                  label: '三级 2-2-1'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: '一级 3',
+          children: [
+            {
+              label: '二级 3-1',
+              children: [
+                {
+                  label: '三级 3-1-1'
+                }
+              ]
+            },
+            {
+              label: '二级 3-2',
+              children: [
+                {
+                  label: '三级 3-2-1'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    tree2: {
+      label: '树结构',
+      type: types.tree,
+      onChange: (i) => {
+        console.log(i, 'i')
+      },
+      columnOption: {
+        showCheckbox: true,
+        draggable: true
+      },
+      options: [
+        {
+          label: '一级 1',
+          children: [
+            {
+              label: '二级 1-1',
+              children: [
+                {
+                  label: '三级 1-1-1'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: '一级 2',
+          children: [
+            {
+              label: '二级 2-1',
+              children: [
+                {
+                  label: '三级 2-1-1'
+                }
+              ]
+            },
+            {
+              label: '二级 2-2',
+              children: [
+                {
+                  label: '三级 2-2-1'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: '一级 3',
+          children: [
+            {
+              label: '二级 3-1',
+              children: [
+                {
+                  label: '三级 3-1-1'
+                }
+              ]
+            },
+            {
+              label: '二级 3-2',
+              children: [
+                {
+                  label: '三级 3-2-1'
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
     input: {
       label: '输入框',
       type: types.input,
+      defaultValue: '输入框',
+      isTag: true,
+      tagOptions: 'warning',
       span: 12,
       required: true,
       showInSearch: true,
@@ -29,6 +168,7 @@ export function getMetaData() {
     select: {
       label: '下拉框',
       type: types.select,
+      defaultValue: 1,
       span: 12,
       options: dict.selectArr,
       showInSearch: true,
@@ -40,11 +180,13 @@ export function getMetaData() {
     switch: {
       label: '开关',
       type: types.switch,
+      defaultValue: true,
       span: 12
     },
     radio: {
       label: '单选框',
       type: types.radio,
+      defaultValue: 1,
       span: 12,
       options: dict.selectArr,
       showInSearch: true,
@@ -55,6 +197,7 @@ export function getMetaData() {
     },
     checxbox: {
       label: '多选框',
+      defaultValue: [1],
       type: types.checkBox,
       span: 12,
       options: dict.selectArr,
@@ -66,6 +209,7 @@ export function getMetaData() {
     },
     date: {
       label: '日期',
+      defaultValue: '2021-11-11',
       type: types.date,
       span: 10,
       showInSearch: false,
@@ -74,6 +218,7 @@ export function getMetaData() {
     num: {
       label: '数字',
       type: types.number,
+      defaultValue: 1,
       span: 10,
       showInTable: true
     },
@@ -381,6 +526,7 @@ export function getMetaData() {
     },
     table: {
       label: '测试表格',
+      defaultValue: [{ input: '1' }],
       span: 24,
       type: types.table,
       tableDataOptions: {

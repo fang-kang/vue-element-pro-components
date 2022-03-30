@@ -22,14 +22,13 @@
       selection
       :pagination.sync="queryForm"
       :total="tableData.length"
-      is-search-icon
       :show-search.sync="isShowSearch"
       :columns="columns"
+      :auto-height="false"
       :operation-options="{ width: 200 }"
       :update-func="handleEdit"
       :delete-func="handleDelete"
-      :auto-height="false"
-      :table-options="{ hasOperation: true }"
+      :table-options="{ hasOperation: true,height:'300px' }"
       @selection-change="handleSelectionChange"
       @refresh="dataReload"
       @onLoad="dataReload"

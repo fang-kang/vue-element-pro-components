@@ -10,6 +10,7 @@ import { ElTag } from 'element-ui/types/tag'
 import { VueElementProComponents } from './component'
 import { ElProDialogOptions } from './dialog'
 import { types } from './vue-element-pro-components'
+import { ElProTableOptions } from './table'
 
 
 interface ElProFormSlots {
@@ -120,6 +121,9 @@ export declare class ElProForm extends VueElementProComponents {
   /** 表单类型-table 的弹窗 options */
   tableDialogOptions: ElProDialogOptions
 
+  /** 表单类型-table 的表格 options */
+  tableOptions: ElProTableOptions
+
   /** 搜索组件内部使用,是否展开收起 */
   showAll: boolean
 
@@ -140,6 +144,9 @@ export declare class ElProForm extends VueElementProComponents {
 
   /** 是否是搜索 */
   isSearch: boolean
+  
+  /** 是否预览 */
+  isPreview: boolean
 
   /** 表单配置项 */
   columns: ElProColumns | ElProColumns[]

@@ -42,13 +42,14 @@
           })
           .catch((_) => {})
       },
-      handleClosed(){
+      handleClosed() {
         console.log('Dialog 关闭动画结束时的回调,可以用来清除表单的检验和信息等')
       }
     }
   }
 </script>
 ```
+
 :::
 
 ### 超出高度自适应和头部和底部采用居中布局
@@ -82,6 +83,7 @@
   }
 </script>
 ```
+
 :::
 
 ### 弹窗的加载中状态
@@ -161,7 +163,7 @@
 
 :::
 
-### 自定义底部footer内容
+### 自定义底部 footer 内容
 
 :::demo
 
@@ -178,7 +180,7 @@
     >
       <div>弹窗内容</div>
       <div slot="footer">
-         我是底部footer内容
+        我是底部footer内容
       </div>
     </el-pro-dialog>
   </div>
@@ -295,11 +297,10 @@ ElProDialog 组件的内容可以是任意的，甚至可以是表格或表单�
   }
 </script>
 ```
+
 :::
 
-:::tip
-Dialog 的内容是懒渲染的，即在第一次被打开之前，传入的默认 slot 不会被渲染到 DOM 上。因此，如果需要执行 DOM 操作，或通过 `ref` 获取相应组件，请在 `open` 事件回调中进行。
-:::
+:::tip Dialog 的内容是懒渲染的，即在第一次被打开之前，传入的默认 slot 不会被渲染到 DOM 上。因此，如果需要执行 DOM 操作，或通过 `ref` 获取相应组件，请在 `open` 事件回调中进行。 :::
 
 ## Attributes
 

@@ -21,6 +21,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(Element)
 
 import vueElementProComponents from 'vue-element-pro-components'
+import 'vue-element-pro-components/lib/theme/index.css'
 Vue.use(vueElementProComponents)
 ```
 

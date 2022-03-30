@@ -35,7 +35,8 @@
       ref="dataForm"
       v-model="form"
       :columns="columns"
-      :form-options="{labelPosition:'left'}"
+      :form-options="{ labelPosition:'left' }"
+      :table-options="{ autoHeight: false , height:'100px'}"
     >
       <template #columnAfter>
         <el-form-item>
@@ -270,14 +271,33 @@
 
 很多情况下结合弹窗使用
 
+`defaultValue`可以设置默认值,`isPreview`为预览模式，预览模板可以使用`el-tag`渲染显示,使用`isTag`和`tagOptions`
+
 :::demo
 
 ```html
 <template>
   <div>
+    <el-row style="margin-bottom:10px;">
+      <el-radio-group v-model="mode">
+        <el-radio label="form">表单</el-radio>
+        <el-radio label="preview">预览</el-radio>
+      </el-radio-group>
+    </el-row>
     <el-button type="text" @click="visible = true">点击打开 Form</el-button>
-    <el-pro-dialog title="新增" v-model="visible" :dialog-options="{}" @ok="visible = false">
-      <el-pro-form ref="dataForm" v-model="form" :columns="columns" :form-options="{}" />
+    <el-pro-dialog
+      title="新增"
+      v-model="visible"
+      :dialog-options="{ width:'50%'}"
+      @ok="visible = false"
+    >
+      <el-pro-form
+        ref="dataForm"
+        :is-preview="mode=='preview'"
+        v-model="form"
+        :columns="columns"
+        :form-options="{}"
+      />
     </el-pro-dialog>
   </div>
 </template>
@@ -304,13 +324,14 @@
   export default {
     data() {
       return {
+        mode: 'form',
         form: {},
         visible: false,
         columns: {
           base: {
             type: types.title,
             label: '基本信息',
-            tooltip:'个人信息请填写准确',
+            tooltip: '个人信息请填写准确',
             columnOption: {
               style: {
                 margin: '10px 0 10px 10px'
@@ -319,16 +340,22 @@
           },
           name: {
             label: '姓名',
-            span: 12
+            span: 12,
+            defaultValue: '张三',
+            isTag: true
           },
           age: {
             label: '年龄',
             type: types.number,
-            span: 12
+            span: 12,
+            defaultValue: 18,
+            isTag: true,
+            tagOptions: 'success'
           },
           sex: {
             label: '性别',
             type: types.radio,
+            defaultValue: '1',
             span: 12,
             options: [
               {
@@ -339,16 +366,28 @@
                 name: '女',
                 value: '2'
               }
-            ]
+            ],
+            isTag: true,
+            tagOptions: {
+              type: 'warning'
+            }
           },
           date: {
             label: '出生日期',
+            defaultValue: '2000-11-11',
             type: types.date,
             span: 12,
-            columnOption: {}
+            columnOption: {},
+            isTag: true,
+            tagOptions: (row) => {
+              return {
+                type: 'danger'
+              }
+            }
           },
           isMarried: {
             label: '是否婚配',
+            defaultValue: '2',
             span: 12,
             type: types.radio,
             options: [
@@ -365,6 +404,7 @@
           hobby: {
             label: '爱好',
             type: types.checkBox,
+            defaultValue: [1, 2],
             span: 12,
             options: [
               {
@@ -384,6 +424,7 @@
           education: {
             label: '学历',
             span: 12,
+            defaultValue: 2,
             type: types.select,
             options: [
               {
@@ -530,9 +571,7 @@
 
 在防止用户犯错的前提下，尽可能让用户更早地发现并纠正错误。
 
-:::tip
-如果只需要验证是否必填,只需要`required`为`true`就可以
-:::
+如果只需要验证是否必填,只需要`required`为`true`就可以。
 
 :::demo ElProForm 组件提供了表单验证的功能，只需要通过 `rules` 属性传入约定的验证规则
 
@@ -807,7 +846,7 @@
 引入表单类型
 
 ```js
-import { types } from "vue-element-pro-components/packages";
+import { types } from 'vue-element-pro-components/packages'
 ```
 
 ```js
@@ -833,20 +872,22 @@ export const types = {
 
 ## Attributes
 
-|        参数        |                 说明                  |       类型       | 可选值 |     默认值     |
-| :----------------: | :-----------------------------------: | :--------------: | :----: | :------------: |
-|      v-model       |               表单数据                |      object      |   —    |       {}       |
-|      columns       |              表单配置项               | [object, array]  |   —    |       {}       |
-|    formOptions     |          官方支持的参数集合           |      object      |   —    |       {}       |
-|      loading       |             表单 loading              |     boolean      |   —    |     false      |
-|       isRow        |           是否启用栅格布局            |     boolean      |   —    |      true      |
-|      showNum       | 搜索组件内部使用,显示可见的表单项个数 | [number, string] |   —    |       2        |
-|     isCollapse     |   搜索组件内部使用,是否开启展开收起   |     boolean      |   —    |     false      |
-|      showAll       |     搜索组件内部使用,是否展开收起     |     boolean      |   —    |      true      |
-| tableDialogOptions |     表单类型-table 的弹窗 options     |      object      |   —    |       {}       |
-|  tableFormOptions  |     表单类型-table 的表单 options     |      object      |   —    |       {}       |
-|     rowOptions     |              el-row配置               |      object      |   —    | { gutter: 10 } |
-|      isSearch      |              是否是搜索               |     boolean      |   —    |     false      |
+| 参数 | 说明 | 类型 | 可选值 | 默认值 |
+| :-: | :-: | :-: | :-: | :-: |
+| v-model | 表单数据 | object | — | {} |
+| columns | 表单配置项 | [object, array] | — | {} |
+| formOptions | 官方支持的参数集合 | object | — | {} |
+| loading | 表单 loading | boolean | — | false |
+| isRow | 是否启用栅格布局 | boolean | — | true |
+| showNum | 搜索组件内部使用,显示可见的表单项个数 | [number, string] | — | 2 |
+| isCollapse | 搜索组件内部使用,是否开启展开收起 | boolean | — | false |
+| showAll | 搜索组件内部使用,是否展开收起 | boolean | — | true |
+| tableDialogOptions | 表单类型-table 的弹窗 options | object | — | {} |
+| tableFormOptions | 表单类型-table 的表单 options | object | — | {} |
+| tableOptions | 表单类型-table 的表格 options | object | — | {} |
+| rowOptions | el-row 配置 | object | — | { gutter: 10 } |
+| isSearch | 是否是搜索 | boolean | — | false |
+| isPreview | 是否预览 | boolean | — | false |
 
 ## Slot
 
@@ -856,7 +897,7 @@ export const types = {
 |  columnAfter   |    表单内后面的内容 参数(form)     |
 |   formBefore   |     表单前面的内容 参数(form)      |
 |   formAfter    |     表单后面的内容 参数(form)      |
-|  \${key}All   |  替换 form-item 的插槽 参数(form)  |
+|   \${key}All   |  替换 form-item 的插槽 参数(form)  |
 |    \${key}     |     替换组件的插槽 参数(form)      |
 |   rowBefore    | el-form-item 之前的内容 参数(form) |
 |    rowAfter    | el-form-item 之后的内容 参数(form) |
