@@ -1,22 +1,5 @@
 <template>
   <div class="el-pro-table" :class="[isFullScreen ? 'is--maximize' : '']">
-    <!-- <toolbar
-      v-if="showToolbar"
-      :row-option="rowOption"
-      :show-search="showSearch"
-      :is-search-icon="isSearchIcon"
-      :columns="tableColumn"
-      :metadata="metadata"
-      @toggleSearch="toggleSearch"
-      @changeSize="changeSize"
-      @refresh="$emit('refresh')"
-      @change="handleChange"
-    >
-      <template #left>
-        <slot name="left"></slot>
-      </template>
-    </toolbar> -->
-
     <div v-if="showToolbar" class="el-pro-toolbar">
       <el-row type="flex" justify="space-between" :gutter="20" v-bind="rowOption">
         <div class="el-pro-toolbar__left">
@@ -261,14 +244,12 @@ import TableColumn from "./TableColumn.vue";
 import { getTagOptions, formatShow, clipboardSuccess } from "./utils";
 import { cloneDeep } from "lodash-es";
 import ElProPagination from "vue-element-pro-components/packages/pagination";
-// import Toolbar from "./toolbar/index";
 
 export default {
   name: "ElProTable",
   components: {
     TableColumn,
     ElProPagination,
-    // Toolbar,
   },
   directives: {
     clipboard,

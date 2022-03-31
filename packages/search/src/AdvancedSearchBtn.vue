@@ -20,73 +20,73 @@
 </template>
 
 <script>
-import { Fragment } from 'vue-fragment'
-import ElProDrawer from 'vue-element-pro-components/packages/drawer'
+import { Fragment } from "vue-fragment";
+import ElProDrawer from "vue-element-pro-components/packages/drawer";
 export default {
-  name: 'AdvancedSearchBtn',
+  name: "AdvancedSearchBtn",
   components: { Fragment, ElProDrawer },
   model: {
-    prop: 'visible',
-    event: 'update:visible'
+    prop: "visible",
+    event: "update:visible",
   },
   props: {
     size: {
-      type: Number,
-      default: 400
+      type: [Number, String],
+      default: 400,
     },
     visible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     drawerOptions: {
       type: Object,
       default: () => {
-        return {}
-      }
+        return {};
+      },
     },
     title: {
       type: String,
-      default: ''
+      default: "",
     },
     btnStyle: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     btnOptions: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     btnText: {
       type: String,
-      default: '高级查询'
-    }
+      default: "高级查询",
+    },
   },
   data() {
-    return {}
+    return {};
   },
   computed: {
     showVisible: {
       get() {
-        return this.visible
+        return this.visible;
       },
       set(val) {
-        this.$emit('update:visible', val)
-      }
+        this.$emit("update:visible", val);
+      },
     },
     processBtnStyle() {
       return {
-        backgroundColor: '#f28b3c',
-        color: 'white',
-        borderColor: '#f28b3c',
-        ...(this.btnStyle || {})
-      }
-    }
+        backgroundColor: "#f28b3c",
+        color: "white",
+        borderColor: "#f28b3c",
+        ...(this.btnStyle || {}),
+      };
+    },
   },
   methods: {
     btnClick() {
-      this.$emit('click')
-      this.showVisible = true
-    }
-  }
-}
+      this.$emit("click");
+      this.showVisible = true;
+    },
+  },
+};
 </script>
