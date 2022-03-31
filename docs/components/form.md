@@ -978,6 +978,7 @@ created() {
 | options | 下拉框/单选框/多选框的 options 默认[{name,value}]格式 | array/function(form) |
 | showInSearch | 是否显示在搜索框中 | boolean |
 | showInTable | 是否显示在表格中 | boolean |
+| showInAdvance | 是否显示在高级查询中 | boolean |
 | formItemOption | form-item 的 options,常用比如 label-width | object |
 | formColumnShow | 是否在表单里显示,接收一个函数或者布尔值，返回 boolean false 隐藏 | boolean/function(form) |
 | span | 栅格布局 比例 默认 18 一共 24 | number |

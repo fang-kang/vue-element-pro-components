@@ -75,6 +75,9 @@ export interface ElProColumns {
   /** 是否显示在表格中 */
   showInTable: boolean
 
+  /** 是否显示在高级查询中 */
+  showInAdvance: boolean
+
   /** form-item 的 options,常用比如 label-width	 */
   formItemOption: ElFormItem
 
@@ -144,7 +147,7 @@ export declare class ElProForm extends VueElementProComponents {
 
   /** 是否是搜索 */
   isSearch: boolean
-  
+
   /** 是否预览 */
   isPreview: boolean
 

@@ -2094,3 +2094,4 @@
 | doLayout | 对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法 | — |
 | sort | 手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。 | prop: string, order: string |
 | onLoad | pageSize 或 pageNo 变化时触发 | — |
+| refresh | 表格刷新事件 | — |
