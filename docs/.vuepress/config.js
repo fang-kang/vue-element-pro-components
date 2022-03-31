@@ -1,5 +1,8 @@
 const pkg = require('../../package.json')
 const aliasConfig = require('../../config/alias')
+const nav = require('./setting/nav')
+const sidebar = require('./setting/sidebar')
+const head = require('./setting/head')
 
 const setAlias = (config) => {
   const { alias } = aliasConfig
@@ -11,76 +14,21 @@ const setAlias = (config) => {
 module.exports = {
   title: pkg.name,
   description: '基于Vue2.0 & ElementUI 的 后台业务通用表格表单组件',
-  head: [
-    [
-      'meta',
-      {
-        'http-quiv': 'pragma',
-        cotent: 'no-cache'
-      }
-    ],
-    [
-      'meta',
-      {
-        'http-quiv': 'pragma',
-        cotent: 'no-cache,must-revalidate'
-      }
-    ],
-    [
-      'meta',
-      {
-        'http-quiv': 'expires',
-        cotent: '0'
-      }
-    ],
-    [
-      'meta',
-      {
-        name: 'viewport',
-        content: 'width=device-width,initial-scale=1,user-scalable=no'
-      }
-    ],
-    [
-      'link',
-      {
-        rel: 'stylesheet',
-        href: 'https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css'
-      }
-    ],
-    [
-      'link',
-      {
-        rel: 'stylesheet',
-        href: 'styles/index.css'
-      }
-    ]
-  ],
+  locales: {
+    '/': {
+      lang: 'zh-CN'
+    }
+  },
+  head,
   base: '/vue-element-pro-components/',
   smoothScroll: true,
+  theme: 'reco',
   themeConfig: {
     repo: 'fang-kang/vue-element-pro-components',
     logo: '/logo.png',
-    nav: [
-      { text: '主页', link: '/' },
-      { text: '指南', link: '/guide/introduction' },
-      { text: '组件', link: '/components/' }
-    ],
-    sidebar: {
-      '/guide/': [
-        {
-          title: '简介',
-          collapsable: false,
-          children: genGuideSidebar()
-        }
-      ],
-      '/components/': [
-        {
-          title: '组件',
-          collapsable: false,
-          children: genComponentSidebar()
-        }
-      ]
-    },
+    subSidebar: 'auto',
+    nav,
+    sidebar,
     sidebarDepth: 3,
     lastUpdated: '最后更新',
     // 假如文档不是放在仓库的根目录下：
@@ -98,31 +46,18 @@ module.exports = {
     '@vuepress/search',
     'demo-container',
     // 放大
-    ['@vuepress/medium-zoom', { selector: 'img' }]
+    ['@vuepress/medium-zoom', { selector: 'img' }],
+    [
+      'vuepress-plugin-nuggets-style-copy',
+      {
+        copyText: '复制代码',
+        tip: {
+          content: '复制成功'
+        }
+      }
+    ]
   ],
   chainWebpack: (config) => {
     setAlias(config)
   }
-}
-
-function genGuideSidebar(type = '') {
-  const mapArr = ['/guide/introduction.md', '/guide/installation.md', '/guide/quickstart.md']
-  return mapArr.map((i) => {
-    return type + i
-  })
-}
-
-function genComponentSidebar(type = '') {
-  const mapArr = [
-    '/components/dialog.md',
-    '/components/form.md',
-    '/components/search.md',
-    '/components/table.md',
-    '/components/advanced-search.md',
-    '/components/pagination.md',
-    '/components/drawer.md'
-  ]
-  return mapArr.map((i) => {
-    return type + i
-  })
 }

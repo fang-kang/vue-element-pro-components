@@ -1,4 +1,6 @@
-# 通用抽屉-ElProDrawer
+---
+title: 通用抽屉-ElProDrawer
+---
 
 内部嵌套了`el-scroolbar`滚动条
 

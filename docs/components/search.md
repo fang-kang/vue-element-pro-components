@@ -1,4 +1,7 @@
-# 通用搜索-ElProSearch
+---
+title: 通用搜索-ElProSearch
+---
+
 
 ## 示例
 

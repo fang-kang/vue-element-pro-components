@@ -1,4 +1,6 @@
-# 通用对话框-ElProDialog
+---
+title: 通用对话框-ElProDialog
+---
 
 对 element-ui 的 dialog 组件进行封装，扩展拖拽，全屏，自适应高度等功能
 

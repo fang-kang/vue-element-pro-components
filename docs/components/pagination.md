@@ -1,4 +1,6 @@
-# 通用分页-ElProPagination
+---
+title: 通用分页-ElProPagination
+---
 
 当数据量过多时，使用分页分解数据。集成了常用的一些属性和事件
 

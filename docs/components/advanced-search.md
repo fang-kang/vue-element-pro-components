@@ -1,4 +1,6 @@
-# 通用高级查询-ElProAdvancedSearch
+---
+title: 通用高级查询-ElProAdvancedSearch
+---
 
 ## 基本用法
 

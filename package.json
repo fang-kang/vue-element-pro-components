@@ -114,6 +114,8 @@
     "vue-template-compiler": "^2.6.10",
     "vuepress": "^1.0.4",
     "vuepress-plugin-demo-container": "^0.2.0",
+    "vuepress-plugin-nuggets-style-copy": "^1.0.3",
+    "vuepress-theme-reco": "^1.6.11",
     "vuex": "^3.1.1",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",

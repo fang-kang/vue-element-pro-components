@@ -1,4 +1,6 @@
-# 通用表单-ElProForm
+---
+title: 通用表单-ElProForm
+---
 
 对 element-ui 的 form 组件进行封装，扩展多个常用类型,例如:
 
