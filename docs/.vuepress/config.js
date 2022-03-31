@@ -38,11 +38,29 @@ module.exports = {
     // 默认是 false, 设置为 true 来启用
     editLinks: true,
     // 默认为 "Edit this page"
-    editLinkText: '帮助我们改善此页面！'
+    editLinkText: '帮助我们改善此页面！',
+    valineConfig: {
+      appId: 'rjYK8gArXwKlWNAj87aLDjel-gzGzoHsz',
+      appKey: 'nwLIBSLqc2For9OE49wSuWaf',
+      placeholder: '填写邮箱可以收到回复哦!',
+      notify: true, // 邮件提醒
+      verify: true, // 验证码
+      recordIP: true
+    }
   },
   plugins: [
     // 回到顶部
-    '@vuepress/back-to-top',
+    '@vuepress-reco/back-to-top',
+    [
+      'dynamic-title',
+      {
+        showIcon: '/logo.png',
+        showText: 'Welcome Back!',
+        hideIcon: '/logo.png',
+        hideText: 'Wait ...',
+        recoverTime: 2000
+      }
+    ],
     '@vuepress/search',
     'demo-container',
     // 放大
