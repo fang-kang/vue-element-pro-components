@@ -2,8 +2,6 @@
   <el-card>
     <el-pro-search
       v-model="queryForm"
-      :is-collapse="true"
-      :show-num="2"
       :columns="columns"
       @search="dataReload"
     >

@@ -222,7 +222,7 @@ export default {
       if (Array.isArray(searchColumn)) {
         return searchColumn.length > showNum
       } else {
-        return Object.keys(searchColumn) > showNum
+        return Object.keys(searchColumn).length > showNum
       }
     },
     formProcessOptions() {
