@@ -29,10 +29,7 @@
               placement="right"
               :content="item.tableHeadTooltip"
             >
-              <i
-                class="el-icon-question"
-                style="vertical-align: baseline; font-size: 16px"
-              />
+              <i class="el-icon-question" style="vertical-align: baseline; font-size: 16px" />
             </el-tooltip>
           </template>
           <template slot-scope="scope">
@@ -57,21 +54,21 @@
 </template>
 
 <script>
-import { getTagOptions, formatShow, clipboardSuccess } from "./utils";
+import { getTagOptions, formatShow, clipboardSuccess } from './utils'
 export default {
-  name: "TableColumn",
+  name: 'TableColumn',
   props: {
     child: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   methods: {
     clipboardSuccess,
     getTagOptions,
-    formatShow,
-  },
-};
+    formatShow
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

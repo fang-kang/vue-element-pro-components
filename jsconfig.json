@@ -7,7 +7,7 @@
       "packages/*": ["packages/*"],
       "examples/*": ["examples/*"],
       "lib/*": ["lib/*"],
-      "vue-element-pro-components/*":["./"]
+      "vue-element-pro-components/*": ["./"]
     }
   },
   "exclude": ["node_modules", "dist"]

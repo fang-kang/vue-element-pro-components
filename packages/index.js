@@ -11,7 +11,7 @@ import { version } from '../package.json'
 
 const components = [Dialog, Form, Pagination, Search, Table, AdvancedSearch, Drawer]
 
-const install = function(Vue) {
+const install = function (Vue) {
   if (install.installed) return
   install.installed = true
   components.forEach((component) => {

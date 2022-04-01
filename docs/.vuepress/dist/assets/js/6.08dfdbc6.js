@@ -1,19 +1,19 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [6],
   {
-    564: function(t, s, a) {
+    564: function (t, s, a) {
       a(5)({ target: 'Number', stat: !0 }, { isInteger: a(565) })
     },
-    565: function(t, s, a) {
+    565: function (t, s, a) {
       var n = a(11),
         r = Math.floor
       t.exports =
         Number.isInteger ||
-        function(t) {
+        function (t) {
           return !n(t) && isFinite(t) && r(t) === t
         }
     },
-    575: function(t, s, a) {
+    575: function (t, s, a) {
       'use strict'
       a.r(s)
       var n,
@@ -58,7 +58,7 @@
                 (y = 'table'),
                 (m = 'editor'),
                 (g = {
-                  data: function() {
+                  data: function () {
                     return {
                       form: {},
                       visible: !1,
@@ -160,14 +160,14 @@
                     }
                   },
                   methods: {
-                    onSubmit: function() {
+                    onSubmit: function () {
                       console.log('submit!'), alert('表单值:' + JSON.stringify(this.form))
                     }
                   }
                 }),
                 Object(b.a)(
                   {
-                    render: function() {
+                    render: function () {
                       var t = this,
                         s = t.$createElement,
                         a = t._self._c || s
@@ -187,7 +187,7 @@
                                   scopedSlots: t._u([
                                     {
                                       key: 'columnAfter',
-                                      fn: function() {
+                                      fn: function () {
                                         return [
                                           a(
                                             'el-form-item',
@@ -212,7 +212,7 @@
                                   ]),
                                   model: {
                                     value: t.form,
-                                    callback: function(s) {
+                                    callback: function (s) {
                                       t.form = s
                                     },
                                     expression: 'form'
@@ -230,9 +230,9 @@
                   },
                   g
                 )),
-              'render-demo-1': (function() {
+              'render-demo-1': (function () {
                 var t = {
-                  data: function() {
+                  data: function () {
                     return {
                       formInline: { user: '', region: '' },
                       columns: {
@@ -253,14 +253,14 @@
                     }
                   },
                   methods: {
-                    onSubmit: function() {
+                    onSubmit: function () {
                       console.log('submit!')
                     }
                   }
                 }
                 return Object(b.a)(
                   {
-                    render: function() {
+                    render: function () {
                       var t = this,
                         s = t.$createElement,
                         a = t._self._c || s
@@ -276,7 +276,7 @@
                             scopedSlots: t._u([
                               {
                                 key: 'columnAfter',
-                                fn: function() {
+                                fn: function () {
                                   return [
                                     a(
                                       'el-form-item',
@@ -297,7 +297,7 @@
                             ]),
                             model: {
                               value: t.formInline,
-                              callback: function(s) {
+                              callback: function (s) {
                                 t.formInline = s
                               },
                               expression: 'formInline'
@@ -314,7 +314,7 @@
               })(),
               'render-demo-2': Object(b.a)(
                 {
-                  render: function() {
+                  render: function () {
                     var t = this,
                       s = t.$createElement,
                       a = t._self._c || s
@@ -327,7 +327,7 @@
                             attrs: { size: 'small' },
                             model: {
                               value: t.labelPosition,
-                              callback: function(s) {
+                              callback: function (s) {
                                 t.labelPosition = s
                               },
                               expression: 'labelPosition'
@@ -352,7 +352,7 @@
                           },
                           model: {
                             value: t.formLabelAlign,
-                            callback: function(s) {
+                            callback: function (s) {
                               t.formLabelAlign = s
                             },
                             expression: 'formLabelAlign'
@@ -365,7 +365,7 @@
                   staticRenderFns: []
                 },
                 {
-                  data: function() {
+                  data: function () {
                     return {
                       labelPosition: 'right',
                       columns: {
@@ -378,14 +378,14 @@
                   }
                 }
               ),
-              'render-demo-3': (function() {
+              'render-demo-3': (function () {
                 var t = 'checkBox',
                   s = 'radio',
                   a = 'date',
                   n = 'switch',
                   r = 'time',
                   e = {
-                    data: function() {
+                    data: function () {
                       return {
                         form: {},
                         visible: !1,
@@ -451,13 +451,13 @@
                       }
                     },
                     methods: {
-                      onSubmit: function() {
+                      onSubmit: function () {
                         var t = this
                         return Object(d.a)(
                           regeneratorRuntime.mark(function s() {
                             var a
                             return regeneratorRuntime.wrap(
-                              function(s) {
+                              function (s) {
                                 for (;;)
                                   switch ((s.prev = s.next)) {
                                     case 0:
@@ -484,14 +484,14 @@
                           })
                         )()
                       },
-                      resetForm: function() {
+                      resetForm: function () {
                         this.$refs.ruleForm.resetFields()
                       }
                     }
                   }
                 return Object(b.a)(
                   {
-                    render: function() {
+                    render: function () {
                       var t = this,
                         s = t.$createElement,
                         a = t._self._c || s
@@ -511,7 +511,7 @@
                                   scopedSlots: t._u([
                                     {
                                       key: 'columnAfter',
-                                      fn: function() {
+                                      fn: function () {
                                         return [
                                           a(
                                             'el-form-item',
@@ -538,7 +538,7 @@
                                   ]),
                                   model: {
                                     value: t.form,
-                                    callback: function(s) {
+                                    callback: function (s) {
                                       t.form = s
                                     },
                                     expression: 'form'
@@ -557,9 +557,9 @@
                   e
                 )
               })(),
-              'render-demo-4': (function() {
+              'render-demo-4': (function () {
                 var t = {
-                  data: function() {
+                  data: function () {
                     var t = this
                     return {
                       ruleFormData: { pass: '', checkPass: '', age: '' },
@@ -568,7 +568,7 @@
                           label: '密码',
                           rules: [
                             {
-                              validator: function(s, a, n) {
+                              validator: function (s, a, n) {
                                 '' === a
                                   ? n(new Error('请输入密码'))
                                   : ('' !== t.ruleFormData.checkPass &&
@@ -583,7 +583,7 @@
                           label: '确认密码',
                           rules: [
                             {
-                              validator: function(s, a, n) {
+                              validator: function (s, a, n) {
                                 '' === a
                                   ? n(new Error('请再次输入密码'))
                                   : a !== t.ruleFormData.pass
@@ -598,9 +598,9 @@
                           label: '年龄',
                           rules: [
                             {
-                              validator: function(t, s, a) {
+                              validator: function (t, s, a) {
                                 if (!s) return a(new Error('年龄不能为空'))
-                                setTimeout(function() {
+                                setTimeout(function () {
                                   Number.isInteger(s)
                                     ? s < 18
                                       ? a(new Error('必须年满18岁'))
@@ -616,12 +616,12 @@
                     }
                   },
                   methods: {
-                    submitForm: function() {
+                    submitForm: function () {
                       var t = this
                       return Object(d.a)(
                         regeneratorRuntime.mark(function s() {
                           return regeneratorRuntime.wrap(
-                            function(s) {
+                            function (s) {
                               for (;;)
                                 switch ((s.prev = s.next)) {
                                   case 0:
@@ -643,14 +643,14 @@
                         })
                       )()
                     },
-                    resetForm: function() {
+                    resetForm: function () {
                       this.$refs.ruleForm.resetFields()
                     }
                   }
                 }
                 return Object(b.a)(
                   {
-                    render: function() {
+                    render: function () {
                       var t = this,
                         s = t.$createElement,
                         a = t._self._c || s
@@ -667,7 +667,7 @@
                               },
                               model: {
                                 value: t.ruleFormData,
-                                callback: function(s) {
+                                callback: function (s) {
                                   t.ruleFormData = s
                                 },
                                 expression: 'ruleFormData'
@@ -710,7 +710,7 @@
         h = a(6),
         x = Object(h.a)(
           f,
-          function() {
+          function () {
             var t = this,
               s = t.$createElement,
               a = t._self._c || s

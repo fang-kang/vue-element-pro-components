@@ -2,7 +2,6 @@
 title: 通用表格-ElProTable
 ---
 
-
 用于展示多条结构类似的数据，可对数据进行排序、筛选、对比或其他自定义操作。
 
 ## 示例
@@ -808,8 +807,7 @@ title: 通用表格-ElProTable
     :table-columns="columns"
     :auto-height="false"
     @current-change="handleCurrentChange"
-  >
-  </el-pro-table>
+  ></el-pro-table>
   <div style="margin-top: 20px">
     <el-button @click="setCurrent(tableData[1])">选中第二行</el-button>
     <el-button @click="setCurrent()">取消选择</el-button>
@@ -900,8 +898,7 @@ title: 通用表格-ElProTable
     :table-columns="columns"
     :auto-height="false"
     @selection-change="handleSelectionChange"
-  >
-  </el-pro-table>
+  ></el-pro-table>
 </template>
 
 <script>
@@ -985,8 +982,7 @@ title: 通用表格-ElProTable
       defaultSort : { prop: 'date', order: 'descending'}
     }"
     :auto-height="false"
-  >
-  </el-pro-table>
+  ></el-pro-table>
 </template>
 
 <script>
@@ -1419,8 +1415,7 @@ title: 通用表格-ElProTable
         defaultExpandAll:true,
         treeProps:{children: 'children', hasChildren: 'hasChildren'}
     }"
-    >
-    </el-pro-table>
+    ></el-pro-table>
 
     <el-pro-table
       :data="tableData1"
@@ -1435,8 +1430,7 @@ title: 通用表格-ElProTable
         defaultExpandAll:true,
         treeProps:{children: 'children', hasChildren: 'hasChildren'}
     }"
-    >
-    </el-pro-table>
+    ></el-pro-table>
   </div>
 </template>
 <script>
@@ -1573,9 +1567,9 @@ title: 通用表格-ElProTable
     </template>
     <template #setting="{scope}">
       <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-      <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)"
-        >Delete</el-button
-      >
+      <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">
+        Delete
+      </el-button>
     </template>
   </el-pro-table>
 </template>
@@ -1659,8 +1653,7 @@ title: 通用表格-ElProTable
       height:'300px',
       showSummary:true
     }"
-  >
-  </el-pro-table>
+  ></el-pro-table>
 
   <el-pro-table
     :data="tableData"
@@ -1673,8 +1666,7 @@ title: 通用表格-ElProTable
       summaryMethod:this.getSummaries
     }"
     style="margin-top: 20px"
-  >
-  </el-pro-table>
+  ></el-pro-table>
 </template>
 
 <script>
@@ -1809,8 +1801,7 @@ title: 通用表格-ElProTable
         height:'300px',
         spanMethod:this.arraySpanMethod
     }"
-    >
-    </el-pro-table>
+    ></el-pro-table>
 
     <el-pro-table
       :data="tableData"
@@ -1822,8 +1813,7 @@ title: 通用表格-ElProTable
         spanMethod:this.objectSpanMethod
     }"
       style="margin-top: 20px"
-    >
-    </el-pro-table>
+    ></el-pro-table>
   </div>
 </template>
 

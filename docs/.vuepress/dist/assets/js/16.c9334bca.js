@@ -1,13 +1,13 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [16],
   {
-    584: function(t, s, a) {
+    584: function (t, s, a) {
       'use strict'
       a.r(s)
       var e = a(6),
         n = Object(e.a)(
           {},
-          function() {
+          function () {
             var t = this,
               s = t.$createElement,
               a = t._self._c || s

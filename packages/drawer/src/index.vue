@@ -10,22 +10,11 @@
     @close="showVisible = false"
     v-on="$listeners"
   >
-    <div
-      v-if="!$slots.title"
-      slot="title"
-      class="drawerHeader"
-    >
+    <div v-if="!$slots.title" slot="title" class="drawerHeader">
       <span>{{ title }}</span>
-      <i
-        class="el-icon-close drawerClose"
-        @click="showVisible = false"
-      />
+      <i class="el-icon-close drawerClose" @click="showVisible = false" />
     </div>
-    <slot
-      v-if="$slots.title"
-      name="title"
-      class="drawerHeader"
-    />
+    <slot v-if="$slots.title" name="title" class="drawerHeader" />
     <el-scrollbar style="height: 100%">
       <slot />
     </el-scrollbar>

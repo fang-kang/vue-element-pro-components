@@ -1,7 +1,7 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [7],
   {
-    570: function(t, e, s) {
+    570: function (t, e, s) {
       'use strict'
       s.r(e)
       var n = [
@@ -12,7 +12,7 @@
         ],
         o = {
           methods: {
-            getMsg: function() {
+            getMsg: function () {
               return n[Math.floor(Math.random() * n.length)]
             }
           }
@@ -20,7 +20,7 @@
         i = s(6),
         h = Object(i.a)(
           o,
-          function() {
+          function () {
             var t = this.$createElement,
               e = this._self._c || t
             return e('div', { staticClass: 'theme-container' }, [

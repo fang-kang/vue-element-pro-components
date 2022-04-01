@@ -10,46 +10,43 @@ import { ElProColumns } from './form'
 import { ElProPaginationOptions, ElProPaginationCustomProps } from './pagination'
 
 interface ElProTableSlots {
-
   /** 展开行内容 */
-  expandColumn: VNode[];
+  expandColumn: VNode[]
 
   /** 操作栏内容 */
-  operationColumn: VNode[];
+  operationColumn: VNode[]
 
   /** 修改删除按钮之前的内容 */
-  operationBefore: VNode[];
+  operationBefore: VNode[]
 
   /** 修改删除按钮的内容 */
-  autoOperation: VNode[];
+  autoOperation: VNode[]
 
   /** 修改删除按钮之间的内容 */
-  operationMiddle: VNode[];
+  operationMiddle: VNode[]
 
   /** 修改删除按钮之后的内容 */
-  operationAfter: VNode[];
+  operationAfter: VNode[]
 
   /** 工具栏左侧 */
-  toolbarLeft: VNode[];
+  toolbarLeft: VNode[]
 
   /** 工具栏右侧前面 */
-  toolbarRightBefore: VNode[];
+  toolbarRightBefore: VNode[]
 
   /** 工具栏右侧中间 */
-  toolbarRightMiddle: VNode[];
+  toolbarRightMiddle: VNode[]
 
   /** 工具栏右侧后面 */
-  toolbarRightAfter: VNode[];
+  toolbarRightAfter: VNode[]
 
   [key: string]: VNode[]
 }
 
 export type ElProTableOptions = Omit<ElTable, 'data'> & { hasOperation: boolean }
 
-
 /** ElProTable Components */
 export declare class ElProTable extends VueElementProComponents {
-
   /** 表格配置项,只显示 showInTable:true 的表格(详情见 CustomForm 说明) 多级表头使用数组类型,children 是子项 */
   columns: ElProColumns | ElProColumns[]
 

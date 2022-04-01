@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="el-pro-pagination"
-    :style="customStyle"
-  >
+  <div class="el-pro-pagination" :style="customStyle">
     <el-pagination
       :current-page="pagination[page]"
       :page-sizes="pageSizes"

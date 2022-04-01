@@ -5,30 +5,27 @@ import { ElButton } from 'element-ui/types/button'
 import { VueElementProComponents } from './component'
 import { ElProColumns, ElProFormOptions } from './form'
 
-
 interface ElProSearchSlots {
-
   /** 搜索表单前面的内容 */
-  colBefore: VNode[];
+  colBefore: VNode[]
 
   /** 搜索表单后面的内容 */
-  colBefore: VNode[];
+  colBefore: VNode[]
 
   /** 查询按钮前面的内容 */
-  before: VNode[];
+  before: VNode[]
 
   /** 查询按钮和重置按钮中间的内容 */
-  middle: VNode[];
+  middle: VNode[]
 
   /** 查询按钮后面的内容 */
-  after: VNode[];
+  after: VNode[]
 
   [key: string]: VNode[]
 }
 
 /** ElProSearch Component */
 export declare class ElProSearch extends VueElementProComponents {
-
   /** 绑定的查询参数 */
   query: object
 

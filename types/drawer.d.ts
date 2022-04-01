@@ -1,7 +1,6 @@
-
 import { VNode } from 'vue'
 
-import { ElDrawer } from 'element-ui/types/drawer';
+import { ElDrawer } from 'element-ui/types/drawer'
 
 import { VueElementProComponents } from './component'
 
@@ -14,19 +13,21 @@ declare enum Direction {
 
 interface ElProDrawerSlots {
   /** Main Content Slots */
-  default: VNode[];
+  default: VNode[]
 
   /** Title Slots */
-  title: VNode[];
+  title: VNode[]
 
   [key: string]: VNode[]
 }
 
-export type ElProDrawerOptions = Omit<ElDrawer, 'title' | 'appendToBody' | 'size' | 'title' | 'visible' | '$slots'>
+export type ElProDrawerOptions = Omit<
+  ElDrawer,
+  'title' | 'appendToBody' | 'size' | 'title' | 'visible' | '$slots'
+>
 
 /** ElProDrawer Component */
 export declare class ElProDrawer extends VueElementProComponents {
-
   /** 抽屉的宽度 */
   size: number | string
 

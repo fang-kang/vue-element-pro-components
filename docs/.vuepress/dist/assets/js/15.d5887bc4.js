@@ -1,7 +1,7 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [15],
   {
-    577: function(t, a, s) {
+    577: function (t, a, s) {
       'use strict'
       s.r(a)
       var e,
@@ -30,7 +30,7 @@
                 editor: 'editor'
               }),
               (n = {
-                data: function() {
+                data: function () {
                   return {
                     dict: {
                       selectArr: [
@@ -78,23 +78,23 @@
                     multipleSelection: []
                   }
                 },
-                created: function() {
+                created: function () {
                   this.columns = this.getMetaData()
                 },
                 methods: {
-                  click: function() {
+                  click: function () {
                     console.log(111)
                   },
-                  handleEdit: function(t) {
+                  handleEdit: function (t) {
                     console.log(t)
                   },
-                  handleDelete: function(t) {
+                  handleDelete: function (t) {
                     console.log(t)
                   },
-                  handleSelectionChange: function(t) {
+                  handleSelectionChange: function (t) {
                     console.log(t), (this.multipleSelection = t)
                   },
-                  getMetaData: function() {
+                  getMetaData: function () {
                     var t = this
                     return [
                       { key: 'title', label: '基本信息', type: e.title },
@@ -118,7 +118,7 @@
                         options: this.dict.selectArr,
                         showInSearch: !0,
                         showInTable: !0,
-                        showFormat: function(a) {
+                        showFormat: function (a) {
                           return t.getArrayValue(t.dict.selectArr, a)
                         },
                         children: [
@@ -303,7 +303,7 @@
               }),
               Object(r.a)(
                 {
-                  render: function() {
+                  render: function () {
                     var t = this.$createElement,
                       a = this._self._c || t
                     return a(
@@ -357,7 +357,7 @@
         o = s(6),
         l = Object(o.a)(
           p,
-          function() {
+          function () {
             var t = this,
               a = t.$createElement,
               s = t._self._c || a

@@ -84,8 +84,8 @@ Vue.use(Form)
 
 new Vue({
   el: '#app',
-  render: h => h(App)
-});
+  render: (h) => h(App)
+})
 ```
 
 或者全部引入

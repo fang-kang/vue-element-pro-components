@@ -1,19 +1,11 @@
 <template>
   <el-card>
-    <el-pro-search
-      v-model="queryForm"
-      :columns="columns"
-      @search="dataReload"
-    >
+    <el-pro-search v-model="queryForm" :columns="columns" @search="dataReload">
       <template #after>
-        <el-button type="primary">
-          新增
-        </el-button>
+        <el-button type="primary">新增</el-button>
       </template>
     </el-pro-search>
-    <el-button @click="visible = true">
-      测试高级查询
-    </el-button>
+    <el-button @click="visible = true">测试高级查询</el-button>
     <el-pro-advanced-search
       v-model="queryForm"
       title="高级查询"

@@ -12,26 +12,24 @@ import { ElProDialogOptions } from './dialog'
 import { types } from './vue-element-pro-components'
 import { ElProTableOptions } from './table'
 
-
 interface ElProFormSlots {
-
   /** 表单内前面的内容 参数(form) */
-  columnBefore: VNode[];
+  columnBefore: VNode[]
 
   /** 表单内后面的内容 参数(form) */
-  columnAfter: VNode[];
+  columnAfter: VNode[]
 
   /** 表单前面的内容 参数(form) */
-  formBefore: VNode[];
+  formBefore: VNode[]
 
   /** 表单后面的内容 参数(form) */
-  formAfter: VNode[];
+  formAfter: VNode[]
 
   /** el-form-item 之前的内容 参数(form) */
-  rowBefore: VNode[];
+  rowBefore: VNode[]
 
   /** el-form-item 之后的内容 参数(form) */
-  rowAfter: VNode[];
+  rowAfter: VNode[]
 
   [key: string]: VNode[]
 }
@@ -111,7 +109,6 @@ export interface ElProColumns {
 
 /** ElForm Component */
 export declare class ElProForm extends VueElementProComponents {
-
   /** 官方支持的参数集合 */
   formOptions: ElProFormOptions
 

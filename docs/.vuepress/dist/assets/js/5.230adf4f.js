@@ -1,39 +1,39 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [5],
   {
-    542: function(e, t, a) {},
-    568: function(e, t, a) {
+    542: function (e, t, a) {},
+    568: function (e, t, a) {
       'use strict'
       a(542)
     },
-    579: function(e, t, a) {
+    579: function (e, t, a) {
       'use strict'
       a.r(t)
       a(56), a(18), a(7), a(58)
       var o = {
           name: 'CodeGroup',
-          data: function() {
+          data: function () {
             return { codeTabs: [], activeCodeTabIndex: -1 }
           },
           watch: {
-            activeCodeTabIndex: function(e) {
+            activeCodeTabIndex: function (e) {
               this.activateCodeTab(e)
             }
           },
-          mounted: function() {
+          mounted: function () {
             this.loadTabs()
           },
           methods: {
-            changeCodeTab: function(e) {
+            changeCodeTab: function (e) {
               this.activeCodeTabIndex = e
             },
-            loadTabs: function() {
+            loadTabs: function () {
               var e = this
               ;(this.codeTabs = (this.$slots.default || [])
-                .filter(function(e) {
+                .filter(function (e) {
                   return Boolean(e.componentOptions)
                 })
-                .map(function(t, a) {
+                .map(function (t, a) {
                   return (
                     '' === t.componentOptions.propsData.active && (e.activeCodeTabIndex = a),
                     { title: t.componentOptions.propsData.title, elm: t.elm }
@@ -44,8 +44,8 @@
                   (this.activeCodeTabIndex = 0),
                 this.activateCodeTab(0)
             },
-            activateCodeTab: function(e) {
-              this.codeTabs.forEach(function(e) {
+            activateCodeTab: function (e) {
+              this.codeTabs.forEach(function (e) {
                 e.elm && e.elm.classList.remove('theme-code-block__active')
               }),
                 this.codeTabs[e].elm &&
@@ -56,7 +56,7 @@
         n = (a(568), a(6)),
         c = Object(n.a)(
           o,
-          function() {
+          function () {
             var e = this,
               t = e.$createElement,
               a = e._self._c || t
@@ -69,7 +69,7 @@
                     a(
                       'ul',
                       { staticClass: 'theme-code-group__ul' },
-                      e._l(e.codeTabs, function(t, o) {
+                      e._l(e.codeTabs, function (t, o) {
                         return a('li', { key: t.title, staticClass: 'theme-code-group__li' }, [
                           a(
                             'button',
@@ -79,7 +79,7 @@
                                 'theme-code-group__nav-tab-active': o === e.activeCodeTabIndex
                               },
                               on: {
-                                click: function(t) {
+                                click: function (t) {
                                   return e.changeCodeTab(o)
                                 }
                               }

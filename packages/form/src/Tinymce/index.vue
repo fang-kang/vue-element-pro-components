@@ -4,10 +4,7 @@
     class="tinymce-container"
     :style="{ width: containerWidth }"
   >
-    <textarea
-      :id="tinymceId"
-      class="tinymce-textarea"
-    />
+    <textarea :id="tinymceId" class="tinymce-textarea" />
   </div>
 </template>
 
@@ -28,7 +25,7 @@ export default {
   props: {
     id: {
       type: String,
-      default: function() {
+      default: function () {
         return 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
       }
     },

@@ -1,10 +1,5 @@
 <template>
-  <el-pro-drawer
-    v-model="showVisible"
-    :title="title"
-    :size="size"
-    :drawer-options="drawerOptions"
-  >
+  <el-pro-drawer v-model="showVisible" :title="title" :size="size" :drawer-options="drawerOptions">
     <el-pro-form
       ref="dataForm"
       v-model="localQuery"
@@ -42,168 +37,165 @@
 </template>
 
 <script>
-import ElProDrawer from "vue-element-pro-components/packages/drawer";
-import ElProForm from "vue-element-pro-components/packages/form";
-import { isEqual, cloneDeep } from "lodash-es";
-import { filterObject } from "vue-element-pro-components/src/utils";
+import ElProDrawer from 'vue-element-pro-components/packages/drawer'
+import ElProForm from 'vue-element-pro-components/packages/form'
+import { isEqual, cloneDeep } from 'lodash-es'
+import { filterObject } from 'vue-element-pro-components/src/utils'
 export default {
-  name: "ElProAdvancedSearch",
+  name: 'ElProAdvancedSearch',
   components: { ElProDrawer, ElProForm },
   model: {
-    prop: "query",
-    event: "change",
+    prop: 'query',
+    event: 'change'
   },
   props: {
     showReset: {
       type: Boolean,
-      default: true,
+      default: true
     },
     searchBtnText: {
       type: String,
-      default: "查询",
+      default: '查询'
     },
     searchBtnProps: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     resetBtnText: {
       type: String,
-      default: "重置",
+      default: '重置'
     },
     resetBtnProps: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     isRow: {
       type: Boolean,
-      default: false,
+      default: false
     },
     formOptions: {
       type: Object,
-      default: () => {},
+      default: () => {}
     },
     query: {
       type: Object,
       required: true,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     columns: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     searchColumns: {
       type: [Object, Array, null],
       required: false,
-      default: null,
+      default: null
     },
     showFooter: {
       type: Boolean,
-      default: true,
+      default: true
     },
     size: {
       type: [Number, String],
-      default: 400,
+      default: 400
     },
     visible: {
       type: Boolean,
-      default: false,
+      default: false
     },
     drawerOptions: {
       type: Object,
       default: () => {
-        return {};
-      },
+        return {}
+      }
     },
     title: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   data() {
     return {
-      localQuery: {},
-    };
+      localQuery: {}
+    }
   },
   computed: {
     searchColumn() {
-      const { searchColumns, columns } = this;
+      const { searchColumns, columns } = this
       if (searchColumns) {
-        return searchColumns;
+        return searchColumns
       } else if (columns) {
         if (Array.isArray(columns)) {
-          return columns.filter((column) => column.showInSearch || column.showInAdvance);
+          return columns.filter((column) => column.showInSearch || column.showInAdvance)
         } else {
-          return filterObject(
-            columns,
-            (column) => column.showInSearch || column.showInAdvance
-          );
+          return filterObject(columns, (column) => column.showInSearch || column.showInAdvance)
         }
       }
-      return {};
+      return {}
     },
     formProcessOptions() {
-      const { ...rest } = this.formOptions || {};
+      const { ...rest } = this.formOptions || {}
       return {
         inline: false,
-        labelWidth: "80px",
-        ...(rest || {}),
-      };
+        labelWidth: '80px',
+        ...(rest || {})
+      }
     },
     showVisible: {
       get() {
-        return this.visible;
+        return this.visible
       },
       set(val) {
-        this.$emit("update:visible", val);
-      },
-    },
+        this.$emit('update:visible', val)
+      }
+    }
   },
   watch: {
     query: {
       deep: true,
       immediate: true,
       handler: function () {
-        this.updateQuery();
-      },
+        this.updateQuery()
+      }
     },
     localQuery: {
       deep: true,
       handler: function () {
-        this.$emit("change", this.localQuery);
-      },
-    },
+        this.$emit('change', this.localQuery)
+      }
+    }
   },
   methods: {
     handleSearch() {
-      this.search();
-      this.showVisible = false;
+      this.search()
+      this.showVisible = false
     },
     search() {
-      this.$emit("search");
+      this.$emit('search')
     },
     updateQuery() {
       if (!isEqual(this.query, this.localQuery)) {
-        this.localQuery = cloneDeep(this.query);
+        this.localQuery = cloneDeep(this.query)
       }
     },
     handleReset() {
-      this.showVisible = false;
-      this.$refs.dataForm.resetFields();
-      this.$emit("reset");
-    },
-  },
-};
+      this.showVisible = false
+      this.$refs.dataForm.resetFields()
+      this.$emit('reset')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

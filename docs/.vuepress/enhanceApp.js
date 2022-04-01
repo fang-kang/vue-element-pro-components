@@ -12,7 +12,7 @@ export default ({
     Vue.use(ElementUI, { size: 'small' })
     Vue.use(pro)
   } else {
-    import('packages').then(function(m) {
+    import('packages').then(function (m) {
       Vue.use(m.default)
     })
     Vue.use(ElementUI, { size: 'small' })

@@ -95,7 +95,7 @@ title: 通用高级查询-ElProAdvancedSearch
             span: 12,
             options: this.dict.selectArr,
             showInSearch: true,
-            showInTable: true,
+            showInTable: true
           },
           switch: {
             label: '开关',
@@ -108,7 +108,7 @@ title: 通用高级查询-ElProAdvancedSearch
             span: 12,
             options: this.dict.selectArr,
             showInSearch: true,
-            showInTable: true,
+            showInTable: true
           },
           checxbox: {
             label: '多选框',
@@ -116,7 +116,7 @@ title: 通用高级查询-ElProAdvancedSearch
             span: 12,
             options: this.dict.selectArr,
             showInSearch: true,
-            showInTable: true,
+            showInTable: true
           },
           date: {
             label: '日期',
@@ -449,7 +449,7 @@ title: 通用高级查询-ElProAdvancedSearch
                 type: types.select,
                 span: 12,
                 options: this.dict.selectArr,
-                showInTable: true,
+                showInTable: true
               },
               switch: {
                 label: '开关',
@@ -517,7 +517,7 @@ title: 通用高级查询-ElProAdvancedSearch
 | title | 抽屉标题 | string | — | — |
 | formOptions | 表单的 options | object | — | {} |
 | isRow | 是否栅格布局 | boolean | — | false |
-| columns | 表单配置项,只显示 showInSearch:true 的表单(详情见 ElProForm说明) | object | — | {} |
+| columns | 表单配置项,只显示 showInSearch:true 的表单(详情见 ElProForm 说明) | object | — | {} |
 | searchColumns | 表单配置项,全部显示 | object | — | {} |
 | showFooter | 是否显示底部重置查询按钮 | boolean | — | true |
 | searchBtnText | 查询按钮文字 | string | — | 查询 |

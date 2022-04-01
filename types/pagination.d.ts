@@ -1,20 +1,21 @@
-import { ElPagination } from 'element-ui/types/pagination';
+import { ElPagination } from 'element-ui/types/pagination'
 import { VueElementProComponents } from './component'
 
 export interface ElProPaginationCustomProps {
-
   /** 当前页码 */
-  page: string;
-  
+  page: string
+
   /** 每页多少条 */
   pageSize: string
 }
 
-export type ElProPaginationOptions = Omit<ElPagination, 'pageSize' | 'currentPage' | 'pageSizes' | 'total'>
+export type ElProPaginationOptions = Omit<
+  ElPagination,
+  'pageSize' | 'currentPage' | 'pageSizes' | 'total'
+>
 
 /** ElProPagination Component */
 export declare class ElProPagination extends VueElementProComponents {
-
   /** 总条数 */
   total: number
 
@@ -35,5 +36,4 @@ export declare class ElProPagination extends VueElementProComponents {
 
   /** 分页数据 */
   pagination: object
-
 }

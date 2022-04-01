@@ -6,7 +6,6 @@ import { ElButton } from 'element-ui/types/button'
 import { VueElementProComponents } from './component'
 
 export interface ElProDialogSlots extends DialogSlots {
-
   /** Dialog 标题前面的内容 */
   nameBefore: VNode[]
 
@@ -24,20 +23,17 @@ export interface ElProDialogSlots extends DialogSlots {
 }
 
 export interface ElProOtherOptions {
-
   /** 是否显示全屏图标 */
-  showFullscreen: boolean;
+  showFullscreen: boolean
 
   /** 是否可拖拽 */
-  draggable: boolean;
+  draggable: boolean
 }
 
 export type ElProDialogOptions = Omit<ElDialog, 'title' | '$slots'> & ElProOtherOptions
 
-
 /** ElProDialog Components */
 export declare class ElProDialog extends VueElementProComponents {
-
   /** Dialog 的标题 */
   title: string
 
@@ -67,5 +63,4 @@ export declare class ElProDialog extends VueElementProComponents {
 
   /** ElProDialog slots */
   $slots: ElProDialogSlots
-
 }

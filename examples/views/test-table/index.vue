@@ -31,42 +31,11 @@
       @onLoad="dataReload"
     >
       <template #toolbarLeft>
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          @click="visible = true"
-        >
-          新增
-        </el-button>
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-        >
-          修改
-        </el-button>
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-        >
-          删除
-        </el-button>
-        <el-button
-          type="info"
-          plain
-          icon="el-icon-upload2"
-        >
-          导入
-        </el-button>
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-upload"
-        >
-          导出
-        </el-button>
+        <el-button type="primary" plain icon="el-icon-plus" @click="visible = true">新增</el-button>
+        <el-button type="success" plain icon="el-icon-edit">修改</el-button>
+        <el-button type="danger" plain icon="el-icon-delete">删除</el-button>
+        <el-button type="info" plain icon="el-icon-upload2">导入</el-button>
+        <el-button type="warning" plain icon="el-icon-upload">导出</el-button>
       </template>
     </el-pro-table>
     <el-pro-dialog

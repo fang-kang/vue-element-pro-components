@@ -1,12 +1,12 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [3],
   {
-    540: function(t, e, n) {},
-    566: function(t, e, n) {
+    540: function (t, e, n) {},
+    566: function (t, e, n) {
       'use strict'
       n(540)
     },
-    585: function(t, e, n) {
+    585: function (t, e, n) {
       'use strict'
       n.r(e)
       var i = {
@@ -16,7 +16,7 @@
             text: String,
             vertical: { type: String, default: 'top' }
           },
-          render: function(t, e) {
+          render: function (t, e) {
             var n = e.props,
               i = e.slots
             return t(

@@ -1,7 +1,7 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [10],
   {
-    572: function(t, a, s) {
+    572: function (t, a, s) {
       'use strict'
       s.r(a)
       var r,
@@ -41,7 +41,7 @@
               (g = 'table'),
               (b = 'editor'),
               (d = {
-                data: function() {
+                data: function () {
                   return {
                     queryForm: {},
                     columns: {},
@@ -54,14 +54,14 @@
                     }
                   }
                 },
-                created: function() {
+                created: function () {
                   this.columns = this.getMetaData()
                 },
                 methods: {
-                  dataReload: function() {
+                  dataReload: function () {
                     console.log(this.queryForm)
                   },
-                  getMetaData: function() {
+                  getMetaData: function () {
                     var t = this
                     return {
                       title: { label: '基本信息', type: c },
@@ -73,7 +73,7 @@
                         formItemOption: {},
                         showInTable: !0,
                         tooltip: '测试输入框',
-                        onChange: function(a) {
+                        onChange: function (a) {
                           console.log(a, 'item'),
                             1 == a.form.input &&
                               (t.$message.success('成功'),
@@ -291,7 +291,7 @@
               }),
               Object(h.a)(
                 {
-                  render: function() {
+                  render: function () {
                     var t = this,
                       a = t.$createElement,
                       s = t._self._c || a
@@ -303,7 +303,7 @@
                             'el-button',
                             {
                               on: {
-                                click: function(a) {
+                                click: function (a) {
                                   t.visible = !0
                                 }
                               }
@@ -314,17 +314,17 @@
                           s('el-pro-advanced-search', {
                             attrs: { title: '高级查询', visible: t.visible, columns: t.columns },
                             on: {
-                              'update:visible': function(a) {
+                              'update:visible': function (a) {
                                 t.visible = a
                               },
                               search: t.dataReload,
-                              reset: function(a) {
+                              reset: function (a) {
                                 t.visible = !1
                               }
                             },
                             model: {
                               value: t.queryForm,
-                              callback: function(a) {
+                              callback: function (a) {
                                 t.queryForm = a
                               },
                               expression: 'queryForm'
@@ -344,7 +344,7 @@
         S = s(6),
         x = Object(S.a)(
           m,
-          function() {
+          function () {
             var t = this,
               a = t.$createElement,
               s = t._self._c || a

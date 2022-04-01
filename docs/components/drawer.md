@@ -22,9 +22,7 @@ drawerWidth 设置宽度
   <el-radio label="btt">从下往上开</el-radio>
 </el-radio-group>
 
-<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
-  点我打开
-</el-button>
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">点我打开</el-button>
 
 <el-pro-drawer
   title="我是标题"
@@ -67,9 +65,7 @@ drawerWidth 设置宽度
 :::demo 当遇到不需要 title 的场景时, 可以通过 `withHeader` 这个属性来关闭掉 title 的显示, 这样可以留出更大的空间给到用户, 为了用户的可访问性, 请务必设定 `title` 的值
 
 ```html
-<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
-  点我打开
-</el-button>
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">点我打开</el-button>
 
 <el-pro-drawer
   title="我是标题"
@@ -200,9 +196,7 @@ drawerWidth 设置宽度
 :::demo 同样, 如果你需要嵌套多层 `Drawer` 请一定要设置 `append-to-body` 属性为 **true**
 
 ```html
-<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
-  点我打开
-</el-button>
+<el-button @click="drawer = true" type="primary" style="margin-left: 16px;">点我打开</el-button>
 
 <el-pro-drawer title="我是外面的 Drawer" v-model="drawer" size="50%">
   <div>

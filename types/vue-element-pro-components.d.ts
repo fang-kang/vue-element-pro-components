@@ -35,7 +35,13 @@ export const enum types {
 
 export interface utils {
   filterObject: (obj: object, filterFunc: Function) => object
-  getArrayValue: (array: Array, value: any, valueKey: string, labelKey: string, defaultValue: string) => any[]
+  getArrayValue: (
+    array: Array,
+    value: any,
+    valueKey: string,
+    labelKey: string,
+    defaultValue: string
+  ) => any[]
   removeArray: (arr: Array, item: object) => any[]
   removeArrayByIndex: (arr: Array, index: number) => any[]
 }
@@ -51,22 +57,22 @@ export function install(vue: typeof Vue): void
 export type Component = VueElementProComponents
 
 /** ElProDialog Component */
-export class Dialog extends ElProDialog { }
+export class Dialog extends ElProDialog {}
 
 /** ElProPagination Component */
-export class Pagination extends ElProPagination { }
+export class Pagination extends ElProPagination {}
 
 /** ElProForm Component */
-export class Form extends ElProForm { }
+export class Form extends ElProForm {}
 
 /** ElProDrawer Component */
-export class Drawer extends ElProDrawer { }
+export class Drawer extends ElProDrawer {}
 
 /** ElProSearch Component */
-export class Search extends ElProSearch { }
+export class Search extends ElProSearch {}
 
 /** ElProTable Component */
-export class Table extends ElProTable { }
+export class Table extends ElProTable {}
 
 /** ElProAdvancedSearch Component */
-export class AdvancedSearch extends ElProAdvancedSearch { }
+export class AdvancedSearch extends ElProAdvancedSearch {}

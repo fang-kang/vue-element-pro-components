@@ -1,7 +1,7 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [14],
   {
-    573: function(t, s, a) {
+    573: function (t, s, a) {
       'use strict'
       a.r(s)
       var e,
@@ -31,7 +31,7 @@
               (_ = 'time'),
               (i = 'slider'),
               (u = {
-                data: function() {
+                data: function () {
                   return {
                     queryForm: {},
                     columns: {},
@@ -44,14 +44,14 @@
                     }
                   }
                 },
-                created: function() {
+                created: function () {
                   this.columns = this.getMetaData()
                 },
                 methods: {
-                  dataReload: function() {
+                  dataReload: function () {
                     console.log(this.queryForm)
                   },
-                  getMetaData: function() {
+                  getMetaData: function () {
                     var t = this
                     return {
                       title: { label: '基本信息', type: v },
@@ -63,7 +63,7 @@
                         formItemOption: {},
                         showInTable: !0,
                         tooltip: '测试输入框',
-                        onChange: function(s) {
+                        onChange: function (s) {
                           console.log(s, 'item'),
                             1 == s.form.input &&
                               (t.$message.success('成功'),
@@ -113,7 +113,7 @@
               }),
               Object(k.a)(
                 {
-                  render: function() {
+                  render: function () {
                     var t = this,
                       s = t.$createElement,
                       a = t._self._c || s
@@ -127,7 +127,7 @@
                             scopedSlots: t._u([
                               {
                                 key: 'after',
-                                fn: function() {
+                                fn: function () {
                                   return [
                                     a('el-button', { attrs: { type: 'primary', size: 'small' } }, [
                                       t._v('新增')
@@ -139,7 +139,7 @@
                             ]),
                             model: {
                               value: t.queryForm,
-                              callback: function(s) {
+                              callback: function (s) {
                                 t.queryForm = s
                               },
                               expression: 'queryForm'
@@ -159,7 +159,7 @@
         d = a(6),
         g = Object(d.a)(
           y,
-          function() {
+          function () {
             var t = this,
               s = t.$createElement,
               a = t._self._c || s

@@ -25,7 +25,7 @@ Object.keys(libList).forEach((moduleName) => {
 pkg = pkg.concat(addons)
 pkg.forEach(build)
 // 删除多余文件
-rimraf(getAssetsPath('./demo.html'), function() {})
+rimraf(getAssetsPath('./demo.html'), function () {})
 // 创建样式文件夹
 fs.mkdirSync(getAssetsPath(styleOutputPath))
 // 拷贝css文件到单独目录

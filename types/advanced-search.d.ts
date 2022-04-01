@@ -4,28 +4,26 @@ import { ElButton } from 'element-ui/types/button'
 
 import { VueElementProComponents } from './component'
 import { ElProColumns, ElProFormOptions } from './form'
-import { ElProDrawerOptions } from './drawer';
+import { ElProDrawerOptions } from './drawer'
 
 interface ElProAdvancedSearchSlots {
-
   /** 自定义 footer */
-  footer: VNode[];
+  footer: VNode[]
 
   /** 重置按钮前面的内容 */
-  before: VNode[];
+  before: VNode[]
 
   /** 重置按钮和查询按钮中间的内容 */
-  middle: VNode[];
+  middle: VNode[]
 
   /** 查询按钮后面的内容 */
-  after: VNode[];
+  after: VNode[]
 
   [key: string]: VNode[]
 }
 
 /** ElProAdvancedSearch Component */
 export declare class ElProAdvancedSearch extends VueElementProComponents {
-
   /** 绑定的查询参数 */
   query: object
 

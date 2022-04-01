@@ -1,7 +1,7 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [13],
   {
-    571: function(t, a, e) {
+    571: function (t, a, e) {
       'use strict'
       e.r(a)
       var s,
@@ -11,7 +11,7 @@
           components: {
             'render-demo-0':
               ((s = {
-                data: function() {
+                data: function () {
                   return {
                     customProps: { page: 'pageNo', pageSize: 'limit' },
                     total: 100,
@@ -19,14 +19,14 @@
                   }
                 },
                 methods: {
-                  findPage: function() {
+                  findPage: function () {
                     console.log(this.queryForm)
                   }
                 }
               }),
               Object(n.a)(
                 {
-                  render: function() {
+                  render: function () {
                     var t = this,
                       a = t.$createElement,
                       e = t._self._c || a
@@ -42,7 +42,7 @@
                                 on: { onLoad: t.findPage },
                                 model: {
                                   value: t.queryForm,
-                                  callback: function(a) {
+                                  callback: function (a) {
                                     t.queryForm = a
                                   },
                                   expression: 'queryForm'
@@ -65,7 +65,7 @@
         p = e(6),
         o = Object(p.a)(
           r,
-          function() {
+          function () {
             var t = this,
               a = t.$createElement,
               e = t._self._c || a

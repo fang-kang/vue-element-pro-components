@@ -18,8 +18,8 @@ Vue.use(VueElementProComponents)
 
 new Vue({
   el: '#app',
-  render: h => h(App)
-});
+  render: (h) => h(App)
+})
 ```
 
 以上代码便完成了 VueElementProComponents 的引入。需要注意的是，样式文件需要单独引入。
@@ -81,8 +81,8 @@ Vue.use(Form)
 
 new Vue({
   el: '#app',
-  render: h => h(App)
-});
+  render: (h) => h(App)
+})
 ```
 
 或者全部引入

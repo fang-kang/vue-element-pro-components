@@ -1,12 +1,7 @@
 <template>
   <div>
-    <el-button @click="visible = true">
-      测试
-    </el-button>
-    <el-pro-dialog
-      v-model="visible"
-      title="测试"
-    >
+    <el-button @click="visible = true">测试</el-button>
+    <el-pro-dialog v-model="visible" title="测试">
       <el-pro-form
         ref="dataForm"
         v-model="form"
@@ -17,9 +12,7 @@
         @check-change="handleCheckChange"
       >
         <template #inputAppend="{ form }">
-          <el-button @click="click(form)">
-            测试
-          </el-button>
+          <el-button @click="click(form)">测试</el-button>
         </template>
       </el-pro-form>
     </el-pro-dialog>

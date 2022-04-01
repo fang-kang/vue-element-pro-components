@@ -1,13 +1,13 @@
 ;(window.webpackJsonp = window.webpackJsonp || []).push([
   [8],
   {
-    581: function(t, e, n) {
+    581: function (t, e, n) {
       'use strict'
       n.r(e)
       var s = n(6),
         i = Object(s.a)(
           {},
-          function() {
+          function () {
             var t = this.$createElement
             return (this._self._c || t)(
               'ContentSlotsDistributor',

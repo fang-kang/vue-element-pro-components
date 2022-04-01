@@ -181,9 +181,7 @@ title: 通用对话框-ElProDialog
       }"
     >
       <div>弹窗内容</div>
-      <div slot="footer">
-        我是底部footer内容
-      </div>
+      <div slot="footer">我是底部footer内容</div>
     </el-pro-dialog>
   </div>
 </template>

@@ -32,11 +32,7 @@
           <slot name="middle" />
         </el-form-item>
         <el-form-item v-if="isShowAdvancedBtn">
-          <advanced-search-btn
-            v-model="showAdvancedBtn"
-            :size="size"
-            :title="advancedTitle"
-          >
+          <advanced-search-btn v-model="showAdvancedBtn" :size="size" :title="advancedTitle">
             <el-pro-form
               ref="dataForm"
               v-model="localQuery"
@@ -48,9 +44,7 @@
             <template>
               <div style="height: 40px; width: 100%" />
               <div class="footer">
-                <el-button icon="el-icon-refresh-right" @click="handleReset">
-                  重置
-                </el-button>
+                <el-button icon="el-icon-refresh-right" @click="handleReset">重置</el-button>
                 <el-button icon="el-icon-search" type="primary" @click="handleSearch">
                   查询
                 </el-button>
@@ -85,232 +79,229 @@
 </template>
 
 <script>
-import { filterObject } from "vue-element-pro-components/src/utils";
-import { types } from "vue-element-pro-components/packages/form/src/type";
-import { isEqual, cloneDeep } from "lodash-es";
-import ElProForm from "vue-element-pro-components/packages/form";
-import AdvancedSearchBtn from "./AdvancedSearchBtn.vue";
+import { filterObject } from 'vue-element-pro-components/src/utils'
+import { types } from 'vue-element-pro-components/packages/form/src/type'
+import { isEqual, cloneDeep } from 'lodash-es'
+import ElProForm from 'vue-element-pro-components/packages/form'
+import AdvancedSearchBtn from './AdvancedSearchBtn.vue'
 
 export default {
-  name: "ElProSearch",
+  name: 'ElProSearch',
   components: { ElProForm, AdvancedSearchBtn },
   model: {
-    prop: "query",
-    event: "change",
+    prop: 'query',
+    event: 'change'
   },
   props: {
     size: {
       type: [Number, String],
-      default: 450,
+      default: 450
     },
     advancedTitle: {
       type: String,
-      default: "高级查询",
+      default: '高级查询'
     },
     isCollapse: {
       type: Boolean,
       required: false,
-      default: true,
+      default: true
     },
     isShowAdvancedBtn: {
       type: Boolean,
       required: false,
-      default: true,
+      default: true
     },
     showNum: {
       type: [Number, String],
-      default: 2,
+      default: 2
     },
     showReset: {
       type: Boolean,
-      default: true,
+      default: true
     },
     searchBtnText: {
       type: String,
-      default: "查询",
+      default: '查询'
     },
     searchBtnProps: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     resetBtnText: {
       type: String,
-      default: "重置",
+      default: '重置'
     },
     resetBtnProps: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     query: {
       type: Object,
       required: true,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     columns: {
       type: [Object, Array],
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     searchColumns: {
       type: [Object, Array, null],
       required: false,
-      default: null,
+      default: null
     },
     noSearch: {
       type: Boolean,
-      default: false,
+      default: false
     },
     customStyle: {
       type: Object,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     loading: {
       type: Boolean,
       required: false,
-      default: false,
+      default: false
     },
     formOptions: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
+        return {}
+      }
     },
     formAdvanceOptions: {
       type: Object,
       required: false,
       default() {
-        return {};
-      },
-    },
+        return {}
+      }
+    }
   },
   data() {
     return {
       showAdvancedBtn: false,
       localQuery: {},
-      showAll: true, // 是否展开全部
-    };
+      showAll: true // 是否展开全部
+    }
   },
   computed: {
     isShowExpandeBtn() {
-      const { searchColumn, showNum } = this;
+      const { searchColumn, showNum } = this
       if (Array.isArray(searchColumn)) {
-        return searchColumn.length > showNum;
+        return searchColumn.length > showNum
       } else {
-        return Object.keys(searchColumn).length > showNum;
+        return Object.keys(searchColumn).length > showNum
       }
     },
     formProcessOptions() {
-      const { ...rest } = this.formOptions || {};
+      const { ...rest } = this.formOptions || {}
       return {
-        labelWidth: "",
+        labelWidth: '',
         inline: true,
         ...(rest || {}),
-        rules: {},
-      };
+        rules: {}
+      }
     },
     formAdvanceProcessOptions() {
-      const { ...rest } = this.formOptions || {};
+      const { ...rest } = this.formOptions || {}
       return {
-        labelWidth: "80px",
+        labelWidth: '80px',
         inline: false,
         ...(rest || {}),
-        rules: {},
-      };
+        rules: {}
+      }
     },
     word() {
-      const { showAll } = this;
-      return showAll ? "收起" : "展开";
+      const { showAll } = this
+      return showAll ? '收起' : '展开'
     },
     showLoading: {
       get() {
-        return this.loading;
+        return this.loading
       },
       set(val) {
-        this.$emit("update:loading", val);
-      },
+        this.$emit('update:loading', val)
+      }
     },
     cmpTypes() {
-      return types;
+      return types
     },
     searchColumn() {
-      const { searchColumns, columns } = this;
+      const { searchColumns, columns } = this
       if (searchColumns) {
-        return searchColumns;
+        return searchColumns
       } else if (columns) {
         if (Array.isArray(columns)) {
-          return columns.filter((column) => column.showInSearch);
+          return columns.filter((column) => column.showInSearch)
         } else {
-          return filterObject(columns, (column) => column.showInSearch);
+          return filterObject(columns, (column) => column.showInSearch)
         }
       }
-      return {};
+      return {}
     },
     searchAdvanceColumn() {
-      const { searchColumns, columns } = this;
+      const { searchColumns, columns } = this
       if (searchColumns) {
-        return searchColumns;
+        return searchColumns
       } else if (columns) {
         if (Array.isArray(columns)) {
-          return columns.filter((column) => column.showInSearch || column.showInAdvance);
+          return columns.filter((column) => column.showInSearch || column.showInAdvance)
         } else {
-          return filterObject(
-            columns,
-            (column) => column.showInSearch || column.showInAdvance
-          );
+          return filterObject(columns, (column) => column.showInSearch || column.showInAdvance)
         }
       }
-      return {};
-    },
+      return {}
+    }
   },
   watch: {
     query: {
       deep: true,
       immediate: true,
       handler: function () {
-        this.updateQuery();
-      },
+        this.updateQuery()
+      }
     },
     localQuery: {
       deep: true,
       handler: function () {
-        this.$emit("change", this.localQuery);
-      },
-    },
+        this.$emit('change', this.localQuery)
+      }
+    }
   },
   mounted() {},
   methods: {
     handleSearch() {
-      this.search();
-      this.showAdvancedBtn = false;
+      this.search()
+      this.showAdvancedBtn = false
     },
     search() {
-      this.$emit("search");
+      this.$emit('search')
     },
     updateQuery() {
       if (!isEqual(this.query, this.localQuery)) {
-        this.localQuery = cloneDeep(this.query);
+        this.localQuery = cloneDeep(this.query)
       }
     },
     handleReset() {
-      this.showAdvancedBtn = false;
-      this.$refs.dataForm.resetFields();
-      this.$emit("reset");
-    },
-  },
-};
+      this.showAdvancedBtn = false
+      this.$refs.dataForm.resetFields()
+      this.$emit('reset')
+    }
+  }
+}
 </script>
 
 <style lang="scss">
