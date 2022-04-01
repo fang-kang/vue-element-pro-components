@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import pro from 'packages'
 
-Vue.use(ElementUI, { size: 'small' })
+Vue.use(ElementUI, { size: 'large' })
 Vue.use(pro)
 
 Vue.config.productionTip = false

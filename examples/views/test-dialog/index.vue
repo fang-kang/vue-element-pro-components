@@ -14,7 +14,7 @@
       @closed="closed"
       @ok="ok"
     >
-      <div style="height: 1000px">测试弹窗</div>
+      <div>测试弹窗</div>
     </el-pro-dialog>
   </div>
 </template>

@@ -104,12 +104,12 @@ export default {
     isCollapse: {
       type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     isShowAdvancedBtn: {
       type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     showNum: {
       type: [Number, String],
@@ -117,7 +117,7 @@ export default {
     },
     showReset: {
       type: Boolean,
-      default: true
+      default: false
     },
     searchBtnText: {
       type: String,
@@ -219,7 +219,7 @@ export default {
       const { ...rest } = this.formOptions || {}
       return {
         labelWidth: '80px',
-        inline: false,
+        inline: true,
         ...(rest || {}),
         rules: {}
       }

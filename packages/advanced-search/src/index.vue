@@ -51,7 +51,7 @@ export default {
   props: {
     showReset: {
       type: Boolean,
-      default: true
+      default: false
     },
     searchBtnText: {
       type: String,
@@ -108,7 +108,7 @@ export default {
     },
     size: {
       type: [Number, String],
-      default: 400
+      default: 450
     },
     visible: {
       type: Boolean,

@@ -511,7 +511,7 @@ title: 通用高级查询-ElProAdvancedSearch
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | :-: | :-: | :-: | :-: | :-: |
 | v-model | 表单数据 | object | — | {} |
-| size | 抽屉的宽度 | [number,string] | — | 400 |
+| size | 抽屉的宽度 | [number,string] | — | 450 |
 | visible.sync | 是否显示抽屉 | boolean | — | false |
 | drawerOptions | 官方支持的抽屉的 options | object | — | {} |
 | title | 抽屉标题 | string | — | — |
@@ -524,7 +524,7 @@ title: 通用高级查询-ElProAdvancedSearch
 | searchBtnProps | 查询按钮 options | object | — | {} |
 | resetBtnText | 重置按钮文字 | string | — | 重置 |
 | resetBtnProps | 重置按钮 options | object | — | {} |
-| showReset | 是否显示重置按钮 | boolean | — | true |
+| showReset | 是否显示重置按钮 | boolean | — | false |
 
 ## Slot
 

@@ -31,7 +31,7 @@ export default {
   props: {
     size: {
       type: [Number, String],
-      default: 400
+      default: 450
     },
     visible: {
       type: Boolean,

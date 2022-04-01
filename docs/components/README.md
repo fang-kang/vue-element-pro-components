@@ -26,11 +26,13 @@ title: 组件
       :total="tableData.length"
       :show-search.sync="isShowSearch"
       :columns="columns"
+      show-toolbar
+      show-toolbar-right
       :auto-height="false"
       :operation-options="{ width: 200 }"
       :update-func="handleEdit"
       :delete-func="handleDelete"
-      :table-options="{ hasOperation: true,height:'300px' }"
+      :table-options="{ hasOperation: true, height:'300px' }"
       @selection-change="handleSelectionChange"
       @refresh="dataReload"
       @onLoad="dataReload"

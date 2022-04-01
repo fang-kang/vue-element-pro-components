@@ -170,10 +170,10 @@ title: 通用搜索-ElProSearch
 | searchColumns | 表单配置项,全部显示 | object | — | {} |
 | noSearch | 不显示查询按钮 | boolean | — | false |
 | customStyle | 查询最外层自定义 style | object | — | {} |
-| isCollapse | 是否显示展开收起文字 | boolean | — | true |
-| isShowAdvancedBtn | 是否显示高级查询 | boolean | — | true |
+| isCollapse | 是否显示展开收起文字 | boolean | — | false |
+| isShowAdvancedBtn | 是否显示高级查询 | boolean | — | false |
 | showNum | 收起后显示的表单数量 | string,number | — | 2 |
-| showReset | 是否显示重置按钮 | boolean | — | true |
+| showReset | 是否显示重置按钮 | boolean | — | false |
 | searchBtnText | 查询按钮文字 | string | — | 查询 |
 | searchBtnProps | 查询按钮 props | object | — | {} |
 | resetBtnText | 重置按钮文字 | string | — | 重置 |

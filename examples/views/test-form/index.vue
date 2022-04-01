@@ -8,7 +8,7 @@
         :is-row="true"
         :table-dialog-options="{ width: '60%' }"
         :columns="columns"
-        :form-options="{ labelWidth: '100px' }"
+        :form-options="{ labelWidth: '140px' }"
         @check-change="handleCheckChange"
       >
         <template #inputAppend="{ form }">

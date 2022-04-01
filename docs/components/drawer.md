@@ -241,7 +241,7 @@ drawerWidth 设置宽度
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | :-: | :-: | :-: | :-: | :-: |
 | v-model | 是否显示抽屉 | boolean | — | false |
-| size | 抽屉的宽度 | [number,string] | — | 400 |
+| size | 抽屉的宽度 | [number,string] | — | 450 |
 | direction | 弹出方向 | string | rtl / ltr / ttb / btt | rtl |
 | drawerOptions | [官方支持的抽屉的 options](https://element.eleme.cn/#/zh-CN/component/drawer) | object | — | {} |
 | title | 抽屉标题 | string | — | — |

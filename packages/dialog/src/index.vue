@@ -18,7 +18,7 @@
       >
         <slot name="nameBefore" />
         <slot name="title">
-          <span>{{ title }}</span>
+          <span class="el-dialog__title">{{ title }}</span>
         </slot>
         <slot name="nameAfter" />
         <el-button
@@ -222,9 +222,6 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 15px;
-    background-color: #f8f8f8;
-    border-radius: 15px 15px 0 0;
-    border-bottom: 1px solid #e8e8e8;
   }
 
   .el-dialog__headerbtn {
@@ -238,13 +235,8 @@ export default {
     }
   }
   .el-dialog__footer {
-    border-top: 1px solid #e8e8e8;
-    background-color: #f8f8f8;
     padding: 10px;
     height: auto;
-    .el-button {
-      padding: 8px 20px;
-    }
   }
   .dialog__icon {
     position: absolute;
@@ -281,7 +273,6 @@ export default {
 
   &__content {
     .el-scrollbar__wrap {
-      padding: 10px 0;
       max-height: 60vh; // 最大高度
       min-height: 100px; // 最小高度
       overflow-x: hidden; // 隐藏横向滚动栏
@@ -293,7 +284,6 @@ export default {
       max-height: calc(100vh - 46px - 120px); // 最大高度
       min-height: 100px; // 最小高度
       overflow-x: hidden; // 隐藏横向滚动栏
-      padding: 10px 0;
     }
   }
 
@@ -301,7 +291,6 @@ export default {
     .el-scrollbar__wrap {
       max-height: calc(100vh - 46px - 60px - 80px); // 最大高度
       min-height: 100px; // 最小高度
-      padding: 10px 0;
       overflow-x: hidden; // 隐藏横向滚动栏
     }
   }

@@ -4,7 +4,6 @@ export default {
     if (!value) {
       return
     }
-
     const dragDom = el.querySelector('.el-pro-dialog')
     const dialogHeaderEl = el.querySelector('.el-pro-dialog .el-dialog__header')
     dialogHeaderEl.style.cssText += ';cursor:move;user-select:none;'

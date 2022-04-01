@@ -15,7 +15,12 @@
               :content="showSearch ? '隐藏搜索' : '显示搜索'"
               placement="top"
             >
-              <el-button size="mini" circle icon="el-icon-search" @click="toggleSearch()" />
+              <el-button
+                size="mini"
+                circle
+                icon="el-icon-search"
+                @click="toggleSearch()"
+              />
             </el-tooltip>
             <el-tooltip
               class="item"
@@ -37,11 +42,20 @@
               content="刷新"
               placement="top"
             >
-              <el-button size="mini" circle icon="el-icon-refresh" @click="$emit('refresh')" />
+              <el-button
+                size="mini"
+                circle
+                icon="el-icon-refresh"
+                @click="$emit('refresh')"
+              />
             </el-tooltip>
             <slot name="toolbarRightMiddle" />
             <el-tooltip class="item" effect="dark" content="密度" placement="top">
-              <el-dropdown trigger="click" style="margin: 0 10px" @command="handleCommand">
+              <el-dropdown
+                trigger="click"
+                style="margin: 0 10px"
+                @command="handleCommand"
+              >
                 <el-button size="mini" circle icon="el-icon-s-operation" />
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="medium">默认</el-dropdown-item>
@@ -101,7 +115,7 @@
       v-loading="loading"
       v-adaptive="{
         bottomOffset: calcBottomOffset,
-        autoHeight: autoHeight
+        autoHeight: autoHeight,
       }"
       :size="size"
       v-bind="tableSetting"
@@ -147,7 +161,10 @@
                   placement="right"
                   :content="column.tableHeadTooltip"
                 >
-                  <i class="el-icon-question" style="vertical-align: baseline; font-size: 16px" />
+                  <i
+                    class="el-icon-question"
+                    style="vertical-align: baseline; font-size: 16px"
+                  />
                 </el-tooltip>
               </slot>
             </template>
@@ -160,7 +177,9 @@
                   class="el-icon-copy-document"
                   style="cursor: pointer; color: #409eff; margin-right: 5px"
                 />
-                <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
+                <span v-if="!column.isTag">{{
+                  formatShow(column, scope.row, scope)
+                }}</span>
                 <el-tag v-if="column.isTag" v-bind="getTagOptions(column, scope.row)">
                   {{ formatShow(column, scope.row, scope) }}
                 </el-tag>
@@ -217,330 +236,329 @@
 </template>
 
 <script>
-import { types } from 'vue-element-pro-components/packages/form/src/type'
-import { filterObject } from 'vue-element-pro-components/src/utils'
-import clipboard from 'vue-element-pro-components/src/directive/clipboard/index.js'
-import adaptive from 'vue-element-pro-components/src/directive/el-table/index.js'
-import TableColumn from './TableColumn.vue'
-import { getTagOptions, formatShow, clipboardSuccess } from './utils'
-import { cloneDeep } from 'lodash-es'
-import ElProPagination from 'vue-element-pro-components/packages/pagination'
+import { types } from "vue-element-pro-components/packages/form/src/type";
+import { filterObject } from "vue-element-pro-components/src/utils";
+import clipboard from "vue-element-pro-components/src/directive/clipboard/index.js";
+import adaptive from "vue-element-pro-components/src/directive/el-table/index.js";
+import TableColumn from "./TableColumn.vue";
+import { getTagOptions, formatShow, clipboardSuccess } from "./utils";
+import { cloneDeep } from "lodash-es";
+import ElProPagination from "vue-element-pro-components/packages/pagination";
 
 export default {
-  name: 'ElProTable',
+  name: "ElProTable",
   components: {
     TableColumn,
-    ElProPagination
+    ElProPagination,
   },
   directives: {
     clipboard,
-    adaptive
+    adaptive,
   },
   props: {
     updateText: {
       type: String,
-      default: '编辑'
+      default: "编辑",
     },
     deleteText: {
       type: String,
-      default: '删除'
+      default: "删除",
     },
     // 是否多选
     selection: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key）
     reserveSelection: {
       type: Boolean,
-      default: false
+      default: false,
     },
     data: {
       type: Array,
       default() {
-        return []
-      }
+        return [];
+      },
     },
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     columns: {
       type: [Object, Array],
       required: false,
-      default: () => {}
+      default: () => {},
     },
     updateProps: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => {},
     },
     deleteProps: {
       type: Function,
       required: false,
-      default: () => {}
+      default: () => {},
     },
     tableColumns: {
       type: [Object, Array, null],
       required: false,
-      default: null
+      default: null,
     },
     tableOptions: {
       type: [Object, null],
       required: false,
-      default: null
+      default: null,
     },
     deleteFunc: {
-      type: Function,
+      type: [Function, null],
       required: false,
-      default: null
+      default: null,
     },
     updateFunc: {
-      type: Function,
+      type: [Function, null],
       required: false,
-      default: null
+      default: null,
     },
     operationOptions: {
       type: Object,
       required: false,
-      default: () => {}
+      default: () => {},
     },
     autoHeight: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     rowOption: {
       type: Object,
       default() {
         return {
-          gutter: 10
-        }
-      }
+          gutter: 10,
+        };
+      },
     },
     showSearch: {
       type: [Boolean, null],
-      default: null
+      default: null,
     },
     showToolbar: {
       type: Boolean,
-      default: true
+      default: false,
     },
     expand: {
       type: Boolean,
-      default: false
+      default: false,
     },
     showToolbarRight: {
       type: Boolean,
-      default: true
+      default: false,
     },
     bottomOffset: {
       type: [Number, String],
-      default: 30
+      default: 30,
     },
     deleteTip: {
       type: String,
-      default: '此操作将永久删除该行, 是否继续?'
+      default: "此操作将永久删除该行, 是否继续?",
     },
     pagination: {
       type: [Object, null],
-      default: null
+      default: null,
     },
     total: {
       type: [Number, String],
-      default: 0
+      default: 0,
     },
     pageSizes: {
       type: Array,
       required: false,
-      default: () => [10, 20, 30, 50, 100]
+      default: () => [10, 20, 30, 50, 100],
     },
     paginationOptions: {
       type: Object,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     customProps: {
       type: Object,
       default() {
         return {
-          page: 'page',
-          pageSize: 'pageSize'
-        }
-      }
+          page: "page",
+          pageSize: "pageSize",
+        };
+      },
     },
     customStyle: {
       type: Object,
-      default: () => {}
+      default: () => {},
     },
     paginationStyle: {
       type: Object,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       showPopover: false,
-      size: '',
+      size: "",
       localColumns: {},
       defaultCheckedKeys: [],
       treeList: [],
-      isFullScreen: false
-    }
+      isFullScreen: false,
+    };
   },
   computed: {
     localPagination: {
       get() {
-        return this.pagination
+        return this.pagination;
       },
       set(val) {
-        this.$emit('update:pagination', val)
-      }
+        this.$emit("update:pagination", val);
+      },
     },
     tableColumn: {
       get() {
-        const { tableColumns, columns } = this
+        const { tableColumns, columns } = this;
         if (tableColumns) {
-          return tableColumns
+          return tableColumns;
         } else if (columns) {
           if (Array.isArray(columns)) {
-            return columns.filter((column) => column.showInTable)
+            return columns.filter((column) => column.showInTable);
           } else {
-            return filterObject(columns, (column) => column.showInTable)
+            return filterObject(columns, (column) => column.showInTable);
           }
         }
-        return {}
+        return {};
       },
       set(val) {
-        return val
-      }
+        return val;
+      },
     },
     metadata() {
-      const { localColumns } = this
+      const { localColumns } = this;
       if (Array.isArray(localColumns)) {
         return localColumns.map((item) => {
-          return this.mapTableColumn(item.key, item)
-        })
+          return this.mapTableColumn(item.key, item);
+        });
       } else {
         return Object.keys(localColumns).map((key) => {
-          const item = localColumns[key]
-          return this.mapTableColumn(key, item)
-        })
+          const item = localColumns[key];
+          return this.mapTableColumn(key, item);
+        });
       }
     },
     tableSetting() {
       const setting = {
         data: this.data,
-        size: 'medium',
-        highlightCurrentRow: true,
-        style: 'width: 100%',
-        height: '200px',
-        ...(this.tableOptions || {})
-      }
-      return setting
+        size: "medium",
+        style: "width: 100%",
+        height: "200px",
+        ...(this.tableOptions || {}),
+      };
+      return setting;
     },
     processOperationOptions() {
       return {
-        fixed: 'right',
-        label: '操作',
-        width: '150',
-        align: 'center',
-        ...(this.operationOptions || {})
-      }
+        fixed: "right",
+        label: "操作",
+        width: "150",
+        align: "center",
+        ...(this.operationOptions || {}),
+      };
     },
     hasOperation() {
       return this.tableOptions
         ? this.tableOptions.hasOperation
-        : false || this.deleteFunc || this.updateFunc
+        : false || this.deleteFunc || this.updateFunc;
     },
     calcBottomOffset() {
-      const { pagination, bottomOffset } = this
-      return pagination ? bottomOffset + 50 : bottomOffset
-    }
+      const { pagination, bottomOffset } = this;
+      return pagination ? bottomOffset + 50 : bottomOffset;
+    },
   },
   watch: {
-    isFullScreen(val) {
-      if (val) {
-        const { calcBottomOffset } = this
-        const height = window.innerHeight - 20 - calcBottomOffset
-        this.$refs.table.layout.setHeight(height)
-        this.$refs.table.doLayout()
-      }
+    isFullScreen() {
+      this.calcHeight();
     },
     showSearch() {
-      const { calcBottomOffset } = this
-      const { top } = this.$refs.table.$el.getBoundingClientRect()
-      const height = window.innerHeight - top - calcBottomOffset
-      this.$refs.table.layout.setHeight(height)
-      this.$refs.table.doLayout()
-    }
+      this.calcHeight();
+    },
   },
   created() {
-    this.size = this.tableSetting.size
+    this.size = this.tableSetting.size;
   },
   mounted() {
-    this.localColumns = cloneDeep(this.tableColumn)
-    this.treeList = cloneDeep(this.metadata)
-    this.defaultCheckedKeys = this.mapKeys(this.metadata)
+    this.localColumns = cloneDeep(this.tableColumn);
+    this.treeList = cloneDeep(this.metadata);
+    this.defaultCheckedKeys = this.mapKeys(this.metadata);
   },
   methods: {
     getTagOptions,
     formatShow,
     clipboardSuccess,
+    calcHeight() {
+      const { calcBottomOffset, autoHeight, tableSetting } = this;
+      const { top } = this.$refs.table.$el.getBoundingClientRect();
+      const height = autoHeight
+        ? window.innerHeight - top - calcBottomOffset
+        : tableSetting.height;
+      this.$refs.table.layout.setHeight(height);
+      this.$refs.table.doLayout();
+    },
     mapKeys(data, array = []) {
       data.forEach((item) => {
-        array.push(item.key)
+        array.push(item.key);
         if (item.children) {
-          this.mapKeys(item.children, array)
+          this.mapKeys(item.children, array);
         }
-      })
-      return array
+      });
+      return array;
     },
     onLoad() {
-      this.$emit('onLoad')
+      this.$emit("onLoad");
     },
     handleCheck(e) {
       if (!e) {
-        this.$refs.tree.setCheckedKeys([])
+        this.$refs.tree.setCheckedKeys([]);
       } else {
-        const keys = this.mapKeys(this.metadata)
-        this.$refs.tree.setCheckedKeys(keys)
+        const keys = this.mapKeys(this.metadata);
+        this.$refs.tree.setCheckedKeys(keys);
       }
     },
     handleSure() {
-      const data = this.$refs.tree.getCheckedNodes()
-      let keys = []
+      const data = this.$refs.tree.getCheckedNodes();
+      let keys = [];
       if (Array.isArray(this.tableColumn)) {
         keys = this.tableColumn.map((item) => {
-          return item.key
-        })
+          return item.key;
+        });
       } else {
-        keys = Object.keys(this.tableColumn)
+        keys = Object.keys(this.tableColumn);
       }
-      this.localColumns = data.filter((item) => keys.includes(item.key))
-      this.$refs.table.doLayout()
-      this.showPopover = false
+      this.localColumns = data.filter((item) => keys.includes(item.key));
+      this.$refs.table.doLayout();
+      this.showPopover = false;
     },
     handleReset() {
-      this.localColumns = this.tableColumn
-      const keys = this.mapKeys(this.metadata)
-      this.$refs.tree.setCheckedKeys(keys)
-      this.$refs.table.doLayout()
-      this.showPopover = false
+      this.localColumns = this.tableColumn;
+      const keys = this.mapKeys(this.metadata);
+      this.$refs.tree.setCheckedKeys(keys);
+      this.$refs.table.doLayout();
+      this.showPopover = false;
     },
     // 密度
     handleCommand(e) {
-      this.size = e
+      this.size = e;
     },
     toggleSearch() {
-      this.$emit('update:showSearch', !this.showSearch)
+      this.$emit("update:showSearch", !this.showSearch);
     },
     changeSize(e) {
-      this.size = e
+      this.size = e;
     },
     mapTableColumn(key, item) {
-      const { label = key, type = types.input, tableColumnOption = {}, options } = item
+      const { label = key, type = types.input, tableColumnOption = {}, options } = item;
       return {
         ...item,
         key,
@@ -548,43 +566,27 @@ export default {
         type,
         tableColumnOption,
         options,
-        isHide: false
-      }
+        isHide: false,
+      };
     },
     handleDeleteFunc(row, index) {
-      this.$confirm(this.deleteTip, '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
+      this.$confirm(this.deleteTip, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
       })
         .then(() => {
-          this.deleteFunc && this.deleteFunc(row, index)
+          this.deleteFunc && this.deleteFunc(row, index);
         })
         .catch((err) => {
-          console.log(err)
-        })
-    }
-  }
-}
+          console.log(err);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-.el-table__fixed-right::before {
-  display: none !important;
-}
-.el-table th > .cell {
-  color: #000;
-  padding: 5px 0;
-  font-weight: bold;
-}
-
-.el-table table th.el-table__cell,
-.el-table thead.is-group th.el-table__cell {
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #e8e8e8;
-  font-size: 14px;
-}
-
 .el-pro-toolbar {
   padding: 0 10px;
   margin-bottom: 10px;
@@ -611,6 +613,7 @@ export default {
     border-top: 1px solid #e8e8e8;
   }
 }
+
 .el-pro-table.is--maximize {
   position: fixed;
   top: 0;

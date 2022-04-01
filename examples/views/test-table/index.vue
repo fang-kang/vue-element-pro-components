@@ -3,8 +3,6 @@
     <el-pro-search
       v-show="isShowSearch"
       v-model="queryForm"
-      :is-collapse="true"
-      :show-num="2"
       :columns="columns"
       @search="dataReload"
       @reset="dataReload"
@@ -15,11 +13,12 @@
       selection
       :pagination.sync="queryForm"
       :total="tableData.length"
-      is-search-icon
       :show-search.sync="isShowSearch"
       :columns="columns"
       :operation-options="{ width: 200 }"
       auto-height
+      show-toolbar
+      show-toolbar-right
       :update-func="handleEdit"
       :delete-func="handleDelete"
       :table-options="{

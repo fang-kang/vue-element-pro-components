@@ -12,11 +12,21 @@
       <slot name="columnBefore" :form="form" />
       <component :is="isRow ? 'el-row' : 'fragment'" v-bind="rowOptions">
         <fragment v-for="column in metaData" :key="column.key">
-          <component :is="isRow ? 'el-col' : 'fragment'" v-bind="getColSpanOptions(column)">
+          <component
+            :is="isRow ? 'el-col' : 'fragment'"
+            v-bind="getColSpanOptions(column)"
+          >
             <h3 v-if="column.type === cmpTypes.title" class="title">
               {{ column.label }}
-              <el-tooltip v-if="column.tooltip" placement="right" :content="column.tooltip">
-                <i class="el-icon-question" style="vertical-align: baseline; font-size: 16px" />
+              <el-tooltip
+                v-if="column.tooltip"
+                placement="right"
+                :content="column.tooltip"
+              >
+                <i
+                  class="el-icon-question"
+                  style="vertical-align: baseline; font-size: 16px"
+                />
               </el-tooltip>
             </h3>
             <template v-else-if="column.type === cmpTypes.table">
@@ -69,7 +79,11 @@
                   <span :title="column.serachLabel || column.label">
                     {{ column.serachLabel || column.label }}
                   </span>
-                  <el-tooltip v-if="column.tooltip" placement="right" :content="column.tooltip">
+                  <el-tooltip
+                    v-if="column.tooltip"
+                    placement="right"
+                    :content="column.tooltip"
+                  >
                     <i
                       class="el-icon-question"
                       style="margin-left: 5px; vertical-align: baseline"
@@ -81,7 +95,7 @@
                   v-if="isPreview"
                   v-bind="getTagOptions(column, form)"
                 >
-                  {{ formatShow(column, form, 'scope') }}
+                  {{ formatShow(column, form, "scope") }}
                 </component>
                 <slot v-else :name="column.key" :form="form">
                   <el-input
@@ -91,7 +105,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   >
@@ -117,7 +131,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -130,7 +144,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   >
@@ -149,7 +163,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   >
@@ -161,7 +175,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   >
@@ -182,7 +196,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   >
@@ -206,7 +220,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -219,7 +233,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -230,7 +244,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -241,7 +255,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -252,7 +266,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -263,7 +277,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -277,7 +291,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -289,7 +303,7 @@
                     v-bind="getColumnOptions(column)"
                     @change="
                       () => {
-                        changeVal(column)
+                        changeVal(column);
                       }
                     "
                   />
@@ -321,119 +335,122 @@
 </template>
 
 <script>
-import { Fragment } from 'vue-fragment'
-import { isEqual, cloneDeep, debounce } from 'lodash-es'
-import { removeArrayByIndex } from 'vue-element-pro-components/src/utils'
-import { types } from './type'
-import ElProTable from 'vue-element-pro-components/packages/table'
-import ElProDialog from 'vue-element-pro-components/packages/dialog'
-import Tinymce from './Tinymce/index'
-import { formatShow, getTagOptions } from 'vue-element-pro-components/packages/table/src/utils'
+import { Fragment } from "vue-fragment";
+import { isEqual, cloneDeep, debounce } from "lodash-es";
+import { removeArrayByIndex } from "vue-element-pro-components/src/utils";
+import { types } from "./type";
+import ElProTable from "vue-element-pro-components/packages/table";
+import ElProDialog from "vue-element-pro-components/packages/dialog";
+import Tinymce from "./Tinymce/index";
+import {
+  formatShow,
+  getTagOptions,
+} from "vue-element-pro-components/packages/table/src/utils";
 export default {
-  name: 'ElProForm',
+  name: "ElProForm",
   components: {
     Fragment,
     Tinymce,
     ElProTable,
-    ElProDialog
+    ElProDialog,
   },
   model: {
-    prop: 'formData',
-    event: 'change'
+    prop: "formData",
+    event: "change",
   },
   props: {
     tableDialogOptions: {
       type: Object,
       required: false,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     tableFormOptions: {
       type: Object,
       required: false,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     showAll: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     isRow: {
       type: Boolean,
       required: false,
-      default: true
+      default: true,
     },
     isCollapse: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     showNum: {
       type: [Number, String],
-      default: 2
+      default: 2,
     },
     columns: {
       type: [Object, Array],
       required: true,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     formData: {
       type: Object,
       required: true,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     formOptions: {
       type: Object,
       required: false,
       default() {
-        return {}
-      }
+        return {};
+      },
     },
     rowOptions: {
       type: Object,
       required: false,
       default() {
         return {
-          gutter: 10
-        }
-      }
+          gutter: 10,
+        };
+      },
     },
     loading: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     isSearch: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     isPreview: {
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     tableOptions: {
       type: Object,
       required: false,
       default() {
         return {
-          hasOperation: !this.isPreview
-        }
-      }
-    }
+          hasOperation: !this.isPreview,
+        };
+      },
+    },
   },
   data() {
     return {
       index: 0,
-      modalType: 'add',
+      modalType: "add",
       currentColumn: {}, // 当前操作的column
       subForm: {}, // 子表单
       subFormColumn: {}, // 子表单配置项
@@ -442,103 +459,105 @@ export default {
       debounceUpdate: null,
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() > Date.now()
-        }
-      }
-    }
+          return time.getTime() > Date.now();
+        },
+      },
+    };
   },
   computed: {
     isShowAll: {
       get() {
-        return this.showAll
+        return this.showAll;
       },
       set(val) {
-        this.$emit('update:showAll', val)
-      }
+        this.$emit("update:showAll", val);
+      },
     },
     showLoading: {
       get() {
-        return this.loading
+        return this.loading;
       },
       set(val) {
-        this.$emit('update:loading', val)
-      }
+        this.$emit("update:loading", val);
+      },
     },
     formRules() {
       const rules = this.metaData.reduce((pre, now) => {
-        const { required, rules: originRules, type, label } = now || {}
+        const { required, rules: originRules, type, label } = now || {};
         if (required || Array.isArray(originRules)) {
-          const rules = originRules ? [...originRules] : []
+          const rules = originRules ? [...originRules] : [];
           if (required && !rules.some((item) => item && item.required)) {
-            const preStr = [types.input, types.number].includes(type) ? '请输入' : '请选择'
+            const preStr = [types.input, types.number].includes(type)
+              ? "请输入"
+              : "请选择";
             rules.push({
               required: true,
               message: `${preStr}${label}`,
-              trigger: now.type === types.number ? 'change' : ['blur', 'change']
-            })
+              trigger: now.type === types.number ? "change" : ["blur", "change"],
+            });
           }
           return {
             ...pre,
-            [now.key]: rules
-          }
+            [now.key]: rules,
+          };
         }
-        return pre
-      }, {})
-      return rules
+        return pre;
+      }, {});
+      return rules;
     },
     formProcessOptions() {
-      const { isSearch } = this
-      const { rules = {}, ...rest } = this.formOptions || {}
+      const { isSearch } = this;
+      const { rules = {}, ...rest } = this.formOptions || {};
       return {
-        labelWidth: '70px',
+        labelWidth: "70px",
         ...(rest || {}),
-        rules: isSearch ? {} : { ...this.formRules, ...rules }
-      }
+        rules: isSearch ? {} : { ...this.formRules, ...rules },
+      };
     },
     cmpTypes() {
-      return types
+      return types;
     },
     metaData() {
-      const { isCollapse, showNum, isShowAll } = this
+      const { isCollapse, showNum, isShowAll } = this;
       // 展开收起模式 并且 显示表单数量大于1
       if (isCollapse && showNum > 0) {
         // 展开
         if (isShowAll) {
-          return this.createMetaData('expand')
+          return this.createMetaData("expand");
         } else {
           // 收起
-          return this.createMetaData('fold')
+          return this.createMetaData("fold");
         }
       } else {
         // 非展开收起模式
-        return this.createMetaData('expand')
+        return this.createMetaData("expand");
       }
     },
     elForm() {
-      return this.$refs.ruleForm
-    }
+      return this.$refs.ruleForm;
+    },
   },
   watch: {
     columns: {
       deep: true,
       immediate: true,
       handler: function () {
-        this.checkDefaultValue()
-      }
+        this.checkDefaultValue();
+      },
     },
     formData: {
       deep: true,
       immediate: true,
       handler: function () {
-        this.updateFormData()
-      }
+        this.updateFormData();
+      },
     },
     form: {
       deep: true,
       handler: function () {
-        this.$emit('change', this.form)
-      }
-    }
+        this.$emit("change", this.form);
+      },
+    },
   },
   created() {},
   methods: {
@@ -549,61 +568,67 @@ export default {
         column.onChange({
           column: column,
           value: this.form[column.key],
-          form: this.form
-        })
+          form: this.form,
+        });
       }
     },
     // 关闭弹窗
     closedDialog() {
-      const { formData } = this.$refs
-      formData.resetFields()
+      const { formData } = this.$refs;
+      formData.resetFields();
     },
     // 弹窗确定回调
     async handleOk() {
-      const { formData } = this.$refs
-      const { key } = this.currentColumn
+      const { formData } = this.$refs;
+      const { key } = this.currentColumn;
       try {
-        const checkResult = await formData.checkRule()
+        const checkResult = await formData.checkRule();
         if (checkResult) {
-          if (this.modalType === 'add') {
-            const arr = [...this.form[key]]
-            arr.push({ ...this.subForm, uid: Date.now() })
-            this.form[key] = arr
+          if (this.modalType === "add") {
+            const arr = [...this.form[key]];
+            arr.push({ ...this.subForm, uid: Date.now() });
+            this.form[key] = arr;
           } else {
-            this.$set(this.form[key], this.index, this.subForm)
+            this.$set(this.form[key], this.index, this.subForm);
           }
-          this.visible = false
-          this.subForm = {}
+          this.visible = false;
+          this.subForm = {};
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
     createColumn(column) {
-      const { tableDataOptions } = column
-      return tableDataOptions || {}
+      const { tableDataOptions } = column;
+      return tableDataOptions || {};
     },
     handleEdit(column, row, index) {
-      this.currentColumn = column
-      this.subFormColumn = column.tableDataOptions
-      this.modalType = 'edit'
-      this.index = index
-      this.visible = true
-      this.subForm = row
+      this.currentColumn = column;
+      this.subFormColumn = column.tableDataOptions;
+      this.modalType = "edit";
+      this.index = index;
+      this.visible = true;
+      this.subForm = row;
     },
     handleDelete(tableData, index) {
-      removeArrayByIndex(tableData, index)
+      removeArrayByIndex(tableData, index);
     },
     // 表格类型 点击打开弹窗
     handleClickBtn(column) {
-      this.modalType = 'add'
-      this.currentColumn = column
-      this.subFormColumn = column.tableDataOptions
-      this.subForm = {}
-      this.visible = true
+      this.modalType = "add";
+      this.currentColumn = column;
+      this.subFormColumn = column.tableDataOptions;
+      this.subForm = {};
+      this.visible = true;
     },
     mapMetaData(key, item, index, mode, showNum) {
-      const { label = key, span = 18, type = types.input, columnOption = {}, options = [] } = item
+      const {
+        label = key,
+        span = 18,
+        type = types.input,
+        columnOption = {},
+        options = [],
+      } = item;
       return {
         ...item,
         key,
@@ -612,196 +637,196 @@ export default {
         type,
         columnOption,
         options,
-        isShow: mode === 'expand' ? true : !(index >= showNum)
-      }
+        isShow: mode === "expand" ? true : !(index >= showNum),
+      };
     },
     /**
      * @param {*} mode
      */
     createMetaData(mode) {
-      const { columns, showNum } = this
+      const { columns, showNum } = this;
       if (Array.isArray(columns)) {
         return columns
           .filter((item) => this.checkShow(item))
           .map((item, index) => {
-            return this.mapMetaData(item.key, item, index, mode, showNum)
-          })
+            return this.mapMetaData(item.key, item, index, mode, showNum);
+          });
       } else {
         return Object.keys(columns)
           .filter((key) => this.checkShow(columns[key]))
           .map((key, index) => {
-            const item = columns[key]
-            return this.mapMetaData(key, item, index, mode, showNum)
-          })
+            const item = columns[key];
+            return this.mapMetaData(key, item, index, mode, showNum);
+          });
       }
     },
     getFormItemOptions(column) {
-      const { formItemOption } = column
+      const { formItemOption } = column;
       return {
-        ...formItemOption
-      }
+        ...formItemOption,
+      };
     },
     getColSpanOptions(column) {
-      const { colSpanOption, span } = column
+      const { colSpanOption, span } = column;
       return {
         span: span || 24,
-        ...(colSpanOption || {})
-      }
+        ...(colSpanOption || {}),
+      };
     },
     // 获取
     getColumnOptions(column) {
-      const { columnOption, type, label } = column
-      let processColumnOption = {}
+      const { columnOption, type, label } = column;
+      let processColumnOption = {};
       if ([types.input, types.number].includes(type)) {
         processColumnOption = {
-          placeholder: `请输入${label}`
-        }
+          placeholder: `请输入${label}`,
+        };
       } else if (
         type === types.date &&
-        ['datetimerange', 'daterange'].includes(columnOption.type)
+        ["datetimerange", "daterange"].includes(columnOption.type)
       ) {
         processColumnOption = {
-          startPlaceholder: '请选择开始日期',
-          endPlaceholder: '请选择结束日期'
-        }
+          startPlaceholder: "请选择开始日期",
+          endPlaceholder: "请选择结束日期",
+        };
       } else if (type === types.time && columnOption.isRange) {
         processColumnOption = {
-          startPlaceholder: '请选择开始时间',
-          endPlaceholder: '请选择结束时间'
-        }
+          startPlaceholder: "请选择开始时间",
+          endPlaceholder: "请选择结束时间",
+        };
       } else {
         processColumnOption = {
-          placeholder: `请选择${label}`
-        }
+          placeholder: `请选择${label}`,
+        };
       }
-      let options = {}
-      if (typeof columnOption === 'object') {
-        options = columnOption
-      } else if (typeof columnOption === 'function') {
-        options = columnOption() || {}
+      let options = {};
+      if (typeof columnOption === "object") {
+        options = columnOption;
+      } else if (typeof columnOption === "function") {
+        options = columnOption() || {};
       }
       return {
         ...processColumnOption,
-        ...options
-      }
+        ...options,
+      };
     },
     checkShow(column) {
-      if (typeof column.formColumnShow === 'boolean') {
-        return column.formColumnShow
+      if (typeof column.formColumnShow === "boolean") {
+        return column.formColumnShow;
       }
-      if (typeof column.formColumnShow === 'function') {
-        return column.formColumnShow(this.form)
+      if (typeof column.formColumnShow === "function") {
+        return column.formColumnShow(this.form);
       }
-      return true
+      return true;
     },
     checkEmpty(data) {
       if (Array.isArray(data)) {
-        return data.length === 0
+        return data.length === 0;
       } else {
-        return [undefined, null].includes(data)
+        return [undefined, null].includes(data);
       }
     },
     getOptions(column) {
-      let options = column.options
-      if (typeof column.options === 'function') {
-        options = column.options({ ...this.formData })
+      let options = column.options;
+      if (typeof column.options === "function") {
+        options = column.options({ ...this.formData });
       }
-      return options || []
+      return options || [];
     },
     handleDefaultValue(key, item, newForm) {
-      const { type, columnOption = {}, defaultValue } = item
+      const { type, columnOption = {}, defaultValue } = item;
       if (
         [types.checkBox, types.cascader, types.table].includes(type) &&
         !Array.isArray(newForm[key])
       ) {
-        newForm[key] = []
+        newForm[key] = [];
       }
       if (
         type === types.date &&
         !Array.isArray(newForm[key]) &&
-        ['datetimerange', 'daterange'].includes(columnOption.type)
+        ["datetimerange", "daterange"].includes(columnOption.type)
       ) {
-        newForm[key] = []
+        newForm[key] = [];
       }
       if (type === types.time && !Array.isArray(newForm[key]) && columnOption.isRange) {
-        newForm[key] = []
+        newForm[key] = [];
       }
       if (!this.checkEmpty(defaultValue) && this.checkEmpty(newForm[key])) {
-        newForm[key] = defaultValue
+        newForm[key] = defaultValue;
       }
     },
     checkDefaultValue() {
-      const { columns } = this
-      const newForm = cloneDeep(this.form)
+      const { columns } = this;
+      const newForm = cloneDeep(this.form);
       if (Array.isArray(columns)) {
         columns.forEach((item) => {
-          return this.handleDefaultValue(item.key, item, newForm)
-        })
+          return this.handleDefaultValue(item.key, item, newForm);
+        });
       } else {
         Object.keys(columns).forEach((key) => {
-          const item = columns[key]
-          return this.handleDefaultValue(key, item, newForm)
-        })
+          const item = columns[key];
+          return this.handleDefaultValue(key, item, newForm);
+        });
       }
-      this.form = newForm
+      this.form = newForm;
     },
     updateFormData() {
       if (!this.debounceUpdate) {
         this.debounceUpdate = debounce(
           () => {
             if (!isEqual(this.formData, this.form)) {
-              const data = cloneDeep(this.formData)
-              this.form = data
-              this.checkDefaultValue()
+              const data = cloneDeep(this.formData);
+              this.form = data;
+              this.checkDefaultValue();
             }
           },
           100,
           {
-            leading: true
+            leading: true,
           }
-        )
+        );
       }
-      this.debounceUpdate()
+      this.debounceUpdate();
     },
     checkRule() {
       return new Promise((resolve, reject) => {
-        const { ruleForm } = this.$refs
+        const { ruleForm } = this.$refs;
         if (ruleForm) {
           ruleForm.validate((valid, error) => {
             if (valid) {
-              resolve(true)
+              resolve(true);
             } else {
               this.$nextTick(() => {
-                const isError = document.getElementsByClassName('is-error')
+                const isError = document.getElementsByClassName("is-error");
                 isError[0].scrollIntoView({
-                  block: 'center',
-                  behavior: 'smooth'
-                })
-              })
-              reject(error)
+                  block: "center",
+                  behavior: "smooth",
+                });
+              });
+              reject(error);
             }
-          })
+          });
         }
-      })
+      });
     },
     resetFields() {
-      const { ruleForm } = this.$refs
-      ruleForm.resetFields()
+      const { ruleForm } = this.$refs;
+      ruleForm.resetFields();
     },
     clearValidate(a) {
-      const { ruleForm } = this.$refs
-      ruleForm.clearValidate(a)
+      const { ruleForm } = this.$refs;
+      ruleForm.clearValidate(a);
     },
     validateField(a, b) {
-      const { ruleForm } = this.$refs
-      return ruleForm.validateField(a, b)
+      const { ruleForm } = this.$refs;
+      return ruleForm.validateField(a, b);
     },
     validate(a, b) {
-      const { ruleForm } = this.$refs
-      return ruleForm.validate(a, b)
-    }
-  }
-}
+      const { ruleForm } = this.$refs;
+      return ruleForm.validate(a, b);
+    },
+  },
+};
 </script>
 <style lang="scss">
 .el-cascader-panel {
@@ -810,6 +835,12 @@ export default {
 .el-pro-form {
   .el-rate {
     line-height: 48px;
+  }
+
+  .el-form-item__label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
 </style>
@@ -825,7 +856,7 @@ export default {
     left: -6px;
     top: 50%;
     transform: translateY(-50%);
-    content: '';
+    content: "";
     display: block;
     width: 3.5px;
     border-radius: 2px;
