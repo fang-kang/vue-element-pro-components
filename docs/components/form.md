@@ -522,6 +522,127 @@ title: 通用表单-ElProForm
 
 :::
 
+### 表单联动
+
+很多时候需要根据前面表单的值，动态显示后面的表单是否显示。如果想在隐藏后删掉当前值，可以使用`watch`监听
+
+:::demo
+
+```html
+<el-pro-form v-model="form" :columns="columns" :form-options="{ labelWidth:'120px' }">
+  <template #columnAfter>
+    <el-form-item style="margin-left:10px;">
+      <el-button type="primary" @click="onSubmit">查询</el-button>
+    </el-form-item>
+  </template>
+</el-pro-form>
+<script>
+  export default {
+    data() {
+      return {
+        form: {},
+        columns: {
+          region: {
+            label: '活动区域',
+            tooltip: '区域一显示审批人',
+            type: 'select',
+            options: [
+              {
+                name: '区域一',
+                value: 'shanghai'
+              },
+              {
+                name: '区域二',
+                value: 'beijing'
+              }
+            ]
+          },
+          user: {
+            label: '审批人',
+            type: 'input',
+            formColumnShow: (form) => {
+              return form.region == 'shanghai'
+            }
+          }
+        }
+      }
+    },
+    methods: {
+      onSubmit() {
+        console.log('submit!')
+      }
+    }
+  }
+</script>
+```
+
+:::
+
+### 根据接口的值获取 options
+
+很多时候需要根据接口的值获取 option
+
+:::demo
+
+```html
+<el-pro-form v-model="form" :columns="columns" :form-options="{ labelWidth:'120px' }">
+  <template #columnAfter>
+    <el-form-item style="margin-left:10px;">
+      <el-button type="primary" @click="onSubmit">查询</el-button>
+    </el-form-item>
+  </template>
+</el-pro-form>
+<script>
+  // 可以从外部js引入
+  function getMetaData() {
+    return {
+      region: {
+        label: '活动区域',
+        tooltip: '测试1显示审批人',
+        type: 'select',
+        options: this.selectArr
+      },
+      user: {
+        label: '审批人',
+        type: 'input',
+        formColumnShow: (form) => {
+          return form.region == 1
+        }
+      }
+    }
+  }
+
+  export default {
+    data() {
+      return {
+        form: {},
+        columns: {},
+        selectArr: []
+      }
+    },
+    created() {
+      // 模拟接口获取下拉框的数据
+      setTimeout(() => {
+        for (let index = 0; index < 5; index++) {
+          this.selectArr.push({
+            name: `测试${index + 1}`,
+            value: index + 1
+          })
+        }
+      }, 1000)
+      this.columns = getMetaData.call(this)
+    },
+    methods: {
+      onSubmit() {
+        console.log('submit!')
+      }
+    }
+  }
+</script>
+```
+
+:::
+
 ### 对齐方式
 
 根据具体目标和制约因素，选择最佳的标签对齐方式。

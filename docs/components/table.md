@@ -150,9 +150,9 @@ title: 通用表格-ElProTable
 
 :::
 
-### 关闭工具栏
+### 打开工具栏
 
-`showToolbar`默认打开
+`showToolbar`默认关闭
 
 :::demo
 
@@ -160,7 +160,7 @@ title: 通用表格-ElProTable
 <template>
   <el-pro-table
     :data="tableData"
-    :show-toolbar="false"
+    show-toolbar
     :auto-height="false"
     :table-columns="columns"
   />

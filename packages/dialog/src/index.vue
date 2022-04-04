@@ -273,6 +273,7 @@ export default {
 
   &__content {
     .el-scrollbar__wrap {
+      padding: 10px 0;
       max-height: 60vh; // 最大高度
       min-height: 100px; // 最小高度
       overflow-x: hidden; // 隐藏横向滚动栏
@@ -281,6 +282,7 @@ export default {
 
   &__content--fullscreen {
     .el-scrollbar__wrap {
+      padding: 10px 0;
       max-height: calc(100vh - 46px - 120px); // 最大高度
       min-height: 100px; // 最小高度
       overflow-x: hidden; // 隐藏横向滚动栏
@@ -289,6 +291,7 @@ export default {
 
   &__content--footer {
     .el-scrollbar__wrap {
+      padding: 10px 0;
       max-height: calc(100vh - 46px - 60px - 80px); // 最大高度
       min-height: 100px; // 最小高度
       overflow-x: hidden; // 隐藏横向滚动栏
