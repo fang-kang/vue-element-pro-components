@@ -45,7 +45,7 @@ export declare class ElProSearch extends VueElementProComponents {
   isCollapse: boolean
 
   /** 是否显示高级查询 */
-  isShowAdvancedBtn: boolean
+  showAdvanced: boolean
 
   /** 收起后显示的表单数量 */
   showNum: number | string

@@ -1,5 +1,5 @@
 <template>
-  <div class="el-pro-table" :class="[isFullScreen ? 'is--maximize' : '']">
+  <div class="el-pro-table">
     <div v-if="showToolbar" class="el-pro-toolbar">
       <el-row type="flex" justify="space-between" :gutter="20" v-bind="rowOption">
         <div class="el-pro-toolbar__left">
@@ -20,19 +20,6 @@
                 circle
                 icon="el-icon-search"
                 @click="toggleSearch()"
-              />
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              :content="isFullScreen ? '还原' : '全屏'"
-              placement="top"
-            >
-              <el-button
-                size="mini"
-                circle
-                :icon="isFullScreen ? 'el-icon-minus' : 'el-icon-full-screen'"
-                @click="isFullScreen = !isFullScreen"
               />
             </el-tooltip>
             <el-tooltip
@@ -351,7 +338,7 @@ export default {
     },
     showToolbarRight: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     bottomOffset: {
       type: [Number, String],
@@ -405,7 +392,6 @@ export default {
       localColumns: {},
       defaultCheckedKeys: [],
       treeList: [],
-      isFullScreen: false,
     };
   },
   computed: {
@@ -478,9 +464,6 @@ export default {
     },
   },
   watch: {
-    isFullScreen() {
-      this.calcHeight();
-    },
     showSearch() {
       this.calcHeight();
     },
@@ -612,17 +595,5 @@ export default {
     justify-content: center;
     border-top: 1px solid #e8e8e8;
   }
-}
-
-.el-pro-table.is--maximize {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  background-color: #fff;
-  z-index: 2000;
-  box-sizing: border-box;
 }
 </style>

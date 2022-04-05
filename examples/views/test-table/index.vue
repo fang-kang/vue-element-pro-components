@@ -3,6 +3,9 @@
     <el-pro-search
       v-show="isShowSearch"
       v-model="queryForm"
+      is-collapse
+      show-advanced
+      show-reset
       :columns="columns"
       @search="dataReload"
       @reset="dataReload"

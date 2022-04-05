@@ -814,8 +814,8 @@ export default {
 <style lang="scss" scoped>
 .title {
   position: relative;
-  font-weight: bold;
   color: #000;
+  font-weight: normal;
   margin: 10px;
   font-size: 18px;
   &::before {

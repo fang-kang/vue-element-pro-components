@@ -51,7 +51,7 @@ export default {
   props: {
     showReset: {
       type: Boolean,
-      default: false
+      default: true
     },
     searchBtnText: {
       type: String,

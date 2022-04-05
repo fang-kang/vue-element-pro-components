@@ -31,7 +31,7 @@
         <el-form-item v-if="$slots.middle">
           <slot name="middle" />
         </el-form-item>
-        <el-form-item v-if="isShowAdvancedBtn">
+        <el-form-item v-if="showAdvanced">
           <advanced-search-btn v-model="showAdvancedBtn" :size="size" :title="advancedTitle">
             <el-pro-form
               ref="dataForm"
@@ -106,7 +106,7 @@ export default {
       required: false,
       default: false
     },
-    isShowAdvancedBtn: {
+    showAdvanced: {
       type: Boolean,
       required: false,
       default: false
@@ -216,7 +216,7 @@ export default {
       }
     },
     formAdvanceProcessOptions() {
-      const { ...rest } = this.formOptions || {}
+      const { ...rest } = this.formAdvanceOptions || {}
       return {
         labelWidth: '80px',
         inline: true,
@@ -307,7 +307,6 @@ export default {
 <style lang="scss">
 .el-pro-search {
   display: flex;
-  overflow: hidden;
 
   .el-form-item {
     margin: 0 15px 10px 0;

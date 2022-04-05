@@ -2047,7 +2047,7 @@ title: 通用表格-ElProTable
 | showToolbar | 是否显示工具栏 | boolean | — | false |
 | bottomOffset | 表格自动高度距离底部多少 | nmber/string | — | 30,有分页自动+50 |
 | deleteTip | 删除时提示语 | string | — | 此操作将永久删除该行, 是否继续? |
-| showToolbarRight | 是否显示右侧工具栏 | boolean | — | false |
+| showToolbarRight | 是否显示右侧工具栏 | boolean | — | true |
 | total | 总数 | number | — | 0 |
 | pagination.sync | 分页和查询条件 | object | — | {} |
 | paginationStyle | el-pagination 的 style | object | — | {} |
