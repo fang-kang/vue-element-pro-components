@@ -18,6 +18,9 @@ export function getTagOptions(column, row) {
 }
 
 export function formatShow(column, row, scope) {
+  console.log(column, 'column')
+  console.log(row, 'row')
+  console.log(scope, 'scope')
   const { key, showFormat, type, valueName, labelName } = column || {}
   if (showFormat && typeof showFormat === 'function') {
     return showFormat(row[key], row, scope)
@@ -48,7 +51,7 @@ export function formatShow(column, row, scope) {
       return getArrayValue(options, row[key], valueName || 'value', labelName || 'name')
     }
   }
-  return row[key]
+  return row[key] || ''
 }
 
 export const clipboardSuccess = () => {

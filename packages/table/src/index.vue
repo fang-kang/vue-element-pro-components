@@ -28,7 +28,7 @@
             </el-tooltip>
             <slot name="toolbarRightMiddle" />
             <el-tooltip class="item" effect="dark" content="密度" placement="top">
-              <el-dropdown trigger="click" style="margin: 0 10px;" @command="handleCommand">
+              <el-dropdown trigger="click" style="margin: 0 10px" @command="handleCommand">
                 <el-button size="mini" circle icon="el-icon-s-operation" />
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="medium"> 默认 </el-dropdown-item>
@@ -126,7 +126,7 @@
             v-bind="column.tableColumnOption"
           >
             <!-- 表头插槽 -->
-            <template #header="scope">
+            <div slot-scope="scope" slot="header">
               <slot :name="column.key + 'Header'" :scope="scope">
                 {{ column.label }}
                 <el-tooltip
@@ -134,25 +134,25 @@
                   placement="right"
                   :content="column.tableHeadTooltip"
                 >
-                  <i class="el-icon-question" style=" font-size: 16px; vertical-align: baseline;" />
+                  <i class="el-icon-question" style="font-size: 16px; vertical-align: baseline" />
                 </el-tooltip>
               </slot>
-            </template>
-            <template slot-scope="scope">
+            </div>
+            <div slot-scope="scope" slot="default">
               <slot :name="column.key" :scope="scope">
                 <i
                   v-if="column.copy"
                   v-clipboard:copy="scope.row[column.key]"
                   v-clipboard:success="clipboardSuccess"
                   class="el-icon-copy-document"
-                  style=" margin-right: 5px; color: #409eff; cursor: pointer;"
+                  style="margin-right: 5px; color: #409eff; cursor: pointer"
                 />
                 <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
                 <el-tag v-if="column.isTag" v-bind="getTagOptions(column, scope.row)">
                   {{ formatShow(column, scope.row, scope) }}
                 </el-tag>
               </slot>
-            </template>
+            </div>
           </el-table-column>
         </template>
       </Fragment>
@@ -176,7 +176,7 @@
                   v-if="deleteFunc"
                   icon="el-icon-delete"
                   type="text"
-                  style="color: red;"
+                  style="color: red"
                   v-bind="deleteProps(scope.row, scope.$index)"
                   @click="handleDeleteFunc(scope.row, scope.$index)"
                 >

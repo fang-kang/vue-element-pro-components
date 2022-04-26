@@ -21,7 +21,7 @@
           :label="item.tableLabel || item.label"
           v-bind="item.tableColumnOption"
         >
-          <template #header="scope">
+          <div slot-scope="scope" slot="header">
             <slot :name="item.key + 'Header'" :scope="scope" />
             {{ item.label }}
             <el-tooltip
@@ -29,24 +29,24 @@
               placement="right"
               :content="item.tableHeadTooltip"
             >
-              <i class="el-icon-question" style="font-size: 16px; vertical-align: baseline;" />
+              <i class="el-icon-question" style="font-size: 16px; vertical-align: baseline" />
             </el-tooltip>
-          </template>
-          <template slot-scope="scope">
+          </div>
+          <div slot-scope="scope" slot="default">
             <slot :name="item.key" :scope="scope">
               <i
                 v-if="item.copy"
                 v-clipboard:copy="scope.row[item.key]"
                 v-clipboard:success="clipboardSuccess"
                 class="el-icon-copy-document"
-                style="margin-right: 5px; color: #409eff; cursor: pointer;"
+                style="margin-right: 5px; color: #409eff; cursor: pointer"
               />
               <span v-if="!item.isTag">{{ formatShow(item, scope.row, scope) }}</span>
               <el-tag v-if="item.isTag" v-bind="getTagOptions(item, scope.row)">
                 {{ formatShow(item, scope.row, scope) }}
               </el-tag>
             </slot>
-          </template>
+          </div>
         </el-table-column>
       </template>
     </Fragment>

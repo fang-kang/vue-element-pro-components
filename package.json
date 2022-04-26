@@ -1,6 +1,6 @@
 {
   "name": "vue-element-pro-components",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "This is a vue2、element-ui based component library",
   "private": false,
   "author": "fangkang<https://github.com/fang-kang>",
@@ -74,7 +74,7 @@
     "core-js": "^2.6.5",
     "cross-env": "^5.2.1",
     "cssnano": "^4.1.10",
-    "element-ui": "^2.12.0",
+    "element-ui": "^2.15.7",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "highlight.js": "^9.15.10",
