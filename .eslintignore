@@ -15,4 +15,5 @@ lib
 /script/
 /config/
 /docs
+/examples/
 .vscode

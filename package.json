@@ -1,6 +1,6 @@
 {
   "name": "vue-element-pro-components",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "description": "This is a vue2、element-ui based component library",
   "private": false,
   "author": "fangkang<https://github.com/fang-kang>",
@@ -126,8 +126,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {

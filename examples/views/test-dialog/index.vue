@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button @click="visible = true">打开</el-button>
+    <el-button @click="visible = true"> 打开 </el-button>
     <el-pro-dialog
       v-model="visible"
       title="测试"

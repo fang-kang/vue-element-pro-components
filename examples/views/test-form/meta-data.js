@@ -168,7 +168,7 @@ export function getMetaData() {
               ]
             }
           ]
-        },
+        }
       ],
       span: 12
     },

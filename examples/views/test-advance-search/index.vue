@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button @click="visible = true">测试高级查询</el-button>
+    <el-button @click="visible = true">测试</el-button>
     <el-pro-advanced-search
       v-model="queryForm"
       title="高级查询"

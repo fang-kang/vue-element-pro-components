@@ -7,7 +7,7 @@
     :label="child.tableLabel || child.label"
     v-bind="child.tableColumnOption"
   >
-    <template v-for="item in child.children">
+    <Fragment v-for="item in child.children" :key="item.key">
       <!-- 树型数据 -->
       <template v-if="item.children && item.children.length">
         <table-column :child="item" />
@@ -49,14 +49,16 @@
           </template>
         </el-table-column>
       </template>
-    </template>
+    </Fragment>
   </el-table-column>
 </template>
 
 <script>
+import { Fragment } from 'vue-fragment'
 import { getTagOptions, formatShow, clipboardSuccess } from './utils'
 export default {
   name: 'TableColumn',
+  components: { Fragment },
   props: {
     child: {
       type: Object,
