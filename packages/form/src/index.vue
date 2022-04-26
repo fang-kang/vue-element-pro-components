@@ -16,14 +16,14 @@
             <h3 v-if="column.type === cmpTypes.title" class="title">
               {{ column.label }}
               <el-tooltip v-if="column.tooltip" placement="right" :content="column.tooltip">
-                <i class="el-icon-question" style="vertical-align: baseline; font-size: 16px" />
+                <i class="el-icon-question" style=" font-size: 16px; vertical-align: baseline;" />
               </el-tooltip>
             </h3>
             <template v-else-if="column.type === cmpTypes.table">
               <el-button
                 v-if="!isPreview"
                 type="default"
-                style="margin-bottom: 10px"
+                style="margin-bottom: 10px;"
                 icon="el-icon-plus"
                 @click="handleClickBtn(column)"
               >
@@ -33,7 +33,7 @@
                 :data="form[column.key]"
                 :columns="createColumn(column)"
                 :auto-height="false"
-                style="margin-bottom: 10px"
+                style="margin-bottom: 10px;"
                 :operation-options="{ width: 200 }"
                 :table-options="tableOptions"
               >
@@ -48,7 +48,7 @@
                   <el-button
                     icon="el-icon-delete"
                     type="text"
-                    style="color: red"
+                    style="color: red;"
                     @click="handleDelete(form[column.key], scope.$index)"
                   >
                     删除
@@ -72,7 +72,7 @@
                   <el-tooltip v-if="column.tooltip" placement="right" :content="column.tooltip">
                     <i
                       class="el-icon-question"
-                      style="margin-left: 5px; vertical-align: baseline"
+                      style="margin-left: 5px; vertical-align: baseline;"
                     />
                   </el-tooltip>
                 </template>
@@ -814,21 +814,21 @@ export default {
 <style lang="scss" scoped>
 .title {
   position: relative;
-  color: #000;
-  font-weight: normal;
   margin: 10px;
   font-size: 18px;
+  font-weight: normal;
+  color: #000;
   &::before {
     position: absolute;
-    left: -6px;
     top: 50%;
-    transform: translateY(-50%);
-    content: '';
+    left: -6px;
     display: block;
     width: 3.5px;
-    border-radius: 2px;
     height: 14.5px;
     background-color: #1890ff;
+    border-radius: 2px;
+    content: '';
+    transform: translateY(-50%);
   }
 }
 </style>

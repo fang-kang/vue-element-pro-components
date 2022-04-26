@@ -15,7 +15,7 @@
       <i class="el-icon-close drawerClose" @click="showVisible = false" />
     </div>
     <slot v-if="$slots.title" name="title" class="drawerHeader" />
-    <el-scrollbar style="height: 100%">
+    <el-scrollbar style="height: 100%;">
       <slot />
     </el-scrollbar>
   </el-drawer>
@@ -90,16 +90,16 @@ export default {
       padding-bottom: 20px;
 
       .drawerClose {
-        cursor: pointer;
         float: right;
+        cursor: pointer;
       }
       &:after {
-        content: '';
         position: absolute;
-        border-bottom: 1px solid #e8e8e8;
-        width: calc(100% + 40px);
-        left: -20px;
         bottom: 0;
+        left: -20px;
+        width: calc(100% + 40px);
+        border-bottom: 1px solid #e8e8e8;
+        content: '';
       }
     }
   }

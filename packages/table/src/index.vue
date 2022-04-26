@@ -28,7 +28,7 @@
             </el-tooltip>
             <slot name="toolbarRightMiddle" />
             <el-tooltip class="item" effect="dark" content="密度" placement="top">
-              <el-dropdown trigger="click" style="margin: 0 10px" @command="handleCommand">
+              <el-dropdown trigger="click" style="margin: 0 10px;" @command="handleCommand">
                 <el-button size="mini" circle icon="el-icon-s-operation" />
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="medium"> 默认 </el-dropdown-item>
@@ -134,7 +134,7 @@
                   placement="right"
                   :content="column.tableHeadTooltip"
                 >
-                  <i class="el-icon-question" style="vertical-align: baseline; font-size: 16px" />
+                  <i class="el-icon-question" style=" font-size: 16px; vertical-align: baseline;" />
                 </el-tooltip>
               </slot>
             </template>
@@ -145,7 +145,7 @@
                   v-clipboard:copy="scope.row[column.key]"
                   v-clipboard:success="clipboardSuccess"
                   class="el-icon-copy-document"
-                  style="cursor: pointer; color: #409eff; margin-right: 5px"
+                  style=" margin-right: 5px; color: #409eff; cursor: pointer;"
                 />
                 <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
                 <el-tag v-if="column.isTag" v-bind="getTagOptions(column, scope.row)">
@@ -176,7 +176,7 @@
                   v-if="deleteFunc"
                   icon="el-icon-delete"
                   type="text"
-                  style="color: red"
+                  style="color: red;"
                   v-bind="deleteProps(scope.row, scope.$index)"
                   @click="handleDeleteFunc(scope.row, scope.$index)"
                 >
@@ -559,22 +559,22 @@ export default {
 .el-pro-popover {
   padding: 0 !important;
   &__title {
+    display: flex;
     width: 100%;
     padding: 8px;
+    border-bottom: 1px solid #e8e8e8;
     box-sizing: border-box;
-    display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #e8e8e8;
   }
   &__footer {
+    display: flex;
     width: 100%;
     padding: 8px;
+    border-top: 1px solid #e8e8e8;
     box-sizing: border-box;
-    display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid #e8e8e8;
   }
 }
 </style>

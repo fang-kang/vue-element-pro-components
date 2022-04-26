@@ -29,7 +29,7 @@
               placement="right"
               :content="item.tableHeadTooltip"
             >
-              <i class="el-icon-question" style="vertical-align: baseline; font-size: 16px" />
+              <i class="el-icon-question" style="font-size: 16px; vertical-align: baseline;" />
             </el-tooltip>
           </template>
           <template slot-scope="scope">
@@ -39,7 +39,7 @@
                 v-clipboard:copy="scope.row[item.key]"
                 v-clipboard:success="clipboardSuccess"
                 class="el-icon-copy-document"
-                style="cursor: pointer; color: #409eff; margin-right: 5px"
+                style="margin-right: 5px; color: #409eff; cursor: pointer;"
               />
               <span v-if="!item.isTag">{{ formatShow(item, scope.row, scope) }}</span>
               <el-tag v-if="item.isTag" v-bind="getTagOptions(item, scope.row)">
@@ -72,5 +72,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped></style>

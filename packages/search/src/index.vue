@@ -4,7 +4,7 @@
     <el-pro-form
       ref="dataForm"
       v-model="localQuery"
-      style="margin: 10px 0"
+      style="margin: 10px 0;"
       :is-row="false"
       is-search
       :isCollapse="isCollapse"
@@ -42,7 +42,7 @@
               :form-options="formAdvanceProcessOptions"
             />
             <template>
-              <div style="height: 40px; width: 100%" />
+              <div style=" width: 100%; height: 40px;" />
               <div class="footer">
                 <el-button icon="el-icon-refresh-right" @click="handleReset">重置</el-button>
                 <el-button icon="el-icon-search" type="primary" @click="handleSearch">
@@ -326,12 +326,12 @@ export default {
 .footer {
   position: absolute;
   bottom: 0;
+  left: 0;
   width: 100%;
-  border-top: 1px solid #e8e8e8;
   padding: 15px 15px 0 15px;
   text-align: center;
-  left: 0;
   background: #fff;
+  border-top: 1px solid #e8e8e8;
   border-radius: 0 0 4px 4px;
 }
 </style>

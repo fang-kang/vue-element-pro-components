@@ -211,10 +211,10 @@ export default {
 </script>
 <style lang="scss">
 .el-dialog {
-  transform: none;
-  left: 0;
   position: relative;
+  left: 0;
   margin: 0 auto;
+  transform: none;
 }
 .el-pro-dialog {
   .el-dialog__header {
@@ -235,21 +235,20 @@ export default {
     }
   }
   .el-dialog__footer {
-    padding: 10px;
     height: auto;
+    padding: 10px;
   }
   .dialog__icon {
     position: absolute;
     top: 20px;
+    right: 45px;
     padding: 0;
+    font-size: 14px;
+    color: #909399;
+    cursor: pointer;
     background: 0 0;
     border: none;
     outline: 0;
-    cursor: pointer;
-    font-size: 14px;
-    right: 45px;
-    color: #909399;
-    cursor: pointer;
     transition: color 0.2s;
 
     &:hover {
@@ -267,33 +266,33 @@ export default {
   }
 
   .content__wrap {
-    overflow-x: hidden;
     min-height: 100px;
+    overflow-x: hidden;
   }
 
   &__content {
     .el-scrollbar__wrap {
-      padding: 10px 0;
       max-height: 60vh; // 最大高度
       min-height: 100px; // 最小高度
+      padding: 10px 0;
       overflow-x: hidden; // 隐藏横向滚动栏
     }
   }
 
   &__content--fullscreen {
     .el-scrollbar__wrap {
-      padding: 10px 0;
       max-height: calc(100vh - 46px - 120px); // 最大高度
       min-height: 100px; // 最小高度
+      padding: 10px 0;
       overflow-x: hidden; // 隐藏横向滚动栏
     }
   }
 
   &__content--footer {
     .el-scrollbar__wrap {
-      padding: 10px 0;
       max-height: calc(100vh - 46px - 60px - 80px); // 最大高度
       min-height: 100px; // 最小高度
+      padding: 10px 0;
       overflow-x: hidden; // 隐藏横向滚动栏
     }
   }
