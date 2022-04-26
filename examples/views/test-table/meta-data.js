@@ -50,7 +50,12 @@ export function getMetaData() {
       showInTable: true,
       showInSearch: true,
       required: true,
-      span: 12
+      span: 12,
+      tableColumnOption: {
+        renderHeader: (h) => {
+          return h('div', {}, '测试')
+        }
+      }
     },
     birthday: {
       label: '生日',

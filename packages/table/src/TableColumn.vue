@@ -21,32 +21,36 @@
           :label="item.tableLabel || item.label"
           v-bind="item.tableColumnOption"
         >
-          <div slot-scope="scope" slot="header">
+          <template v-slot:header="scope">
             <slot :name="item.key + 'Header'" :scope="scope" />
-            {{ item.label }}
+            <span v-if="!$slots[item.key + 'Header']">{{ item.tableLabel || item.label }}</span>
             <el-tooltip
-              v-if="item.tableHeadTooltip"
+              v-if="item.tableHeadTooltip && !$slots[item.key + 'Header']"
               placement="right"
               :content="item.tableHeadTooltip"
             >
-              <i class="el-icon-question" style="font-size: 16px; vertical-align: baseline" />
-            </el-tooltip>
-          </div>
-          <div slot-scope="scope" slot="default">
-            <slot :name="item.key" :scope="scope">
               <i
-                v-if="item.copy"
-                v-clipboard:copy="scope.row[item.key]"
-                v-clipboard:success="clipboardSuccess"
-                class="el-icon-copy-document"
-                style="margin-right: 5px; color: #409eff; cursor: pointer"
+                class="el-icon-question"
+                style="font-size: 16px; vertical-align: baseline; margin-left: 5px"
               />
-              <span v-if="!item.isTag">{{ formatShow(item, scope.row, scope) }}</span>
-              <el-tag v-if="item.isTag" v-bind="getTagOptions(item, scope.row)">
-                {{ formatShow(item, scope.row, scope) }}
-              </el-tag>
-            </slot>
-          </div>
+            </el-tooltip>
+          </template>
+          <template v-slot:default="scope">
+            <slot :name="item.key" :scope="scope" />
+            <i
+              v-if="item.copy && !$slots[item.key]"
+              v-clipboard:copy="scope.row[item.key]"
+              v-clipboard:success="clipboardSuccess"
+              class="el-icon-copy-document"
+              style="margin-right: 5px; color: #409eff; cursor: pointer"
+            />
+            <span v-if="!item.isTag && !$slots[item.key]">{{
+              formatShow(item, scope.row, scope)
+            }}</span>
+            <el-tag v-if="item.isTag && !$slots[item.key]" v-bind="getTagOptions(item, scope.row)">
+              {{ formatShow(item, scope.row, scope) }}
+            </el-tag>
+          </template>
         </el-table-column>
       </template>
     </Fragment>

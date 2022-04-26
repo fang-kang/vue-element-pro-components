@@ -39,6 +39,9 @@
         <el-button type="info" plain icon="el-icon-upload2">导入</el-button>
         <el-button type="warning" plain icon="el-icon-upload">导出</el-button>
       </template>
+      <template #addressHeader>
+        <div> asasa</div>
+      </template>
     </el-pro-table>
     <el-pro-dialog
       v-model="visible"
@@ -136,14 +139,22 @@ export default {
           showInSearch: true,
           required: true,
           defaultValue: 1,
-          span: 12
+          span: 12,
+          tableColumnOption: {
+            sortable: true
+          }
         },
         age: {
           label: '年龄',
           showInTable: true,
           showInSearch: true,
           required: true,
-          span: 12
+          span: 12,
+          tableColumnOption: {
+            renderHeader: (h) => {
+              return h('el-tag', {}, '测试')
+            }
+          }
         },
         birthday: {
           label: '生日',

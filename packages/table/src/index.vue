@@ -126,33 +126,41 @@
             v-bind="column.tableColumnOption"
           >
             <!-- 表头插槽 -->
-            <div slot-scope="scope" slot="header">
-              <slot :name="column.key + 'Header'" :scope="scope">
-                {{ column.label }}
-                <el-tooltip
-                  v-if="column.tableHeadTooltip"
-                  placement="right"
-                  :content="column.tableHeadTooltip"
-                >
-                  <i class="el-icon-question" style="font-size: 16px; vertical-align: baseline" />
-                </el-tooltip>
-              </slot>
-            </div>
-            <div slot-scope="scope" slot="default">
-              <slot :name="column.key" :scope="scope">
+            <template v-slot:header="scope">
+              <slot :name="column.key + 'Header'" :scope="scope" />
+              <span v-if="!$slots[column.key + 'Header']">{{
+                column.tableLabel || column.label
+              }}</span>
+              <el-tooltip
+                v-if="column.tableHeadTooltip && !$slots[column.key + 'Header']"
+                placement="right"
+                :content="column.tableHeadTooltip"
+              >
                 <i
-                  v-if="column.copy"
-                  v-clipboard:copy="scope.row[column.key]"
-                  v-clipboard:success="clipboardSuccess"
-                  class="el-icon-copy-document"
-                  style="margin-right: 5px; color: #409eff; cursor: pointer"
+                  class="el-icon-question"
+                  style="font-size: 16px; vertical-align: baseline; margin-left: 5px"
                 />
-                <span v-if="!column.isTag">{{ formatShow(column, scope.row, scope) }}</span>
-                <el-tag v-if="column.isTag" v-bind="getTagOptions(column, scope.row)">
-                  {{ formatShow(column, scope.row, scope) }}
-                </el-tag>
-              </slot>
-            </div>
+              </el-tooltip>
+            </template>
+            <template v-slot:default="scope">
+              <slot :name="column.key" :scope="scope" />
+              <i
+                v-if="column.copy && !$slots[column.key]"
+                v-clipboard:copy="scope.row[column.key]"
+                v-clipboard:success="clipboardSuccess"
+                class="el-icon-copy-document"
+                style="margin-right: 5px; color: #409eff; cursor: pointer"
+              />
+              <span v-if="!column.isTag && !$slots[column.key]">{{
+                formatShow(column, scope.row, scope)
+              }}</span>
+              <el-tag
+                v-if="column.isTag && !$slots[column.key]"
+                v-bind="getTagOptions(column, scope.row)"
+              >
+                {{ formatShow(column, scope.row, scope) }}
+              </el-tag>
+            </template>
           </el-table-column>
         </template>
       </Fragment>

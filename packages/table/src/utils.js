@@ -18,9 +18,6 @@ export function getTagOptions(column, row) {
 }
 
 export function formatShow(column, row, scope) {
-  console.log(column, 'column')
-  console.log(row, 'row')
-  console.log(scope, 'scope')
   const { key, showFormat, type, valueName, labelName } = column || {}
   if (showFormat && typeof showFormat === 'function') {
     return showFormat(row[key], row, scope)
