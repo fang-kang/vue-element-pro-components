@@ -110,7 +110,7 @@
         </template>
       </el-table-column>
 
-      <Fragment v-for="column in metadata" :key="column.key">
+      <fragment v-for="column in metadata" :key="column.key">
         <!-- 树型数据 -->
         <template v-if="column.children && column.children.length">
           <table-column :child="column" />
@@ -163,9 +163,9 @@
             </template>
           </el-table-column>
         </template>
-      </Fragment>
+      </fragment>
       <el-table-column v-if="hasOperation" v-bind="processOperationOptions">
-        <template slot-scope="scope">
+        <template v-slot:default="scope">
           <slot :scope="scope" name="operationColumn">
             <div class="operationContainer">
               <slot :scope="scope" name="operationBefore" />

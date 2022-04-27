@@ -16,14 +16,14 @@
             <h3 v-if="column.type === cmpTypes.title" class="title">
               {{ column.label }}
               <el-tooltip v-if="column.tooltip" placement="right" :content="column.tooltip">
-                <i class="el-icon-question" style=" font-size: 16px; vertical-align: baseline;" />
+                <i class="el-icon-question" style="font-size: 16px; vertical-align: baseline" />
               </el-tooltip>
             </h3>
             <template v-else-if="column.type === cmpTypes.table">
               <el-button
                 v-if="!isPreview"
                 type="default"
-                style="margin-bottom: 10px;"
+                style="margin-bottom: 10px"
                 icon="el-icon-plus"
                 @click="handleClickBtn(column)"
               >
@@ -33,11 +33,11 @@
                 :data="form[column.key]"
                 :columns="createColumn(column)"
                 :auto-height="false"
-                style="margin-bottom: 10px;"
+                style="margin-bottom: 10px"
                 :operation-options="{ width: 200 }"
                 :table-options="tableOptions"
               >
-                <template #operationMiddle="{ scope }">
+                <template v-slot:operationMiddle="{ scope }">
                   <el-button
                     icon="el-icon-edit"
                     type="text"
@@ -48,7 +48,7 @@
                   <el-button
                     icon="el-icon-delete"
                     type="text"
-                    style="color: red;"
+                    style="color: red"
                     @click="handleDelete(form[column.key], scope.$index)"
                   >
                     删除
@@ -65,14 +65,14 @@
                 :required="isSearch ? false : column.required"
                 v-bind="getFormItemOptions(column)"
               >
-                <template slot="label">
+                <template v-slot:label>
                   <span :title="column.serachLabel || column.label">
                     {{ column.serachLabel || column.label }}
                   </span>
                   <el-tooltip v-if="column.tooltip" placement="right" :content="column.tooltip">
                     <i
                       class="el-icon-question"
-                      style="margin-left: 5px; vertical-align: baseline;"
+                      style="margin-left: 5px; vertical-align: baseline"
                     />
                   </el-tooltip>
                 </template>
@@ -95,16 +95,16 @@
                       }
                     "
                   >
-                    <template #prefix>
+                    <template v-slot:prefix>
                       <slot :name="`${column.key}Prefix`" :form="form" />
                     </template>
-                    <template #suffix>
+                    <template v-slot:suffix>
                       <slot :name="`${column.key}Suffix`" :form="form" />
                     </template>
-                    <template #prepend>
+                    <template v-slot:prepend>
                       <slot :name="`${column.key}Prepend`" :form="form" />
                     </template>
-                    <template #append>
+                    <template v-slot:append>
                       <slot :name="`${column.key}Append`" :form="form" />
                     </template>
                   </el-input>

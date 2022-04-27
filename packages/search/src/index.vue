@@ -4,7 +4,7 @@
     <el-pro-form
       ref="dataForm"
       v-model="localQuery"
-      style="margin: 10px 0;"
+      style="margin: 10px 0"
       :is-row="false"
       is-search
       :isCollapse="isCollapse"
@@ -13,7 +13,7 @@
       :columns="searchColumn"
       :form-options="formProcessOptions"
     >
-      <template #columnAfter>
+      <template v-slot:columnAfter>
         <el-form-item v-if="$slots.before">
           <slot name="before" />
         </el-form-item>
@@ -42,7 +42,7 @@
               :form-options="formAdvanceProcessOptions"
             />
             <template>
-              <div style=" width: 100%; height: 40px;" />
+              <div style="width: 100%; height: 40px" />
               <div class="footer">
                 <el-button icon="el-icon-refresh-right" @click="handleReset">重置</el-button>
                 <el-button icon="el-icon-search" type="primary" @click="handleSearch">

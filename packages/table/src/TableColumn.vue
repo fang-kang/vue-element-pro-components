@@ -7,7 +7,7 @@
     :label="child.tableLabel || child.label"
     v-bind="child.tableColumnOption"
   >
-    <Fragment v-for="item in child.children" :key="item.key">
+    <fragment v-for="item in child.children" :key="item.key">
       <!-- 树型数据 -->
       <template v-if="item.children && item.children.length">
         <table-column :child="item" />
@@ -53,7 +53,7 @@
           </template>
         </el-table-column>
       </template>
-    </Fragment>
+    </fragment>
   </el-table-column>
 </template>
 
