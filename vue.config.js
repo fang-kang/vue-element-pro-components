@@ -67,10 +67,12 @@ module.exports = {
   devServer: {
     // 端口号
     port: 8099,
-    // eslint报错页面会被遮住
-    overlay: {
-      warnings: true,
-      errors: true
+    client: {
+      // eslint报错页面会被遮住
+      overlay: {
+        errors: true,
+        warnings: false
+      }
     }
   },
   pluginOptions: {

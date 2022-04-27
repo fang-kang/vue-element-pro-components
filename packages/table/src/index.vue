@@ -166,34 +166,32 @@
       </fragment>
       <el-table-column v-if="hasOperation" v-bind="processOperationOptions">
         <template v-slot:default="scope">
-          <slot :scope="scope" name="operationColumn">
-            <div class="operationContainer">
-              <slot :scope="scope" name="operationBefore" />
-              <slot :scope="scope" name="autoOperation">
-                <el-button
-                  v-if="updateFunc"
-                  icon="el-icon-edit"
-                  type="text"
-                  v-bind="updateProps(scope.row, scope.$index)"
-                  @click="updateFunc(scope.row, scope.$index)"
-                >
-                  {{ updateText }}
-                </el-button>
-                <slot :scope="scope" name="operationMiddle" />
-                <el-button
-                  v-if="deleteFunc"
-                  icon="el-icon-delete"
-                  type="text"
-                  style="color: red"
-                  v-bind="deleteProps(scope.row, scope.$index)"
-                  @click="handleDeleteFunc(scope.row, scope.$index)"
-                >
-                  {{ deleteText }}
-                </el-button>
-              </slot>
-              <slot :scope="scope" name="operationAfter" />
-            </div>
-          </slot>
+          <slot :scope="scope" name="operationColumn" />
+          <div class="operationContainer" v-if="!$slots.operationColumn">
+            <slot :scope="scope" name="operationBefore" />
+            <slot :scope="scope" name="autoOperation" />
+            <el-button
+              v-if="updateFunc && !$slots.autoOperation"
+              icon="el-icon-edit"
+              type="text"
+              v-bind="updateProps(scope.row, scope.$index)"
+              @click="updateFunc(scope.row, scope.$index)"
+            >
+              {{ updateText }}
+            </el-button>
+            <slot :scope="scope" name="operationMiddle" />
+            <el-button
+              v-if="deleteFunc && !$slots.autoOperation"
+              icon="el-icon-delete"
+              type="text"
+              style="color: red"
+              v-bind="deleteProps(scope.row, scope.$index)"
+              @click="handleDeleteFunc(scope.row, scope.$index)"
+            >
+              {{ deleteText }}
+            </el-button>
+            <slot :scope="scope" name="operationAfter" />
+          </div>
         </template>
       </el-table-column>
     </el-table>

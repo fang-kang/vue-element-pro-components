@@ -27,7 +27,7 @@ module.exports = {
     'vue/multiline-html-element-content-newline': 'off'
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@babel/eslint-parser'
   },
   overrides: [
     {
