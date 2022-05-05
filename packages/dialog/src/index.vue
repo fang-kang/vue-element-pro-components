@@ -50,7 +50,7 @@
       </el-button>
       <slot name="afterFooter" />
     </div>
-    <template v-if="$slots.footer" #footer>
+    <template v-if="$slots.footer" slot="footer">
       <slot name="footer" />
     </template>
   </el-dialog>
