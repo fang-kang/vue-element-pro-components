@@ -27,7 +27,7 @@ jobs:
       - name: Setup yarn
         run: npm i -g yarn
       - name: Install dependencies
-        run: yarn
+        run: yarn && yarn add vue-server-renderer@2.6.0 -D
 
       # 执行发布到库
 

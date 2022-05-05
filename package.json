@@ -1,6 +1,6 @@
 {
   "name": "vue-element-pro-components",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "This is a vue2、element-ui based component library",
   "private": false,
   "author": "fangkang<https://github.com/fang-kang>",
@@ -51,7 +51,8 @@
     "async-validator": "^1.11.5",
     "clipboard": "^2.0.10",
     "lodash-es": "^4.17.21",
-    "vue-fragment": "1.5.1"
+    "vue-fragment": "1.5.1",
+    "vue-server-renderer": "^2.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
@@ -112,11 +113,11 @@
     "stylelint-config-standard": "^18.3.0",
     "stylelint-order": "^3.1.0",
     "stylelint-webpack-plugin": "^0.10.5",
-    "vue": "^2.6.14",
+    "vue": "2.6.0",
     "vue-highlight.js": "^2.2.0",
     "vue-router": "^3.0.1",
-    "vue-server-renderer": "^2.6.14",
-    "vue-template-compiler": "^2.6.14",
+    "vue-server-renderer": "2.6.0",
+    "vue-template-compiler": "2.6.0",
     "vuepress": "^1.0.4",
     "vuepress-plugin-demo-container": "^0.2.0",
     "vuepress-plugin-nuggets-style-copy": "^1.0.3",
