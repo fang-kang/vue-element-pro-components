@@ -11,7 +11,7 @@
         :form-options="{ labelWidth: '140px' }"
         @check-change="handleCheckChange"
       >
-        <template #inputAppend="{ form }">
+        <template slot="inputAppend" slot-scope="{form}">
           <el-button @click="click(form)">测试</el-button>
         </template>
       </el-pro-form>

@@ -21,7 +21,7 @@
           :label="item.tableLabel || item.label"
           v-bind="item.tableColumnOption"
         >
-          <template v-slot:header="scope">
+          <template slot="header" slot-scope="scope">
             <slot :name="item.key + 'Header'" :scope="scope" />
             <span v-if="!$slots[item.key + 'Header']">{{ item.tableLabel || item.label }}</span>
             <el-tooltip
@@ -35,7 +35,7 @@
               />
             </el-tooltip>
           </template>
-          <template v-slot:default="scope">
+          <template slot-scope="scope">
             <slot :name="item.key" :scope="scope" />
             <i
               v-if="item.copy && !$slots[item.key]"

@@ -40,7 +40,7 @@ title: 通用表单-ElProForm
       :form-options="{ labelPosition:'left' }"
       :table-options="{ autoHeight: false , height:'100px'}"
     >
-      <template #columnAfter>
+      <template slot="columnAfter">
         <el-form-item>
           <el-button type="primary" @click="onSubmit">立即创建</el-button>
           <el-button>取消</el-button>
@@ -470,7 +470,7 @@ title: 通用表单-ElProForm
   :is-row="false"
   :form-options="{ inline: true }"
 >
-  <template #columnAfter>
+  <template slot="columnAfter">
     <el-form-item style="margin-left:10px;">
       <el-button type="primary" @click="onSubmit">查询</el-button>
     </el-form-item>
@@ -530,7 +530,7 @@ title: 通用表单-ElProForm
 
 ```html
 <el-pro-form v-model="form" :columns="columns" :form-options="{ labelWidth:'120px' }">
-  <template #columnAfter>
+  <template slot="columnAfter">
     <el-form-item style="margin-left:10px;">
       <el-button type="primary" @click="onSubmit">查询</el-button>
     </el-form-item>
@@ -586,7 +586,7 @@ title: 通用表单-ElProForm
 
 ```html
 <el-pro-form v-model="form" :columns="columns" :form-options="{ labelWidth:'120px' }">
-  <template #columnAfter>
+  <template slot="columnAfter">
     <el-form-item style="margin-left:10px;">
       <el-button type="primary" @click="onSubmit">查询</el-button>
     </el-form-item>
@@ -707,7 +707,7 @@ title: 通用表单-ElProForm
       :columns="columns"
       :form-options="{labelWidth:'100px'}"
     >
-      <template #columnAfter>
+      <template slot="columnAfter">
         <el-form-item>
           <el-button type="primary" @click="onSubmit">立即创建</el-button>
           <el-button @click="resetForm">重置</el-button>
@@ -995,22 +995,22 @@ export const types = {
 
 ## Attributes
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| :-: | :-: | :-: | :-: | :-: |
-| v-model | 表单数据 | object | — | {} |
-| columns | 表单配置项 | [object, array] | — | {} |
-| formOptions | 官方支持的参数集合 | object | — | {} |
-| loading | 表单 loading | boolean | — | false |
-| isRow | 是否启用栅格布局 | boolean | — | true |
-| showNum | 搜索组件内部使用,显示可见的表单项个数 | [number, string] | — | 2 |
-| isCollapse | 搜索组件内部使用,是否开启展开收起 | boolean | — | false |
-| showAll | 搜索组件内部使用,是否展开收起 | boolean | — | true |
-| tableDialogOptions | 表单类型-table 的弹窗 options | object | — | {} |
-| tableFormOptions | 表单类型-table 的表单 options | object | — | {} |
-| tableOptions | 表单类型-table 的表格 options | object | — | {} |
-| rowOptions | el-row 配置 | object | — | { gutter: 10 } |
-| isSearch | 是否是搜索 | boolean | — | false |
-| isPreview | 是否预览 | boolean | — | false |
+|        参数        |                 说明                  |       类型       | 可选值 |     默认值     |
+| :----------------: | :-----------------------------------: | :--------------: | :----: | :------------: |
+|      v-model       |               表单数据                |      object      |   —    |       {}       |
+|      columns       |              表单配置项               | [object, array]  |   —    |       {}       |
+|    formOptions     |          官方支持的参数集合           |      object      |   —    |       {}       |
+|      loading       |             表单 loading              |     boolean      |   —    |     false      |
+|       isRow        |           是否启用栅格布局            |     boolean      |   —    |      true      |
+|      showNum       | 搜索组件内部使用,显示可见的表单项个数 | [number, string] |   —    |       2        |
+|     isCollapse     |   搜索组件内部使用,是否开启展开收起   |     boolean      |   —    |     false      |
+|      showAll       |     搜索组件内部使用,是否展开收起     |     boolean      |   —    |      true      |
+| tableDialogOptions |     表单类型-table 的弹窗 options     |      object      |   —    |       {}       |
+|  tableFormOptions  |     表单类型-table 的表单 options     |      object      |   —    |       {}       |
+|    tableOptions    |     表单类型-table 的表格 options     |      object      |   —    |       {}       |
+|     rowOptions     |              el-row 配置              |      object      |   —    | { gutter: 10 } |
+|      isSearch      |              是否是搜索               |     boolean      |   —    |     false      |
+|     isPreview      |               是否预览                |     boolean      |   —    |     false      |
 
 ## Slot
 
@@ -1087,28 +1087,28 @@ created() {
 },
 ```
 
-| name | 说明 | 类型 |
-| :-: | :-: | :-: |
-| label | 表单的 label | string |
-| tableLabel | 当 label 和表格中的显示不一致时，优先匹配 tableLabel | string |
-| searchLabel | 当 label 和搜索中的显示不一致时，优先匹配 searchLabel | string |
-| tooltip | form-item 后面的小提示 | string |
-| defaultValue | 默认值 | any |
-| type | 表单的 type，不填默认为 input | string |
-| required | 是否必填 | boolean |
-| rules | 检验数组 | array |
-| columnOption | 组件的内部 options,例如 maxlength,placeholder | object |
-| options | 下拉框/单选框/多选框的 options 默认[{name,value}]格式 | array/function(form) |
-| showInSearch | 是否显示在搜索框中 | boolean |
-| showInTable | 是否显示在表格中 | boolean |
-| showInAdvance | 是否显示在高级查询中 | boolean |
-| formItemOption | form-item 的 options,常用比如 label-width | object |
-| formColumnShow | 是否在表单里显示,接收一个函数或者布尔值，返回 boolean false 隐藏 | boolean/function(form) |
-| span | 栅格布局 比例 默认 18 一共 24 | number |
-| colSpanOption | el-col 的配置项 | object |
-| showFormat | 表格格式化,例如 select/radio 传的值为 1,2,3,渲染成 options 的 name | function(val, row, scope) |
-| tableColumnOption | 表格 el-column 的配置项,例如 width,showOverflowTooltip | object |
-| onChange | 表单的 change 回调事件 | function(item) |
-| copy | 表格内是否显示复制图标 | boolean |
-| isTag | 表格内是否用 el-tag 渲染 | boolean |
-| tagOptions | el-tag 的配置项,也可以直接写 tag 的类型 | string/object/function |
+|       name        |                                说明                                |           类型            |
+| :---------------: | :----------------------------------------------------------------: | :-----------------------: |
+|       label       |                            表单的 label                            |          string           |
+|    tableLabel     |        当 label 和表格中的显示不一致时，优先匹配 tableLabel        |          string           |
+|    searchLabel    |       当 label 和搜索中的显示不一致时，优先匹配 searchLabel        |          string           |
+|      tooltip      |                       form-item 后面的小提示                       |          string           |
+|   defaultValue    |                               默认值                               |            any            |
+|       type        |                   表单的 type，不填默认为 input                    |          string           |
+|     required      |                              是否必填                              |          boolean          |
+|       rules       |                              检验数组                              |           array           |
+|   columnOption    |           组件的内部 options,例如 maxlength,placeholder            |          object           |
+|      options      |       下拉框/单选框/多选框的 options 默认[{name,value}]格式        |   array/function(form)    |
+|   showInSearch    |                         是否显示在搜索框中                         |          boolean          |
+|    showInTable    |                          是否显示在表格中                          |          boolean          |
+|   showInAdvance   |                        是否显示在高级查询中                        |          boolean          |
+|  formItemOption   |             form-item 的 options,常用比如 label-width              |          object           |
+|  formColumnShow   |  是否在表单里显示,接收一个函数或者布尔值，返回 boolean false 隐藏  |  boolean/function(form)   |
+|       span        |                   栅格布局 比例 默认 18 一共 24                    |          number           |
+|   colSpanOption   |                          el-col 的配置项                           |          object           |
+|    showFormat     | 表格格式化,例如 select/radio 传的值为 1,2,3,渲染成 options 的 name | function(val, row, scope) |
+| tableColumnOption |       表格 el-column 的配置项,例如 width,showOverflowTooltip       |          object           |
+|     onChange      |                       表单的 change 回调事件                       |      function(item)       |
+|       copy        |                       表格内是否显示复制图标                       |          boolean          |
+|       isTag       |                      表格内是否用 el-tag 渲染                      |          boolean          |
+|    tagOptions     |              el-tag 的配置项,也可以直接写 tag 的类型               |  string/object/function   |

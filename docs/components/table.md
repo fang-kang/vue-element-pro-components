@@ -158,12 +158,7 @@ title: 通用表格-ElProTable
 
 ```html
 <template>
-  <el-pro-table
-    :data="tableData"
-    show-toolbar
-    :auto-height="false"
-    :table-columns="columns"
-  />
+  <el-pro-table :data="tableData" show-toolbar :auto-height="false" :table-columns="columns" />
 </template>
 
 <script>
@@ -318,7 +313,7 @@ title: 通用表格-ElProTable
     :updateFunc="handleEdit"
     :auto-height="false"
   >
-    <template #operationBefore>
+    <template slot="operationBefore">
       <el-button icon="el-icon-edit" type="text">查看</el-button>
     </template>
   </el-pro-table>
@@ -1181,11 +1176,11 @@ title: 通用表格-ElProTable
     :update-func="handleEdit"
     :delete-func="handleDelete"
   >
-    <template #date="{scope}">
+    <template slot="date" slot-scope="{scope}">
       <i class="el-icon-time"></i>
       <span style="margin-left: 10px">{{ scope.row.date }}</span>
     </template>
-    <template #name="{scope}">
+    <template slot="name" slot-scope="{scope}">
       <el-popover trigger="hover" placement="top">
         <p>姓名: {{ scope.row.name }}</p>
         <p>住址: {{ scope.row.address }}</p>
@@ -1194,7 +1189,7 @@ title: 通用表格-ElProTable
         </div>
       </el-popover>
     </template>
-    <template #date="{scope}">
+    <template slot="date" slot-scope="{scope}">
       <i class="el-icon-time"></i>
       <span style="margin-left: 10px">{{ scope.row.date }}</span>
     </template>
@@ -1285,7 +1280,7 @@ title: 通用表格-ElProTable
     :table-options="{ height:'300px' }"
     :auto-height="false"
   >
-    <template #expandColumn="{ scope }">
+    <template slot="expandColumn" slot-scope="{scope}">
       <el-form label-position="left" inline class="demo-table-expand">
         <el-form-item label="商品名称">
           <span>{{ scope.row.name }}</span>
@@ -1562,10 +1557,10 @@ title: 通用表格-ElProTable
     :table-columns="columns"
     :auto-height="false"
   >
-    <template #settingHeader="{scope}">
+    <template slot="settingHeader" slot-scope="{scope}">
       <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
     </template>
-    <template #setting="{scope}">
+    <template slot="setting" slot-scope="{scope}">
       <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
       <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">
         Delete
@@ -2024,37 +2019,37 @@ title: 通用表格-ElProTable
 
 ## Attributes
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| :-: | :-: | :-: | :-: | :-: |
-| columns | 表格配置项,只显示 showInTable:true 的表格(详情见 CustomForm 说明) 多级表头使用数组类型,children 是子项 | object/array | — | {}/[] |
-| tableColumns | 表格配置项,全部显示 | object/array | — | {}/[] |
-| loading | 表格 loading | boolean | — | false |
-| selection | 是否多选 | boolean | — | false |
-| expand | 是否展开行 | boolean | — | false |
-| reserveSelection | 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key） | boolean | — | false |
-| data | 表格数据 | array | — | [] |
-| autoHeight | 是否自动计算表格高度 | boolean | — | true |
-| tableOptions | 表格配置项,例如 hasOperation:ture,显示操作栏 | object | — | { height:'200px ',highlightCurrentRow:true,size:'medium'} |
-| operationOptions | 操作栏的配置项，默认{label: "操作",fixed: "right",width: "150",align: "center",} | object | — | {} |
-| updateFunc | 修改事件 | function(row,index) | — | — |
-| deleteFunc | 删除事件 | function(row,index) | — | — |
-| updateText | 修改按钮文字 | string | — | 修改 |
-| deleteText | 删除按钮文字 | string | — | 删除 |
-| updateProps | 修改按钮 props | object | — | {} |
-| deleteProps | 删除按钮 props | object | — | {} |
-| rowOption | 工具栏 el-row 配置项 | object | — | { gutter:10 } |
-| showSearch.sync | 是否显示搜索 | boolean | — | false |
-| showToolbar | 是否显示工具栏 | boolean | — | false |
-| bottomOffset | 表格自动高度距离底部多少 | nmber/string | — | 30,有分页自动+50 |
-| deleteTip | 删除时提示语 | string | — | 此操作将永久删除该行, 是否继续? |
-| showToolbarRight | 是否显示右侧工具栏 | boolean | — | true |
-| total | 总数 | number | — | 0 |
-| pagination.sync | 分页和查询条件 | object | — | {} |
-| paginationStyle | el-pagination 的 style | object | — | {} |
-| customStyle | 自定义外层容器 style | object | — | {} |
-| pageSizes | 分页显示的条数 | array | — | [10, 20, 30, 50, 100] |
-| paginationOptions | [官方支持分页的其他 options](https://element.eleme.cn/#/zh-CN/component/pagination) | object | — | {} |
-| customProps | 自定义分页 page 和 pageSize 字段 | object | — | { page :'page',pageSize:''pageSize } |
+|       参数        |                                                     说明                                                     |        类型         | 可选值 |                          默认值                           |
+| :---------------: | :----------------------------------------------------------------------------------------------------------: | :-----------------: | :----: | :-------------------------------------------------------: |
+|      columns      |    表格配置项,只显示 showInTable:true 的表格(详情见 CustomForm 说明) 多级表头使用数组类型,children 是子项    |    object/array     |   —    |                           {}/[]                           |
+|   tableColumns    |                                             表格配置项,全部显示                                              |    object/array     |   —    |                           {}/[]                           |
+|      loading      |                                                 表格 loading                                                 |       boolean       |   —    |                           false                           |
+|     selection     |                                                   是否多选                                                   |       boolean       |   —    |                           false                           |
+|      expand       |                                                  是否展开行                                                  |       boolean       |   —    |                           false                           |
+| reserveSelection  | 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key） |       boolean       |   —    |                           false                           |
+|       data        |                                                   表格数据                                                   |        array        |   —    |                            []                             |
+|    autoHeight     |                                             是否自动计算表格高度                                             |       boolean       |   —    |                           true                            |
+|   tableOptions    |                                 表格配置项,例如 hasOperation:ture,显示操作栏                                 |       object        |   —    | { height:'200px ',highlightCurrentRow:true,size:'medium'} |
+| operationOptions  |               操作栏的配置项，默认{label: "操作",fixed: "right",width: "150",align: "center",}               |       object        |   —    |                            {}                             |
+|    updateFunc     |                                                   修改事件                                                   | function(row,index) |   —    |                             —                             |
+|    deleteFunc     |                                                   删除事件                                                   | function(row,index) |   —    |                             —                             |
+|    updateText     |                                                 修改按钮文字                                                 |       string        |   —    |                           修改                            |
+|    deleteText     |                                                 删除按钮文字                                                 |       string        |   —    |                           删除                            |
+|    updateProps    |                                                修改按钮 props                                                |       object        |   —    |                            {}                             |
+|    deleteProps    |                                                删除按钮 props                                                |       object        |   —    |                            {}                             |
+|     rowOption     |                                             工具栏 el-row 配置项                                             |       object        |   —    |                       { gutter:10 }                       |
+|  showSearch.sync  |                                                 是否显示搜索                                                 |       boolean       |   —    |                           false                           |
+|    showToolbar    |                                                是否显示工具栏                                                |       boolean       |   —    |                           false                           |
+|   bottomOffset    |                                           表格自动高度距离底部多少                                           |    nmber/string     |   —    |                     30,有分页自动+50                      |
+|     deleteTip     |                                                 删除时提示语                                                 |       string        |   —    |              此操作将永久删除该行, 是否继续?              |
+| showToolbarRight  |                                              是否显示右侧工具栏                                              |       boolean       |   —    |                           true                            |
+|       total       |                                                     总数                                                     |       number        |   —    |                             0                             |
+|  pagination.sync  |                                                分页和查询条件                                                |       object        |   —    |                            {}                             |
+|  paginationStyle  |                                            el-pagination 的 style                                            |       object        |   —    |                            {}                             |
+|    customStyle    |                                             自定义外层容器 style                                             |       object        |   —    |                            {}                             |
+|     pageSizes     |                                                分页显示的条数                                                |        array        |   —    |                   [10, 20, 30, 50, 100]                   |
+| paginationOptions |             [官方支持分页的其他 options](https://element.eleme.cn/#/zh-CN/component/pagination)              |       object        |   —    |                            {}                             |
+|    customProps    |                                       自定义分页 page 和 pageSize 字段                                       |       object        |   —    |           { page :'page',pageSize:''pageSize }            |
 
 ## Slot
 
@@ -2075,16 +2070,16 @@ title: 通用表格-ElProTable
 
 ## Events
 
-| 事件名称 | 说明 | 回调参数 |
-| :-: | :-: | :-: |
-| clearSelection | 用于多选表格，清空用户的选择 | — |
-| toggleRowSelection | 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中） | row, selected |
-| toggleAllSelection | 用于多选表格，切换所有行的选中状态 | — |
-| toggleRowExpansion | 用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开） | row, expanded |
-| setCurrentRow | 用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态。 | row |
-| clearFilter | 不传入参数时用于清空所有过滤条件，数据会恢复成未过滤的状态，也可传入由 columnKey 组成的数组以清除指定列的过滤条件 | columnKey |
-| clearSort | 用于清空排序条件，数据会恢复成未排序的状态 | — |
-| doLayout | 对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法 | — |
-| sort | 手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。 | prop: string, order: string |
-| onLoad | pageSize 或 pageNo 变化时触发 | — |
-| refresh | 表格刷新事件 | — |
+|      事件名称      |                                                          说明                                                           |          回调参数           |
+| :----------------: | :---------------------------------------------------------------------------------------------------------------------: | :-------------------------: |
+|   clearSelection   |                                              用于多选表格，清空用户的选择                                               |              —              |
+| toggleRowSelection |       用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中）       |        row, selected        |
+| toggleAllSelection |                                           用于多选表格，切换所有行的选中状态                                            |              —              |
+| toggleRowExpansion | 用于可展开表格与树形表格，切换某一行的展开状态，如果使用了第二个参数，则是设置这一行展开与否（expanded 为 true 则展开） |        row, expanded        |
+|   setCurrentRow    |                  用于单选表格，设定某一行为选中行，如果调用时不加参数，则会取消目前高亮行的选中状态。                   |             row             |
+|    clearFilter     |    不传入参数时用于清空所有过滤条件，数据会恢复成未过滤的状态，也可传入由 columnKey 组成的数组以清除指定列的过滤条件    |          columnKey          |
+|     clearSort      |                                       用于清空排序条件，数据会恢复成未排序的状态                                        |              —              |
+|      doLayout      |                   对 Table 进行重新布局。当 Table 或其祖先元素由隐藏切换为显示时，可能需要调用此方法                    |              —              |
+|        sort        |                         手动对 Table 进行排序。参数`prop`属性指定排序列，`order`指定排序顺序。                          | prop: string, order: string |
+|       onLoad       |                                              pageSize 或 pageNo 变化时触发                                              |              —              |
+|      refresh       |                                                      表格刷新事件                                                       |              —              |

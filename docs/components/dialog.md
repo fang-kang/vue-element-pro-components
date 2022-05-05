@@ -141,10 +141,10 @@ title: 通用对话框-ElProDialog
       }"
       @ok="dialogVisible = false"
     >
-      <template #nameBefore>
+      <template slot="nameBefore">
         <i class="el-icon-warning" style="margin-right:5px;"></i>
       </template>
-      <template #nameAfter>
+      <template slot="nameAfter">
         <i class="el-icon-circle-close" style="margin-left:5px;"></i>
       </template>
       <div>弹窗内容</div>
@@ -302,17 +302,17 @@ ElProDialog 组件的内容可以是任意的，甚至可以是表格或表单�
 
 ## Attributes
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| :-: | :-: | :-: | :-: | :-: |
-| v-model | 是否显示 Dialog | boolean | — | false |
-| title | Dialog 的标题 | string | — | — |
-| dialogOptions | [官方支持的参数集合](https://element.eleme.cn/#/zh-CN/component/dialog) 除此之外，还扩展支持 showFullscreen:true,draggable:true | object | — | {} |
-| loading | 弹窗 loading | boolean | — | false |
-| btnLoading | 确定按钮 loading | boolean | — | false |
-| confirmBtnText | 底部 footer 确定按钮文字 | string | — | 确定 |
-| cancelBtnText | 底部 footer 取消按钮文字 | string | — | 取消 |
-| confirmBtnProps | 底部 footer 确定按钮 props | object | — | — |
-| cancelBtnProps | 底部 footer 取消按钮 props | object | — | — |
+|      参数       |                                                              说明                                                               |  类型   | 可选值 | 默认值 |
+| :-------------: | :-----------------------------------------------------------------------------------------------------------------------------: | :-----: | :----: | :----: |
+|     v-model     |                                                         是否显示 Dialog                                                         | boolean |   —    | false  |
+|      title      |                                                          Dialog 的标题                                                          | string  |   —    |   —    |
+|  dialogOptions  | [官方支持的参数集合](https://element.eleme.cn/#/zh-CN/component/dialog) 除此之外，还扩展支持 showFullscreen:true,draggable:true | object  |   —    |   {}   |
+|     loading     |                                                          弹窗 loading                                                           | boolean |   —    | false  |
+|   btnLoading    |                                                        确定按钮 loading                                                         | boolean |   —    | false  |
+| confirmBtnText  |                                                    底部 footer 确定按钮文字                                                     | string  |   —    |  确定  |
+|  cancelBtnText  |                                                    底部 footer 取消按钮文字                                                     | string  |   —    |  取消  |
+| confirmBtnProps |                                                   底部 footer 确定按钮 props                                                    | object  |   —    |   —    |
+| cancelBtnProps  |                                                   底部 footer 取消按钮 props                                                    | object  |   —    |   —    |
 
 ## Slot
 

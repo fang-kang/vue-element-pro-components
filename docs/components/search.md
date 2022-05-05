@@ -17,7 +17,7 @@ title: 通用搜索-ElProSearch
     :columns="columns"
     @search="dataReload"
   >
-    <template #after>
+    <template slot="after">
       <el-button type="primary" size="small">新增</el-button>
     </template>
   </el-pro-search>
@@ -163,26 +163,26 @@ title: 通用搜索-ElProSearch
 
 ## Attributes
 
-| 参数 | 说明 | 类型 | 可选值 | 默认值 |
-| :-: | :-: | :-: | :-: | :-: |
-| v-model | 绑定的查询参数 | object | — | {} |
-| columns | 表单配置项,只显示 showInSearch:true 的表单(详情见 CustomForm 说明) | object | — | {} |
-| searchColumns | 表单配置项,全部显示 | object | — | {} |
-| noSearch | 不显示查询按钮 | boolean | — | false |
-| customStyle | 查询最外层自定义 style | object | — | {} |
-| isCollapse | 是否显示展开收起文字 | boolean | — | false |
-| showAdvanced | 是否显示高级查询 | boolean | — | false |
-| showNum | 收起后显示的表单数量 | string,number | — | 2 |
-| showReset | 是否显示重置按钮 | boolean | — | false |
-| searchBtnText | 查询按钮文字 | string | — | 查询 |
-| searchBtnProps | 查询按钮 props | object | — | {} |
-| resetBtnText | 重置按钮文字 | string | — | 重置 |
-| resetBtnProps | 重置按钮 props | object | — | {} |
-| loading | 查询按钮 loading | boolean | — | false |
-| advancedTitle | 高级查询抽屉 title | string | — | 高级查询 |
-| size | 高级查询抽屉宽度 | string,number | — | 450 |
-| formAdvanceOptions | 高级查询表单配置项 | object | — | {} |
-| formOptions | 查询表单配置项 | object | — | {} |
+|        参数        |                                说明                                |     类型      | 可选值 |  默认值  |
+| :----------------: | :----------------------------------------------------------------: | :-----------: | :----: | :------: |
+|      v-model       |                           绑定的查询参数                           |    object     |   —    |    {}    |
+|      columns       | 表单配置项,只显示 showInSearch:true 的表单(详情见 CustomForm 说明) |    object     |   —    |    {}    |
+|   searchColumns    |                        表单配置项,全部显示                         |    object     |   —    |    {}    |
+|      noSearch      |                           不显示查询按钮                           |    boolean    |   —    |  false   |
+|    customStyle     |                       查询最外层自定义 style                       |    object     |   —    |    {}    |
+|     isCollapse     |                        是否显示展开收起文字                        |    boolean    |   —    |  false   |
+|    showAdvanced    |                          是否显示高级查询                          |    boolean    |   —    |  false   |
+|      showNum       |                        收起后显示的表单数量                        | string,number |   —    |    2     |
+|     showReset      |                          是否显示重置按钮                          |    boolean    |   —    |  false   |
+|   searchBtnText    |                            查询按钮文字                            |    string     |   —    |   查询   |
+|   searchBtnProps   |                           查询按钮 props                           |    object     |   —    |    {}    |
+|    resetBtnText    |                            重置按钮文字                            |    string     |   —    |   重置   |
+|   resetBtnProps    |                           重置按钮 props                           |    object     |   —    |    {}    |
+|      loading       |                          查询按钮 loading                          |    boolean    |   —    |  false   |
+|   advancedTitle    |                         高级查询抽屉 title                         |    string     |   —    | 高级查询 |
+|        size        |                          高级查询抽屉宽度                          | string,number |   —    |   450    |
+| formAdvanceOptions |                         高级查询表单配置项                         |    object     |   —    |    {}    |
+|    formOptions     |                           查询表单配置项                           |    object     |   —    |    {}    |
 
 ## Slot
 

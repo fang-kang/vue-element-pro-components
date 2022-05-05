@@ -13,7 +13,7 @@
       :columns="searchColumn"
       :form-options="formProcessOptions"
     >
-      <template v-slot:columnAfter>
+      <template slot="columnAfter">
         <el-form-item v-if="$slots.before">
           <slot name="before" />
         </el-form-item>

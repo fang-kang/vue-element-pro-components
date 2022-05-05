@@ -1,7 +1,7 @@
 <template>
   <el-card>
     <el-pro-search v-model="queryForm" :columns="columns" @search="dataReload">
-      <template #after>
+      <template slot="after">
         <el-button type="primary">新增</el-button>
       </template>
     </el-pro-search>

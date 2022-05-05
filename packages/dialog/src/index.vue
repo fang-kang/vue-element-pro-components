@@ -9,7 +9,7 @@
     @closed="closed"
     v-on="$listeners"
   >
-    <template v-slot:title>
+    <template slot="title">
       <slot v-if="$slots.title" name="title" />
       <div
         v-else

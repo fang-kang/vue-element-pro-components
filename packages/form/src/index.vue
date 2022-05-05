@@ -37,7 +37,7 @@
                 :operation-options="{ width: 200 }"
                 :table-options="tableOptions"
               >
-                <template v-slot:operationMiddle="{ scope }">
+                <template slot="operationMiddle" slot-scope="scope">
                   <el-button
                     icon="el-icon-edit"
                     type="text"
@@ -65,7 +65,7 @@
                 :required="isSearch ? false : column.required"
                 v-bind="getFormItemOptions(column)"
               >
-                <template v-slot:label>
+                <template slot="label">
                   <span :title="column.serachLabel || column.label">
                     {{ column.serachLabel || column.label }}
                   </span>
@@ -95,16 +95,16 @@
                       }
                     "
                   >
-                    <template v-slot:prefix>
+                    <template slot="prefix">
                       <slot :name="`${column.key}Prefix`" :form="form" />
                     </template>
-                    <template v-slot:suffix>
+                    <template slot="suffix">
                       <slot :name="`${column.key}Suffix`" :form="form" />
                     </template>
-                    <template v-slot:prepend>
+                    <template slot="prepend">
                       <slot :name="`${column.key}Prepend`" :form="form" />
                     </template>
-                    <template v-slot:append>
+                    <template slot="append">
                       <slot :name="`${column.key}Append`" :form="form" />
                     </template>
                   </el-input>

@@ -37,7 +37,7 @@ title: 组件
       @refresh="dataReload"
       @onLoad="dataReload"
     >
-      <template #toolbarLeft>
+      <template slot="toolbarLeft">
         <el-button type="primary" plain icon="el-icon-plus" @click="visible = true">新增</el-button>
         <el-button type="success" plain icon="el-icon-edit">修改</el-button>
         <el-button type="danger" plain icon="el-icon-delete">删除</el-button>

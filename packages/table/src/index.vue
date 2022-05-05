@@ -126,7 +126,7 @@
             v-bind="column.tableColumnOption"
           >
             <!-- 表头插槽 -->
-            <template v-slot:header="scope">
+            <template slot="header" slot-scope="scope">
               <slot :name="column.key + 'Header'" :scope="scope" />
               <span v-if="!$slots[column.key + 'Header']">{{
                 column.tableLabel || column.label
@@ -142,7 +142,7 @@
                 />
               </el-tooltip>
             </template>
-            <template v-slot:default="scope">
+            <template slot-scope="scope">
               <slot :name="column.key" :scope="scope" />
               <i
                 v-if="column.copy && !$slots[column.key]"
@@ -165,7 +165,7 @@
         </template>
       </fragment>
       <el-table-column v-if="hasOperation" v-bind="processOperationOptions">
-        <template v-slot:default="scope">
+        <template slot-scope="scope">
           <slot :scope="scope" name="operationColumn" />
           <div class="operationContainer" v-if="!$slots.operationColumn">
             <slot :scope="scope" name="operationBefore" />
