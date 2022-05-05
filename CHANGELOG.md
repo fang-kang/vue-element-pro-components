@@ -1,4 +1,8 @@
-# 更新日志
+## 1.0.32 (2022-05-05)
+
+### Bug Fixes
+
+- fix search bug ([f7ad913](https://github.com/fang-kang/vue-element-pro-components/commit/f7ad91362922767d723a355d63432b838a21c4fe))
 
 ## 1.0.17 (2022-03-29)
 
